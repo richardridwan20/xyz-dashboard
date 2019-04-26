@@ -1,1 +1,0 @@
-# sequis-b2b-dashboard
