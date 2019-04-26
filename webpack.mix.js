@@ -11,5 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.copyDirectory('resources/js/core', 'public/js/core');
+
+mix.js('resources/js/app.js', 'public/js/app.js')
+    .js('resources/js/codebase.js', 'public/js/codebase.js')
+    .styles([
+       'resources/css/codebase.css',
+       'resources/css/themes/corporate.css'
+    ], 'public/css/app.css');
+
+mix.scripts('resources/js/plugins/chartjs/Chart.bundle.min.js', 'public/js/theme.js');
+
+mix.copyDirectory('resources/fonts', 'public/fonts');
+mix.copyDirectory('resources/media', 'public/assets/media');
