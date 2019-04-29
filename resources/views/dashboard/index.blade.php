@@ -23,7 +23,7 @@
                                         <i class="si si-users fa-3x text-gray"></i>
                                     </div>
                                     <div class="font-size-h3 font-w600 text-primary-light">4,210</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Followers</div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Partner</div>
                                 </div>
                             </a>
                         </div>
@@ -51,46 +51,6 @@
                         </div>
                         <!-- END Row #1 -->
                     </div>
-                    <div class="row">
-                        <!-- Row #2 -->
-                        <div class="col-md-6">
-                            <div class="block block-fx-shadow">
-                                <div class="block-header block-header-default">
-                                    <h3 class="block-title">
-                                        Sales <small>This week</small>
-                                    </h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                            <i class="si si-refresh"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <!-- Lines Chart Container -->
-                                    <canvas class="js-chartjs-pop-lines"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="block block-fx-shadow">
-                                <div class="block-header block-header-default">
-                                    <h3 class="block-title">
-                                        Earnings <small>This week</small>
-                                    </h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                            <i class="si si-refresh"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <!-- Lines Chart Container -->
-                                    <canvas class="js-chartjs-pop-lines2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Row #2 -->
-                    </div>
                     <div class="block block-fx-shadow">
                         <div class="block-content bg-body-light">
                             <!-- Search -->
@@ -108,323 +68,42 @@
                             </form>
                             <!-- END Search -->
                         </div>
-                        <div class="block-content">
-                            <!-- Orders Table -->
-                            <table class="table table-borderless table-striped">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 100px;">ID</th>
-                                        <th>Status</th>
-                                        <th class="d-none d-sm-table-cell">Submitted</th>
-                                        <th class="d-none d-sm-table-cell">Products</th>
-                                        <th class="d-none d-sm-table-cell">Customer</th>
-                                        <th class="text-right">Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1851</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-info">Processing</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/27
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">1</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Jack Estrada</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$103</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1850</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-info">Processing</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/26
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">7</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Jack Estrada</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$244</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1849</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-info">Processing</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/25
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">2</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Carol Ray</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$561</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1848</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-danger">Canceled</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/24
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">3</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Sara Fields</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$651</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1847</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/23
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">7</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Betty Kelley</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$969</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1846</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/22
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">4</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Carl Wells</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$621</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1845</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-danger">Canceled</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/21
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">2</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Jose Mills</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$857</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1844</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/20
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">8</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Jesse Fisher</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$433</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1843</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-danger">Canceled</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/19
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">8</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Andrea Gardner</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$968</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1842</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/18
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">1</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Jose Mills</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$336</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1841</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/17
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">8</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Barbara Scott</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$327</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1840</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-warning">Pending</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/16
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">3</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Andrea Gardner</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$326</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1839</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-info">Processing</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/15
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">7</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Amanda Powell</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$522</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1838</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-info">Processing</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/14
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">7</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Amanda Powell</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$822</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a class="font-w600" href="javascript:void(0)">ORD.1837</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-danger">Canceled</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            2017/10/13
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">5</a>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <a href="javascript:void(0)">Lisa Jenkins</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <span class="text-black">$971</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- END Orders Table -->
+                        <div class="block">
+                            <div class="block-header block-header-default bg-primary-lighter">
+                                <h3 class="block-title text-uppercase">Transaction</h3>
+                                <div class="block-options">
+                                </div>
+                            </div>
+                            <div class="block-content block-content-full">
+                                <table id="example" class="table table-hover table-striped table-vcenter table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Transaction_Id</th>
+                                            <th>
+                                                Partner_Name
+                                                <i class="user_id fa fa-pull-right fa-sort"></i>
+                                            </th>
+                                            <th>
+                                                PH_Name
+                                                <i class="first_name fa fa-pull-right fa-sort"></i>
+                                            </th>
+                                            <th>
+                                                Insured_Name
+                                                <i class="last_name fa fa-pull-right fa-sort"></i>
+                                            </th>
+                                            <th>
+                                                Product_Plan
+                                                <i class="username fa fa-pull-right fa-sort"></i>
+                                            </th>
+                                            <th>
+                                                Status
+                                                <i class="path fa fa-pull-right fa-sort"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
 
                             <!-- Navigation -->
                             <nav aria-label="Orders navigation">
