@@ -47,23 +47,6 @@
             </div>
             <!-- END Mini Stats -->
 
-            <!-- Search -->
-            <div class="block pull-r-l">
-                <div class="block-content block-content-full block-content-sm bg-body-light">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="side-overlay-search" name="side-overlay-search" placeholder="Search..">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary px-10">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END Search -->
-
             <!-- Notifications -->
             <div class="block pull-r-l">
                 <div class="block-header bg-body-light">
@@ -280,21 +263,6 @@
                 <i class="fa fa-search"></i>
             </button>
             <!-- END Open Search Section -->
-
-            <!-- Full Search -->
-            <div class="content-header-item d-none d-sm-inline-block ml-5">
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- END Full Search -->
 
             <!-- Toggle Side Overlay -->
             <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
