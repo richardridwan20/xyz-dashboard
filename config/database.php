@@ -59,6 +59,36 @@ return [
             ]) : [],
         ],
 
+        'mysql.core' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_CORE', '127.0.0.1'),
+            'port' => env('DB_PORT_CORE', '3306'),
+            'database' => env('DB_DATABASE_CORE', 'forge'),
+            'username' => env('DB_USERNAME_CORE', 'forge'),
+            'password' => env('DB_PASSWORD_CORE', ''),
+            'unix_socket' => env('DB_SOCKET_CORE', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'mysql.log' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_LOG', '127.0.0.1'),
+            'port' => env('DB_PORT_LOG', '3306'),
+            'database' => env('DB_DATABASE_LOG', 'forge'),
+            'username' => env('DB_USERNAME_LOG', 'forge'),
+            'password' => env('DB_PASSWORD_LOG', ''),
+            'unix_socket' => env('DB_SOCKET_LOG', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
