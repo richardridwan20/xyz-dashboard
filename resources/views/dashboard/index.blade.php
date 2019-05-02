@@ -102,6 +102,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                            @forelse ($transactions as $transaction)
+                                            <tr>
+                                                {{-- <td>{{$transaction->id}}</td> --}}
+                                                {{-- <td>{{$transaction->partner->name}}</td>
+                                                <td>{{$transaction->customer->name}}</td>
+                                                <td>{{$transaction->insured_name}}</td>
+                                                <td>{{$transaction->product->name}}</td>
+                                                <td>{{$transaction->payment_status}}</td> --}}
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="10">No data to be shown.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
 
