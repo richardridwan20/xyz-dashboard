@@ -19,10 +19,12 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->unsignedInteger('product_id');
             $table->string('insured_relation');
+            $table->string('insured_name');
             $table->string('insured_dob');
             $table->string('insured_gender');
             $table->string('bene_relation');
-            $table->string('bene_dob');
+            $table->string('bene_name');
+            $table->string('bene_dob'); 
             $table->string('bene_gender');
             $table->string('bene_email');
             $table->string('protection_duration');
