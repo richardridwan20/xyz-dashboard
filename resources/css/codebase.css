@@ -1496,9 +1496,40 @@ pre code {
   border-top: 1px solid #e4e7ed;
 }
 
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  vertical-align: top;
+  border-top: 1px solid #e4e7ed;
+}
+
 .table thead th {
+  cursor: pointer;
   vertical-align: bottom;
   border-bottom: 2px solid #e4e7ed;
+}
+
+.table-th-active {
+  background-color: #d3f2f3;
+}
+
+.small-th {
+  min-width: 125px;
+}
+
+.medium-th {
+  min-width: 175px;
+}
+
+.large-th {
+  min-width: 250px;
 }
 
 .table tbody + tbody {

@@ -71,5 +71,7 @@
         <!-- END Page Container -->
 
         @include('layouts.script')
+
+        @stack('script')
     </body>
 </html>
