@@ -133,7 +133,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
+                        <img class="content-header-logo" src="assets\media\photos\super-you-s.png" alt="">
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -151,8 +151,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="index.html">
-                            <i class="si si-fire text-primary"></i>
-                            <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                            <img class="content-header-logo" src="assets\media\photos\super-you-logo-white.png" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -169,19 +168,13 @@
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">MG</span><span class="sidebar-mini-hidden">Manage</span></li>
                     <li>
-                        <a href=""><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Projects</span></a>
+                        <a href=""><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
                     </li>
                     <li>
-                        <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Clients</span></a>
+                        <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
                     </li>
                     <li>
                         <a href=""><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="si si-energy"></i><span class="sidebar-mini-hide">Assets</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="si si-shield"></i><span class="sidebar-mini-hide">Tickets</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">ST</span><span class="sidebar-mini-hidden">Settings</span></li>
                     <li>
@@ -189,13 +182,6 @@
                     </li>
                     <li>
                         <a href=""><i class="si si-lock"></i><span class="sidebar-mini-hide">Security</span></a>
-                    </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-visible">MR</span><span class="sidebar-mini-hidden">More</span></li>
-                    <li>
-                        <a href=""><i class="si si-flag"></i><span class="sidebar-mini-hide">Notifications</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="si si-support"></i><span class="sidebar-mini-hide">Help</span></a>
                     </li>
                 </ul>
             </div>

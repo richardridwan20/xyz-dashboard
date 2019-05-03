@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Transaction extends Model
 {
-    protected $guarded = [];
+    use HasRoles;
+
+    protected $guard_name = 'web';
 
     public function partner()
     {

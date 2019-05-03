@@ -1405,15 +1405,6 @@ select.form-control:focus::-ms-value {
   }
 }
 
-#page-container.sidebar-inverse #sidebar {
-  color: #e6ecec;
-  background-color: #323d4c;
-}
-
-#page-container.sidebar-inverse #sidebar .content-side-user {
-  background-color: #2c3643;
-}
-
 .block {
   box-shadow: 0 1px 1px #e6ecec;
 }

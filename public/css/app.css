@@ -9984,6 +9984,7 @@ textarea.form-control.form-control-lg, .input-group-lg > textarea.form-control,
   width: 100%;
   background-color: #fff;
   overflow-y: auto;
+  background-color: #059fa1;
   -webkit-transform: translateX(-100%) translateY(0) translateZ(0);
           transform: translateX(-100%) translateY(0) translateZ(0);
   -webkit-overflow-scrolling: touch;
@@ -10261,12 +10262,12 @@ textarea.form-control.form-control-lg, .input-group-lg > textarea.form-control,
 
 #page-container.sidebar-inverse #sidebar {
   color: #e4e7ed;
-  background-color: #343a40;
+  background-color: #0d294a;
   box-shadow: none;
 }
 
 #page-container.sidebar-inverse #sidebar .content-side-user {
-  background-color: #2d3238;
+  background-color: #0d294a;
 }
 
 @media (min-width: 992px) {
@@ -23494,15 +23495,6 @@ select.form-control:focus::-ms-value {
   #page-container.page-header-modern.sidebar-r #sidebar {
     box-shadow: -5px 0 10px #e6ecec;
   }
-}
-
-#page-container.sidebar-inverse #sidebar {
-  color: #e6ecec;
-  background-color: #323d4c;
-}
-
-#page-container.sidebar-inverse #sidebar .content-side-user {
-  background-color: #2c3643;
 }
 
 .block {
