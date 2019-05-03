@@ -164,24 +164,38 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li>
-                        <a class="active" href="db_pop.html"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                        <a href="http://sequis-b2b-dashboard.test/dashboard"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">MG</span><span class="sidebar-mini-hidden">Manage</span></li>
+                    @can('view upload form')
+                        <li>
+                            <a href=""><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
+                        </li>
+                    @endcan
+                    @role('admin|supadmin');
                     <li>
-                        <a href=""><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
+                        <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Product</span></a>
                     </li>
+                    @endrole
+                    @can('input invoice number')
                     <li>
-                        <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
+                        <a href="http://sequis-b2b-dashboard.test/invoice"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
-                    <li>
-                        <a href=""><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
-                    </li>
+                    @endcan
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">ST</span><span class="sidebar-mini-hidden">Settings</span></li>
                     <li>
                         <a href=""><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
                     </li>
                     <li>
                         <a href=""><i class="si si-lock"></i><span class="sidebar-mini-hide">Security</span></a>
+                    </li>
+                    <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="si si-logout mr-5"></i><span class="sidebar-mini-hide">Sign Out</span>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                            </form>
                     </li>
                 </ul>
             </div>

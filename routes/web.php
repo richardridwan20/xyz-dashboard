@@ -19,3 +19,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/customer', 'CustomerController@index')->name('customer.index');
+
+Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index');

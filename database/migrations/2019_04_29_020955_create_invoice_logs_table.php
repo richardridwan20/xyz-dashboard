@@ -19,7 +19,11 @@ class CreateInvoiceLogsTable extends Migration
             $table->string('date')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('partner_id')->references('id')->on('sequis-b2b-dashboard.partners');
         });
+
+
     }
 
     /**
