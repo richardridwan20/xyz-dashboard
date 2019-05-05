@@ -10,16 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard.index');
+    Route::get('/customer', 'CustomerController@index')->name('customer.index');
+    Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('role:treasury');
+    Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('role:partner');
+});
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/customer', 'CustomerController@index')->name('customer.index');
-
-Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index');
