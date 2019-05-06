@@ -18,8 +18,8 @@ Route::get('/test', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
-    Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('role:treasury');
-    Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('role:partner');
+    Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('role:treasury|supadmin');
+    Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('role:partner|supadmin');
 });
 
 Auth::routes(['verify' => true]);

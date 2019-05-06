@@ -75,7 +75,7 @@
 
                     <!-- Logo -->
                     <div class="content-header-item">
-                        <a class="link-effect font-w700" href="index.html">
+                        <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
                             <img class="content-header-logo" src="assets\media\photos\super-you-logo-white.png" alt="">
                         </a>
                     </div>

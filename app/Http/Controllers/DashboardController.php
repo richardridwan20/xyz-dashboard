@@ -7,9 +7,9 @@ use App\Models\Transaction;
 use App\Models\Partner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
-// use Spatie\Permission\Models\Role;
-// use Spatie\Permission\Models\Permission;
-// use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\User;
 
 
 class DashboardController extends Controller
