@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/test', function () {
+    return view('layouts.login');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
