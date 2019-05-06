@@ -57,7 +57,7 @@
                 <td colspan="10">No data to be shown.</td>
             </tr>
         @endforelse
-        
+
     </tbody>
 </table>
 

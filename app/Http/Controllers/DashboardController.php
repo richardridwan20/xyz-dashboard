@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\Partner;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 // use Spatie\Permission\Models\Role;
 // use Spatie\Permission\Models\Permission;
@@ -73,11 +75,15 @@ class DashboardController extends Controller
         // $user = User::find(3);
         // $user->assignRole('admin');
 
-        // $user = User::find(4);
-        // $user->assignRole('partner');
+        //  $user = User::find(4);
+        //  $user->assignRole('partner');
+
+        //  $user = User::find(5);
+        //  $user->assignRole('partner');
 
         $column = 'created_at';
         $typeOfSort = 'DESC';
+        $user = Auth::user()->name;
 
         if ($request->ajax()) {
             $id = $request->column;
@@ -103,8 +109,15 @@ class DashboardController extends Controller
             });
 
             //Get the data from Model, order by and sort by with different parameters.
-            $transactions = Transaction::orderBy($column, $typeOfSort)
-                ->paginate(2);
+            if(Auth::user()->hasRole('partner')){
+                $partner = Partner::where('name', $user)->first()->id;
+                $transactions = Transaction::orderBy($column, $typeOfSort)
+                ->where('partner_id', $partner)
+                ->paginate(5);
+            }else{
+                $transactions = Transaction::orderBy($column, $typeOfSort)
+                ->paginate(5);
+            }
 
             $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
@@ -140,7 +153,12 @@ class DashboardController extends Controller
             return json_encode($json);
         }
 
-        $transactions = Transaction::paginate(2);
+        if(Auth::user()->hasRole('partner')){
+            $partner = Partner::where('name', $user)->first()->id;
+            $transactions = Transaction::where('partner_id', $partner)->paginate(5);
+        }else{
+            $transactions = Transaction::paginate(5);
+        }
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
         return view('dashboard.index', compact('transactions', 'append'));
