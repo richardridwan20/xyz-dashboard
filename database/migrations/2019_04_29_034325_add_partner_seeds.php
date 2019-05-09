@@ -24,7 +24,7 @@ class AddPartnerSeeds extends Migration
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
                 'payment_type' => 'Yearly',
-                'payment_duration' => '12',
+                'duration' => '12',
             ],
             [
                 'name' => 'Tokopedia',
@@ -36,7 +36,7 @@ class AddPartnerSeeds extends Migration
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
                 'payment_type' => 'Monthly',
-                'payment_duration' => '2',
+                'duration' => '2',
             ]
         ]);
     }
