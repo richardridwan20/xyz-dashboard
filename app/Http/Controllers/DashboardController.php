@@ -11,9 +11,16 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 
+use App\Services\DashboardService;
+
 
 class DashboardController extends Controller
 {
+    public function __construct(DashboardService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index(Request $request)
     {
 
@@ -83,84 +90,95 @@ class DashboardController extends Controller
 
         $column = 'created_at';
         $typeOfSort = 'DESC';
-        $user = Auth::user()->name;
 
-        if ($request->ajax()) {
-            $id = $request->column;
+        // if ($request->ajax()) {
+        //     $id = $request->column;
 
-            //If the link contains no parameters, then the default will be 'created_at' and 'DESC'
-            if ($id == null) {
-                $column = 'created_at';
-                $typeOfSort = 'DESC';
-            } else {
-                $column = $request->column;
-                $typeOfSort = $request->typeOfSort;
-            }
+        //     //If the link contains no parameters, then the default will be 'created_at' and 'DESC'
+        //     if ($id == null) {
+        //         $column = 'created_at';
+        //         $typeOfSort = 'DESC';
+        //     } else {
+        //         $column = $request->column;
+        //         $typeOfSort = $request->typeOfSort;
+        //     }
 
-            $table_data = '';
+        //     $table_data = '';
 
-            $page = $request->page;
+        //     $page = $request->page;
 
-            $currentPage = $page;
+        //     $currentPage = $page;
 
-            // Change current page when the paginate button is clicked.
-            Paginator::currentPageResolver(function () use ($currentPage) {
-                return $currentPage;
-            });
+        //     // Change current page when the paginate button is clicked.
+        //     Paginator::currentPageResolver(function () use ($currentPage) {
+        //         return $currentPage;
+        //     });
 
-            //Get the data from Model, order by and sort by with different parameters.
-            if(Auth::user()->hasRole('partner')){
-                $partner = Partner::where('name', $user)->first()->id;
-                $transactions = Transaction::orderBy($column, $typeOfSort)
-                ->where('partner_id', $partner)
-                ->paginate(5);
-            }else{
-                $transactions = Transaction::orderBy($column, $typeOfSort)
-                ->paginate(5);
-            }
+        //     //Get the data from Model, order by and sort by with different parameters.
+        //     if(Auth::user()->hasRole('partner')){
+        //         $partner = Partner::where('name', $user)->first()->id;
+        //         $transactions = Transaction::orderBy($column, $typeOfSort)
+        //         ->where('partner_id', $partner)
+        //         ->paginate(5);
+        //     }else{
+        //         $transactions = Transaction::orderBy($column, $typeOfSort)
+        //         ->paginate(5);
+        //     }
 
-            $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+        //     $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-            if (!empty($transactions)) {
-                foreach ($transactions as $transaction) {
-                    $id = $transaction->id;
-                    $partner_name = $transaction->partner->name;
-                    $ph_name = $transaction->customer->name;
-                    $insured_name = $transaction->insured_name;
-                    $product_plan = $transaction->product->plan_id;
-                    $duration = $transaction->protection_duration;
-                    $certificate_number = $transaction->certificate_number;
-                    $status = $transaction->payment_status;
+        //     if (!empty($transactions)) {
+        //         foreach ($transactions as $transaction) {
+        //             $id = $transaction->id;
+        //             $partner_name = $transaction->partner->name;
+        //             $ph_name = $transaction->customer->name;
+        //             $insured_name = $transaction->insured_name;
+        //             $product_plan = $transaction->product->plan_id;
+        //             $duration = $transaction->protection_duration;
+        //             $certificate_number = $transaction->certificate_number;
+        //             $status = $transaction->payment_status;
 
-                    //The URL to redirect to Details Page of Conversation Logs based on ID.
-                    $text = 'http://superyou-log.test/conversation-logs/:id/details';
+        //             //The URL to redirect to Details Page of Conversation Logs based on ID.
+        //             $text = 'http://superyou-log.test/conversation-logs/:id/details';
 
-                    $url = str_replace(':id', $id, $text);
+        //             $url = str_replace(':id', $id, $text);
 
-                    $table_data .= '<tr><td>'.$id.'</td><td><a href='.$url.'>'.$partner_name.'</a></td><td>'.$ph_name.'</td><td>'.$insured_name.'</td><td>'.$product_plan.'</td><td>'.$duration.'</td><td>'.$certificate_number.'</td><td>'.$status.'</td></tr>';
-                }
+        //             $table_data .= '<tr><td>'.$id.'</td><td><a href='.$url.'>'.$partner_name.'</a></td><td>'.$ph_name.'</td><td>'.$insured_name.'</td><td>'.$product_plan.'</td><td>'.$duration.'</td><td>'.$certificate_number.'</td><td>'.$status.'</td></tr>';
+        //         }
 
-                $json['success'] = $table_data;
-                $json['info'] = 'Showing '.$transactions->firstItem().' to '.$transactions->lastItem().' of '.$transactions->total().' entries';
-                $json['pagi'] = ''.$transactions->appends($append)->links('pagination/simple-bootstrap-4').'';
-            } else {
+        //         $json['success'] = $table_data;
+        //         $json['info'] = 'Showing '.$transactions->firstItem().' to '.$transactions->lastItem().' of '.$transactions->total().' entries';
+        //         $json['pagi'] = ''.$transactions->appends($append)->links('pagination/simple-bootstrap-4').'';
+        //     } else {
 
-                //Show the error when no data is available to retrieve.
-                $table_data .= '<tr><td>No data to be shown.</td></tr>';
-                $json['success'] = $table_data;
-            }
+        //         //Show the error when no data is available to retrieve.
+        //         $table_data .= '<tr><td>No data to be shown.</td></tr>';
+        //         $json['success'] = $table_data;
+        //     }
 
-            return json_encode($json);
-        }
+        //     return json_encode($json);
+        // }
 
-        if(Auth::user()->hasRole('partner')){
-            $partner = Partner::where('name', $user)->first()->id;
-            $transactions = Transaction::where('partner_id', $partner)->paginate(5);
-        }else{
-            $transactions = Transaction::paginate(5);
-        }
+        // if(Auth::user()->hasRole('partner')){
+        //     $partner = Partner::where('name', $user)->first()->id;
+        //     $transactions = Transaction::where('partner_id', $partner)->paginate(5);
+        // }else{
+        //     $transactions = Transaction::paginate(5);
+        // }
+
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
+        $page = $request->page;
+
+        $transactions = $this->service->allTransaction($page)->paginate();
+
         return view('dashboard.index', compact('transactions', 'append'));
+    }
+
+    public function detail($id)
+    {
+        $detailTransaction = $this->service->getTransactionById($id)->get();
+
+        return view('dashboard.detail', compact('detailTransaction'));
     }
 }

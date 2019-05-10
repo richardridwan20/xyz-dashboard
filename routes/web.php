@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/test', function () {
-    return view('layouts.login');
-});
-
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
+    Route::get('/', 'DashboardController@index')->name('dashboard.index');
+    Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
     Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('role:treasury|supadmin');
     Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('role:partner|supadmin');
+
 });
 
 Auth::routes(['verify' => true]);

@@ -35,7 +35,7 @@
 
 @endsection
 
-@push('script')
+@push('')
 
     <script type="text/javascript">
 
@@ -54,11 +54,11 @@
                     page: page
                 },
                 success: function (json) {
-                  
+
                     $("#tableAjax").html(json.success);
                     $(".paginate").append(json.pagi);
                     $(".page-info").append(json.info);
-             
+
                     window.history.pushState("", "Title", "/dashboard?sort_by=" + column + "&order_by=" + typeOfSort);
 
                     //Change the icon referencing the data in URL.
@@ -69,7 +69,7 @@
                         $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
                         $('#'+ column +'').addClass("table-th-active");
                     }
-                    
+
                     //Reset if another column has been clicked.
                     if (column != sortInURL){
                         $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
@@ -86,7 +86,7 @@
             $("#tableAjax").empty();
             $(".paginate").empty();
             $(".page-info").empty();
-            
+
             $.ajax({
                 type: "GET",
                 url: "{{ route('dashboard.index') }}",
@@ -97,11 +97,11 @@
                     page: page
                 },
                 success: function (json) {
-                  
+
                     $("#tableAjax").html(json.success);
                     $(".paginate").append(json.pagi);
                     $(".page-info").append(json.info);
-             
+
                     window.history.pushState("", "Title", "/dashboard?sort_by=" + column + "&order_by=" + typeOfSort + "&page=" + page);
 
                     //Change the icon referencing the data in URL.
@@ -112,7 +112,7 @@
                         $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
                         $('#'+ column +'').addClass("table-th-active");
                     }
-                    
+
                     //Reset if another column has been clicked.
                     if (column != sortInURL){
                         $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
@@ -127,7 +127,7 @@
 
         $(document).ready(function()
         {
-        
+
             $(".session-head").click(function(e){
 
                 e.preventDefault();
@@ -151,15 +151,15 @@
                 //Reset orderBy when clicked on another column.
                 if (sort != sortInURL) {
                     order = 'DESC';
-                }   
+                }
 
                 //Populate table using Ajax.
                 ajaxLoad(sort, order, sortInURL);
-            
+
             });
 
             $('.paginate').delegate('.pagination a','click',function(event){
-                
+
                 event.preventDefault();
 
                 var pagiurl = $(this).attr('href');
@@ -175,7 +175,7 @@
                 //Reset orderBy when clicked on another column.
                 if (sort != sortInURL) {
                     order = 'DESC';
-                }   
+                }
 
                 //When there is no sort_by in the URL, will set to default.
                 if (sortInURL == null) {
@@ -185,7 +185,7 @@
 
                 //Populate table using Ajax.
                 ajaxPaginate(sort, order, sortInURL, pageInURL);
-        
+
             });
 
         });

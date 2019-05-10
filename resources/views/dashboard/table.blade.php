@@ -1,41 +1,33 @@
 <table id="example" class="table table-hover table-striped table-vcenter table-bordered table-responsive">
     <thead>
         <tr>
-            <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head">
-                Transaction_Id
+            <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Transaction ID</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head">
-                Partner_Name
+            <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head">
-                PH_Name
+            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>PH Email</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="insured_name" data-sort="insured_name" data-order="DESC" class="medium-th session-head">
-                Insured_Name
-                <i class="insured_name fa fa-pull-right fa-sort"></i>
-            </th>
-            <th id="product_id" data-sort="product_id" data-order="DESC" class="medium-th session-head">
-                Product_Plan
+            <th id="product_id" data-sort="product_id" data-order="DESC" class="small-th session-head text-capitalize">
+                <b>Plan</b>
                 <i class="product_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="protection_duration" data-sort="protection_duration" data-order="DESC" class="large-th session-head">
-                Protection_Duration
+            <th id="protection_duration" data-sort="protection_duration" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Protection Duration</b>
                 <i class="protection_duration fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="certificate_number" data-sort="certificate_number" data-order="DESC" class="large-th session-head">
-                certificate_number
+            <th id="certificate_number" data-sort="certificate_number" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Certificate Number</b>
                 <i class="certificate_number fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="status" data-sort="status" data-order="DESC" class="medium-th session-head">
-                Status
+            <th id="status" data-sort="status" data-order="DESC" class="small-th session-head text-capitalize">
+                <b>Status</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
-            </th>
-            <th id="created_at" data-sort="created_at" data-order="DESC" class="medium-th session-head">
-                Created_At
-                <i class="created_at fa fa-pull-right fa-sort"></i>
             </th>
         </tr>
     </thead>
@@ -43,14 +35,13 @@
 
         @forelse ($transactions as $transaction)
         <tr>
-            <td>{{$transaction->id}}</td>
-            <td>{{$transaction->partner->name}}</td>
-            <td>{{$transaction->customer->name}}</td>
-            <td>{{$transaction->insured_name}}</td>
-            <td>{{$transaction->product->plan_id}}</td>
-            <td>{{$transaction->protection_duration}}</td>
-            <td>{{$transaction->certificate_number}}</td>
-            <td>{{$transaction->payment_status}}</td>
+            <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
+            <td>{{$transaction['partner_id']}}</td>
+            <td>{{$transaction['customer_id']}}</td>
+            <td>{{$transaction['product_id']}}</td>
+            <td>{{$transaction['protection_duration']}}</td>
+            <td>{{$transaction['certificate_number']}}</td>
+            <td>{{$transaction['payment_status']}}</td>
         </tr>
         @empty
             <tr>
