@@ -34,8 +34,8 @@ class AddTransactionSeeds extends Migration
             ],
             [
                 'id' => '2',
-                'customer_id' => '1',
-                'partner_id' => '1',
+                'customer_id' => '2',
+                'partner_id' => '2',
                 'product_id' => '2',
                 'insured_relation' => 'Father',
                 'insured_name' => 'Budi',
@@ -52,7 +52,7 @@ class AddTransactionSeeds extends Migration
             ],
             [
                 'id' => '3',
-                'customer_id' => '1',
+                'customer_id' => '2',
                 'partner_id' => '1',
                 'product_id' => '2',
                 'insured_relation' => 'Father',
@@ -71,7 +71,7 @@ class AddTransactionSeeds extends Migration
             [
                 'id' => '4',
                 'customer_id' => '1',
-                'partner_id' => '1',
+                'partner_id' => '2',
                 'product_id' => '2',
                 'insured_relation' => 'Father',
                 'insured_name' => 'Budi',
@@ -89,7 +89,7 @@ class AddTransactionSeeds extends Migration
             [
                 'id' => '5',
                 'customer_id' => '1',
-                'partner_id' => '1',
+                'partner_id' => '2',
                 'product_id' => '2',
                 'insured_relation' => 'Father',
                 'insured_name' => 'Budi',

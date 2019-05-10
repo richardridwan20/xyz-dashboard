@@ -18,8 +18,8 @@ class CreateEmailLogsTable extends Migration
             $table->unsignedInteger('transaction_id');
             $table->string('PH_email_status');
             $table->string('bene_email_status');
-            $table->datetime('PH_email_time');
-            $table->datetime('bene_email_time');
+            $table->string('PH_email_time');
+            $table->string('bene_email_time');
             $table->timestamps();
 
             $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
