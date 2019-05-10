@@ -138,7 +138,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            1
+                            {{$detailTransaction['customer_id']['name']}}
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            1
+                            {{$detailTransaction['customer_id']['dob']}}
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            1
+                            {{$detailTransaction['customer_id']['citizen_id']}}
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            1
+                            {{$detailTransaction['customer_id']['gender']}}
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            1
+                            {{$detailTransaction['customer_id']['email']}}
                         </div>
                     </div>
                 </div>

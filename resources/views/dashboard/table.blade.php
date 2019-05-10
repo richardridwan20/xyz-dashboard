@@ -36,9 +36,9 @@
         @forelse ($transactions as $transaction)
         <tr>
             <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
-            <td>{{$transaction['partner_id']}}</td>
-            <td>{{$transaction['customer_id']}}</td>
-            <td>{{$transaction['product_id']}}</td>
+            <td>{{$transaction['partner_id']['name']}}</td>
+            <td>{{$transaction['customer_id']['email']}}</td>
+            <td>{{$transaction['product_id']['plan_id']['name']}}</td>
             <td>{{$transaction['protection_duration']}}</td>
             <td>{{$transaction['certificate_number']}}</td>
             <td>{{$transaction['payment_status']}}</td>
