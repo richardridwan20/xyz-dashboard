@@ -7,7 +7,7 @@
             <div class="block-content block-content-full">
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="block">
                             <div class="block-header block-header-default">
                                 <b>Transaction ID</b>
@@ -18,12 +18,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="block">
-                            <div class="block-header block-header-default">
+                            <div class="block-header bg-earth-light">
                                 <b>Transaction Status</b>
                             </div>
-                            <div class="block-content bg-body-light">
+                            <div class="block-content bg-earth-light">
                                 {{$detailTransaction['payment_status']}}
                             </div>
                         </div>

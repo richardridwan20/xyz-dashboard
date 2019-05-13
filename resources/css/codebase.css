@@ -10386,9 +10386,14 @@ textarea.form-control.form-control-lg, .input-group-lg > textarea.form-control,
 .block-content {
   transition: opacity .2s ease-out;
   margin: 0 auto;
-  padding: 20px 20px 1px;
+  padding: 20px;
   width: 100%;
   overflow-x: visible;
+}
+
+.back-btn {
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .block-content .pull-t {
