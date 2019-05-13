@@ -104,6 +104,16 @@
                     @endrole
                     @role('treasury|supadmin')
                     <li>
+                        <a class="{{ Route::is('report.index') ? 'active' : '' }}" href="{{ route('report.index') }}"><i class="si si-bar-chart"></i><span class="sidebar-mini-hide">Reports</span></a>
+                    </li>
+                    @endrole
+                    @role('supadmin|admin')
+                    <li>
+                        <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a>
+                    </li>
+                    @endrole
+                    @role('treasury|supadmin|admin')
+                    <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
                     @endrole
