@@ -5,7 +5,7 @@
                 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                         <div class="container">
                             <a class="navbar-brand" href="{{ url('/') }}">
-                                <img class="content-header-logo" src="assets\media\photos\super-you-logo.svg" alt="">
+                                <img class="content-header-logo" src="assets\media\photos\sequis-online-logo.png" alt="">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                                 <span class="navbar-toggler-icon"></span>

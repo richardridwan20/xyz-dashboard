@@ -58,7 +58,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <img class="content-header-logo" src="assets\media\photos\super-you-s.png" alt="">
+                        <img class="content-header-logo" src="assets\media\photos\sequis-online-s.png" alt="">
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -76,7 +76,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
-                            <img class="content-header-logo" src="assets\media\photos\super-you-logo-white.png" alt="">
+                            <img class="content-header-logo" src="assets\media\photos\sequis-online-logo-white.png" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->

@@ -7,7 +7,7 @@
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
-                    <img class="content-header-logo" src="assets\media\photos\super-you-logo-full.png" alt="">
+                    <img class="content-header-logo" src="assets\media\photos\sequis-online-logo.png" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Register new Account</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please add your details</h2>
