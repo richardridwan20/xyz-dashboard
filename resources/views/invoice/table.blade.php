@@ -1,28 +1,28 @@
 <table id="example" class="table table-hover table-striped table-vcenter table-bordered table-responsive">
     <thead>
         <tr>
-            <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head">
-                Invoice ID
+            <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Invoice ID</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head">
-                Partner_Name
+            <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="date" data-sort="date" data-order="DESC" class="medium-th session-head">
-                Date
+            <th id="date" data-sort="date" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Date</b>
                 <i class="date fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="status" data-sort="status" data-order="DESC" class="medium-th session-head">
-                Status
+            <th id="status" data-sort="status" data-order="DESC" class="small-th session-head text-capitalize">
+                <b>Status</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="created_at" data-sort="created_at" data-order="DESC" class="medium-th session-head">
-                Created At
+            <th id="created_at" data-sort="created_at" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Created At</b>
                 <i class="created_at fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="updated_at" data-sort="updated_at" data-order="DESC" class="large-th session-head">
-                Updated At
+            <th id="updated_at" data-sort="updated_at" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Updated At</b>
                 <i class="updated_at fa fa-pull-right fa-sort"></i>
             </th>
         </tr>
@@ -31,12 +31,12 @@
 
         @forelse ($invoices as $invoice)
         <tr>
-            <td>{{$invoice->id}}</td>
-            <td>{{$invoice->partner->name}}</td>
-            <td>{{$invoice->date}}</td>
-            <td>{{$invoice->status}}</td>
-            <td>{{$invoice->created_at}}</td>
-            <td>{{$invoice->updated_at}}</td>
+            <td>{{$invoice['id']}}</td>
+            <td>{{$invoice['partner_id']['name']}}</td>
+            <td>{{$invoice['date']}}</td>
+            <td>{{$invoice['status']}}</td>
+            <td>{{$invoice['created_at']}}</td>
+            <td>{{$invoice['updated_at']}}</td>
         </tr>
         @empty
             <tr>
