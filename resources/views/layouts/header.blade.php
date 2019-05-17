@@ -92,31 +92,31 @@
                         <a class="{{ Route::is('dashboard.index') ? 'active' : '' }}" href="{{ route('dashboard.index') }}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">MG</span><span class="sidebar-mini-hidden">Manage</span></li>
-                    @role('partner|supadmin')
+                    @can('view upload form')
                     <li>
                         <a class="{{ Route::is('upload.index') ? 'active' : '' }}" href="{{ route('upload.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
                     </li>
-                    @endrole
-                    @role('admin|supadmin')
+                    @endcan
+                    @role('supadmin|financial|operation')
                     <li>
                         <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
                     </li>
                     @endrole
-                    @role('treasury|supadmin')
+                    @can('view report')
                     <li>
                         <a class="{{ Route::is('report.index') ? 'active' : '' }}" href="{{ route('report.index') }}"><i class="si si-bar-chart"></i><span class="sidebar-mini-hide">Reports</span></a>
                     </li>
-                    @endrole
-                    @role('supadmin|admin')
+                    @endcan
+                    @can('create certificate')
                     <li>
                         <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a>
                     </li>
-                    @endrole
-                    @role('treasury|supadmin|admin')
+                    @endcan
+                    @can('input invoice number')
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
-                    @endrole
+                    @endcan
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">ST</span><span class="sidebar-mini-hidden">Settings</span></li>
                     <li>
                         <a href=""><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>

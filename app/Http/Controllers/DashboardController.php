@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Partner;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -23,20 +24,27 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        // //Create Role
+        // Role::create(['name'=>'supadmin']);//1
+        // Role::create(['name'=>'treasury']);//2
+        // Role::create(['name'=>'financial']);//3
+        // Role::create(['name'=>'operation']);//4
+        // Role::create(['name'=>'viewer']);//5
+        // Role::create(['name'=>'partner financial']);//6
+        // Role::create(['name'=>'partner operation']);//7
+        // Role::create(['name'=>'partner viewer']);//8
 
-        // Role::create(['name'=>'supadmin']);
-        // Role::create(['name'=>'admin']);
-        // Role::create(['name'=>'treasury']);
-        // Role::create(['name'=>'partner']);
-
-        // Permission::create(['name'=>'view transaction']);
-        // Permission::create(['name'=>'view report']);
-        // Permission::create(['name'=>'update status paid']);
-        // Permission::create(['name'=>'update status cancel']);
-        // Permission::create(['name'=>'input invoice number']);
-        // Permission::create(['name'=>'create certificate']);
-        // Permission::create(['name'=>'view upload form']);
-        // Permission::create(['name'=>'download report']);
+        // //Create Permission
+        // Permission::create(['name'=>'view all transaction']);//1
+        // Permission::create(['name'=>'view all transaction by partner name']);//2
+        // Permission::create(['name'=>'view report']);//3
+        // Permission::create(['name'=>'update status paid']);//4
+        // Permission::create(['name'=>'update status cancel']);//5
+        // Permission::create(['name'=>'input invoice number']);//6
+        // Permission::create(['name'=>'create certificate']);//7
+        // Permission::create(['name'=>'view upload form']);//8
+        // Permission::create(['name'=>'download report']);//9
+        // Permission::create(['name'=>'view by search']);//10
 
         // $permission1 = Permission::findById(1);
         // $permission2 = Permission::findById(2);
@@ -46,7 +54,11 @@ class DashboardController extends Controller
         // $permission6 = Permission::findById(6);
         // $permission7 = Permission::findById(7);
         // $permission8 = Permission::findById(8);
+        // $permission9 = Permission::findById(9);
+        // $permission10 = Permission::findById(10);
 
+        // //Giving Role Permission
+        // //supadmin
         // $role = Role::findById(1);
         // $role->givePermissionTo($permission1);
         // $role->givePermissionTo($permission2);
@@ -56,23 +68,58 @@ class DashboardController extends Controller
         // $role->givePermissionTo($permission6);
         // $role->givePermissionTo($permission7);
         // $role->givePermissionTo($permission8);
+        // $role->givePermissionTo($permission9);
+        // $role->givePermissionTo($permission10);
 
+        // //treasury
         // $role = Role::findById(2);
-        // $role->givePermissionTo($permission4);
-        // $role->givePermissionTo($permission5);
-        // $role->givePermissionTo($permission6);
-
-        // $role = Role::findById(3);
-        // $role->givePermissionTo($permission2);
-        // $role->givePermissionTo($permission5);
-        // $role->givePermissionTo($permission8);
-
-        // $role = Role::findById(4);
         // $role->givePermissionTo($permission1);
         // $role->givePermissionTo($permission3);
-        // $role->givePermissionTo($permission4);
-        // $role->givePermissionTo($permission7);
+        // $role->givePermissionTo($permission6);
+        // $role->givePermissionTo($permission9);
+        // $role->givePermissionTo($permission10);
 
+        // //financial
+        // $role = Role::findById(3);
+        // $role->givePermissionTo($permission1);
+        // $role->givePermissionTo($permission5);
+        // $role->givePermissionTo($permission6);
+        // $role->givePermissionTo($permission7);
+        // $role->givePermissionTo($permission10);
+
+        // //operation
+        // $role = Role::findById(4);
+        // $role->givePermissionTo($permission1);
+        // $role->givePermissionTo($permission5);
+        // $role->givePermissionTo($permission6);
+        // $role->givePermissionTo($permission7);
+        // $role->givePermissionTo($permission10);
+
+        // //viewer
+        // $role = Role::findById(5);
+        // $role->givePermissionTo($permission10);
+
+        // //partner financial
+        // $role = Role::findById(6);
+        // $role->givePermissionTo($permission2);
+        // $role->givePermissionTo($permission4);
+        // $role->givePermissionTo($permission5);
+        // $role->givePermissionTo($permission8);
+        // $role->givePermissionTo($permission10);
+
+        // //partner operation
+        // $role = Role::findById(7);
+        // $role->givePermissionTo($permission2);
+        // $role->givePermissionTo($permission4);
+        // $role->givePermissionTo($permission5);
+        // $role->givePermissionTo($permission8);
+        // $role->givePermissionTo($permission10);
+
+        // //partner viewer
+        // $role = Role::findById(8);
+        // $role->givePermissionTo($permission10);
+
+        // //Assign Account to Role
         // $user = User::find(1);
         // $user->assignRole('supadmin');
 
@@ -80,13 +127,33 @@ class DashboardController extends Controller
         // $user->assignRole('treasury');
 
         // $user = User::find(3);
-        // $user->assignRole('admin');
+        // $user->assignRole('financial');
 
         //  $user = User::find(4);
-        //  $user->assignRole('partner');
+        //  $user->assignRole('operation');
 
         //  $user = User::find(5);
-        //  $user->assignRole('partner');
+        //  $user->assignRole('viewer');
+
+        //  $user = User::find(6);
+        //  $user->assignRole('partner financial');
+
+        //  $user = User::find(7);
+        //  $user->assignRole('partner operation');
+
+        //  $user = User::find(8);
+        //  $user->assignRole('partner viewer');
+
+        //  $user = User::find(9);
+        //  $user->assignRole('partner financial');
+
+        //  $user = User::find(10);
+        //  $user->assignRole('partner operation');
+
+        //  $user = User::find(11);
+        //  $user->assignRole('partner viewer');
+
+
 
         $column = 'created_at';
         $typeOfSort = 'DESC';
@@ -170,7 +237,15 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
-        $transactions = $this->service->allTransaction($page)->paginate();
+        $user = User::find(Auth::id());
+
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
+            $transactions = $this->service->allTransaction($page)->paginate();
+        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+            $partner = Auth::user()->name;
+            $transactions = $this->service->partnerTransaction($page)->paginate();
+        }
+
 
         return view('dashboard.index', compact('transactions', 'append'));
     }

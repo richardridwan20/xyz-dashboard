@@ -79,7 +79,7 @@ class InvoiceLogController extends Controller
         //     return json_encode($json);
         // }
 
-        $invoices = $this->service->allTransaction($page)->paginate();
+        $invoices = $this->service->allInvoice($page)->paginate();
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
         return view('invoice.index', compact('invoices', 'append'));

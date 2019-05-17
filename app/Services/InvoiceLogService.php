@@ -12,14 +12,14 @@ class InvoiceLogService extends ApiService
         $this->pageHeaderEndPoint = '';
     }
 
-    public function allTransaction($page)
+    public function allInvoice($page)
     {
         $this->endPoint = 'invoicelog/?page='.$page;
 
         return $this;
     }
 
-    public function getTransactionById($id)
+    public function getInvoiceById($id)
     {
         $this->endPoint = 'invoicelog/'.$id;
 
