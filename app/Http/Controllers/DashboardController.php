@@ -109,7 +109,6 @@ class DashboardController extends Controller
 
         // //partner operation
         // $role = Role::findById(7);
-        // $role->givePermissionTo($permission2);
         // $role->givePermissionTo($permission4);
         // $role->givePermissionTo($permission5);
         // $role->givePermissionTo($permission8);
