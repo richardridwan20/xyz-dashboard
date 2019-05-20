@@ -24,12 +24,13 @@ class CreateTransactionsTable extends Migration
             $table->string('insured_gender');
             $table->string('bene_relation');
             $table->string('bene_name');
-            $table->string('bene_dob'); 
+            $table->string('bene_dob');
             $table->string('bene_gender');
             $table->string('bene_email');
             $table->string('protection_duration');
             $table->string('certificate_number')->nullable();
-            $table->string('payment_status');
+            $table->string('status');
+            $table->string('invoice_number');
             $table->timestamps();
         });
     }

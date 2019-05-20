@@ -80,8 +80,8 @@
                     <td>{{$transaction['certificate_number']}}</td>
                     <td>{{$transaction['payment_status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
-                    <td>{{$pCommision = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']}}</td>
-                    <td>{{$ppn = $transaction['product_id']['plan_id']['premi'] * 0.1}}</td>
+                    <td>{{$pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1)}}</td>
+                    <td>{{$ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1}}</td>
                     <td>{{$ppn+$pCommision}}</td>
                     <td>{{$pCommision*0.02}}</td>
                     <td>{{($pCommision+$ppn)-($ppn*0.02)}}</td>
@@ -101,7 +101,6 @@
 
     </tbody>
 </table>
-
 <div class="row">
     <div class="col page-info">
         Showing {{$transactions->firstItem()}} to {{$transactions->lastItem()}} of {{$transactions->total()}} entries
@@ -112,3 +111,103 @@
         </div>
     </div>
 </div>
+@role('supadmin|treasury|financial|partner financial')
+<div class="row" align="left">
+        <div class="block-content block-content-full order-1">
+            {{-- Start of Partner Commision Row --}}
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total Partner Commision</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{$pCommision = ($transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision'])-($transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision']*0.1)}}
+                    </div>
+                </div>
+            {{-- End of Partner Commision Row --}}
+            {{-- Start of PPN Row --}}
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total PPN</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{$ppn = $transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision']*0.1}}
+                    </div>
+                </div>
+            {{-- End of PPN Row --}}
+            {{-- Start of PPN + komisi Row --}}
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total PPN + Komisi</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{$ppn+$pCommision}}
+                    </div>
+                </div>
+            </div>
+            {{-- End of PPN + Komisi Row --}}
+            {{-- Start of PPH Row --}}
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total PPH Komisi</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{$pCommision*0.02}}
+                    </div>
+                </div>
+            {{-- End of PPH Komisi Row --}}
+            {{-- Start of Tagihan Partner Row --}}
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total Tagihan Partner</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{($pCommision+$ppn)-($ppn*0.02)}}
+                    </div>
+                </div>
+            {{-- End of Tagihan Partner Row --}}
+            {{-- Start of Tagihan Premi Partner Row --}}
+                <div class="col-md-2">
+                    <div class="block">
+                        <b>Total Tagihan Premi Partner</b>
+                        <br>
+                        <small>(dalam rupiah)</small>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="block">
+                        {{$transactions['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
+                    </div>
+                </div>
+            </div>
+            {{-- End of PPH Komisi Row --}}
+        </div>
+    </div>
+@endrole

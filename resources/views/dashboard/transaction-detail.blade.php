@@ -364,3 +364,113 @@
         </div>
     </div>
 </div>
+@if(auth()->user()->can('view all transaction') || auth()->user()->can('view all transaction by partner name'))
+<div class="line"></div>
+<div class="row">
+    <div class="block-content bg-body-light col-sm-12">
+        <div class="block">
+            <div class="block-header block-header-default bg-white">
+                <h3 class="block-title"><b>Partner Detail</b></h3>
+            </div>
+            <div class="block-content block-content-full order-1">
+                {{-- Start of Partner Commision Row --}}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>Partner Commision</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{$pCommision = ($detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision'])-($detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision']*0.1)}}
+                        </div>
+                    </div>
+                {{-- End of Partner Commision Row --}}
+                {{-- Start of PPN Row --}}
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>PPN</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{$ppn = $detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision']*0.1}}
+                        </div>
+                    </div>
+                </div>
+                {{-- End of PPN Row --}}
+                {{-- Start of PPN + komisi Row --}}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>PPN + Komisi</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{$ppn+$pCommision}}
+                        </div>
+                    </div>
+                {{-- End of PPN + Komisi Row --}}
+                {{-- Start of PPH Row --}}
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>PPH Komisi</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{$pCommision*0.02}}
+                        </div>
+                    </div>
+                </div>
+                {{-- End of PPH Komisi Row --}}
+                {{-- Start of Tagihan Partner Row --}}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>Tagihan Partner</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{($pCommision+$ppn)-($ppn*0.02)}}
+                        </div>
+                    </div>
+                {{-- End of Tagihan Partner Row --}}
+                {{-- Start of Tagihan Premi Partner Row --}}
+                    <div class="col-md-3">
+                        <div class="block">
+                            <b>Tagihan Premi Partner</b>
+                            <br>
+                            <small>(dalam rupiah)</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="block">
+                            {{$detailTransaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
+                        </div>
+                    </div>
+                </div>
+                {{-- End of PPH Komisi Row --}}
+            </div>
+        </div>
+    </div>
+</div>
+@endif

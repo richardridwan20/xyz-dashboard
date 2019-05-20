@@ -30,7 +30,8 @@ class AddTransactionSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
-                'payment_status' => 'Completed'
+                'status' => 'Completed',
+                'invoice_number' => '0010619',
             ],
             [
                 'id' => '2',
@@ -48,7 +49,8 @@ class AddTransactionSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
-                'payment_status' => 'Pending'
+                'status' => 'Pending',
+                'invoice_number' => '0020619',
             ],
             [
                 'id' => '3',
@@ -66,7 +68,8 @@ class AddTransactionSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
-                'payment_status' => 'Pending'
+                'status' => 'Pending',
+                'invoice_number' => '0010619',
             ],
             [
                 'id' => '4',
@@ -84,7 +87,8 @@ class AddTransactionSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
-                'payment_status' => 'Pending'
+                'status' => 'Pending',
+                'invoice_number' => '0020619',
             ],
             [
                 'id' => '5',
@@ -102,7 +106,8 @@ class AddTransactionSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
-                'payment_status' => 'Pending'
+                'status' => 'Pending',
+                'invoice_number' => '0020619',
             ]
         ]);
     }

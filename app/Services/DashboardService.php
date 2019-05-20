@@ -34,7 +34,7 @@ class DashboardService extends ApiService
         $user = Auth::user()->name;
         $partnerId = DB::table('partners')->select('id')->where('name', $user)->first();
 
-        $this->endPoint = 'transaction/'.$partnerId->id.'/?page='.$page;
+        $this->endPoint = 'transaction/partner/'.$partnerId->id.'/?page='.$page;
 
         return $this;
     }
