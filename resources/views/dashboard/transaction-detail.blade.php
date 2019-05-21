@@ -24,7 +24,7 @@
                                 <b>Transaction Status</b>
                             </div>
                             <div class="block-content bg-earth-light">
-                                {{$detailTransaction['payment_status']}}
+                                {{$detailTransaction['status']}}
                             </div>
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Payment Status</b>
+                            <b>Status</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['payment_status']}}
+                            {{$detailTransaction['status']}}
                         </div>
                     </div>
                 </div>

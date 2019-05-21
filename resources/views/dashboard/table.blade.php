@@ -5,9 +5,19 @@
                 <b>Transaction ID</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
+            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Invoice Number</b>
+                <i class="status fa fa-pull-right fa-sort"></i>
+                <br>
+                <small>(dalam rupiah)</small>
+            </th>
             <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>PH Name</b>
+                <i class="customer_id fa fa-pull-right fa-sort"></i>
             </th>
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>PH Email</b>
@@ -73,12 +83,14 @@
             @forelse ($transactions as $transaction)
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
+                    <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
+                    <td>{{$transaction['customer_id']['name']}}</td>
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['product_id']['plan_id']['name']}}</td>
                     <td>{{$transaction['protection_duration']}}</td>
                     <td>{{$transaction['certificate_number']}}</td>
-                    <td>{{$transaction['payment_status']}}</td>
+                    <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
                     <td>{{$pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1)}}</td>
                     <td>{{$ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1}}</td>
@@ -126,7 +138,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$pCommision = ($transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision'])-($transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision']*0.1)}}
+                        {{$tpCommision}}
                     </div>
                 </div>
             {{-- End of Partner Commision Row --}}
@@ -141,7 +153,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$ppn = $transactions['product_id']['plan_id']['premi']*$transactions['partner_id']['commision']*0.1}}
+                        {{$tppn}}
                     </div>
                 </div>
             {{-- End of PPN Row --}}
@@ -156,7 +168,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$ppn+$pCommision}}
+                        {{$tpk}}
                     </div>
                 </div>
             </div>
@@ -173,7 +185,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$pCommision*0.02}}
+                        {{$tpph}}
                     </div>
                 </div>
             {{-- End of PPH Komisi Row --}}
@@ -188,7 +200,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{($pCommision+$ppn)-($ppn*0.02)}}
+                        {{$ttp}}
                     </div>
                 </div>
             {{-- End of Tagihan Partner Row --}}
@@ -203,7 +215,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$transactions['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
+                        {{$ttpp}}
                     </div>
                 </div>
             </div>

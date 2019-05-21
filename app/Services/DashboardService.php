@@ -22,6 +22,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function allTransactionWP()
+    {
+        $this->endPoint = 'transaction/all';
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;
