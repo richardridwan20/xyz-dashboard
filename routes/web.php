@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('permission:view upload form');
     Route::get('/report', 'ReportController@index')->name('report.index')->middleware('permission:view report');
     Route::get('/certificate', 'CertificateController@index')->name('certificate.index')->middleware('permission:create certificate');
+    Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
 
 });
 
