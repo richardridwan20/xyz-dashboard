@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report', 'ReportController@index')->name('report.index')->middleware('permission:view report');
     Route::get('/certificate', 'CertificateController@index')->name('certificate.index')->middleware('permission:create certificate');
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
+    Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
 
 });
 

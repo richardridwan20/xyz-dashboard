@@ -36,6 +36,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function changeStatus($id)
+    {
+        $this->endPoint = 'transaction/update/'.$id;
+
+        return $this;
+    }
+
     public function partnerTransaction($page)
     {
         $user = Auth::user()->name;

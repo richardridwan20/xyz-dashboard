@@ -273,4 +273,12 @@ class DashboardController extends Controller
 
         return view('dashboard.detail', compact('detailTransaction'));
     }
+
+    public function changeStatus($id, $status)
+    {
+        $data = ['status' => $status];
+        $this->service->changeStatus($id)->post($data);
+
+        return redirect('');
+    }
 }

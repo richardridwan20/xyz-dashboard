@@ -3,6 +3,7 @@
         <div class="block">
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
+                <button><a href="{{ URL::route('dashboard.changeStatus', [$detailTransaction['id'], 'Canceled']) }}">Change Status into Canceled</a></button>
             </div>
             <div class="block-content block-content-full">
                 <div class="row">
