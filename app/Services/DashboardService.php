@@ -53,6 +53,15 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function partnerTransactionWP()
+    {
+        $user = Auth::user()->name;
+        $partnerId = DB::table('partners')->select('id')->where('name', $user)->first();
+        $this->endPoint = 'transaction/partner/'.$partnerId->id.'/all';
+
+        return $this;
+    }
+
     public function getTransactionById($id)
     {
         $this->endPoint = 'transaction/'.$id;
