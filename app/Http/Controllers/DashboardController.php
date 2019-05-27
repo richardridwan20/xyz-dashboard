@@ -103,14 +103,12 @@ class DashboardController extends Controller
         // $role = Role::findById(6);
         // $role->givePermissionTo($permission2);
         // $role->givePermissionTo($permission4);
-        // $role->givePermissionTo($permission5);
         // $role->givePermissionTo($permission8);
         // $role->givePermissionTo($permission10);
 
         // //partner operation
         // $role = Role::findById(7);
         // $role->givePermissionTo($permission4);
-        // $role->givePermissionTo($permission5);
         // $role->givePermissionTo($permission8);
         // $role->givePermissionTo($permission10);
 
@@ -238,6 +236,7 @@ class DashboardController extends Controller
 
         $user = User::find(Auth::id());
 
+<<<<<<< HEAD
         $tpCommision = 0;
         $tppn = 0;
         $tpk = 0;
@@ -248,21 +247,47 @@ class DashboardController extends Controller
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
             $transactions = $this->service->allTransaction($page)->paginate();
             $transactionsCount = $this->service->allTransactionWP()->get();
+=======
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
+            $transactions = $this->service->allTransaction($page)->paginate();
+            $transactionsCount = $this->service->allTransactionWP()->get();
+
+        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+            $partner = Auth::user()->name;
+            $transactions = $this->service->partnerTransaction($page)->paginate();
+            $transactionsCount = $this->service->partnerTransactionWP()->get();
+
+        }
+
+        $tpCommision = 0;
+            $tppn = 0;
+            $tpk = 0;
+            $tpph = 0;
+            $ttp = 0;
+            $ttpp = 0;
+>>>>>>> master
 
             foreach ($transactionsCount as $transaction){
                 $pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1);
                 $tpCommision += $pCommision;
                 $ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1;
                 $tppn += $ppn;
+<<<<<<< HEAD
                 $tpk += $ppn + $pCommision;
+=======
+                $tpk += $ppn+$pCommision;
+>>>>>>> master
                 $tpph += $pCommision*0.02;
                 $ttp += ($pCommision+$ppn)-($ppn*0.02);
                 $ttpp += $transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02));
             }
+<<<<<<< HEAD
         }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
             $partner = Auth::user()->name;
             $transactions = $this->service->partnerTransaction($page)->paginate();
         }
+=======
+>>>>>>> master
 
         return view('dashboard.index', compact('transactions', 'append', 'tpCommision', 'tppn', 'tpk', 'tpph', 'ttp', 'ttpp'));
     }
@@ -274,6 +299,7 @@ class DashboardController extends Controller
         return view('dashboard.detail', compact('detailTransaction'));
     }
 
+<<<<<<< HEAD
     public function update($id, $param, $value)
     {
         $data = [
@@ -282,5 +308,36 @@ class DashboardController extends Controller
         ];
 
         $transaction = $this->service->updateTransactionById($id, $data['parameter'], $data['value'])->put($data);
+=======
+    public function changeStatus($id, $status)
+    {
+        $data = ['status' => $status];
+        $this->service->changeStatus($id)->post($data);
+
+        return redirect('');
+    }
+
+    public function testing()
+    {
+        $info = 'submit for check';
+        return view('dashboard.testing', compact('info'));
+    }
+
+    public function check(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'KTP' => 'required'
+        ]);
+        try{
+            $data = $this->service->checkCustomer(1, $request->KTP);
+            dd($data);
+            $info = $data->message;
+        }catch(\Exception $e){
+        }
+
+        dd($data);
+        return $data;
+>>>>>>> master
     }
 }

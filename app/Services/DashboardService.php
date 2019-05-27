@@ -29,9 +29,23 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function checkCustomer($partnerId, $customerCitizenId)
+    {
+        $this->endPoint = 'transaction/partner/checkcustomer/'.$partnerId.'/'.$customerCitizenId;
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;
+
+        return $this;
+    }
+
+    public function changeStatus($id)
+    {
+        $this->endPoint = 'transaction/update/'.$id;
 
         return $this;
     }
@@ -42,6 +56,15 @@ class DashboardService extends ApiService
         $partnerId = DB::table('partners')->select('id')->where('name', $user)->first();
 
         $this->endPoint = 'transaction/partner/'.$partnerId->id.'/?page='.$page;
+
+        return $this;
+    }
+
+    public function partnerTransactionWP()
+    {
+        $user = Auth::user()->name;
+        $partnerId = DB::table('partners')->select('id')->where('name', $user)->first();
+        $this->endPoint = 'transaction/partner/'.$partnerId->id.'/all';
 
         return $this;
     }

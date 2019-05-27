@@ -99,7 +99,12 @@
                     @endcan
                     @role('supadmin|financial|operation')
                     <li>
-                        <a href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
+                        <a  href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
+                    </li>
+                    @endrole
+                    @role('supadmin')
+                    <li>
+                        <a class="{{ Route::is('dashboard.testing') ? 'active' : '' }}" href="{{ route('dashboard.testing') }}"><i class="fa fa-simplybuilt"></i><span class="sidebar-mini-hide">Testing Create Transaction</span></a>
                     </li>
                     @endrole
                     @role('supadmin|financial|operation')
