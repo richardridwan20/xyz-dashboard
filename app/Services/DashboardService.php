@@ -29,6 +29,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function checkCustomer($partnerId, $customerCitizenId)
+    {
+        $this->endPoint = 'transaction/partner/checkcustomer/'.$partnerId.'/'.$customerCitizenId;
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;

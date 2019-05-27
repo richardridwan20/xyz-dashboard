@@ -8,8 +8,6 @@
             <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Invoice Number</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
-                <br>
-                <small>(dalam rupiah)</small>
             </th>
             <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Partner Name</b>

@@ -282,4 +282,27 @@ class DashboardController extends Controller
 
         return redirect('');
     }
+
+    public function testing()
+    {
+        $info = 'submit for check';
+        return view('dashboard.testing', compact('info'));
+    }
+
+    public function check(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'KTP' => 'required'
+        ]);
+        try{
+            $data = $this->service->checkCustomer(1, $request->KTP);
+            dd($data);
+            $info = $data->message;
+        }catch(\Exception $e){
+        }
+
+        dd($data);
+        return $data;
+    }
 }
