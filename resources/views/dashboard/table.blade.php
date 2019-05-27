@@ -75,6 +75,10 @@
                 <br>
                 <small>(dalam rupiah)</small>
             </th>
+            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Action</b>
+                <i class="status fa fa-pull-right fa-sort"></i>
+            </th>
             @endrole
         </tr>
     </thead>
@@ -98,6 +102,7 @@
                     <td>{{$pCommision*0.02}}</td>
                     <td>{{($pCommision+$ppn)-($ppn*0.02)}}</td>
                     <td>{{$transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}</td>
+                    <td><a href="{{ route('certificate.index', $transaction['id']) }}" target="_blank"><button class="btn btn-alt-danger">Test</button></a></td>
                     @endrole
                 </tr>
             @empty

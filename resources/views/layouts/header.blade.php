@@ -114,7 +114,7 @@
                     @endcan
                     @can('create certificate')
                     <li>
-                        <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a>
+                        {{-- <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a> --}}
                     </li>
                     @endcan
                     @can('input invoice number')

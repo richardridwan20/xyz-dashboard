@@ -49,7 +49,15 @@ class ApiService
 
     public function post(array $data)
     {
-        $postApi = $this->api->setUrl($this->endPoint.'&lang='.$this->lang)->post($data);
+        $postApi = $this->api->setUrl($this->endPoint)->post($data);
+        $this->statusCode = $postApi->statusCode();
+        $this->bodyResponse = $postApi->response();
+        return $this;
+    }
+
+    public function put(array $data)
+    {
+        $postApi = $this->api->setUrl($this->endPoint)->put($data);
         $this->statusCode = $postApi->statusCode();
         $this->bodyResponse = $postApi->response();
         return $this;

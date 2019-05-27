@@ -52,4 +52,11 @@ class DashboardService extends ApiService
 
         return $this;
     }
+
+    public function updateTransactionById($id, $data, $value)
+    {
+        $this->endPoint = 'transaction/update/'.$id.'?'.$data.'='.$value;
+
+        return $this;
+    }
 }

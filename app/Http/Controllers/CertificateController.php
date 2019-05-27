@@ -3,17 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\DashboardService;
+use Carbon\Carbon;
+use PDF;
 
 class CertificateController extends Controller
 {
+    public function __construct(DashboardService $service)
+    {
+        $this->service = $service;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('certificate.index');
+        $locale = 'id';
+
+        $transactionData = $this->service->getTransactionById($request->id)->get();
+
+        $data = $this->data($transactionData);
+
+        $pdf = PDF::loadView('pdf.certificate', compact('locale', 'data'));
+        return $pdf->stream('test.pdf');
+    }
+
+    private function data($transactionData)
+    {
+        //Age
+        $dob = $transactionData['customer_id']['dob'];
+
+        $age = Carbon::parse($dob)->age;
+
+        return [
+            'data' => $transactionData,
+            'age' => $age
+        ];
     }
 
     /**
