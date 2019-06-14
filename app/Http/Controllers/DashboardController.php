@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        //Create Role
+        // // Create Role
         // Role::create(['name'=>'supadmin']);//1
         // Role::create(['name'=>'treasury']);//2
         // Role::create(['name'=>'financial']);//3
@@ -115,7 +115,7 @@ class DashboardController extends Controller
         // $role = Role::findById(8);
         // $role->givePermissionTo($permission10);
 
-        //Assign Account to Role
+        // //Assign Account to Role
         // $user = User::find(1);
         // $user->assignRole('supadmin');
 
