@@ -14,7 +14,6 @@ use App\User;
 
 use App\Services\DashboardService;
 
-
 class DashboardController extends Controller
 {
     public function __construct(DashboardService $service)
@@ -150,8 +149,6 @@ class DashboardController extends Controller
         //  $user = User::find(11);
         //  $user->assignRole('partner viewer');
 
-
-
         $column = 'created_at';
         $typeOfSort = 'DESC';
 
@@ -236,33 +233,32 @@ class DashboardController extends Controller
 
         $user = User::find(Auth::id());
 
+        $tpCommision = 0;
+        $tppn = 0;
+        $tpk = 0;
+        $tpph = 0;
+        $ttp = 0;
+        $ttpp = 0;
+
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
             $transactions = $this->service->allTransaction($page)->paginate();
             $transactionsCount = $this->service->allTransactionWP()->get();
-        }else{
-            $partner = Auth::user()->name;
-            $transactions = $this->service->partnerTransaction($page)->paginate();
-            $transactionsCount = $this->service->partnerTransactionWP()->get();
-        }
-
-        $tpCommision = 0;
-            $tppn = 0;
-            $tpk = 0;
-            $tpph = 0;
-            $ttp = 0;
-            $ttpp = 0;
 
             foreach ($transactionsCount as $transaction){
                 $pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1);
                 $tpCommision += $pCommision;
                 $ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1;
                 $tppn += $ppn;
-                $tpk += $ppn+$pCommision;
+                $tpk += $ppn + $pCommision;
                 $tpph += $pCommision*0.02;
                 $ttp += ($pCommision+$ppn)-($ppn*0.02);
                 $ttpp += $transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02));
             }
 
+        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+            $partner = Auth::user()->name;
+            $transactions = $this->service->partnerTransaction($page)->paginate();
+        }
 
         return view('dashboard.index', compact('transactions', 'append', 'tpCommision', 'tppn', 'tpk', 'tpph', 'ttp', 'ttpp'));
     }
@@ -272,6 +268,16 @@ class DashboardController extends Controller
         $detailTransaction = $this->service->getTransactionById($id)->get();
 
         return view('dashboard.detail', compact('detailTransaction'));
+    }
+
+    public function update($id, $param, $value)
+    {
+        $data = [
+            'parameter' => $param,
+            'value' => $value
+        ];
+
+        $transaction = $this->service->updateTransactionById($id, $data['parameter'], $data['value'])->put($data);
     }
 
     public function changeStatus($id, $status)
@@ -302,6 +308,7 @@ class DashboardController extends Controller
             $info = "failed to check";
         }
 
-        return back();
+        dd($data);
+        return $data;
     }
 }

@@ -360,6 +360,11 @@
 
 </style>
 <body>
+    {{-- Cover Page --}}
+    <div class="page">
+        <img src="{{ public_path('assets/media/photos/cover.png') }}">
+    </div>
+
     <table style="width: 20%; clear: both;">
         <tr class="vertical-top">
             <td width="50%">
@@ -367,9 +372,11 @@
             </td>
         </tr>
     </table>
+
     <center>
         {!! __('pdf.title', [], $locale) !!}
     </center>
+
     <div class="page">
         <hr>
         <div class="page-inner">
@@ -437,6 +444,274 @@
                 </tr>
                 <tr class="vertical-top">
                     <td width="100%">{!! __('pdf.sign_position', [], $locale) !!}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {{-- @include('pdf.layout.header') --}}
+        <div class="page-inner with-image">
+            <table class="text-primary" style="width: 100%; clear: both; line-height: .7">
+                <tr>
+                    <td width="70%">
+                        <h1>Policy Data Page</h1>
+                    </td>
+                    <td width="30%"><img src="{{ public_path('img/pdf/common/epolis-logo.jpg') }}" class="align-right" style="clear: both"></td>
+                </tr>
+            </table>
+            <hr />
+            <br />
+            <table id="policy-data" style="width: 100%; clear: both; line-height: 1">
+                <col width="50%">
+                <col width="50%">
+                <tbody id="personal-data">
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">PT Asuransi Jiwa Sequis Life</h3>
+                            <h3 class="text-primary text-right">(Hereinafter referred to as Insurer)</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Policy Number</h3>
+                            <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark">1234567892</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Based on Insurance<br>Request Letter (SPA) from </h3>
+                            <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark"><span class="has-bold">Carol</span><br>(Hereinafter referred to as Policy
+                                Holder)</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Date of Birth - Age</h3>
+                            <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark">10-10-1993 - 27 Years old</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">hereby enters into a life insurance agreement on the life of
+                            </h3>
+                            <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark"><span class="has-bold">Kyaroru Bear</span><br>(Hereinafter referred to as
+                                Insurer)</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <h3 class="text-primary">with terms and conditions as follow</h3>
+                            <br />
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="insurence-detail">
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Product Type</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark has-bold">
+                                Super Safe Protection (Basic Insurance)
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Selected Plan</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark has-bold">
+                                Gold Plan
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Contract Start Date</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                25 April 2019
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Insurance Coverage Period</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                1 Year
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Contract End Date</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                25 April 2020
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Premium Payment Method</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                Credit Card
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Payment Due Date</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                25 May 2019
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-primary has-bold text-right">Premium Payment Duration</h3>
+                        </td>
+                        <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                Monthly
+                            </h3>
+                            <br />
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="premi">
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <h3 class="text-primary">PREMI</h3>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-dark has-bold text-right">Basic Insurance Premium</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                Rp. 45.000 <span style="font-size: 10px; position: relative;">1)</span>
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-dark has-bold text-right">Total Premium</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                Rp. 45.000
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr class="vertical-top">
+                        <td>
+                            <h3 class="text-dark has-bold text-right">Beneficiary</h3>
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                Carol<br>Sister
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="text-dark has-bold text-right">Date of Birth of Beneficiary</h3>
+                            <br />
+                            <br />
+                        </td>
+                        <td>
+                            <h3 class="text-dark">
+                                22 June 1993
+                            </h3>
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <h4 class="text-dark">This agreement has complied with the provisions of the law,
+                            including the regulations of Otoritas Jasa Keuangan.</h4>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <h4 class="text-dark">Issued in Jakarta, 25 April 2019</h4>
+                    </td>
+                </tr>
+            </table>
+
+            <table style="width: 100%; clear: both; text-align: center; margin-top: -10px">
+                <col width="33%">
+                <col width="33%">
+                <col width="33%">
+                <tr>
+                    <td>
+                        <img style="width: 80px" src="{{ public_path('img/pdf/common/signature-tw.png') }}">
+                    </td>
+                    <td rowspan="2">
+                        <div class="box">
+                            <h4>BEA MATERAI LUNAS RP.6000,-</h4>
+                        </div>
+                    </td>
+                    <td>
+                        <img style="width: 100px" src="{{ public_path('img/pdf/common/signature-ed.png') }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4 class="text-primary has-bold">Tatang Widjaja</h4>
+                        <h4 class="text-primary">CEO and President Director</h4>
+                        <br />
+                    </td>
+                    <td>
+                        <h4 class="text-primary has-bold">Edisjah</h4>
+                        <h4 class="text-primary">Director</h4>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="has-center" style="line-height: .7;">
+                        <h5>
+                            1) For Additional Insurance with Yearly Renewable Term (Policy is reneable annually),
+                            premium amount will be adjusted on Policy Birthday and premium shall be paid during the Coverage Period of
+                            the Basic Insurance
+                        </h5>
+                        <br />
+                        <br />
+                    </td>
                 </tr>
             </table>
         </div>
