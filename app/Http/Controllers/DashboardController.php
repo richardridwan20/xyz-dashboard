@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        // //Create Role
+        //Create Role
         // Role::create(['name'=>'supadmin']);//1
         // Role::create(['name'=>'treasury']);//2
         // Role::create(['name'=>'financial']);//3
@@ -84,7 +84,6 @@ class DashboardController extends Controller
         // $role->givePermissionTo($permission1);
         // $role->givePermissionTo($permission5);
         // $role->givePermissionTo($permission6);
-        // $role->givePermissionTo($permission7);
         // $role->givePermissionTo($permission10);
 
         // //operation
@@ -92,7 +91,6 @@ class DashboardController extends Controller
         // $role->givePermissionTo($permission1);
         // $role->givePermissionTo($permission5);
         // $role->givePermissionTo($permission6);
-        // $role->givePermissionTo($permission7);
         // $role->givePermissionTo($permission10);
 
         // //viewer
@@ -103,12 +101,14 @@ class DashboardController extends Controller
         // $role = Role::findById(6);
         // $role->givePermissionTo($permission2);
         // $role->givePermissionTo($permission4);
+        // $role->givePermissionTo($permission7);
         // $role->givePermissionTo($permission8);
         // $role->givePermissionTo($permission10);
 
         // //partner operation
         // $role = Role::findById(7);
         // $role->givePermissionTo($permission4);
+        // $role->givePermissionTo($permission7);
         // $role->givePermissionTo($permission8);
         // $role->givePermissionTo($permission10);
 
@@ -116,7 +116,7 @@ class DashboardController extends Controller
         // $role = Role::findById(8);
         // $role->givePermissionTo($permission10);
 
-        // //Assign Account to Role
+        //Assign Account to Role
         // $user = User::find(1);
         // $user->assignRole('supadmin');
 
@@ -236,27 +236,13 @@ class DashboardController extends Controller
 
         $user = User::find(Auth::id());
 
-<<<<<<< HEAD
-        $tpCommision = 0;
-        $tppn = 0;
-        $tpk = 0;
-        $tpph = 0;
-        $ttp = 0;
-        $ttpp = 0;
-
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
             $transactions = $this->service->allTransaction($page)->paginate();
             $transactionsCount = $this->service->allTransactionWP()->get();
-=======
-        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
-            $transactions = $this->service->allTransaction($page)->paginate();
-            $transactionsCount = $this->service->allTransactionWP()->get();
-
-        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+        }else{
             $partner = Auth::user()->name;
             $transactions = $this->service->partnerTransaction($page)->paginate();
             $transactionsCount = $this->service->partnerTransactionWP()->get();
-
         }
 
         $tpCommision = 0;
@@ -265,29 +251,18 @@ class DashboardController extends Controller
             $tpph = 0;
             $ttp = 0;
             $ttpp = 0;
->>>>>>> master
 
             foreach ($transactionsCount as $transaction){
                 $pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1);
                 $tpCommision += $pCommision;
                 $ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1;
                 $tppn += $ppn;
-<<<<<<< HEAD
-                $tpk += $ppn + $pCommision;
-=======
                 $tpk += $ppn+$pCommision;
->>>>>>> master
                 $tpph += $pCommision*0.02;
                 $ttp += ($pCommision+$ppn)-($ppn*0.02);
                 $ttpp += $transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02));
             }
-<<<<<<< HEAD
-        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
-            $partner = Auth::user()->name;
-            $transactions = $this->service->partnerTransaction($page)->paginate();
-        }
-=======
->>>>>>> master
+
 
         return view('dashboard.index', compact('transactions', 'append', 'tpCommision', 'tppn', 'tpk', 'tpph', 'ttp', 'ttpp'));
     }
@@ -299,16 +274,6 @@ class DashboardController extends Controller
         return view('dashboard.detail', compact('detailTransaction'));
     }
 
-<<<<<<< HEAD
-    public function update($id, $param, $value)
-    {
-        $data = [
-            'parameter' => $param,
-            'value' => $value
-        ];
-
-        $transaction = $this->service->updateTransactionById($id, $data['parameter'], $data['value'])->put($data);
-=======
     public function changeStatus($id, $status)
     {
         $data = ['status' => $status];
@@ -319,6 +284,7 @@ class DashboardController extends Controller
 
     public function testing()
     {
+        $data = $this->service->checkCustomer(1, 123123);
         $info = 'submit for check';
         return view('dashboard.testing', compact('info'));
     }
@@ -331,13 +297,11 @@ class DashboardController extends Controller
         ]);
         try{
             $data = $this->service->checkCustomer(1, $request->KTP);
-            dd($data);
             $info = $data->message;
         }catch(\Exception $e){
+            $info = "failed to check";
         }
 
-        dd($data);
-        return $data;
->>>>>>> master
+        return back();
     }
 }

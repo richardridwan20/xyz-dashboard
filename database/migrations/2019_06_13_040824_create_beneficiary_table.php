@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentStatusLogsTable extends Migration
+class CreateBeneficiaryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreatePaymentStatusLogsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql.log')->create('payment_status_logs', function (Blueprint $table) {
+        Schema::create('beneficiary', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('transaction_id');
-            $table->string("status");
+            $table->string('bene_relation');
+            $table->string('bene_name');
+            $table->string('bene_dob');
+            $table->string('bene_gender');
+            $table->string('bene_email');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
         });
     }
 
@@ -30,6 +34,6 @@ class CreatePaymentStatusLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_status_logs');
+        Schema::dropIfExists('beneficiary');
     }
 }
