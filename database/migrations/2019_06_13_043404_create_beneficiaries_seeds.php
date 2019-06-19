@@ -15,7 +15,6 @@ class CreateBeneficiariesSeeds extends Migration
     {
         DB::table('beneficiaries')->insert([
             [
-                'transaction_id' => '1',
                 'bene_relation' => 'Child',
                 'bene_name' => 'Juki',
                 'bene_dob' => '20/05/2001',
@@ -23,7 +22,6 @@ class CreateBeneficiariesSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
             ],
             [
-                'transaction_id' => '2',
                 'bene_relation' => 'Child',
                 'bene_name' => 'Kiju',
                 'bene_dob' => '20/05/2001',
@@ -31,7 +29,6 @@ class CreateBeneficiariesSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
             ],
             [
-                'transaction_id' => '3',
                 'bene_relation' => 'Child',
                 'bene_name' => 'Kiju',
                 'bene_dob' => '20/05/2001',
@@ -39,7 +36,6 @@ class CreateBeneficiariesSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
             ],
             [
-                'transaction_id' => '4',
                 'bene_relation' => 'Child',
                 'bene_name' => 'Kiju',
                 'bene_dob' => '20/05/2001',
@@ -47,7 +43,6 @@ class CreateBeneficiariesSeeds extends Migration
                 'bene_email' => 'juki@gmail.com',
             ],
             [
-                'transaction_id' => '5',
                 'bene_relation' => 'Child',
                 'bene_name' => 'Kiju',
                 'bene_dob' => '20/05/2001',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeneficiariesTable extends Migration
+class CreateDetailTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateBeneficiariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('beneficiaries', function (Blueprint $table) {
+        Schema::create('detail_transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bene_relation');
-            $table->string('bene_name');
-            $table->string('bene_dob');
-            $table->string('bene_gender');
-            $table->string('bene_email');
+            $table->unsignedInteger('transaction_id');
+            $table->unsignedInteger('beneficiary_id');
+            $table->integer('total');
             $table->timestamps();
-        });
+       });
     }
 
     /**
@@ -31,6 +29,6 @@ class CreateBeneficiariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beneficiaries');
+        Schema::dropIfExists('detail_transactions');
     }
 }
