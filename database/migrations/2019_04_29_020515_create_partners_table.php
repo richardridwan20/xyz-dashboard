@@ -17,7 +17,7 @@ class CreatePartnersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('commision');
-            $table->string('allow_send_data');
+            $table->boolean('allow_send_data');
             $table->string('sender');
             $table->string('email');
             $table->string('subject');

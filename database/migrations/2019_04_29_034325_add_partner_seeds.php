@@ -17,7 +17,7 @@ class AddPartnerSeeds extends Migration
             [
                 'name' => 'Smailing',
                 'commision' => '0.3',
-                'allow_send_data' => 'Yes',
+                'allow_send_data' => 1,
                 'sender' => 'Partner',
                 'email' => 'smailing@sequislife.com',
                 'subject' => 'Test',
@@ -29,7 +29,7 @@ class AddPartnerSeeds extends Migration
             [
                 'name' => 'Tokopedia',
                 'commision' => '0.3',
-                'allow_send_data' => 'Yes',
+                'allow_send_data' => 0,
                 'sender' => 'Partner',
                 'email' => 'tokopedia@sequislife.com',
                 'subject' => 'Test',
