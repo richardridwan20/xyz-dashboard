@@ -263,6 +263,11 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('transactions', 'append', 'tpCommision', 'tppn', 'tpk', 'tpph', 'ttp', 'ttpp'));
     }
 
+    public function viewPartner()
+    {
+
+    }
+
     public function detail($id)
     {
         $detailTransaction = $this->service->getTransactionById($id)->get();
