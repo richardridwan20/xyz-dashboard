@@ -17,7 +17,6 @@ class CreateDetailTransactionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('transaction_id');
             $table->unsignedInteger('beneficiary_id');
-            $table->integer('total');
             $table->timestamps();
        });
     }

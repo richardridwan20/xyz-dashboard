@@ -15,11 +15,14 @@ class CreateErrorLogsTable extends Migration
     {
         Schema::connection('mysql.log')->create('error_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('transaction_id');
-            $table->string('error_desc');
+            $table->string('code');
+            $table->string('file');
+            $table->string('line');
+            $table->string('message');
+            $table->string('trace');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
+            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 
