@@ -268,6 +268,13 @@ class DashboardController extends Controller
 
     }
 
+    public function downloadReport(Request $request)
+    {
+        $report = $this->service->downloadReport($request->id, $request->month, $request->year)->get();
+
+        return response()->download(storage_path('app/public/transaction_report_'.$request->id.$request->month.$request->year.'.xlsx'));
+    }
+
     public function detail($id)
     {
         $detailTransaction = $this->service->getTransactionById($id)->get();

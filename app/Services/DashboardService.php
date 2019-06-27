@@ -82,4 +82,11 @@ class DashboardService extends ApiService
 
         return $this;
     }
+
+    public function downloadReport($id, $month, $year)
+    {
+        $this->endPoint = 'test/export?id='.$id.'&month='.$month.'&year='.$year;
+
+        return $this;
+    }
 }

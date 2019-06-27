@@ -98,9 +98,9 @@
                     <td>{{$ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1}}</td>
                     <td>{{$ppn+$pCommision}}</td>
                     <td>{{$pCommision*0.02}}</td>
-                    <td>{{($pCommision+$ppn)-($ppn*0.02)}}</td>
-                    <td>{{$transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}</td>
-                    <td><a href="{{ route('certificate.index', $transaction['id']) }}" target="_blank"><button class="btn btn-alt-danger">Test</button></a></td>
+                    <td>{{($pCommision+$ppn)-($pCommision*0.02)}}</td>
+                    <td>{{$transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($pCommision*0.02))}}</td>
+                    <td><a href="{{ route('certificate.index', $transaction['id']) }}" target="_blank"><button class="btn btn-alt-danger">Generate Certificate</button></a></td>
                     @endrole
                 </tr>
             @empty

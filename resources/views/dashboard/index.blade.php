@@ -27,6 +27,7 @@
                 </div>
             </div>
             <div class="block-content block-content-full">
+                <a href="{{ route('dashboard.download', ['id' => '1','month' => '06', 'year' => '2019']) }}" target="_blank"><button class="btn btn-primary">Download Report</button></a>
                 @include('dashboard.table')
             </div>
         </div>

@@ -27,6 +27,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Completed',
                 'invoice_number' => '0010619',
+                'total_paid' => 150000
             ],
             [
                 'id' => '2',
@@ -41,6 +42,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '0020619',
+                'total_paid' => 150000
             ],
             [
                 'id' => '3',
@@ -55,6 +57,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '0010619',
+                'total_paid' => 150000
             ],
             [
                 'id' => '4',
@@ -69,6 +72,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '0020619',
+                'total_paid' => 150000
             ],
             [
                 'id' => '5',
@@ -83,6 +87,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '0020619',
+                'total_paid' => 150000
             ]
         ]);
     }
