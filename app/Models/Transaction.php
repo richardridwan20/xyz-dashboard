@@ -10,6 +10,7 @@ class Transaction extends Model
     use HasRoles;
 
     protected $guard_name = 'web';
+    protected $guarded = [];
 
     public function partner()
     {

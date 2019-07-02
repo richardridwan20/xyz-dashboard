@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\File;
+use App\Imports\TransactionImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UploadController extends Controller
 {
@@ -14,6 +17,23 @@ class UploadController extends Controller
     public function index()
     {
         return view('upload.index');
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'title' => 'nullable|max:100',
+            'file' => 'required|file|max:2000|mimes:xlsx,csv', // max 2MB
+        ]);
+
+        $file = $request->file('file');
+
+        $path = $file->store('public/files');
+
+        Excel::import(new TransactionImport, request()->file('file'));
+
+        return back()
+            ->with('success','File berhasil diupload.');
     }
 
     /**

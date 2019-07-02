@@ -12,12 +12,12 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
-
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
     Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('permission:input invoice number');
     Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('permission:view upload form');
+    Route::post('/upload', 'UploadController@upload')->name('upload.post');
     Route::get('/report', 'ReportController@index')->name('report.index')->middleware('permission:view report');
     Route::get('/certificate/{id}', 'CertificateController@index')->name('certificate.index');
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
