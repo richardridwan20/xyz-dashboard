@@ -141,7 +141,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$tpCommision}}
+                        {{$sumCommision}}
                     </div>
                 </div>
             {{-- End of Partner Commision Row --}}
@@ -156,7 +156,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$tppn}}
+                        {{$sumPpnCommision}}
                     </div>
                 </div>
             {{-- End of PPN Row --}}
@@ -171,7 +171,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$tpk}}
+                        {{$sumTotalCommision}}
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$tpph}}
+                        {{$sumPphCommision}}
                     </div>
                 </div>
             {{-- End of PPH Komisi Row --}}
@@ -203,7 +203,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$ttp}}
+                        {{$sumPartnerBill}}
                     </div>
                 </div>
             {{-- End of Tagihan Partner Row --}}
@@ -218,7 +218,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$ttpp}}
+                        {{$sumTotalPartnerBill}}
                     </div>
                 </div>
             </div>

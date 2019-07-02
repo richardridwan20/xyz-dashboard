@@ -7,7 +7,6 @@ use GuzzleHttp\Client;
 class ApiRepository implements RepositoryInterface
 {
     protected $model;
-
     protected $url;
     protected $arrayData = [];
     protected $response;

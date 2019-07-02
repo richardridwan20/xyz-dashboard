@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Partner;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 
 use App\Services\DashboardService;
 
@@ -231,36 +233,50 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
-        $user = User::find(Auth::id());
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
 
-        $tpCommision = 0;
-        $tppn = 0;
-        $tpk = 0;
-        $tpph = 0;
-        $ttp = 0;
-        $ttpp = 0;
-
-        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
-            $transactions = $this->service->allTransaction($page)->paginate();
-            $transactionsCount = $this->service->allTransactionWP()->get();
-
-            foreach ($transactionsCount as $transaction){
-                $pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1);
-                $tpCommision += $pCommision;
-                $ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1;
-                $tppn += $ppn;
-                $tpk += $ppn + $pCommision;
-                $tpph += $pCommision*0.02;
-                $ttp += ($pCommision+$ppn)-($ppn*0.02);
-                $ttpp += $transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02));
-            }
-
-        }elseif($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
-            $partner = Auth::user()->name;
-            $transactions = $this->service->partnerTransaction($page)->paginate();
+        if ($request->input('select-month') != 0) {
+            $month = $request->input('select-month');
+        } else if ($request->input('select-year') != 0) {
+            $year = $request->input('select-year');
         }
 
-        return view('dashboard.index', compact('transactions', 'append', 'tpCommision', 'tppn', 'tpk', 'tpph', 'ttp', 'ttpp'));
+        $user = User::find(Auth::id());
+
+        $sumCommision = 0;
+        $sumPpnCommision = 0;
+        $sumTotalCommision = 0;
+        $sumPphCommision = 0;
+        $sumPartnerBill = 0;
+        $sumTotalPartnerBill = 0;
+
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
+            $transactions = $this->service->allTransaction($page, $month, $year)->paginate();
+            $transactionsCount = $this->service->allTransaction($page, $month, $year)->get();
+        }else if($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+            $transactions = $this->service->partnerTransaction($page, $month, $year)->paginate();
+            $transactionsCount = $this->service->partnerTransaction($page, $month, $year)->get();
+        }
+
+        foreach ($transactionsCount as $transaction){
+            $commision = $transaction['partner_id']['commision'];
+            $premium = $transaction['product_id']['plan_id']['premi'];
+            $pCommision = ($premium * $commision) * 0.9;
+            $ppnCommision = ($premium * $commision) * 0.1;
+            $totalCommision = ($premium * $commision);
+            $pphCommision = ($pCommision * 0.02);
+            $partnerBill = ($totalCommision - $pphCommision);
+            $totalPartnerBill = ($premium - $partnerBill);
+            $sumCommision += $pCommision;
+            $sumPpnCommision += $ppnCommision;
+            $sumTotalCommision += $totalCommision;
+            $sumPphCommision += $pphCommision;
+            $sumPartnerBill += $partnerBill;
+            $sumTotalPartnerBill += $totalPartnerBill;
+        }
+
+        return view('dashboard.index', compact('transactions', 'append', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
     public function viewPartner()
@@ -270,9 +286,21 @@ class DashboardController extends Controller
 
     public function downloadReport(Request $request)
     {
-        $report = $this->service->downloadReport($request->id, $request->month, $request->year)->get();
+        $id = $request->input('id');
+        $name = Auth::user()->name;
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
 
-        return response()->download(storage_path('app/public/transaction_report_'.$request->id.$request->month.$request->year.'.xlsx'));
+        if ($request->input('select-month') != 0) {
+            $month = $request->input('select-month');
+        } else if ($request->input('select-year') != 0) {
+            $year = $request->input('select-year');
+        }
+
+        $report = $this->service->downloadReport($id, $name, $month, $year)->get();
+
+        // return Storage::download('transaction_report_'.$request->id.$request->month.$request->year.'.xlsx');
+        return response()->download(storage_path('app/public/transaction_report_'.$id.$month.$year.'.xlsx'));
     }
 
     public function detail($id)

@@ -15,9 +15,9 @@ class DashboardService extends ApiService
         $this->pageHeaderEndPoint = '';
     }
 
-    public function allTransaction($page)
+    public function allTransaction($page, $month, $year)
     {
-        $this->endPoint = 'transaction/?page='.$page;
+        $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year;
 
         return $this;
     }
@@ -50,13 +50,11 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function partnerTransaction($page)
+    public function partnerTransaction($page, $month, $year)
     {
         $user = Auth::user()->name;
-        $partnerId = DB::table('partners')->select('id')->where('name', $user)->first();
 
-        $this->endPoint = 'transaction/partner/'.$partnerId->id.'/?page='.$page;
-
+        $this->endPoint = 'transaction/partner?name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
         return $this;
     }
 
@@ -83,9 +81,9 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function downloadReport($id, $month, $year)
+    public function downloadReport($id, $name, $month, $year)
     {
-        $this->endPoint = 'test/export?id='.$id.'&month='.$month.'&year='.$year;
+        $this->endPoint = 'export?id='.$id.'&name='.$name.'&month='.$month.'&year='.$year;
 
         return $this;
     }
