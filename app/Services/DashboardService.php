@@ -22,6 +22,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function allTransactionByName($page, $name)
+    {
+        $this->endPoint = 'transaction/search_name?page='.$page.'&name='.$name;
+
+        return $this;
+    }
+
     public function allTransactionWP()
     {
         $this->endPoint = 'transaction/all';
@@ -55,6 +62,13 @@ class DashboardService extends ApiService
         $user = Auth::user()->name;
 
         $this->endPoint = 'transaction/partner?name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
+        return $this;
+    }
+
+    public function partnerTransactionByName($page, $name)
+    {
+        $user = Auth::user()->name;
+        $this->endPoint = 'transaction/partner/search_name?user='.$user.'&page='.$page.'&name='.$name;
         return $this;
     }
 

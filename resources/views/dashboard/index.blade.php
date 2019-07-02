@@ -18,8 +18,17 @@
                             <input type="hidden" name="id" value="{{Auth::user()->id}}">
                         </div>
                         <div class="col-3" class="form-control">
-                            <label for="" class="col-form-label">Showing data for {{ date('M-Y') }}</label>
+                            @role("viewer|partner viewer")
+                            @if($name == '')
+                                <label for="" class="col-form-label">Search Name First</label>
+                            @else
+                                <label for="" class="col-form-label">Showing search result for "{{$name}}"</label>
+                            @endif
+                            @else
+                                <label for="" class="col-form-label">Showing data for {{$date}}</label>
+                            @endrole
                         </div>
+                        @role('supadmin|financial|operation|partner financial|partner operation')
                         <div class="col-2">
                             <select class="form-control" id="select-month" name="select-month">
                                 <option value="0">Pilih Bulan</option>
@@ -43,6 +52,13 @@
                                 <option value="2019">2019</option>
                             </select>
                         </div>
+                        @endrole
+                        @role("viewer|partner viewer")
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="text-name" placeholder="Insured Name">
+                        </div>
+                        @endrole
                         <div class="col-1">
                             <input type="submit" class="btn btn-primary" value="Search" formaction="{{ route('dashboard.index') }}"/>
                         </div>
