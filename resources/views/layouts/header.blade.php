@@ -112,11 +112,6 @@
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
                     </li>
                     @endrole
-                    @can('view report')
-                    <li>
-                        <a class="{{ Route::is('report.index') ? 'active' : '' }}" href="{{ route('report.index') }}"><i class="si si-bar-chart"></i><span class="sidebar-mini-hide">Reports</span></a>
-                    </li>
-                    @endcan
                     @can('create certificate')
                     <li>
                         {{-- <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a> --}}
