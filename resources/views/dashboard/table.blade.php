@@ -13,6 +13,10 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
+            <th style='line-height: 100%' id="insuredNumber" data-sort="insuredNumber" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Insured Name</b>
+                <i class="status fa fa-pull-right fa-sort"></i>
+            </th>
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>PH Name</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
@@ -81,12 +85,12 @@
         </tr>
     </thead>
     <tbody id="tableAjax">
-        @if(auth()->user()->can('view all transaction') ||  auth()->user()->can('view all transaction by partner name'))
             @forelse ($transactions as $transaction)
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
+                    <td>{{$transaction['insured_name']}}</td>
                     <td>{{$transaction['customer_id']['name']}}</td>
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['product_id']['plan_id']['name']}}</td>
@@ -108,11 +112,6 @@
                     <td colspan="10">No data to be shown.</td>
                 </tr>
             @endforelse
-            @else
-            <tr>
-                <td colspan="10">Search data first.</td>
-            </tr>
-        @endif
 
     </tbody>
 </table>

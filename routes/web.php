@@ -25,7 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/testing', 'DashboardController@testing')->name('dashboard.testing');
     Route::get('/check', 'DashboardController@check')->name('dashboard.check');
     Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');
-    Route::get('/view/partner', 'DashboardController@viewPartner')->name('dashboard.viewPartner');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download');
 });
 

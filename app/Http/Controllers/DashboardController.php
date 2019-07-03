@@ -233,19 +233,27 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
+        $date = Carbon::createFromDate($year, $month, 1);
+        $date = Carbon::parse($date)->format('F Y');
+
         $month = $request->input('select-month');
         $year = $request->input('select-year');
+        $name = $request->input('text-name');
+        $name = strtolower($name);
+        $name = ucwords($name);
 
         if (!empty($month) && !empty($year)) {
             $request->session()->flash('month', $month);
             $request->session()->flash('year', $year);
+            $request->session()->flash('name', $name);
         } else {
-            $request->session()->keep(['month', 'year']);
+            $request->session()->keep(['month', 'year', 'name']);
             $month = $request->session()->get('month');
             $year = $request->session()->get('year');
+            $name = $request->session()->get('name');
         }
 
-        $date = ['month' => $month, 'year' => $year];
+        $data = ['name' => $name, 'date' => $date, 'month' => $month, 'year' => $year];
 
         $user = User::find(Auth::id());
 
@@ -256,12 +264,18 @@ class DashboardController extends Controller
         $sumPartnerBill = 0;
         $sumTotalPartnerBill = 0;
 
-        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('viewer')){
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
             $transactions = $this->service->allTransaction($page, $month, $year)->paginate();
             $transactionsCount = $this->service->allTransaction($page, $month, $year)->get();
-        }else if($user->hasRole('partner financial') || $user->hasRole('partner operation') || $user->hasRole('partner viewer')){
+        }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
             $transactions = $this->service->partnerTransaction($page, $month, $year)->paginate();
             $transactionsCount = $this->service->partnerTransaction($page, $month, $year)->get();
+        }else if($user->hasRole('viewer')){
+            $transactions = $this->service->allTransactionByName($page, $name)->paginate();
+            $transactionsCount = $this->service->allTransactionByName($page, $name)->get();
+        }else if($user->hasRole('partner viewer')){
+            $transactions = $this->service->partnerTransactionByName($page, $name)->paginate();
+            $transactionsCount = $this->service->partnerTransactionByName($page, $name)->get();
         }
 
         foreach ($transactionsCount as $transaction){
@@ -281,7 +295,7 @@ class DashboardController extends Controller
             $sumTotalPartnerBill += $totalPartnerBill;
         }
 
-        return view('dashboard.index', compact('transactions', 'append', 'date', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
+        return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
     public function viewPartner()
