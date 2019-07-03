@@ -293,11 +293,6 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('transactions','name','date', 'append', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
-    public function viewPartner()
-    {
-
-    }
-
     public function downloadReport(Request $request)
     {
         $id = $request->input('id');

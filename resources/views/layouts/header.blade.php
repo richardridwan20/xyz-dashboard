@@ -102,16 +102,11 @@
                         <a  href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
                     </li>
                     @endrole
-                    @role('supadmin')
+                    {{-- @role('supadmin')
                     <li>
                         <a class="{{ Route::is('dashboard.testing') ? 'active' : '' }}" href="{{ route('dashboard.testing') }}"><i class="fa fa-simplybuilt"></i><span class="sidebar-mini-hide">Testing Create Transaction</span></a>
                     </li>
-                    @endrole
-                    @role('supadmin|financial|operation')
-                    <li>
-                        <a class="{{ Route::is('dashboard.viewPartner') ? 'active' : '' }}" href="{{ route('dashboard.viewPartner') }}"><i class="fa fa-group"></i><span class="sidebar-mini-hide">View Partner Data</span></a>
-                    </li>
-                    @endrole
+                    @endrole --}}
                     @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
