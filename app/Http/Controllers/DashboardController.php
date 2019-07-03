@@ -233,14 +233,19 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
-        $month = Carbon::now()->format('m');
-        $year = Carbon::now()->format('Y');
+        $month = $request->input('select-month');
+        $year = $request->input('select-year');
 
-        if ($request->input('select-month') != 0) {
-            $month = $request->input('select-month');
-        } else if ($request->input('select-year') != 0) {
-            $year = $request->input('select-year');
+        if (!empty($month) && !empty($year)) {
+            $request->session()->flash('month', $month);
+            $request->session()->flash('year', $year);
+        } else {
+            $request->session()->keep(['month', 'year']);
+            $month = $request->session()->get('month');
+            $year = $request->session()->get('year');
         }
+
+        $date = ['month' => $month, 'year' => $year];
 
         $user = User::find(Auth::id());
 
@@ -276,7 +281,7 @@ class DashboardController extends Controller
             $sumTotalPartnerBill += $totalPartnerBill;
         }
 
-        return view('dashboard.index', compact('transactions', 'append', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
+        return view('dashboard.index', compact('transactions', 'append', 'date', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
     public function viewPartner()

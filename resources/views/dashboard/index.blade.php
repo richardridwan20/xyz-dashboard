@@ -12,7 +12,6 @@
             </div>
             <div class="block-content block-content-full">
                 <form method="GET">
-
                     <div class="form-group row">
                         <div class="col-2">
                             <input type="hidden" name="id" value="{{Auth::user()->id}}">
@@ -23,24 +22,24 @@
                         <div class="col-2">
                             <select class="form-control" id="select-month" name="select-month">
                                 <option value="0">Pilih Bulan</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
+                                <option value="01" {{ '01' == $date['month'] ? 'selected="selected"' : '' }}>Januari</option>
+                                <option value="02" {{ '02' == $date['month'] ? 'selected="selected"' : '' }}>Februari</option>
+                                <option value="03" {{ '03' == $date['month'] ? 'selected="selected"' : '' }}>Maret</option>
+                                <option value="04" {{ '04' == $date['month'] ? 'selected="selected"' : '' }}>April</option>
+                                <option value="05" {{ '05' == $date['month'] ? 'selected="selected"' : '' }}>Mei</option>
+                                <option value="06" {{ '06' == $date['month'] ? 'selected="selected"' : '' }}>Juni</option>
+                                <option value="07" {{ '07' == $date['month'] ? 'selected="selected"' : '' }}>Juli</option>
+                                <option value="08" {{ '08' == $date['month'] ? 'selected="selected"' : '' }}>Agustus</option>
+                                <option value="09" {{ '09' == $date['month'] ? 'selected="selected"' : '' }}>September</option>
+                                <option value="10" {{ '10' == $date['month'] ? 'selected="selected"' : '' }}>Oktober</option>
+                                <option value="11" {{ '11' == $date['month'] ? 'selected="selected"' : '' }}>November</option>
+                                <option value="12" {{ '12' == $date['month'] ? 'selected="selected"' : '' }}>Desember</option>
                             </select>
                         </div>
                         <div class="col-2">
                             <select class="form-control" id="select-year" name="select-year">
                                 <option value="0">Pilih Tahun</option>
-                                <option value="2019">2019</option>
+                                <option value="2019" {{ '2019' == $date['year'] ? 'selected="selected"' : '' }}>2019</option>
                             </select>
                         </div>
                         <div class="col-1">
