@@ -233,24 +233,26 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
-        $date = Carbon::createFromDate($year, $month, 1);
-        $date = Carbon::parse($date)->format('F Y');
-
         $month = $request->input('select-month');
         $year = $request->input('select-year');
         $name = $request->input('text-name');
         $name = strtolower($name);
         $name = ucwords($name);
 
+        $date = Carbon::createFromDate($year, $month, 1);
+        $date = Carbon::parse($date)->format('F Y');
+
         if (!empty($month) && !empty($year)) {
             $request->session()->flash('month', $month);
             $request->session()->flash('year', $year);
             $request->session()->flash('name', $name);
+            $request->session()->flash('date', $date);
         } else {
-            $request->session()->keep(['month', 'year', 'name']);
+            $request->session()->keep(['month', 'year', 'name', 'date']);
             $month = $request->session()->get('month');
             $year = $request->session()->get('year');
             $name = $request->session()->get('name');
+            $date = $request->session()->get('date');
         }
 
         $data = ['name' => $name, 'date' => $date, 'month' => $month, 'year' => $year];

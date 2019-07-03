@@ -21,34 +21,34 @@
                             @if($name == '')
                                 <label for="" class="col-form-label">Search Name First</label>
                             @else
-                                <label for="" class="col-form-label">Showing search result for "{{$name}}"</label>
+                                <label for="" class="col-form-label">Showing search result for "{{$data['name']}}"</label>
                             @endif
                             @else
-                                <label for="" class="col-form-label">Showing data for {{$date}}</label>
+                                <label for="" class="col-form-label">Showing data for {{$data['date']}}</label>
                             @endrole
                         </div>
                         @role('supadmin|financial|operation|partner financial|partner operation')
                         <div class="col-2">
                             <select class="form-control" id="select-month" name="select-month">
                                 <option value="0">Pilih Bulan</option>
-                                <option value="01" {{ '01' == $date['month'] ? 'selected="selected"' : '' }}>Januari</option>
-                                <option value="02" {{ '02' == $date['month'] ? 'selected="selected"' : '' }}>Februari</option>
-                                <option value="03" {{ '03' == $date['month'] ? 'selected="selected"' : '' }}>Maret</option>
-                                <option value="04" {{ '04' == $date['month'] ? 'selected="selected"' : '' }}>April</option>
-                                <option value="05" {{ '05' == $date['month'] ? 'selected="selected"' : '' }}>Mei</option>
-                                <option value="06" {{ '06' == $date['month'] ? 'selected="selected"' : '' }}>Juni</option>
-                                <option value="07" {{ '07' == $date['month'] ? 'selected="selected"' : '' }}>Juli</option>
-                                <option value="08" {{ '08' == $date['month'] ? 'selected="selected"' : '' }}>Agustus</option>
-                                <option value="09" {{ '09' == $date['month'] ? 'selected="selected"' : '' }}>September</option>
-                                <option value="10" {{ '10' == $date['month'] ? 'selected="selected"' : '' }}>Oktober</option>
-                                <option value="11" {{ '11' == $date['month'] ? 'selected="selected"' : '' }}>November</option>
-                                <option value="12" {{ '12' == $date['month'] ? 'selected="selected"' : '' }}>Desember</option>
+                                <option value="01" {{ '01' == $data['month'] ? 'selected="selected"' : '' }}>Januari</option>
+                                <option value="02" {{ '02' == $data['month'] ? 'selected="selected"' : '' }}>Februari</option>
+                                <option value="03" {{ '03' == $data['month'] ? 'selected="selected"' : '' }}>Maret</option>
+                                <option value="04" {{ '04' == $data['month'] ? 'selected="selected"' : '' }}>April</option>
+                                <option value="05" {{ '05' == $data['month'] ? 'selected="selected"' : '' }}>Mei</option>
+                                <option value="06" {{ '06' == $data['month'] ? 'selected="selected"' : '' }}>Juni</option>
+                                <option value="07" {{ '07' == $data['month'] ? 'selected="selected"' : '' }}>Juli</option>
+                                <option value="08" {{ '08' == $data['month'] ? 'selected="selected"' : '' }}>Agustus</option>
+                                <option value="09" {{ '09' == $data['month'] ? 'selected="selected"' : '' }}>September</option>
+                                <option value="10" {{ '10' == $data['month'] ? 'selected="selected"' : '' }}>Oktober</option>
+                                <option value="11" {{ '11' == $data['month'] ? 'selected="selected"' : '' }}>November</option>
+                                <option value="12" {{ '12' == $data['month'] ? 'selected="selected"' : '' }}>Desember</option>
                             </select>
                         </div>
                         <div class="col-2">
                             <select class="form-control" id="select-year" name="select-year">
                                 <option value="0">Pilih Tahun</option>
-                                <option value="2019" {{ '2019' == $date['year'] ? 'selected="selected"' : '' }}>2019</option>
+                                <option value="2019" {{ '2019' == $data['year'] ? 'selected="selected"' : '' }}>2019</option>
                             </select>
                         </div>
                         @endrole
