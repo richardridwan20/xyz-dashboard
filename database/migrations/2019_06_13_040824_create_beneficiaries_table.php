@@ -14,12 +14,12 @@ class CreateBeneficiariesTable extends Migration
     public function up()
     {
         Schema::create('beneficiaries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('bene_relation');
-            $table->string('bene_name');
-            $table->string('bene_dob');
-            $table->string('bene_gender');
-            $table->string('bene_email');
+            $table->increments('id')->nullable();
+            $table->string('bene_relation')->nullable();
+            $table->string('bene_name')->nullable();
+            $table->string('bene_dob')->nullable();
+            $table->string('bene_gender')->nullable();
+            $table->string('bene_email')->nullable();
             $table->timestamps();
         });
     }

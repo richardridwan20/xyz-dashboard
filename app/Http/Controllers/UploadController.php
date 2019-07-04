@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\File;
 use App\Imports\TransactionImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Services\DashboardService;
 
 class UploadController extends Controller
 {
+    public function __construct(DashboardService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,15 +28,27 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'title' => 'nullable|max:100',
+            // 'title' => 'nullable|max:100',
             'file' => 'required|file|max:2000|mimes:xlsx,csv', // max 2MB
         ]);
 
         $file = $request->file('file');
+        $file_name = rand().$file->getClientOriginalName();
 
-        $path = $file->store('public/files');
+        $path = $file->storeAs('public/files', $file_name);
 
-        Excel::import(new TransactionImport, request()->file('file'));
+        $data = ['file_name' => $file_name, 'path' => $path];
+
+        $upload = $this->service->import($data)->upload($data);
+
+        $error = $upload->bodyResponse;
+
+        if (!empty($error['errors'])) {
+            return back()
+            ->withErrors($error['errors']);
+        }
+
+        // Excel::import(new TransactionImport, request()->file('file'));
 
         return back()
             ->with('success','File berhasil diupload.');

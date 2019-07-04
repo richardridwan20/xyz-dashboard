@@ -11,7 +11,7 @@ class ApiService
     protected $endPoint;
     protected $pageHeaderEndPoint;
     protected $statusCode;
-    protected $bodyResponse;
+    public $bodyResponse;
     protected $lang = 'id';
     public $hasError = false;
     public $errors = [];
@@ -60,6 +60,16 @@ class ApiService
         $postApi = $this->api->setUrl($this->endPoint)->put($data);
         $this->statusCode = $postApi->statusCode();
         $this->bodyResponse = $postApi->response();
+
+        return $this;
+    }
+
+    public function upload(array $data)
+    {
+        $postApi = $this->api->setUrl($this->endPoint)->upload($data);
+        $this->statusCode = $postApi->statusCode();
+        $this->bodyResponse = $postApi->response();
+
         return $this;
     }
 

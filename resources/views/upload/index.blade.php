@@ -39,7 +39,7 @@
                     <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-12">Masukkan judul</label>
                             <div class="col-8">
                                 <div class="custom-file">
@@ -47,7 +47,7 @@
                                     <input type="text" class="form-control" placeholder="Masukkan Judul" id="" name="title" data-toggle="custom-file-input">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                         <div class="form-group row">
                             <label class="col-12">Upload file Excel yang diinginkan (format .xlsx atau .csv)</label>

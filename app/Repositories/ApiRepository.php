@@ -45,6 +45,15 @@ class ApiRepository implements RepositoryInterface
         return $this;
     }
 
+    public function upload(array $data)
+    {
+        $this->response = $this->client->post($this->url, [
+                'headers' => ['Accept' => 'application/json'],
+                'json' => $data,
+            ]);
+        return $this;
+    }
+
     public function setUrl($url)
     {
         $this->url = $url;

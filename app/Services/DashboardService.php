@@ -101,4 +101,11 @@ class DashboardService extends ApiService
 
         return $this;
     }
+
+    public function import(array $data)
+    {
+        $this->endPoint = 'import?filename='.$data['file_name'];
+
+        return $this;
+    }
 }
