@@ -14,7 +14,7 @@ class CreateBeneficiariesTable extends Migration
     public function up()
     {
         Schema::create('beneficiaries', function (Blueprint $table) {
-            $table->increments('id')->nullable();
+            $table->increments('id');
             $table->string('bene_relation')->nullable();
             $table->string('bene_name')->nullable();
             $table->string('bene_dob')->nullable();
