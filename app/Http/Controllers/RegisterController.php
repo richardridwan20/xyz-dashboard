@@ -35,7 +35,7 @@ class RegisterController extends Controller
         $password = $request->password;
         $rules = [
             'role' => 'required',
-            'name' => 'required|alpha',
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'password_confirmation' => 'required|in:'.$password
