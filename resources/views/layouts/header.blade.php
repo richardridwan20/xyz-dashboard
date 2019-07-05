@@ -107,6 +107,11 @@
                         <a class="{{ Route::is('dashboard.testing') ? 'active' : '' }}" href="{{ route('dashboard.testing') }}"><i class="fa fa-simplybuilt"></i><span class="sidebar-mini-hide">Testing Create Transaction</span></a>
                     </li>
                     @endrole --}}
+                    @can('register partner')
+                    <li>
+                        <a class="{{ Route::is('dashboard.register') ? 'active' : '' }}" href="{{ route('dashboard.register') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner</span></a>
+                    </li>
+                    @endcan
                     @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>

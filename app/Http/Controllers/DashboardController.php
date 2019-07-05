@@ -27,143 +27,148 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         if(Role::count() == 0){
-            // Create Role
-            Role::create(['name'=>'supadmin']);//1
-            Role::create(['name'=>'treasury']);//2
-            Role::create(['name'=>'financial']);//3
-            Role::create(['name'=>'operation']);//4
-            Role::create(['name'=>'viewer']);//5
-            Role::create(['name'=>'partner financial']);//6
-            Role::create(['name'=>'partner operation']);//7
-            Role::create(['name'=>'partner viewer']);//8
-            Role::create(['name'=>'agent']);//9
+        // Create Role
+        Role::create(['name'=>'supadmin']);//1
+        Role::create(['name'=>'treasury']);//2
+        Role::create(['name'=>'financial']);//3
+        Role::create(['name'=>'operation']);//4
+        Role::create(['name'=>'viewer']);//5
+        Role::create(['name'=>'partner financial']);//6
+        Role::create(['name'=>'partner operation']);//7
+        Role::create(['name'=>'partner viewer']);//8
+        Role::create(['name'=>'agent']);//9
 
-            //Create Permission
-            Permission::create(['name'=>'view all transaction']);//1
-            Permission::create(['name'=>'view all transaction by partner name']);//2
-            Permission::create(['name'=>'view report']);//3
-            Permission::create(['name'=>'update status paid']);//4
-            Permission::create(['name'=>'update status cancel']);//5
-            Permission::create(['name'=>'input invoice number']);//6
-            Permission::create(['name'=>'create certificate']);//7
-            Permission::create(['name'=>'view upload form']);//8
-            Permission::create(['name'=>'download report']);//9
-            Permission::create(['name'=>'view by search']);//10
-            Permission::create(['name'=>'input transaction data']);//11
+        //Create Permission
+        Permission::create(['name'=>'view all transaction']);//1
+        Permission::create(['name'=>'view all transaction by partner name']);//2
+        Permission::create(['name'=>'view report']);//3
+        Permission::create(['name'=>'update status paid']);//4
+        Permission::create(['name'=>'update status cancel']);//5
+        Permission::create(['name'=>'input invoice number']);//6
+        Permission::create(['name'=>'create certificate']);//7
+        Permission::create(['name'=>'view upload form']);//8
+        Permission::create(['name'=>'download report']);//9
+        Permission::create(['name'=>'view by search']);//10
+        Permission::create(['name'=>'input transaction data']);//11
+        Permission::create(['name'=>'register partner']);//12
 
-            $permission1 = Permission::findById(1);
-            $permission2 = Permission::findById(2);
-            $permission3 = Permission::findById(3);
-            $permission4 = Permission::findById(4);
-            $permission5 = Permission::findById(5);
-            $permission6 = Permission::findById(6);
-            $permission7 = Permission::findById(7);
-            $permission8 = Permission::findById(8);
-            $permission9 = Permission::findById(9);
-            $permission10 = Permission::findById(10);
-            $permission11 = Permission::findById(11);
+        $permission1 = Permission::findById(1);
+        $permission2 = Permission::findById(2);
+        $permission3 = Permission::findById(3);
+        $permission4 = Permission::findById(4);
+        $permission5 = Permission::findById(5);
+        $permission6 = Permission::findById(6);
+        $permission7 = Permission::findById(7);
+        $permission8 = Permission::findById(8);
+        $permission9 = Permission::findById(9);
+        $permission10 = Permission::findById(10);
+        $permission11 = Permission::findById(11);
+        $permission12 = Permission::findById(12);
 
-            //Giving Role Permission
-            //supadmin
-            $role = Role::findById(1);
-            $role->givePermissionTo($permission1);
-            $role->givePermissionTo($permission2);
-            $role->givePermissionTo($permission3);
-            $role->givePermissionTo($permission4);
-            $role->givePermissionTo($permission5);
-            $role->givePermissionTo($permission6);
-            $role->givePermissionTo($permission7);
-            $role->givePermissionTo($permission8);
-            $role->givePermissionTo($permission9);
-            $role->givePermissionTo($permission10);
+        //Giving Role Permission
+        //supadmin
+        $role = Role::findById(1);
+        $role->givePermissionTo($permission1);
+        $role->givePermissionTo($permission2);
+        $role->givePermissionTo($permission3);
+        $role->givePermissionTo($permission4);
+        $role->givePermissionTo($permission5);
+        $role->givePermissionTo($permission6);
+        $role->givePermissionTo($permission7);
+        $role->givePermissionTo($permission8);
+        $role->givePermissionTo($permission9);
+        $role->givePermissionTo($permission10);
+        $role->givePermissionTo($permission11);
+        $role->givePermissionTo($permission12);
 
-            //treasury
-            $role = Role::findById(2);
-            $role->givePermissionTo($permission1);
-            $role->givePermissionTo($permission3);
-            $role->givePermissionTo($permission6);
-            $role->givePermissionTo($permission9);
-            $role->givePermissionTo($permission10);
+        //treasury
+        $role = Role::findById(2);
+        $role->givePermissionTo($permission1);
+        $role->givePermissionTo($permission3);
+        $role->givePermissionTo($permission6);
+        $role->givePermissionTo($permission9);
+        $role->givePermissionTo($permission10);
 
-            //financial
-            $role = Role::findById(3);
-            $role->givePermissionTo($permission1);
-            $role->givePermissionTo($permission5);
-            $role->givePermissionTo($permission6);
-            $role->givePermissionTo($permission10);
+        //financial
+        $role = Role::findById(3);
+        $role->givePermissionTo($permission1);
+        $role->givePermissionTo($permission5);
+        $role->givePermissionTo($permission6);
+        $role->givePermissionTo($permission10);
+        $role->givePermissionTo($permission12);
 
-            //operation
-            $role = Role::findById(4);
-            $role->givePermissionTo($permission1);
-            $role->givePermissionTo($permission5);
-            $role->givePermissionTo($permission6);
-            $role->givePermissionTo($permission10);
+        //operation
+        $role = Role::findById(4);
+        $role->givePermissionTo($permission1);
+        $role->givePermissionTo($permission5);
+        $role->givePermissionTo($permission6);
+        $role->givePermissionTo($permission10);
+        $role->givePermissionTo($permission12);
 
-            //viewer
-            $role = Role::findById(5);
-            $role->givePermissionTo($permission10);
+        //viewer
+        $role = Role::findById(5);
+        $role->givePermissionTo($permission10);
 
-            //partner financial
-            $role = Role::findById(6);
-            $role->givePermissionTo($permission2);
-            $role->givePermissionTo($permission4);
-            $role->givePermissionTo($permission7);
-            $role->givePermissionTo($permission8);
-            $role->givePermissionTo($permission10);
+        //partner financial
+        $role = Role::findById(6);
+        $role->givePermissionTo($permission2);
+        $role->givePermissionTo($permission4);
+        $role->givePermissionTo($permission7);
+        $role->givePermissionTo($permission8);
+        $role->givePermissionTo($permission10);
 
-            //partner operation
-            $role = Role::findById(7);
-            $role->givePermissionTo($permission4);
-            $role->givePermissionTo($permission7);
-            $role->givePermissionTo($permission8);
-            $role->givePermissionTo($permission10);
+        //partner operation
+        $role = Role::findById(7);
+        $role->givePermissionTo($permission4);
+        $role->givePermissionTo($permission7);
+        $role->givePermissionTo($permission8);
+        $role->givePermissionTo($permission10);
 
-            //partner viewer
-            $role = Role::findById(8);
-            $role->givePermissionTo($permission10);
+        //partner viewer
+        $role = Role::findById(8);
+        $role->givePermissionTo($permission10);
 
-            //agent
-            $role = Role::findById(9);
-            $role->givePermissionTo($permission11);
+        //agent
+        $role = Role::findById(9);
+        $role->givePermissionTo($permission11);
 
-            //Assign Account to Role
-            $user = User::find(1);
-            $user->assignRole('supadmin');
+        //Assign Account to Role
+        $user = User::find(1);
+        $user->assignRole('supadmin');
 
-            $user = User::find(2);
-            $user->assignRole('treasury');
+        $user = User::find(2);
+        $user->assignRole('treasury');
 
-            $user = User::find(3);
-            $user->assignRole('financial');
+        $user = User::find(3);
+        $user->assignRole('financial');
 
-            $user = User::find(4);
-            $user->assignRole('operation');
+         $user = User::find(4);
+         $user->assignRole('operation');
 
-            $user = User::find(5);
-            $user->assignRole('viewer');
+         $user = User::find(5);
+         $user->assignRole('viewer');
 
-            $user = User::find(6);
-            $user->assignRole('partner financial');
+         $user = User::find(6);
+         $user->assignRole('partner financial');
 
-            $user = User::find(7);
-            $user->assignRole('partner operation');
+         $user = User::find(7);
+         $user->assignRole('partner operation');
 
-            $user = User::find(8);
-            $user->assignRole('partner viewer');
+         $user = User::find(8);
+         $user->assignRole('partner viewer');
 
-            $user = User::find(9);
-            $user->assignRole('partner financial');
+         $user = User::find(9);
+         $user->assignRole('partner financial');
 
-            $user = User::find(10);
-            $user->assignRole('partner operation');
+         $user = User::find(10);
+         $user->assignRole('partner operation');
 
-            $user = User::find(11);
-            $user->assignRole('partner viewer');
+         $user = User::find(11);
+         $user->assignRole('partner viewer');
 
-            $user = Agent::find(1);
-            $user->assignRole('agent');
+         $user = Agent::find(1);
+         $user->assignRole('agent');
         }
-
 
         $column = 'created_at';
         $typeOfSort = 'DESC';

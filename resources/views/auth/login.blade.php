@@ -65,12 +65,7 @@
                                     <i class="si si-login mr-10"></i>  {{ __('Login') }}
                                 </button>
                             </div>
-                            <div class="col-sm-6 mb-5">
-                                <a class="btn btn-block btn-noborder btn-rounded btn-alt-secondary" href="{{ route('register') }}">
-                                    <i class="fa fa-plus text-muted mr-5"></i>{{ __('Register') }}
-                                </a>
-                            </div>
-                            <div class="col-sm-6 mb-5">
+                            <div class="col-sm-12 mb-5">
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-block btn-noborder btn-rounded btn-alt-secondary" href="{{ route('password.request') }}">
                                         <i class="fa fa-warning text-muted mr-5"></i>{{ __('Forgot Password?') }}
