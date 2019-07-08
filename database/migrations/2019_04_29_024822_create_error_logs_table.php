@@ -15,6 +15,7 @@ class CreateErrorLogsTable extends Migration
     {
         Schema::connection('mysql.log')->create('error_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('transaction_id');
             $table->string('code');
             $table->string('file');
             $table->string('line');

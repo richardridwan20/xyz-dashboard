@@ -4,7 +4,7 @@
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
-                <button><a href="{{ URL::route('dashboard.changeStatus', [$detailTransaction['id'], 'Canceled']) }}">Change Status into Canceled</a></button>
+                <button><a href="{{ URL::route('dashboard.changeStatus', [$detailTransaction['transaction']['id'], 'Canceled']) }}">Change Status into Canceled</a></button>
                 @endcan
             </div>
             <div class="block-content block-content-full">
@@ -16,7 +16,7 @@
                                 <b>Transaction ID</b>
                             </div>
                             <div class="block-content bg-body-light">
-                                {{$detailTransaction['id']}}
+                                {{$detailTransaction['transaction']['id']}}
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                                 <b>Transaction Status</b>
                             </div>
                             <div class="block-content bg-earth-light">
-                                {{$detailTransaction['status']}}
+                                {{$detailTransaction['transaction']['status']}}
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['id']}}
+                            {{$detailTransaction['transaction']['id']}}
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['protection_duration']}}
+                            {{$detailTransaction['transaction']['protection_duration']}}
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['certificate_number']}}
+                            {{$detailTransaction['transaction']['certificate_number']}}
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['status']}}
+                            {{$detailTransaction['transaction']['status']}}
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            Test
+                            {{$detailTransaction['transaction']['created_at']}}
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['customer_id']['name']}}
+                            {{$detailTransaction['transaction']['customer']['name']}}
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['customer_id']['dob']}}
+                            {{$detailTransaction['transaction']['customer']['dob']}}
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['customer_id']['citizen_id']}}
+                            {{$detailTransaction['transaction']['customer']['citizen_id']}}
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['customer_id']['gender']}}
+                            {{$detailTransaction['transaction']['customer']['gender']}}
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['customer_id']['email']}}
+                            {{$detailTransaction['transaction']['customer']['email']}}
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
 
 <div class="row">
 
-    <div class="block-content bg-body-light col-sm-6">
+    <div class="block-content bg-body-light col-sm-6    ">
         <div class="block">
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Insured Detail</b></h3>
@@ -229,7 +229,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['insured_relation']}}
+                            {{$detailTransaction['transaction']['insured_relation']}}
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['insured_name']}}
+                            {{$detailTransaction['transaction']['insured_name']}}
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['insured_dob']}}
+                            {{$detailTransaction['transaction']['insured_dob']}}
                         </div>
                     </div>
                 </div>
@@ -274,18 +274,43 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['insured_gender']}}
+                            {{$detailTransaction['transaction']['insured_gender']}}
                         </div>
                     </div>
                 </div>
                 {{-- End of Insured Gender Row --}}
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="block">
+                            <b>Gender</b>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="block">
+                            {{$detailTransaction['transaction']['insured_gender']}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        {{-- <div class="block-content bg-body-light col-sm-6">
+            <div class="block"></div>
+        </div> --}}
     </div>
+    <div class="block-content bg-body-light col-sm-6">
+
+            {{-- <div class="block-content bg-body-light col-sm-6">
+                <div class="block"></div>
+            </div> --}}
+    </div>
+</div>
+<div class="row">
+    @for($i = 0; $i < count($detailTransaction['beneficiary']); $i++)
     <div class="block-content bg-body-light col-sm-6">
         <div class="block">
             <div class="block-header block-header-default bg-white">
-                <h3 class="block-title"><b>Beneficiary Detail</b></h3>
+                <h3 class="block-title"><b>Beneficiary Detail {{$i+1}}</b></h3>
             </div>
             <div class="block-content block-content-full">
                 {{-- Start of Beneficiary Relation Row --}}
@@ -298,7 +323,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['bene_relation']}}
+                            {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_relation']}}
                         </div>
                     </div>
                 </div>
@@ -313,7 +338,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['bene_name']}}
+                            {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_name']}}
                         </div>
                     </div>
                 </div>
@@ -328,7 +353,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['bene_dob']}}
+                            {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_dob']}}
                         </div>
                     </div>
                 </div>
@@ -343,7 +368,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['bene_gender']}}
+                            {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_gender']}}
                         </div>
                     </div>
                 </div>
@@ -358,7 +383,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['bene_email']}}
+                            {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_email']}}
                         </div>
                     </div>
                 </div>
@@ -366,6 +391,12 @@
             </div>
         </div>
     </div>
+    @endfor
+    @if(count($detailTransaction['beneficiary']) % 2)
+        <div class="block-content bg-body-light col-sm-6">
+        </div>
+    @else
+    @endif
 </div>
 @if(auth()->user()->can('view all transaction') || auth()->user()->can('view all transaction by partner name'))
 <div class="line"></div>
@@ -388,7 +419,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$pCommision = ($detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision'])-($detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision']*0.1)}}
+                            {{$pCommision = ($detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision'])-($detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision']*0.1)}}
                         </div>
                     </div>
                 {{-- End of Partner Commision Row --}}
@@ -403,7 +434,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$ppn = $detailTransaction['product_id']['plan_id']['premi']*$detailTransaction['partner_id']['commision']*0.1}}
+                            {{$ppn = $detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision']*0.1}}
                         </div>
                     </div>
                 </div>
@@ -467,7 +498,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$detailTransaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
+                            {{$detailTransaction['product']['plan']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
                         </div>
                     </div>
                 </div>
