@@ -29,10 +29,16 @@ class UploadController extends Controller
     {
         $request->validate([
             // 'title' => 'nullable|max:100',
-            'file' => 'required|file|max:2000|mimes:xlsx,csv', // max 2MB
+            'file' => 'required|file|max:2000', // max 2MB
         ]);
 
-        $file = $request->file('file');
+        $extensions = array("xlsx");
+
+        $result = array($request->file('file')->getClientOriginalExtension());
+
+        if(in_array($result[0],$extensions)){
+
+            $file = $request->file('file');
         $file_name = rand().$file->getClientOriginalName();
 
         $path = $file->storeAs('public/files', $file_name);
@@ -52,7 +58,13 @@ class UploadController extends Controller
 
         return back()
             ->with('success','File berhasil diupload.');
+        }else{
+            return back()
+            ->withErrors('File harus dengan ekstensi yang benar.');
+        }
+
     }
+
 
     /**
      * Show the form for creating a new resource.
