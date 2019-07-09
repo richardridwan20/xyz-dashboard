@@ -4,22 +4,6 @@
 
 <div class="content">
     <div class="block block-fx-shadow">
-        <div class="block-content bg-body-light">
-            <!-- Search -->
-            <form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search orders..">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!-- END Search -->
-        </div>
         <div class="block">
             <div class="block-header block-header-default bg-primary-lighter">
                 <h3 class="block-title text-uppercase">InvoiceLog</h3>

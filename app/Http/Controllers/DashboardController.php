@@ -319,11 +319,6 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
-    public function viewPartner()
-    {
-
-    }
-
     public function downloadReport(Request $request)
     {
         $id = $request->input('id');
@@ -341,6 +336,13 @@ class DashboardController extends Controller
 
         // return Storage::download('transaction_report_'.$request->id.$request->month.$request->year.'.xlsx');
         return response()->download(storage_path('app/public/transaction_report_'.$id.$month.$year.'.xlsx'));
+    }
+
+    public function createInvoice($invoiceNumber)
+    {
+        $invoice = $this->service->createInvoice($invoiceNumber)->get();
+
+        return response()->download(storage_path('app/public/Invoice_'.$invoice['name'].'_'.$invoice['month'].'_'.$invoice['year'].'.pdf'));
     }
 
     public function detail($id)

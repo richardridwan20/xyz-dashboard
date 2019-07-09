@@ -16,6 +16,7 @@ class AddPartnerSeeds extends Migration
         DB::table('partners')->insert([
             [
                 'name' => 'Smailing',
+                'company_name' => 'PT. Smailing',
                 'commision' => '0.3',
                 'allow_send_data' => 1,
                 'sender' => 'Partner',
@@ -28,6 +29,7 @@ class AddPartnerSeeds extends Migration
             ],
             [
                 'name' => 'Tokopedia',
+                'company_name' => 'PT. Tokopedia',
                 'commision' => '0.3',
                 'allow_send_data' => 0,
                 'sender' => 'Partner',

@@ -109,7 +109,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10">No data to be shown.</td>
+                    <td colspan="17">No data to be shown.</td>
                 </tr>
             @endforelse
 

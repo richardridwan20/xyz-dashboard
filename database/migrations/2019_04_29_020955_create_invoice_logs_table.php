@@ -16,6 +16,7 @@ class CreateInvoiceLogsTable extends Migration
         Schema::connection('mysql.log')->create('invoice_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('partner_id');
+            $table->string('invoice_number');
             $table->string('date')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
