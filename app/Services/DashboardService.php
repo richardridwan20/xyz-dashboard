@@ -83,7 +83,7 @@ class DashboardService extends ApiService
 
     public function getTransactionById($id)
     {
-        $this->endPoint = 'transaction/'.$id;
+        $this->endPoint = 'detail_transaction/?id='.$id;
 
         return $this;
     }
