@@ -5,7 +5,7 @@
                 <b>Transaction ID</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
-            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Invoice Number</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
             </th>
@@ -13,7 +13,7 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th style='line-height: 100%' id="insuredNumber" data-sort="insuredNumber" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="insuredNumber" data-sort="insuredNumber" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Insured Name</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
             </th>

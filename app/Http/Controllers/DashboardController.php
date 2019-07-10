@@ -324,6 +324,141 @@ class DashboardController extends Controller
 
     }
 
+    public function inputTransaction(Request $request)
+    {
+        $rules = [
+            'plan' => 'required',
+            'duration' => 'required',
+            'phgender' => 'required',
+            'phname' => 'required|regex:/^[\pL\s]+$/u',
+            'phcitizen_id' => 'required|digits:16',
+            'phdob' => 'required',
+            'phemail' => 'required|email',
+            'igender' => 'required',
+            'irelation' => 'required',
+            'iname' => 'required|regex:/^[\pL\s]+$/u',
+            'icitizen_id' => 'required|digits:16',
+            'idob' => 'required',
+            'iemail' => 'required|email',
+            'b1gender' => 'nullable',
+            'b1relation' => 'required',
+            'b1name' => 'required|regex:/^[\pL\s]+$/u',
+            'b1citizen_id' => 'nullable|digits:16',
+            'b1dob' => 'nullable',
+            'b1email' => 'nullable|email',
+            'b2gender' => 'nullable',
+            'b2relation' => 'nullable|required_with:b2name',
+            'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
+            'b2citizen_id' => 'nullable|digits:16',
+            'b2dob' => 'nullable',
+            'b2email' => 'nullable|email',
+            'b3gender' => 'nullable',
+            'b3relation' => 'nullable|required_with:b3name',
+            'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
+            'b3citizen_id' => 'nullable|digits:16',
+            'b3dob' => 'nullable',
+            'b3email' => 'nullable|email',
+            'b4gender' => 'nullable',
+            'b4relation' => 'nullable|required_with:b4name',
+            'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
+            'b4citizen_id' => 'nullable|digits:16',
+            'b4dob' => 'nullable',
+            'b4email' => 'nullable|email',
+        ];
+        $customMessages = [
+            'plan.required' => 'please select the :attribute',
+            'phgender.required' => 'please select the :attribute',
+        ];
+        $customAttributes = [
+            'plan' => 'Product Plan',
+            'duration' => 'Protection Duration',
+            'phgender' => 'Policy Holder Gender',
+            'phname' => 'Policy Holder Name',
+            'phcitizen_id' => 'Policy Holder Citizen Id',
+            'phdob' => 'Policy Holder Date of Birth',
+            'phemail' => 'Policy Holder Email',
+            'igender' => 'Insured Gender',
+            'irelation' => 'Insured Relation',
+            'iname' => 'Insured Name',
+            'icitizen_id' => 'Insured Citizen Id',
+            'idob' => 'Insured Date of Birth',
+            'iemail' => 'Insured Email',
+            'b1gender' => 'First Beneficiary Gender',
+            'b1relation' => 'First Beneficiary Relation',
+            'b1name' => 'First Beneficiary Name',
+            'b1citizen_id' => 'First Beneficiary Citizen Id',
+            'b1dob' => 'First Beneficiary Date of Birth',
+            'b1email' => 'First Beneficiary Email',
+            'b2gender' => 'Second Beneficiary Gender',
+            'b2relation' => 'Second Beneficiary Relation',
+            'b2name' => 'Second Beneficiary Name',
+            'b2citizen_id' => 'Second Beneficiary Citizen Id',
+            'b2dob' => 'Second Beneficiary Date of Birth',
+            'b2email' => 'Second Beneficiary Email',
+            'b3gender' => 'Third Beneficiary Gender',
+            'b3relation' => 'Third Beneficiary Relation',
+            'b3name' => 'Third Beneficiary Name',
+            'b3citizen_id' => 'Third Beneficiary Citizen Id',
+            'b3dob' => 'Third Beneficiary Date of Birth',
+            'b3email' => 'Third Beneficiary Email',
+            'b4gender' => 'Fourth Beneficiary Gender',
+            'b4relation' => 'Fourth Beneficiary Relation',
+            'b4name' => 'Fourth Beneficiary Name',
+            'b4citizen_id' => 'Fourth Beneficiary Citizen Id',
+            'b4dob' => 'Fourth Beneficiary Date of Birth',
+            'b4email' => 'Fourth Beneficiary Email',
+        ];
+
+        $request->validate($rules, $customMessages, $customAttributes);
+
+        $name = Auth::user()->name;
+        $durationYear = $request->duration/12;
+        $partner = $this->service->getPartnerDataByName($name)->get();
+        if($request->plan == "Standard"){
+            $product = 1;
+            $total_paid = $durationYear * 75000;
+        }else{
+            $product = 2;
+            $total_paid = $durationYear * 75000;
+        }
+
+        $data = [
+            'partner_id' => $partner['id'],
+            'product_id' => $product,
+            'insured_relation' => $request->irelation,
+            'insured_name' => $request->iname,
+            'insured_gender' => $request->igender,
+            'insured_dob' => $request->idob,
+            'protection_duration' => $request->duration,
+            'customer_name' => $request->phname,
+            'customer_dob' => $request->phdob,
+            'customer_citizen_id' => $request->phcitizen_id,
+            'customer_gender' => $request->phgender,
+            'customer_email' => $request->phemail,
+            'total_paid' => $total_paid,
+            '1_bene_relation' => $request->b1relation,
+            '1_bene_name' => $request->b1name,
+            '1_bene_dob' => $request->b1dob,
+            '1_bene_gender' => $request->b1gender,
+            '1_bene_email' => $request->b1email,
+        ];
+        for($i=2;$i<=4;$i++){
+            if($request['b'.$i.'name'] != null){
+                $data = $data + [
+                $i.'_bene_relation' => $request['b'.$i.'relation'],
+                $i.'_bene_name' => $request['b'.$i.'name'],
+                $i.'_bene_dob' => $request['b'.$i.'dob'],
+                $i.'_bene_gender' => $request['b'.$i.'gender'],
+                $i.'_bene_email' => $request['b'.$i.'email'],
+                ];
+            }
+        }
+        $transactionAdded = $this->service->inputTransaction()->post($data);
+        dd($transactionAdded);
+        // return $transactionAdded;
+
+    }
+
     public function downloadReport(Request $request)
     {
         $id = $request->input('id');
@@ -366,6 +501,11 @@ class DashboardController extends Controller
         $this->service->changeStatus($id)->post($data);
 
         return redirect('');
+    }
+
+    public function spaj()
+    {
+        return view('spaj.spaj');
     }
 
     public function testing()

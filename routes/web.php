@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
     Route::get('/register_partner', 'RegisterController@register')->name('dashboard.register')->middleware('permission:register partner');
     Route::post('/register_new_partner', 'RegisterController@inputPartner')->name('register.input_partner');
+    Route::post('/spaj_input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
     Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('permission:input invoice number');
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/check', 'DashboardController@check')->name('dashboard.check');
     Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download');
+    Route::get('/spaj', 'DashboardController@spaj')->name('dashboard.spaj')->middleware('role:supadmin');
 });
 
 Auth::routes(['verify' => true]);

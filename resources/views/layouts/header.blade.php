@@ -97,6 +97,11 @@
                         <a class="{{ Route::is('upload.index') ? 'active' : '' }}" href="{{ route('upload.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
                     </li>
                     @endcan
+                    @role('supadmin')
+                    <li>
+                        <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
+                    </li>
+                    @endrole
                     @role('supadmin|financial|operation')
                     <li>
                         <a  href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>

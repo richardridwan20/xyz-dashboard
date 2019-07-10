@@ -43,6 +43,20 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function inputTransaction()
+    {
+        $this->endPoint = 'transaction/create';
+
+        return $this;
+    }
+
+    public function getPartnerDataByName($name)
+    {
+        $this->endPoint = 'partner/getDataByName?name='.$name;
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;
