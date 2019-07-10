@@ -319,7 +319,18 @@ class DashboardController extends Controller
 
         foreach ($transactionsCount as $transaction){
             $commision = $transaction['partner_id']['commision'];
-            $premium = $transaction['product_id']['plan_id']['premi'];
+            $type = $transaction['partner_id']['payment_type'];
+            switch ($type) {
+                case 'Yearly':
+                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    break;
+                case 'Monthly':
+                    $premium = $transaction['product_id']['plan_id']['premium_monthly'];
+                    break;
+                default:
+                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    break;
+            }
             $pCommision = ($premium * $commision) * 0.9;
             $ppnCommision = ($premium * $commision) * 0.1;
             $totalCommision = ($premium * $commision);

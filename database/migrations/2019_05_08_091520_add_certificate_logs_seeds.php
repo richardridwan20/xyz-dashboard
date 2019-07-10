@@ -16,10 +16,12 @@ class AddCertificateLogsSeeds extends Migration
         DB::connection('mysql.log')->table('certificate_logs')->insert([
             [
                 'transaction_id' => '1',
+                'certificate_number' => 'Sample',
                 'certificate_status' => 'Done',
             ],
             [
                 'transaction_id' => '2',
+                'certificate_number' => 'Sample',
                 'certificate_status' => 'Done',
             ]
         ]);

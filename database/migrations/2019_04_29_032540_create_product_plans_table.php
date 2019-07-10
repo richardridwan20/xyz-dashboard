@@ -19,7 +19,8 @@ class CreateProductPlansTable extends Migration
             $table->string('sum_assured');
             $table->string('benefits');
             $table->string('description');
-            $table->integer('premi');
+            $table->integer('premium_yearly');
+            $table->integer('premium_monthly');
             $table->timestamps();
         });
     }

@@ -43,6 +43,11 @@
             </th>
             @role('supadmin|treasury|financial|partner financial')
             <th style='line-height: 80%' id="premi" data-sort="premi" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Gross Premium</b><i class="status fa fa-pull-right fa-sort"></i>
+                <br>
+                <small>(dalam rupiah)</small>
+            </th>
+            <th style='line-height: 80%' id="premi" data-sort="premi" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Partner Commision</b><i class="status fa fa-pull-right fa-sort"></i>
                 <br>
                 <small>(dalam rupiah)</small>
@@ -86,6 +91,16 @@
     </thead>
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
+                @php
+                    if($transaction['partner_id']['payment_type'] == 'Yearly')
+                    {
+                        $premium = ($transaction['product_id']['plan_id']['premium_yearly']);
+                    } else {
+                        $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
+                    }
+                    $commision = $transaction['partner_id']['commision'];
+                    $duration = $transaction['protection_duration'];
+                @endphp
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
@@ -98,12 +113,13 @@
                     <td>{{$transaction['certificate_number']}}</td>
                     <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
-                    <td>{{$pCommision = ($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision'])-($transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1)}}</td>
-                    <td>{{$ppn = $transaction['product_id']['plan_id']['premi']*$transaction['partner_id']['commision']*0.1}}</td>
-                    <td>{{$ppn+$pCommision}}</td>
-                    <td>{{$pCommision*0.02}}</td>
-                    <td>{{($pCommision+$ppn)-($pCommision*0.02)}}</td>
-                    <td>{{$transaction['product_id']['plan_id']['premi']-(($pCommision+$ppn)-($pCommision*0.02))}}</td>
+                    <td>{{$grossPremium = $premium * $duration}}</td>
+                    <td>{{$pCommision = ($grossPremium * $commision) * 0.9}}</td>
+                    <td>{{$ppn = $pCommision * 0.1}}</td>
+                    <td>{{$totalCommision = $grossPremium * $commision}}</td>
+                    <td>{{$pphCommision = $pCommision * 0.02}}</td>
+                    <td>{{$partnerBill = ($totalCommision - $pphCommision)}}</td>
+                    <td>{{$totalPartnerBill = ($premium - $partnerBill)}}</td>
                     <td><a href="{{ route('certificate.index', $transaction['id']) }}" target="_blank"><button class="btn btn-alt-danger">Generate Certificate</button></a></td>
                     @endrole
                 </tr>
