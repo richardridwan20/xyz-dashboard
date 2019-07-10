@@ -59,36 +59,6 @@ class AddTransactionSeeds extends Migration
                 'invoice_number' => '0010619',
                 'total_paid' => 150000
             ],
-            [
-                'id' => '4',
-                'customer_id' => '1',
-                'partner_id' => '2',
-                'product_id' => '2',
-                'insured_relation' => 'Father',
-                'insured_name' => 'Budi',
-                'insured_dob' => '1996-12-21',
-                'insured_gender' => 'Male',
-                'protection_duration' => '2',
-                'certificate_number' => '12356799846644',
-                'status' => 'Pending',
-                'invoice_number' => '0020619',
-                'total_paid' => 150000
-            ],
-            [
-                'id' => '5',
-                'customer_id' => '1',
-                'partner_id' => '2',
-                'product_id' => '2',
-                'insured_relation' => 'Father',
-                'insured_name' => 'Budi',
-                'insured_dob' => '1996-12-21',
-                'insured_gender' => 'Male',
-                'protection_duration' => '2',
-                'certificate_number' => '12356799846644',
-                'status' => 'Pending',
-                'invoice_number' => '0020619',
-                'total_paid' => 150000
-            ]
         ]);
     }
 

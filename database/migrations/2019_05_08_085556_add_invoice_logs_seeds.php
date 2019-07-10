@@ -19,14 +19,14 @@ class AddInvoiceLogsSeeds extends Migration
                 'invoice_number' => '0010919',
                 'month' => '09',
                 'year' => '2019',
-                'status' => 'done',
+                'status' => '',
             ],
             [
                 'partner_id' => '2',
                 'invoice_number' => '0020919',
                 'month' => '09',
                 'year' => '2019',
-                'status' => 'done',
+                'status' => '',
             ]
         ]);
     }

@@ -166,6 +166,24 @@ class DashboardController extends Controller
             $user = User::find(11);
             $user->assignRole('partner viewer');
 
+            $user = User::find(12);
+            $user->assignRole('partner financial');
+
+            $user = User::find(13);
+            $user->assignRole('partner operation');
+
+            $user = User::find(14);
+            $user->assignRole('partner viewer');
+
+            $user = User::find(15);
+            $user->assignRole('partner financial');
+
+            $user = User::find(16);
+            $user->assignRole('partner operation');
+
+            $user = User::find(17);
+            $user->assignRole('partner viewer');
+
             $user = Agent::find(1);
             $user->assignRole('agent');
         }
