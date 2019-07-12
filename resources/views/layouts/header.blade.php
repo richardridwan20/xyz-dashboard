@@ -114,12 +114,17 @@
                     @endrole --}}
                     @can('register partner')
                     <li>
-                        <a class="{{ Route::is('dashboard.register') ? 'active' : '' }}" href="{{ route('dashboard.register') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner</span></a>
+                        <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
                     </li>
                     @endcan
                     @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
+                    </li>
+                    @endrole
+                    @role('supadmin|financial|operation')
+                    <li>
+                        <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
                     </li>
                     @endrole
                     @can('create certificate')

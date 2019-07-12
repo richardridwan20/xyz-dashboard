@@ -30,6 +30,71 @@ class RegisterController extends Controller
         return view('register.register_partner', compact('success'));
     }
 
+    public function registerPartner()
+    {
+        $success = "failed";
+        return view('register.register_new_partner', compact('success'));
+    }
+
+    public function inputNewPartner(Request $request)
+    {
+        $rules = [
+            // 'pname' => 'required|regex:/^[\pL\s]+$/u',
+            // 'cname' => 'required|regex:/^[\pL\s]+$/u',
+            // 'address' => 'required',
+            // 'commision' => 'required',
+            // 'email' => 'required|email',
+            // 'subject' => 'required',
+            // 'body' => 'required',
+            // 'asdata' => 'required',
+            // 'sender' => 'required',
+            // 'ptype' => 'required',
+            // 'npinduk' => 'required',
+        ];
+        $customMessages = [
+            'asdata.required' => 'please choose :attribute',
+            'sender.required' => 'please choose :attribute',
+            'ptype.required' => 'please choose :attribute',
+            'required' => 'please fill the :attribute',
+        ];
+        $customAttributes = [
+            'pname' => 'Partner Name',
+            'cname' => 'Company Name',
+            'address' => 'Partner Address',
+            'commision' => 'Commision',
+            'email' => 'Partner Email',
+            'subject' => 'Email Subject',
+            'body' => 'Email Body',
+            'asdata' => 'Allow Send Data',
+            'sender' => 'Email Sender',
+            'ptype' => 'Payment Type',
+            'npinduk' => 'Nomor Polis Induk'
+        ];
+        $request->validate($rules, $customMessages, $customAttributes);
+        if($request->ptype == "Monthly"){
+            $duration = 1;
+        }else{
+            $duration = 12;
+        }
+        $data = [
+            'name' => $request->pname,
+            'company_name' => $request->cname,
+            'company_address' => $request->address,
+            'commision' => $request->commision,
+            'allow_send_data' => $request->asdata,
+            'sender' => $request->sender,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'body' => $request->body,
+            'no_polis_induk' => $request->npinduk,
+            'payment_type' => $request->ptype,
+            'duration' => $duration,
+        ];
+        $inputPartner = $this->service->inputNewPartner()->post($data);
+
+        return redirect()->back()->with('success', 'success');
+    }
+
     public function inputPartner(Request $request)
     {
         $password = $request->password;

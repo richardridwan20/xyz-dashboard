@@ -13,8 +13,10 @@
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
-    Route::get('/register_partner', 'RegisterController@register')->name('dashboard.register')->middleware('permission:register partner');
-    Route::post('/register_new_partner', 'RegisterController@inputPartner')->name('register.input_partner');
+    Route::get('/register_partner_role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
+    Route::get('/register_partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
+    Route::post('/register_new_partner_role', 'RegisterController@inputPartner')->name('register.input_partner');
+    Route::post('/register_new_partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
     Route::post('/spaj_input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
