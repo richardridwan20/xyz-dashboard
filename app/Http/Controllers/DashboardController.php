@@ -166,6 +166,24 @@ class DashboardController extends Controller
             $user = User::find(11);
             $user->assignRole('partner viewer');
 
+            $user = User::find(12);
+            $user->assignRole('partner financial');
+
+            $user = User::find(13);
+            $user->assignRole('partner operation');
+
+            $user = User::find(14);
+            $user->assignRole('partner viewer');
+
+            $user = User::find(15);
+            $user->assignRole('partner financial');
+
+            $user = User::find(16);
+            $user->assignRole('partner operation');
+
+            $user = User::find(17);
+            $user->assignRole('partner viewer');
+
             $user = Agent::find(1);
             $user->assignRole('agent');
         }
@@ -301,7 +319,18 @@ class DashboardController extends Controller
 
         foreach ($transactionsCount as $transaction){
             $commision = $transaction['partner_id']['commision'];
-            $premium = $transaction['product_id']['plan_id']['premi'];
+            $type = $transaction['partner_id']['payment_type'];
+            switch ($type) {
+                case 'Yearly':
+                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    break;
+                case 'Monthly':
+                    $premium = $transaction['product_id']['plan_id']['premium_monthly'];
+                    break;
+                default:
+                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    break;
+            }
             $pCommision = ($premium * $commision) * 0.9;
             $ppnCommision = ($premium * $commision) * 0.1;
             $totalCommision = ($premium * $commision);
@@ -454,6 +483,13 @@ class DashboardController extends Controller
 
         // return Storage::download('transaction_report_'.$request->id.$request->month.$request->year.'.xlsx');
         return response()->download(storage_path('app/public/transaction_report_'.$id.$month.$year.'.xlsx'));
+    }
+
+    public function createInvoice($invoiceNumber)
+    {
+        $invoice = $this->service->createInvoice($invoiceNumber)->get();
+
+        return response()->download(storage_path('app/public/Invoice_'.$invoice['name'].'_'.$invoice['month'].'_'.$invoice['year'].'.pdf'));
     }
 
     public function detail($id)

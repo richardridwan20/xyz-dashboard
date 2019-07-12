@@ -19,14 +19,16 @@ class AddProductPlanSeeds extends Migration
                 'sum_assured' => '23000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premi' => 75000
+                'premium_yearly' => 75000,
+                'premium_monthly' => 7800
             ],
             [
                 'name' => 'Deluxe',
                 'sum_assured' => '36000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premi' => 135000
+                'premium_yearly' => 135000,
+                'premium_monthly' => 14000
             ]
         ]);
     }

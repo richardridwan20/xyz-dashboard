@@ -16,6 +16,7 @@ class CreateCertificateLogsTable extends Migration
         Schema::connection('mysql.log')->create('certificate_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('transaction_id');
+            $table->string('certificate_number');
             $table->string('certificate_status');
             $table->timestamps();
 

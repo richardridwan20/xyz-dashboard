@@ -16,6 +16,8 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('company_name');
+            $table->string('company_address');
             $table->string('commision');
             $table->boolean('allow_send_data');
             $table->string('sender');

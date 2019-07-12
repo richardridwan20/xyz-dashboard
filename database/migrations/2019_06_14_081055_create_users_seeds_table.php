@@ -55,19 +55,49 @@ class CreateUsersSeedsTable extends Migration
                 'password' => Hash::make("svsequis"),
             ],
             [
-                'name' => 'Tokopedia',
-                'email' => 'tokopediafinancial@sequislife.com',
-                'password' => Hash::make("tfsequis"),
+                'name' => 'Sepulsa',
+                'email' => 'sepulsafinancial@sequislife.com',
+                'password' => Hash::make("spfsequis"),
             ],
             [
-                'name' => 'Tokopedia',
-                'email' => 'tokopediaoperation@sequislife.com',
-                'password' => Hash::make("tosequis"),
+                'name' => 'Sepulsa',
+                'email' => 'sepulsaoperation@sequislife.com',
+                'password' => Hash::make("sposequis"),
             ],
             [
-                'name' => 'Tokopedia',
-                'email' => 'tokopediaviewer@sequislife.com',
-                'password' => Hash::make("tvsequis"),
+                'name' => 'Sepulsa',
+                'email' => 'sepulsaviewer@sequislife.com',
+                'password' => Hash::make("spvsequis"),
+            ],
+            [
+                'name' => 'Warung Pintar',
+                'email' => 'warungpintarfinancial@sequislife.com',
+                'password' => Hash::make("wpfsequis"),
+            ],
+            [
+                'name' => 'Warung Pintar',
+                'email' => 'warungpintaroperation@sequislife.com',
+                'password' => Hash::make("wposequis"),
+            ],
+            [
+                'name' => 'Warung Pintar',
+                'email' => 'warungpintarviewer@sequislife.com',
+                'password' => Hash::make("wpvsequis"),
+            ],
+            [
+                'name' => 'Macroad',
+                'email' => 'macroadfinancial@sequislife.com',
+                'password' => Hash::make("mfsequis"),
+            ],
+            [
+                'name' => 'Warung Pintar',
+                'email' => 'macroadoperation@sequislife.com',
+                'password' => Hash::make("mosequis"),
+            ],
+            [
+                'name' => 'Warung Pintar',
+                'email' => 'macroadviewer@sequislife.com',
+                'password' => Hash::make("mvsequis"),
             ],
         ]);
     }

@@ -16,13 +16,17 @@ class AddInvoiceLogsSeeds extends Migration
         DB::connection('mysql.log')->table('invoice_logs')->insert([
             [
                 'partner_id' => '1',
-                'date' => '28/9/2019',
-                'status' => 'done',
+                'invoice_number' => '0010919',
+                'month' => '09',
+                'year' => '2019',
+                'status' => '',
             ],
             [
                 'partner_id' => '2',
-                'date' => '18/9/2019',
-                'status' => 'done',
+                'invoice_number' => '0020919',
+                'month' => '09',
+                'year' => '2019',
+                'status' => '',
             ]
         ]);
     }

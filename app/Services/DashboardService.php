@@ -116,6 +116,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function createInvoice($invoiceNumber)
+    {
+        $this->endPoint = 'invoice?invoice_number='.$invoiceNumber;
+
+        return $this;
+    }
+
     public function import(array $data)
     {
         $this->endPoint = 'import?filename='.$data['file_name'];
