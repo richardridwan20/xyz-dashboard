@@ -54,8 +54,8 @@
                             <div class="col-8">
                                 <div class="custom-file">
                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Codebase() -> uiHelperCoreCustomFileInput()) -->
-                                    <input type="file" name="file">
-                                    {{-- <label class="custom-file-label" for="example-file-input-custom">Pilih file</label> --}}
+                                    <input type="file" class="custom-file-input" id="example-file-input-custom" name="file" data-toggle="custom-file-input">
+                                    <label class="custom-file-label" for="example-file-input-custom">Pilih file</label>
                                 </div>
                             </div>
                         </div>
