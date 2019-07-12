@@ -66,16 +66,11 @@
                     </div>
                 </div>
             </form>
-            @if(session()->has('success'))
-                <span class="alert alert-success">
-                    <strong>{{ session()->get('success') }}</strong>
-                </span>
-            @endif
         </div>
     </div>
     <!-- END Page Content -->
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
     var irelation = document.getElementById('irelation');
     var igender = document.getElementById('igender');
@@ -131,10 +126,21 @@
                     icitizen_id.readOnly = false;
                     idob.readOnly = false;
                     iemail.readOnly = false;
+                }else{
+                    myself[i].disabled = false;
+                    document.getElementById('b'+i+'name').readOnly = false;
                 }
-                myself[i].disabled = false;
             }
         }
+    }
+    var session1 = "{{Session::get('success')}}"
+    console.log(session1)
+    if (session1 == 'success') {
+            Swal.fire(
+            'Success!',
+            'Transaction successfully added',
+            'success'
+            )
     }
 </script>
 

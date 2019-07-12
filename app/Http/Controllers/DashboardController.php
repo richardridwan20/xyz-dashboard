@@ -348,11 +348,6 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
     }
 
-    public function viewPartner()
-    {
-
-    }
-
     public function inputTransaction(Request $request)
     {
         $year = Carbon::today()->year;
@@ -461,8 +456,10 @@ class DashboardController extends Controller
             }
         }
         $transactionAdded = $this->service->inputTransaction()->post($data);
-        dd($transactionAdded);
+        // dd($data);
         // return $transactionAdded;
+
+        return redirect()->back()->with('success', 'success');
 
     }
 

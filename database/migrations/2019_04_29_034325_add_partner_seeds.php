@@ -15,6 +15,20 @@ class AddPartnerSeeds extends Migration
     {
         DB::table('partners')->insert([
             [
+                'name' => 'Sequis',
+                'company_name' => 'PT. Sequis Life',
+                'company_address' => 'Jln Jenderal Sudirman 1',
+                'commision' => '0.0',
+                'allow_send_data' => 0,
+                'sender' => 'Partner',
+                'email' => 'Sequis@sequislife.com',
+                'subject' => 'Test',
+                'body' => 'Test',
+                'no_polis_induk' => '1234567890123',
+                'payment_type' => 'Yearly',
+                'duration' => '12',
+            ],
+            [
                 'name' => 'Smailing',
                 'company_name' => 'PT. Smailing Tours & Travel Service',
                 'company_address' => 'Jl. Majapahit No.28 Jakarta 10160',
