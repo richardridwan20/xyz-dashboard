@@ -78,6 +78,17 @@
 
 <script>
     var irelation = document.getElementById('irelation');
+    var igender = document.getElementById('igender');
+    var iname = document.getElementById('iname');
+    var icitizen_id = document.getElementById('icitizen_id');
+    var idob = document.getElementById('idob');
+    var iemail = document.getElementById('iemail');
+    var phrelation = document.getElementById('phrelation');
+    var phgender = document.getElementById('phgender');
+    var phname = document.getElementById('phname');
+    var phcitizen_id = document.getElementById('phcitizen_id');
+    var phdob = document.getElementById('phdob');
+    var phemail = document.getElementById('phemail');
     var b1relation = document.getElementById('b1relation');
     var b2relation = document.getElementById('b2relation');
     var b3relation = document.getElementById('b3relation');
@@ -90,18 +101,41 @@
         if(irelation.value == 'Myself' || b1relation.value == 'Myself' || b2relation.value == 'Myself' || b3relation.value == 'Myself' || b4relation.value == 'Myself'){
             for(var i=0; i<relationArray.length; i++){
                 if(relationArray[i].value == 'Myself'){
-                    myself[i].disabled = false;
+                    if(i == 0){
+                        myself[i].disabled = false;
+                        iname.value = phname.value;
+                        igender.value = phgender.value;
+                        icitizen_id.value = phcitizen_id.value;
+                        idob.value = phdob.value;
+                        iemail.value = phemail.value;
+                        igender.setAttribute("style", "pointer-events:none");
+                        iname.readOnly = true;
+                        icitizen_id.readOnly = true;
+                        idob.readOnly = true;
+                        iemail.readOnly = true;
+                        }else{
+                        myself[i].disabled = false;
+                        document.getElementById('b'+i+'name').value = phname.value;
+                        document.getElementById('b'+i+'name').readOnly = true;
+                    }
                 }else{
                     myself[i].disabled = true;
                 }
             }
         }else{
             for(var i=0; i<myself.length; i++){
+                if(i==0){
+                    myself[i].disabled = false;
+                    igender.setAttribute("style", "pointer-events:auto");
+                    iname.readOnly = false;
+                    icitizen_id.readOnly = false;
+                    idob.readOnly = false;
+                    iemail.readOnly = false;
+                }
                 myself[i].disabled = false;
             }
         }
     }
-
 </script>
 
 @endsection

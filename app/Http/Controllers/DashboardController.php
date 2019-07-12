@@ -326,48 +326,41 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
+        $year = Carbon::today()->year;
+        $month = Carbon::today()->month;
+        $day = Carbon::today()->day;
+        $tz = "Asia/Jakarta";
+        $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
+        $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
         $rules = [
             'plan' => 'required',
             'duration' => 'required',
             'phgender' => 'required',
             'phname' => 'required|regex:/^[\pL\s]+$/u',
             'phcitizen_id' => 'required|digits:16',
-            'phdob' => 'required',
+            'phdob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
             'phemail' => 'required|email',
             'igender' => 'required',
             'irelation' => 'required',
             'iname' => 'required|regex:/^[\pL\s]+$/u',
             'icitizen_id' => 'required|digits:16',
-            'idob' => 'required',
+            'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
             'iemail' => 'required|email',
             'b1gender' => 'nullable',
             'b1relation' => 'required',
             'b1name' => 'required|regex:/^[\pL\s]+$/u',
-            'b1citizen_id' => 'nullable|digits:16',
-            'b1dob' => 'nullable',
-            'b1email' => 'nullable|email',
-            'b2gender' => 'nullable',
             'b2relation' => 'nullable|required_with:b2name',
             'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
-            'b2citizen_id' => 'nullable|digits:16',
-            'b2dob' => 'nullable',
-            'b2email' => 'nullable|email',
-            'b3gender' => 'nullable',
             'b3relation' => 'nullable|required_with:b3name',
             'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
-            'b3citizen_id' => 'nullable|digits:16',
-            'b3dob' => 'nullable',
-            'b3email' => 'nullable|email',
-            'b4gender' => 'nullable',
             'b4relation' => 'nullable|required_with:b4name',
             'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
-            'b4citizen_id' => 'nullable|digits:16',
-            'b4dob' => 'nullable',
-            'b4email' => 'nullable|email',
         ];
         $customMessages = [
             'plan.required' => 'please select the :attribute',
             'phgender.required' => 'please select the :attribute',
+            'before_or_equal' => ':attribute should more than 18 years',
+            'after_or_equal' => ':attribute should less than 55 years'
         ];
         $customAttributes = [
             'plan' => 'Product Plan',
@@ -386,27 +379,12 @@ class DashboardController extends Controller
             'b1gender' => 'First Beneficiary Gender',
             'b1relation' => 'First Beneficiary Relation',
             'b1name' => 'First Beneficiary Name',
-            'b1citizen_id' => 'First Beneficiary Citizen Id',
-            'b1dob' => 'First Beneficiary Date of Birth',
-            'b1email' => 'First Beneficiary Email',
-            'b2gender' => 'Second Beneficiary Gender',
             'b2relation' => 'Second Beneficiary Relation',
             'b2name' => 'Second Beneficiary Name',
-            'b2citizen_id' => 'Second Beneficiary Citizen Id',
-            'b2dob' => 'Second Beneficiary Date of Birth',
-            'b2email' => 'Second Beneficiary Email',
-            'b3gender' => 'Third Beneficiary Gender',
             'b3relation' => 'Third Beneficiary Relation',
             'b3name' => 'Third Beneficiary Name',
-            'b3citizen_id' => 'Third Beneficiary Citizen Id',
-            'b3dob' => 'Third Beneficiary Date of Birth',
-            'b3email' => 'Third Beneficiary Email',
-            'b4gender' => 'Fourth Beneficiary Gender',
             'b4relation' => 'Fourth Beneficiary Relation',
             'b4name' => 'Fourth Beneficiary Name',
-            'b4citizen_id' => 'Fourth Beneficiary Citizen Id',
-            'b4dob' => 'Fourth Beneficiary Date of Birth',
-            'b4email' => 'Fourth Beneficiary Email',
         ];
 
         $request->validate($rules, $customMessages, $customAttributes);
@@ -419,7 +397,7 @@ class DashboardController extends Controller
             $total_paid = $durationYear * 75000;
         }else{
             $product = 2;
-            $total_paid = $durationYear * 75000;
+            $total_paid = $durationYear * 135000;
         }
 
         $data = [
