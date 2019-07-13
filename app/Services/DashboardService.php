@@ -24,7 +24,7 @@ class DashboardService extends ApiService
 
     public function allTransactionByName($page, $name)
     {
-        $this->endPoint = 'transaction/search_name?page='.$page.'&name='.$name;
+        $this->endPoint = 'transaction/search-name?page='.$page.'&insured_name='.$name;
 
         return $this;
     }
@@ -38,7 +38,7 @@ class DashboardService extends ApiService
 
     public function checkCustomer($partnerId, $customerCitizenId)
     {
-        $this->endPoint = 'transaction/partner/checkcustomer/'.$partnerId.'/'.$customerCitizenId;
+        $this->endPoint = 'transaction/partner/check-customer?partner_id='.$partnerId.'&customer_citizen_id='.$customerCitizenId;
 
         return $this;
     }
@@ -52,7 +52,7 @@ class DashboardService extends ApiService
 
     public function getPartnerDataByName($name)
     {
-        $this->endPoint = 'partner/getDataByName?name='.$name;
+        $this->endPoint = 'partner/getDataByName?insured_name='.$name;
 
         return $this;
     }
@@ -75,14 +75,14 @@ class DashboardService extends ApiService
     {
         $user = Auth::user()->name;
 
-        $this->endPoint = 'transaction/partner?name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
+        $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
         return $this;
     }
 
     public function partnerTransactionByName($page, $name)
     {
         $user = Auth::user()->name;
-        $this->endPoint = 'transaction/partner/search_name?user='.$user.'&page='.$page.'&name='.$name;
+        $this->endPoint = 'transaction/partner/search-name?partner_name='.$user.'&page='.$page.'&name='.$name;
         return $this;
     }
 

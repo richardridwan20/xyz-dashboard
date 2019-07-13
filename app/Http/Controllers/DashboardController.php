@@ -532,6 +532,7 @@ class DashboardController extends Controller
             'name' => 'required',
             'KTP' => 'required'
         ]);
+
         try{
             $data = $this->service->checkCustomer(1, $request->KTP);
             $info = $data->message;
@@ -539,7 +540,6 @@ class DashboardController extends Controller
             $info = "failed to check";
         }
 
-        dd($data);
         return $data;
     }
 }

@@ -26,7 +26,7 @@ class AddTransactionSeeds extends Migration
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
                 'status' => 'Completed',
-                'invoice_number' => '0010619',
+                'invoice_number' => '001062019',
                 'total_paid' => 150000
             ],
             [
@@ -41,7 +41,7 @@ class AddTransactionSeeds extends Migration
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
-                'invoice_number' => '0020619',
+                'invoice_number' => '002062019',
                 'total_paid' => 150000
             ],
             [
@@ -56,7 +56,7 @@ class AddTransactionSeeds extends Migration
                 'protection_duration' => '2',
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
-                'invoice_number' => '0010619',
+                'invoice_number' => '001062019',
                 'total_paid' => 150000
             ],
         ]);
