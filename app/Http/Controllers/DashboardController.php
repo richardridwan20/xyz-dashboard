@@ -284,6 +284,11 @@ class DashboardController extends Controller
             $request->session()->flash('year', $year);
             $request->session()->flash('name', $name);
             $request->session()->flash('date', $date);
+        } else if ($request->session()->get('month') == null || $request->session()->get('year') == null)
+        {
+            $month = Carbon::now()->format('m');
+            $year = Carbon::now()->format('Y');
+            $date = Carbon::now()->format('F Y');
         } else {
             $request->session()->keep(['month', 'year', 'name', 'date']);
             $month = $request->session()->get('month');
