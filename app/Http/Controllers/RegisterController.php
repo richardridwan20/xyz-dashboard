@@ -39,17 +39,17 @@ class RegisterController extends Controller
     public function inputNewPartner(Request $request)
     {
         $rules = [
-            // 'pname' => 'required|regex:/^[\pL\s]+$/u',
-            // 'cname' => 'required|regex:/^[\pL\s]+$/u',
-            // 'address' => 'required',
-            // 'commision' => 'required',
-            // 'email' => 'required|email',
-            // 'subject' => 'required',
-            // 'body' => 'required',
-            // 'asdata' => 'required',
-            // 'sender' => 'required',
-            // 'ptype' => 'required',
-            // 'npinduk' => 'required',
+            'pname' => 'required|regex:/^[\pL\s]+$/u',
+            'cname' => 'required|regex:/^[\pL\s]+$/u',
+            'address' => 'required',
+            'commision' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'body' => 'required',
+            'asdata' => 'required',
+            'sender' => 'required',
+            'ptype' => 'required',
+            'npinduk' => 'required',
         ];
         $customMessages = [
             'asdata.required' => 'please choose :attribute',
