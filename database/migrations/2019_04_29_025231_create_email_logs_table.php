@@ -22,7 +22,7 @@ class CreateEmailLogsTable extends Migration
             $table->string('bene_email_time');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
+            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 

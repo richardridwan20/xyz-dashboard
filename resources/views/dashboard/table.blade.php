@@ -92,14 +92,17 @@
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
                 @php
+                    $commision = $transaction['partner_id']['commision'];
+                    $duration = $transaction['protection_duration'];
                     if($transaction['partner_id']['payment_type'] == 'Yearly')
                     {
                         $premium = ($transaction['product_id']['plan_id']['premium_yearly']);
+                        $grossPremium = $premium * $duration;
                     } else {
                         $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
+                        $grossPremium = $premium;
                     }
-                    $commision = $transaction['partner_id']['commision'];
-                    $duration = $transaction['protection_duration'];
+
                 @endphp
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
@@ -113,7 +116,7 @@
                     <td>{{$transaction['certificate_number']}}</td>
                     <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
-                    <td>{{$grossPremium = $premium * $duration}}</td>
+                    <td>{{$grossPremium}}</td>
                     <td>{{$pCommision = ($grossPremium * $commision) * 0.9}}</td>
                     <td>{{$ppn = $pCommision * 0.1}}</td>
                     <td>{{$totalCommision = $grossPremium * $commision}}</td>

@@ -20,7 +20,7 @@ class CreateCertificateLogsTable extends Migration
             $table->string('certificate_status');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
+            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 

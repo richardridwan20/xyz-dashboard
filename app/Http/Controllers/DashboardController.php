@@ -325,23 +325,22 @@ class DashboardController extends Controller
         foreach ($transactionsCount as $transaction){
             $commision = $transaction['partner_id']['commision'];
             $type = $transaction['partner_id']['payment_type'];
-            switch ($type) {
-                case 'Yearly':
-                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
-                    break;
-                case 'Monthly':
-                    $premium = $transaction['product_id']['plan_id']['premium_monthly'];
-                    break;
-                default:
-                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
-                    break;
+            $duration = $transaction['protection_duration'];
+
+            if ($type == 'Yearly'){
+                $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                $grossPremium = $premium * $duration;
+            }else if ($type == 'Monthly'){
+                $premium = $transaction['product_id']['plan_id']['premium_monthly'];
+                $grossPremium = $premium;
             }
-            $pCommision = ($premium * $commision) * 0.9;
-            $ppnCommision = ($premium * $commision) * 0.1;
-            $totalCommision = ($premium * $commision);
+
+            $pCommision = ($grossPremium * $commision) * 0.9;
+            $ppnCommision = ($grossPremium * $commision) * 0.1;
+            $totalCommision = ($grossPremium * $commision);
             $pphCommision = ($pCommision * 0.02);
             $partnerBill = ($totalCommision - $pphCommision);
-            $totalPartnerBill = ($premium - $partnerBill);
+            $totalPartnerBill = ($grossPremium - $partnerBill);
             $sumCommision += $pCommision;
             $sumPpnCommision += $ppnCommision;
             $sumTotalCommision += $totalCommision;
@@ -449,14 +448,15 @@ class DashboardController extends Controller
             '1_bene_gender' => $request->b1gender,
             '1_bene_email' => $request->b1email,
         ];
+
         for($i=2;$i<=4;$i++){
             if($request['b'.$i.'name'] != null){
                 $data = $data + [
-                $i.'_bene_relation' => $request['b'.$i.'relation'],
-                $i.'_bene_name' => $request['b'.$i.'name'],
-                $i.'_bene_dob' => $request['b'.$i.'dob'],
-                $i.'_bene_gender' => $request['b'.$i.'gender'],
-                $i.'_bene_email' => $request['b'.$i.'email'],
+                    $i.'_bene_relation' => $request['b'.$i.'relation'],
+                    $i.'_bene_name' => $request['b'.$i.'name'],
+                    $i.'_bene_dob' => $request['b'.$i.'dob'],
+                    $i.'_bene_gender' => $request['b'.$i.'gender'],
+                    $i.'_bene_email' => $request['b'.$i.'email'],
                 ];
             }
         }

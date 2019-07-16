@@ -19,7 +19,7 @@ class CreatePaymentStatusLogsTable extends Migration
             $table->string("status");
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
+            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 

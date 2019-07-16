@@ -1,3 +1,22 @@
+@php
+    $type = $detailTransaction['transaction']['partner']['payment_type'];
+    $commision = $detailTransaction['transaction']['partner']['commision'];
+    $duration = $detailTransaction['transaction']['protection_duration'];
+    if ($type == 'Yearly'){
+        $premium = $detailTransaction['product']['plan']['premium_yearly'];
+        $grossPremium = $premium * $duration;
+    }else if ($type == 'Monthly'){
+        $premium = $detailTransaction['product']['plan']['premium_monthly'];
+        $grossPremium = $premium;
+    }
+
+    $pCommision = ($grossPremium * $commision) * 0.9;
+    $ppnCommision = ($grossPremium * $commision) * 0.1;
+    $totalCommision = ($grossPremium * $commision);
+    $pphCommision = ($pCommision * 0.02);
+    $partnerBill = ($totalCommision - $pphCommision);
+    $totalPartnerBill = ($grossPremium - $partnerBill);
+@endphp
 <div class="row">
     <div class="block-content bg-body-light">
         <div class="block">
@@ -419,7 +438,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$pCommision = ($detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision'])-($detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision']*0.1)}}
+                            {{$pCommision}}
                         </div>
                     </div>
                 {{-- End of Partner Commision Row --}}
@@ -434,7 +453,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$ppn = $detailTransaction['product']['plan']['premi']*$detailTransaction['transaction']['partner']['commision']*0.1}}
+                            {{ $ppnCommision }}
                         </div>
                     </div>
                 </div>
@@ -451,7 +470,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$ppn+$pCommision}}
+                            {{$totalCommision}}
                         </div>
                     </div>
                 {{-- End of PPN + Komisi Row --}}
@@ -466,7 +485,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$pCommision*0.02}}
+                            {{$pphCommision}}
                         </div>
                     </div>
                 </div>
@@ -483,7 +502,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{($pCommision+$ppn)-($ppn*0.02)}}
+                            {{$partnerBill}}
                         </div>
                     </div>
                 {{-- End of Tagihan Partner Row --}}
@@ -498,7 +517,7 @@
 
                     <div class="col-md-3">
                         <div class="block">
-                            {{$detailTransaction['product']['plan']['premi']-(($pCommision+$ppn)-($ppn*0.02))}}
+                        {{$totalPartnerBill}}
                         </div>
                     </div>
                 </div>
