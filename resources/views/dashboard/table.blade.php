@@ -82,10 +82,6 @@
                 <br>
                 <small>(dalam rupiah)</small>
             </th>
-            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Action</b>
-                <i class="status fa fa-pull-right fa-sort"></i>
-            </th>
             @endrole
         </tr>
     </thead>
@@ -122,13 +118,12 @@
                     <td>{{$totalCommision = $grossPremium * $commision}}</td>
                     <td>{{$pphCommision = $pCommision * 0.02}}</td>
                     <td>{{$partnerBill = ($totalCommision - $pphCommision)}}</td>
-                    <td>{{$totalPartnerBill = ($premium - $partnerBill)}}</td>
-                    <td><a href="{{ route('certificate.index', $transaction['id']) }}" target="_blank"><button class="btn btn-alt-danger">Generate Certificate</button></a></td>
+                    <td>{{$totalPartnerBill = ($grossPremium - $partnerBill)}}</td>
                     @endrole
                 </tr>
             @empty
                 <tr>
-                    <td colspan="17">No data to be shown.</td>
+                    <td colspan="16">No data to be shown.</td>
                 </tr>
             @endforelse
 

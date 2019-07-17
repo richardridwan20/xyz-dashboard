@@ -43,6 +43,14 @@ class CertificateController extends Controller
         ];
     }
 
+    public function downloadCertificate(Request $request)
+    {
+        $certificateNumber = $request->certificate_number;
+
+        // return Storage::download('transaction_report_'.$request->id.$request->month.$request->year.'.xlsx');
+        return response()->download(storage_path('app/public/files/'.$certificateNumber.'.pdf'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
