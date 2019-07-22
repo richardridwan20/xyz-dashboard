@@ -334,41 +334,20 @@
                 <h3 class="block-title"><b>Beneficiary Detail</b></h3>
             </div>
             <div class="block-content block-content-full">
-                <div class="block block-bordered col-sm-3">
-                    <div class="block-header block-header-default bg-white">
-                        <h3 class="block-title"><b>Beneficiary Detail</b></h3>
-                    </div>
-                </div>
-                {{-- Start of Beneficiary Relation Row --}}
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="block">
-                            <b>Relation</b>
+                    @foreach ($detailTransaction['beneficiary'] as $key => $beneficiary)
+                        <div class="col-sm-3">
+                            <div class="block block-bordered">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title"><b>Beneficiary {{$key + 1}}</b></h3>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    {{$beneficiary['beneficiary']['bene_name']}} - {{$beneficiary['beneficiary']['bene_relation']}}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="block">
-                            {{-- {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_relation']}} --}}
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                {{-- End of Beneficiary Relation Row --}}
-                {{-- Start of Beneficiary Name Row --}}
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="block">
-                            <b>Name</b>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="block">
-                            {{-- {{$detailTransaction['beneficiary'][$i]['beneficiary']['bene_name']}} --}}
-                        </div>
-                    </div>
-                </div>
-                {{-- End of Beneficiary Name Row --}}
             </div>
         </div>
     </div>
