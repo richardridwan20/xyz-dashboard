@@ -134,13 +134,19 @@
             }
         }
     }
-    var session1 = "{{Session::get('success')}}"
+    var session1 = "{{Session::get('notify')}}"
     console.log(session1)
     if (session1 == 'success') {
             Swal.fire(
             'Success!',
             'Transaction successfully added',
             'success'
+            )
+    }else if(session1 == '5 insurance'){
+        Swal.fire(
+            'Error!',
+            'Customer Already Buy 5 Insurance',
+            'error'
             )
     }
 </script>

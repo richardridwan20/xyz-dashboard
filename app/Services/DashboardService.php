@@ -52,7 +52,7 @@ class DashboardService extends ApiService
 
     public function getPartnerDataByName($name)
     {
-        $this->endPoint = 'partner/getDataByName?insured_name='.$name;
+        $this->endPoint = 'partner/getDataByName?name='.$name;
 
         return $this;
     }
