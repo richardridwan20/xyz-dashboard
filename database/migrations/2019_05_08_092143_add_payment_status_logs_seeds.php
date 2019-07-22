@@ -16,11 +16,13 @@ class AddPaymentStatusLogsSeeds extends Migration
         DB::connection('mysql.log')->table('payment_status_logs')->insert([
             [
                 'transaction_id' => '1',
-                'status' => "Payment Done"
+                'status' => "Payment Done",
+                'total_paid' => '75000'
             ],
             [
                 'transaction_id' => '2',
-                "status" => "Waiting for Payment"
+                "status" => "Waiting for Payment",
+                'total_paid' => '75000',
             ]
         ]);
     }

@@ -17,6 +17,7 @@ class CreatePaymentStatusLogsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('transaction_id');
             $table->string("status");
+            $table->string("total_paid");
             $table->timestamps();
 
             // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');

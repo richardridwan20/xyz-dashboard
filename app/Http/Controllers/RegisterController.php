@@ -39,8 +39,8 @@ class RegisterController extends Controller
     public function inputNewPartner(Request $request)
     {
         $rules = [
-            'pname' => 'required|regex:/^[\pL\s]+$/u',
-            'cname' => 'required|regex:/^[\pL\s]+$/u',
+            'pname' => 'required',
+            'cname' => 'required',
             'address' => 'required',
             'commision' => 'required',
             'email' => 'required|email',
