@@ -101,6 +101,9 @@
                     <li>
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
                     </li>
+                    <li>
+                        <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Payment Proof</span></a>
+                    </li>
                     @endrole
                     @role('supadmin|financial|operation')
                     <li>
