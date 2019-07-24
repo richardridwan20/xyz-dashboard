@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/download-certificate', 'CertificateController@downloadCertificate')->name('certificate.download');
     Route::get('/create-invoice/{invoiceNumber}', 'DashboardController@createInvoice')->name('dashboard.invoice');
     Route::get('/spaj', 'DashboardController@spaj')->name('dashboard.spaj')->middleware('role:supadmin');
+    Route::get('/payment-proof', 'PaymentProofController@index')->name('payment.index')->middleware('role:supadmin');
+    Route::post('/payment-proof', 'PaymentProofController@upload')->name('payment.upload')->middleware('role:supadmin');
     Route::get('/agent/manage', 'DashboardController@manageAgent')->name('dashboard.manage_agent')->middleware('role:supadmin|financial|operational|partner financial|partner operational');
     Route::get('/agent-form', 'DashboardController@agentForm')->name('dashboard.agent_form');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');

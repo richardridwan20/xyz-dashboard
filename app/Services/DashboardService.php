@@ -88,7 +88,15 @@ class DashboardService extends ApiService
     {
         $user = Auth::user()->name;
 
-        $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
+        $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;
+        return $this;
+    }
+
+    public function partnerPendingTransaction($page)
+    {
+        $user = Auth::user()->name;
+
+        $this->endPoint = 'transaction/partner/pending?partner_name='.$user.'&page='.$page.'';
         return $this;
     }
 
@@ -145,6 +153,13 @@ class DashboardService extends ApiService
     public function import(array $data)
     {
         $this->endPoint = 'import?filename='.$data['file_name'];
+
+        return $this;
+    }
+
+    public function uploadPaymentProof(array $data)
+    {
+        $this->endPoint = 'payment-proof?filename='.$data['file_name'].'&transaction_id='.$data['transaction_id'].'&notes='.$data['notes'].'&total_paid='.$data['total_paid'];
 
         return $this;
     }
