@@ -15,6 +15,19 @@ class DashboardService extends ApiService
         $this->pageHeaderEndPoint = '';
     }
 
+
+    public function createAgent()
+    {
+        $this->endPoint = 'agent/create';
+        return $this;
+    }
+
+    public function deleteAgent($id)
+    {
+        $this->endPoint = 'agent/destroy/'.$id;
+        return $this;
+    }
+
     public function allTransaction($page, $month, $year)
     {
         $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year;
@@ -76,6 +89,12 @@ class DashboardService extends ApiService
         $user = Auth::user()->name;
 
         $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&month='.$month.'&year='.$year;;
+        return $this;
+    }
+
+    public function allAgent()
+    {
+        $this->endPoint = 'agent/all';
         return $this;
     }
 
