@@ -359,6 +359,7 @@ class DashboardController extends Controller
         $day = Carbon::today()->day;
         $tz = "Asia/Jakarta";
         $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
+        $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
         $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
         $rules = [
             'plan' => 'required',
@@ -366,7 +367,7 @@ class DashboardController extends Controller
             'phgender' => 'required',
             'phname' => 'required|regex:/^[\pL\s]+$/u',
             'phcitizen_id' => 'required|digits:16',
-            'phdob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
+            'phdob' => 'required|before_or_equal:'.$minCustomerAge,
             'phemail' => 'required|email',
             'igender' => 'required',
             'irelation' => 'required',
@@ -478,11 +479,12 @@ class DashboardController extends Controller
         $page = $request->page;
 
         $user = User::find(Auth::id());
+        $partnerName = Auth::user()->name;
 
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
             $agents = $this->service->allAgent()->paginate();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
-            $agents = $this->service->partnerAgent()->paginate();
+            $agents = $this->service->partnerAgent($partnerName)->paginate();
         }
 
         return view('agent.index', compact('agents','append','user'));

@@ -106,6 +106,12 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function partnerAgent($partnerName)
+    {
+        $this->endPoint = 'agent/partner/'.$partnerName;
+        return $this;
+    }
+
     public function partnerTransactionByName($page, $name)
     {
         $user = Auth::user()->name;
