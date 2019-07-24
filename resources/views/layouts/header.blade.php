@@ -130,6 +130,11 @@
                         <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
                     </li>
                     @endrole
+                    @role('supadmin|financial|operation|partner financial|partner operational')
+                    <li>
+                        <a class="{{ Route::is('dashboard.manage_agent') ? 'active' : '' }}" href="{{ route('dashboard.manage_agent') }}"><i class="fa fa-drivers-license-o"></i><span class="sidebar-mini-hide">Manage Agent</span></a>
+                    </li>
+                    @endrole
                     @can('create certificate')
                     <li>
                         {{-- <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a> --}}

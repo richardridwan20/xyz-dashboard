@@ -471,6 +471,82 @@ class DashboardController extends Controller
 
     }
 
+    public function manageAgent(Request $request)
+    {
+        $column = 'created_at';
+        $typeOfSort = 'DESC';
+        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+
+        $page = $request->page;
+
+        $user = User::find(Auth::id());
+
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
+            $agents = $this->service->allAgent()->paginate();
+        }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
+            $agents = $this->service->partnerAgent()->paginate();
+        }
+
+        return view('agent.index', compact('agents','append','user'));
+    }
+
+    public function agentForm()
+    {
+        return view('agent.form');
+    }
+
+    public function addAgent(Request $request)
+    {
+        $rules = [
+            'aname' => 'required',
+            'ausername' => 'required|unique:agents,username',
+            'aphone' => 'required|numeric',
+            'apassword' => 'required',
+            'acpassword' => 'required|same:apassword',
+            'adob' => 'required',
+            'acitizen_id' => 'required|digits:16'
+        ];
+        $customMessages = [
+
+        ];
+        $customAttributes = [
+            'aname' => 'Agent / branch Name',
+            'ausername' => 'Agent Username',
+            'aphone' => 'Agent Phone Number',
+            'apassword' => 'Agent Password',
+            'acpassword' => 'Confirm Password',
+            'adob' => 'Agent Date of Birth',
+            'acitizen_id' => 'Agent Citizen Id'
+        ];
+
+        $request->validate($rules, $customMessages, $customAttributes);
+
+        $name = Auth::user()->name;
+        $partner = $this->service->getPartnerDataByName($name)->get();
+
+        $data = [
+            'partner_id' => 1,
+            'agent_branch_name' => $request->aname,
+            'username' => $request->ausername,
+            'password' => $request->apassword,
+            'dob' => $request->adob,
+            'phone_number' => $request->aphone,
+            'citizen_id' => $request->acitizen_id
+        ];
+
+
+        $inputAgent = $this->service->createAgent()->post($data);
+
+        return redirect()->back()->with('notify', 'success');
+    }
+
+    public function deleteAgent($id)
+    {
+        $deleteAgent = $this->service->deleteAgent($id)->get();
+
+        return redirect()->back()->with('notify', 'success');
+    }
+
     public function downloadReport(Request $request)
     {
         $id = $request->input('id');
