@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentProofLogTable extends Migration
+class CreateInvoicePaymentLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreatePaymentProofLogTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql.log')->create('payment_proof_logs', function (Blueprint $table) {
+        Schema::connection('mysql.log')->create('invoice_payment_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('transaction_id');
+            $table->string('invoice_number');
             $table->string('filename');
             $table->string('path');
             $table->string('notes')->nullable();
@@ -31,6 +31,6 @@ class CreatePaymentProofLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_proofs_log');
+        Schema::dropIfExists('invoice_payment_logs');
     }
 }

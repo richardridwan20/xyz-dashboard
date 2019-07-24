@@ -17,12 +17,12 @@ class AddCertificateLogsSeeds extends Migration
             [
                 'transaction_id' => '1',
                 'certificate_number' => 'Sample',
-                'certificate_status' => 'Done',
+                'certificate_status' => 'Certificate Sended',
             ],
             [
                 'transaction_id' => '2',
                 'certificate_number' => 'Sample',
-                'certificate_status' => 'Done',
+                'certificate_status' => 'Certificate Sended',
             ]
         ]);
     }

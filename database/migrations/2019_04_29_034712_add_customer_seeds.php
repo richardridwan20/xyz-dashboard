@@ -16,17 +16,17 @@ class AddCustomerSeeds extends Migration
         DB::table('customers')->insert([
             [
                 'name' => 'Peter James',
-                'dob' => '19021998',
+                'dob' => '1998-02-19',
                 'citizen_id' => '1236547896541236',
                 'gender' => 'Male',
                 'email' => 'peter@sequislife.com',
             ],
             [
-                'name' => 'Richard Ridwan',
-                'dob' => '15041996',
+                'name' => 'Susi Susanti',
+                'dob' => '1996-04-05',
                 'citizen_id' => '2256998731745569',
-                'gender' => 'Male',
-                'email' => 'richard@sequislife.com',
+                'gender' => 'Female',
+                'email' => 'susi@sequislife.com',
             ],
         ]);
     }

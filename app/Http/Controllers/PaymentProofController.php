@@ -72,6 +72,50 @@ class PaymentProofController extends Controller
         }
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadInvoicePayment(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $file = $request->file('image');
+        $notes = $request->input('notes');
+        $invoice_number = $request->input('invoice_number');
+        $total = $request->input('total');
+        $paid_at = $request->input('paid_at');
+        $file_name = rand().$file->getClientOriginalName();
+
+        $path = $file->storeAs('public/files', $file_name);
+
+        $data = [
+            'invoice_number' => $invoice_number,
+            'file_name' => $file_name,
+            'path' => $path,
+            'notes' => $notes,
+            'paid_at' => $paid_at,
+            'total_paid' => $total
+        ];
+
+        Log::info($data);
+
+        $uploadInvoice = $this->service->invoicePayment($data)->upload($data);
+
+        $error = $uploadInvoice->bodyResponse;
+
+        if (!empty($error['errors'])) {
+            return back()
+            ->withErrors($error['errors']);
+        } else {
+            return back()
+            ->with('success','File berhasil diupload.');
+        }
+    }
+
 
 
     /**

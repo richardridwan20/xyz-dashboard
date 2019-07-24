@@ -1,11 +1,11 @@
-<table id="example" class="table table-hover table-striped table-vcenter table-bordered table-responsive">
+<table id="example" class="table table-hover table-striped table-vcenter table-bordered">
     <thead>
         <tr>
-            <th id="month" data-sort="month" data-order="DESC" class="medium-th session-head text-capitalize">
+            <th id="month" data-sort="month" data-order="DESC" class="small-th session-head text-capitalize">
                 <b>Month</b>
                 <i class="month fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="year" data-sort="year" data-order="DESC" class="medium-th session-head text-capitalize">
+            <th id="year" data-sort="year" data-order="DESC" class="small-th session-head text-capitalize">
                 <b>Year</b>
                 <i class="year fa fa-pull-right fa-sort"></i>
             </th>
@@ -13,13 +13,17 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="invoice_number" data-sort="invoice_number" data-order="DESC" class="large-th session-head text-capitalize">
+            <th id="invoice_number" data-sort="invoice_number" data-order="DESC" class="medium-th session-head text-capitalize">
                 <b>Invoice Number</b>
                 <i class="invoice_number fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="total" data-sort="total" data-order="DESC" class="medium-th session-head text-capitalize">
+            <th id="total" data-sort="total" data-order="DESC" class="small-th session-head text-capitalize">
                 <b>Total</b>
                 <i class="total fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="paid_at" data-sort="paid_at" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Paid At</b>
+                <i class="paid_at fa fa-pull-right fa-sort"></i>
             </th>
             <th id="action" data-sort="action" data-order="DESC" class="medium-th session-head text-capitalize">
                 <b>Action</b>
@@ -30,17 +34,23 @@
     <tbody id="tableAjax">
 
         @forelse ($invoices as $invoice)
+        @php
+            $month = substr($invoice['invoice_number'], 3, 2);
+            $year = substr($invoice['invoice_number'], 5, 4);
+        @endphp
         <tr>
-            <td>{{$invoice['month']}}</td>
-            <td>{{$invoice['year']}}</td>
+            <td>{{$month}}</td>
+            <td>{{$year}}</td>
             <td>{{$invoice['partner_id']['name']}}</td>
             <td>{{$invoice['invoice_number']}}</td>
             <td>{{$invoice['total']}}</td>
-            <td><a href="{{ route('dashboard.invoice', $invoice['invoice_number']) }}" target="_blank"><button class="btn btn-alt-danger">Create Invoice</button></a></td>
+            <td>{{$invoice['status']}}</td>
+            <td><a href="{{ route('dashboard.invoice', $invoice['invoice_number']) }}"><button class="btn btn-alt-danger"><small>Download</small></button></a>
+                <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-invoice="{{$invoice['invoice_number']}}"><small>Update</small></button></td>
         </tr>
         @empty
             <tr>
-                <td colspan="6">No data to be shown.</td>
+                <td colspan="7">No data to be shown.</td>
             </tr>
         @endforelse
 
