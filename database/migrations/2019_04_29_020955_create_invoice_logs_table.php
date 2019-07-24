@@ -20,6 +20,7 @@ class CreateInvoiceLogsTable extends Migration
             $table->string('month')->nullable();
             $table->string('year')->nullable();
             $table->string('status')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->timestamps();
         });
 

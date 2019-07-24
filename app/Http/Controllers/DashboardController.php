@@ -461,7 +461,9 @@ class DashboardController extends Controller
                 ];
             }
         }
+
         $transactionAdded = $this->service->inputTransaction()->post($data);
+
         if($transactionAdded->bodyResponse['data']['code'] == 101){
             return redirect()->back()->with('notify', '5 insurance');
         }else{

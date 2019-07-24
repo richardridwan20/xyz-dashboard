@@ -67,7 +67,7 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Monthly',
+                'payment_type' => 'Yearly',
                 'duration' => '1',
             ],
             [
@@ -81,7 +81,7 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Monthly',
+                'payment_type' => 'Yearly',
                 'duration' => '1',
             ],
         ]);

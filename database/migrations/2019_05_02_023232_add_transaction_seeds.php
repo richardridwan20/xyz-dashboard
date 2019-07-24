@@ -42,7 +42,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '002062019',
-                'total_paid' => 150000
+                'total_paid' => 270000
             ],
             [
                 'id' => '3',
@@ -57,7 +57,7 @@ class AddTransactionSeeds extends Migration
                 'certificate_number' => '12356799846644',
                 'status' => 'Pending',
                 'invoice_number' => '001062019',
-                'total_paid' => 150000
+                'total_paid' => 270000
             ],
         ]);
     }

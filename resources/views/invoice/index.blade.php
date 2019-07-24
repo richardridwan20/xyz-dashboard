@@ -6,12 +6,82 @@
     <div class="block block-fx-shadow">
         <div class="block">
             <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">InvoiceLog</h3>
+                <h3 class="block-title text-uppercase">Invoices</h3>
                 <div class="block-options">
                 </div>
             </div>
             <div class="block-content block-content-full">
                 @include('invoice.table')
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Payment Proof</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form action="{{ route('payment.invoice') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
+                    <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
+                    <div class="form-group row">
+                        <label class="col-12">Upload bukti bayar yang sesuai</label>
+                        <div class="col-8">
+                            <div class="custom-file">
+                                <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Codebase() -> uiHelperCoreCustomFileInput()) -->
+                                <input type="file" class="custom-file-input" id="example-file-input-custom" name="image" data-toggle="custom-file-input">
+                                <label class="custom-file-label" for="example-file-input-custom">Pilih file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="check" name="invoice_number">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-nf-email">Masukkan tanggal invoice dibayar</label>
+                        <input type="date" class="form-control" id="paid" name="paid_at">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-nf-email">Masukkan nominal yang dibayar sesuai bukti pembayaran</label>
+                        <input type="text" class="form-control" id="total" name="total" placeholder="Masukkan total yang dibayar..">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-nf-email">Masukkan notes (optional)</label>
+                        <input type="text" class="form-control" id="notes" name="notes" placeholder="Masukkan notes..">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input type="submit" value="Submit" class="btn btn-alt-primary">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -23,158 +93,19 @@
 
     <script type="text/javascript">
 
-        function ajaxLoad(column, typeOfSort, sortInURL, page) {
-            $("#tableAjax").empty();
-            $(".paginate").empty();
-            $(".page-info").empty();
-
-            $.ajax({
-                type: "GET",
-                url: "{{ route('invoice.index') }}",
-                dataType: "json",
-                data: {
-                    column: column,
-                    typeOfSort: typeOfSort,
-                    page: page
-                },
-                success: function (json) {
-
-                    $("#tableAjax").html(json.success);
-                    $(".paginate").append(json.pagi);
-                    $(".page-info").append(json.info);
-
-                    window.history.pushState("", "Title", "/invoice?sort_by=" + column + "&order_by=" + typeOfSort);
-
-                    //Change the icon referencing the data in URL.
-                    if (typeOfSort == 'ASC') {
-                        $('.'+ column +'').addClass("fa-sort-up").removeClass("fa-sort").removeClass("fa-sort-down");
-                        $('#'+ column +'').addClass("table-th-active");
-                    } else if (typeOfSort == 'DESC') {
-                        $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
-                        $('#'+ column +'').addClass("table-th-active");
-                    }
-
-                    //Reset if another column has been clicked.
-                    if (column != sortInURL){
-                        $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
-                        $('#'+ sortInURL +'').removeClass("table-th-active");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert(xhr.responseText);
-                }
-            });
-        }
-
-        function ajaxPaginate(column, typeOfSort, sortInURL, page) {
-            $("#tableAjax").empty();
-            $(".paginate").empty();
-            $(".page-info").empty();
-
-            $.ajax({
-                type: "GET",
-                url: "{{ route('invoice.index') }}",
-                dataType: "json",
-                data: {
-                    column: column,
-                    typeOfSort: typeOfSort,
-                    page: page
-                },
-                success: function (json) {
-
-                    $("#tableAjax").html(json.success);
-                    $(".paginate").append(json.pagi);
-                    $(".page-info").append(json.info);
-
-                    window.history.pushState("", "Title", "/invoice?sort_by=" + column + "&order_by=" + typeOfSort + "&page=" + page);
-
-                    //Change the icon referencing the data in URL.
-                    if (typeOfSort == 'ASC') {
-                        $('.'+ column +'').addClass("fa-sort-up").removeClass("fa-sort").removeClass("fa-sort-down");
-                        $('#'+ column +'').addClass("table-th-active");
-                    } else if (typeOfSort == 'DESC') {
-                        $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
-                        $('#'+ column +'').addClass("table-th-active");
-                    }
-
-                    //Reset if another column has been clicked.
-                    if (column != sortInURL){
-                        $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
-                        $('#'+ sortInURL +'').removeClass("table-th-active");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert(xhr.responseText);
-                }
-            });
-        }
-
         $(document).ready(function()
         {
-
-            $(".session-head").click(function(e){
-
-                e.preventDefault();
-                const searchParams = new URLSearchParams(window.location.search);
-                var sort = $(this).data("sort");
-                var order = 'DESC';
-                let sortInURL = '';
-                let page = 1;
-                let orderInURL = searchParams.get('order_by');
-                URL = document.URL;
-
-                //Condition to check if Ascending/Descending already been clicked.
-                if (orderInURL == 'ASC') {
-                    order = 'DESC';
-                } else if (orderInURL == 'DESC') {
-                    order = 'ASC';
-                }
-
-                sortInURL = searchParams.get('sort_by');
-
-                //Reset orderBy when clicked on another column.
-                if (sort != sortInURL) {
-                    order = 'DESC';
-                }
-
-                //Populate table using Ajax.
-                ajaxLoad(sort, order, sortInURL);
-
+            $(function() {
+                $('#uploadModal').on("show.bs.modal", function (e) {
+                    var id = $(e.relatedTarget).data('invoice');
+                    $("#uploadModalLabel").html($(e.relatedTarget).data('title'));
+                    $("#check").val(id);
+                });
             });
-
-            $('.paginate').delegate('.pagination a','click',function(event){
-
-                event.preventDefault();
-
-                var pagiurl = $(this).attr('href');
-
-                const searchParams = new URLSearchParams(pagiurl);
-                const searchSort = new URLSearchParams(window.location.search);
-                var sort = searchSort.get('sort_by');
-                var order = 'DESC';
-                let sortInURL = searchSort.get('sort_by');
-                let pageInURL = searchParams.get('page');
-                let orderInURL = searchSort.get('order_by');
-
-                //Reset orderBy when clicked on another column.
-                if (sort != sortInURL) {
-                    order = 'DESC';
-                }
-
-                //When there is no sort_by in the URL, will set to default.
-                if (sortInURL == null) {
-                    sort = 'created_at';
-                    order = 'DESC';
-                }
-
-                //Populate table using Ajax.
-                ajaxPaginate(sort, order, sortInURL, pageInURL);
-
-            });
-
         });
 
     </script>
 
 @endpush
+
 

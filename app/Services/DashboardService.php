@@ -169,4 +169,11 @@ class DashboardService extends ApiService
 
         return $this;
     }
+
+    public function invoicePayment(array $data)
+    {
+        $this->endPoint = 'invoice-payment?filename='.$data['file_name'].'&invoice_number='.$data['invoice_number'].'&notes='.$data['notes'].'&total_paid='.$data['total_paid'].'&paid_at='.$data['paid_at'];
+
+        return $this;
+    }
 }
