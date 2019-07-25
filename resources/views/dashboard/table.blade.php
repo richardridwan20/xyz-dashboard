@@ -33,6 +33,14 @@
                 <b>Protection Duration</b>
                 <i class="protection_duration fa fa-pull-right fa-sort"></i>
             </th>
+            <th id="protection_start" data-sort="protection_start" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Protection Start</b>
+                <i class="protection_start fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="protection_end" data-sort="protection_end" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Protection End</b>
+                <i class="protection_end fa fa-pull-right fa-sort"></i>
+            </th>
             <th id="certificate_number" data-sort="certificate_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Certificate Number</b>
                 <i class="certificate_number fa fa-pull-right fa-sort"></i>
@@ -90,6 +98,8 @@
                 @php
                     $commision = $transaction['partner_id']['commision'];
                     $duration = $transaction['protection_duration'];
+                    $start = \Carbon\Carbon::parse($transaction['protection_start'])->format('d-F-Y');
+                    $end = \Carbon\Carbon::parse($transaction['protection_end'])->format('d-F-Y');
                     if($transaction['partner_id']['payment_type'] == 'Yearly')
                     {
                         $premium = ($transaction['product_id']['plan_id']['premium_yearly']);
@@ -98,7 +108,6 @@
                         $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
                         $grossPremium = $premium;
                     }
-
                 @endphp
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
@@ -109,6 +118,8 @@
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['product_id']['plan_id']['name']}}</td>
                     <td>{{$transaction['protection_duration']}}</td>
+                    <td>{{$start}}</td>
+                    <td>{{$end}}</td>
                     <td>{{$transaction['certificate_number']}}</td>
                     <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')

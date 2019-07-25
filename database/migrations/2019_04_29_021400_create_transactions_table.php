@@ -23,6 +23,8 @@ class CreateTransactionsTable extends Migration
             $table->string('insured_dob');
             $table->string('insured_gender');
             $table->string('protection_duration');
+            $table->dateTime('protection_start')->nullable();
+            $table->dateTime('protection_end')->nullable();
             $table->string('certificate_number')->nullable();
             $table->string('status');
             $table->string('invoice_number');

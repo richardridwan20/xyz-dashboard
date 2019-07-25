@@ -3,6 +3,9 @@
     $commision = $detailTransaction['transaction']['partner']['commision'];
     $duration = $detailTransaction['transaction']['protection_duration'];
     $certificateNumber = $detailTransaction['transaction']['certificate_number'];
+
+    $start = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_start'])->format('d-F-Y');
+    $end = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_end'])->format('d-F-Y');
 @endphp
 <div class="row">
     <div class="block-content bg-body-light">
@@ -94,13 +97,13 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Transaction ID</b>
+                            <b>Product Name</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['id']}}
+                            {{$detailTransaction['product']['name']}}
                         </div>
                     </div>
                 </div>
@@ -109,13 +112,13 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Protection Duration</b>
+                            <b>Product Plan</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['protection_duration']}}
+                            {{$detailTransaction['product']['plan']['name']}}
                         </div>
                     </div>
                 </div>
@@ -139,13 +142,13 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Transaction Status</b>
+                            <b>Protection Start Date</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['status']}}
+                            {{$start}}
                         </div>
                     </div>
                 </div>
@@ -154,13 +157,13 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Created At</b>
+                            <b>Protection End Date</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['created_at']}}
+                            {{$end}}
                         </div>
                     </div>
                 </div>
