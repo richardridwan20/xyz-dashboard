@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/invoice-payment', 'PaymentProofController@uploadInvoicePayment')->name('payment.invoice')->middleware('role:supadmin');
     Route::get('/agent/manage', 'DashboardController@manageAgent')->name('dashboard.manage_agent')->middleware('role:supadmin|financial|operational|partner financial|partner operational');
     Route::get('/agent-form', 'DashboardController@agentForm')->name('dashboard.agent_form');
+    Route::get('/agent-quota', 'DashboardController@agentQuota')->name('dashboard.agent_quota');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::get('/agent/delete/{id}', 'DashboardController@deleteAgent')->name('dashboard.delete_agent');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');

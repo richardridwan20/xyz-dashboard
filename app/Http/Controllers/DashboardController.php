@@ -478,8 +478,6 @@ class DashboardController extends Controller
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        $page = $request->page;
-
         $user = User::find(Auth::id());
         $partnerName = Auth::user()->name;
 
@@ -495,6 +493,26 @@ class DashboardController extends Controller
     public function agentForm()
     {
         return view('agent.form');
+    }
+
+    public function agentQuota(Request $request)
+    {
+        $column = 'created_at';
+        $typeOfSort = 'DESC';
+        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+
+        $name = $request->name;
+        $page = $request->page;
+
+        // dd($this->service->getPartnerDataPaginated()->paginate());
+
+        if($name == null || $name == ''){
+            $agents = $this->service->getPartnerDataPaginated()->paginate();
+        }else{
+            $agents = $this->service->getPartnerDataPaginatedByName($name)->paginate();
+        }
+
+        return view('agent.quotaIndex', compact('agents', 'append'));
     }
 
     public function addAgent(Request $request)

@@ -84,6 +84,19 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getPartnerDataPaginated()
+    {
+        $this->endPoint = 'partner/paginate';
+        return $this;
+    }
+
+    public function getPartnerDataPaginatedByName($name)
+    {
+        $this->endPoint = 'partner/paginate/'.$name;
+
+        return $this;
+    }
+
     public function partnerTransaction($page, $month, $year)
     {
         $user = Auth::user()->name;
