@@ -492,7 +492,12 @@ class DashboardController extends Controller
 
     public function agentForm()
     {
-        return view('agent.form');
+        $inputAgent = [
+            'quota_remaining' => null
+        ];
+        $quotaRemain = '';
+        $notify = '';
+        return view('agent.form', compact('inputAgent','quotaRemain', 'notify'));
     }
 
     public function agentQuota(Request $request)
@@ -580,8 +585,15 @@ class DashboardController extends Controller
 
 
         $inputAgent = $this->service->createAgent()->post($data);
+        $quotaRemain = $inputAgent->bodyResponse['quota_remaining'];
+        if($inputAgent->bodyResponse['code'] == 201){
+            $notify = 'success';
+        }else{
+            $notify = 'quota_full';
+        }
 
-        return redirect()->back()->with('notify', 'success');
+
+        return view('agent.form',compact('notify', 'quotaRemain'));
     }
 
     public function deleteAgent($id)

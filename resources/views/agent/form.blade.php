@@ -36,13 +36,21 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-    var session1 = "{{Session::get('notify')}}"
+    var session1 = "{{$notify}}"
+    var quotaRemain1 = "{{$quotaRemain}}";
+
     console.log(session1)
     if (session1 == 'success') {
             Swal.fire(
             'Success!',
-            'Transaction successfully added',
+            'Agent successfully added, agent quota remaining:'+quotaRemain1,
             'success'
+            )
+    }else if(session1 == 'quota_full') {
+            Swal.fire(
+            'Agent Full!',
+            'Cannot add agent, agent quota remaining:'+quotaRemain1,
+            'error'
             )
     }
 </script>
