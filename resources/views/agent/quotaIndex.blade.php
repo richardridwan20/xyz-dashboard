@@ -26,173 +26,102 @@
                         </div>
                     </div>
                 </form>
-                <form method="POST">
-                    @csrf
                     @include('agent.quotaTable')
-                </form>
             </div>
         </div>
     </div>
 </div>
-
-@endsection
-
-@push('')
-
-    <script type="text/javascript">
-
-        // function ajaxLoad(column, typeOfSort, sortInURL, page) {
-        //     $("#tableAjax").empty();
-        //     $(".paginate").empty();
-        //     $(".page-info").empty();
-
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "{{ route('dashboard.index') }}",
-        //         dataType: "json",
-        //         data: {
-        //             column: column,
-        //             typeOfSort: typeOfSort,
-        //             page: page
-        //         },
-        //         success: function (json) {
-
-        //             $("#tableAjax").html(json.success);
-        //             $(".paginate").append(json.pagi);
-        //             $(".page-info").append(json.info);
-
-        //             window.history.pushState("", "Title", "/dashboard?sort_by=" + column + "&order_by=" + typeOfSort);
-
-        //             //Change the icon referencing the data in URL.
-        //             if (typeOfSort == 'ASC') {
-        //                 $('.'+ column +'').addClass("fa-sort-up").removeClass("fa-sort").removeClass("fa-sort-down");
-        //                 $('#'+ column +'').addClass("table-th-active");
-        //             } else if (typeOfSort == 'DESC') {
-        //                 $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
-        //                 $('#'+ column +'').addClass("table-th-active");
-        //             }
-
-        //             //Reset if another column has been clicked.
-        //             if (column != sortInURL){
-        //                 $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
-        //                 $('#'+ sortInURL +'').removeClass("table-th-active");
-        //             }
-        //         },
-        //         error: function (xhr, status, error) {
-        //             alert(xhr.responseText);
-        //         }
-        //     });
-        // }
-
-        // function ajaxPaginate(column, typeOfSort, sortInURL, page) {
-        //     $("#tableAjax").empty();
-        //     $(".paginate").empty();
-        //     $(".page-info").empty();
-
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "{{ route('dashboard.index') }}",
-        //         dataType: "json",
-        //         data: {
-        //             column: column,
-        //             typeOfSort: typeOfSort,
-        //             page: page
-        //         },
-        //         success: function (json) {
-
-        //             $("#tableAjax").html(json.success);
-        //             $(".paginate").append(json.pagi);
-        //             $(".page-info").append(json.info);
-
-        //             window.history.pushState("", "Title", "/dashboard?sort_by=" + column + "&order_by=" + typeOfSort + "&page=" + page);
-
-        //             //Change the icon referencing the data in URL.
-        //             if (typeOfSort == 'ASC') {
-        //                 $('.'+ column +'').addClass("fa-sort-up").removeClass("fa-sort").removeClass("fa-sort-down");
-        //                 $('#'+ column +'').addClass("table-th-active");
-        //             } else if (typeOfSort == 'DESC') {
-        //                 $('.'+ column +'').addClass("fa-sort-down").removeClass("fa-sort").removeClass("fa-sort-up");
-        //                 $('#'+ column +'').addClass("table-th-active");
-        //             }
-
-        //             //Reset if another column has been clicked.
-        //             if (column != sortInURL){
-        //                 $('.'+ sortInURL +'').addClass("fa-sort").removeClass("fa-sort-up").removeClass("fa-sort-down");
-        //                 $('#'+ sortInURL +'').removeClass("table-th-active");
-        //             }
-        //         },
-        //         error: function (xhr, status, error) {
-        //             alert(xhr.responseText);
-        //         }
-        //     });
-        // }
-
-        $(document).ready(function()
-        {
-
-            // $(".session-head").click(function(e){
-
-            //     e.preventDefault();
-            //     const searchParams = new URLSearchParams(window.location.search);
-            //     var sort = $(this).data("sort");
-            //     var order = 'DESC';
-            //     let sortInURL = '';
-            //     let page = 1;
-            //     let orderInURL = searchParams.get('order_by');
-            //     URL = document.URL;
-
-            //     //Condition to check if Ascending/Descending already been clicked.
-            //     if (orderInURL == 'ASC') {
-            //         order = 'DESC';
-            //     } else if (orderInURL == 'DESC') {
-            //         order = 'ASC';
-            //     }
-
-            //     sortInURL = searchParams.get('sort_by');
-
-            //     //Reset orderBy when clicked on another column.
-            //     if (sort != sortInURL) {
-            //         order = 'DESC';
-            //     }
-
-            //     //Populate table using Ajax.
-            //     ajaxLoad(sort, order, sortInURL);
-
-            // });
-
-            // $('.paginate').delegate('.pagination a','click',function(event){
-
-            //     event.preventDefault();
-
-            //     var pagiurl = $(this).attr('href');
-
-            //     const searchParams = new URLSearchParams(pagiurl);
-            //     const searchSort = new URLSearchParams(window.location.search);
-            //     var sort = searchSort.get('sort_by');
-            //     var order = 'DESC';
-            //     let sortInURL = searchSort.get('sort_by');
-            //     let pageInURL = searchParams.get('page');
-            //     let orderInURL = searchSort.get('order_by');
-
-            //     //Reset orderBy when clicked on another column.
-            //     if (sort != sortInURL) {
-            //         order = 'DESC';
-            //     }
-
-            //     //When there is no sort_by in the URL, will set to default.
-            //     if (sortInURL == null) {
-            //         sort = 'created_at';
-            //         order = 'DESC';
-            //     }
-
-            //     //Populate table using Ajax.
-            //     ajaxPaginate(sort, order, sortInURL, pageInURL);
-
-            // });
-
-        });
-
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Edit Partner Quota</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <form action="{{ route('dashboard.change_quota') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
+                        <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
+                        <div class="form-group row">
+                            <input type="hidden" class="form-control" id="partnerId" name="id">
+                            <label class="col-12">Masukkan jumlah kuota yang diinginkan untuk:</label>
+                        </div>
+                        <div class="form-group">
+                            <label id="partnerName"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="example-nf-email">Masukkan quota</label>
+                            <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Agent...">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Submit" class="btn btn-alt-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8">
     </script>
 
-@endpush
+    <script>
+        var session1 = "{{Session::get('notify')}}"
+        console.log(session1)
+        if (session1 == 'success') {
+                Swal.fire(
+                'Success!',
+                'Partner agent quota has been changed',
+                'success'
+                )
+        }
+    </script>
+@endsection
+
+
+    @push('script')
+
+        <script type="text/javascript">
+
+            $(document).ready(function()
+            {
+                $(function() {
+                    $('#uploadModal').on("show.bs.modal", function (e) {
+                        var id = $(e.relatedTarget).data('id');
+                        var name = $(e.relatedTarget).data('name');
+                        $("#uploadModalLabel").html($(e.relatedTarget).data('title'));
+                        $("#partnerId").val(id);
+                        $("#partnerName").text(name);
+                    });
+                });
+            });
+
+        </script>
+
+    @endpush
+
 

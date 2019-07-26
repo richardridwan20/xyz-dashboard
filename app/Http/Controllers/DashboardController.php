@@ -515,6 +515,30 @@ class DashboardController extends Controller
         return view('agent.quotaIndex', compact('agents', 'append'));
     }
 
+    public function changeQuota(Request $request)
+    {
+        $rules = [
+            'quota' => 'required|numeric',
+        ];
+        $customMessages = [
+
+        ];
+        $customAttributes = [
+            'quota' => 'agent quota'
+        ];
+        $request->validate($rules, $customMessages, $customAttributes);
+
+        $data = [
+            'id' => $request->id,
+            'quota' => $request->quota
+        ];
+
+        $agentQuota = $this->service->changeQuota()->post($data);
+
+        return back()
+            ->with('notify','success');
+    }
+
     public function addAgent(Request $request)
     {
         $rules = [

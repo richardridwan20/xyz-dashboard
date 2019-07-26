@@ -70,6 +70,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function changeQuota()
+    {
+        $this->endPoint = 'partner/change_quota';
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;

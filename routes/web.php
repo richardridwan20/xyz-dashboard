@@ -35,8 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/agent/manage', 'DashboardController@manageAgent')->name('dashboard.manage_agent')->middleware('role:supadmin|financial|operational|partner financial|partner operational');
     Route::get('/agent-form', 'DashboardController@agentForm')->name('dashboard.agent_form');
     Route::get('/agent-quota', 'DashboardController@agentQuota')->name('dashboard.agent_quota');
-    Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::get('/agent/delete/{id}', 'DashboardController@deleteAgent')->name('dashboard.delete_agent');
+    Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
+    Route::post('/agent/change_quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');
     Route::post('/register_new_partner_role', 'RegisterController@inputPartner')->name('register.input_partner');
     Route::post('/register_new_partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
