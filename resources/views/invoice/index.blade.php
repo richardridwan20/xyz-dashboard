@@ -91,7 +91,8 @@
 
 @push('script')
 
-    <script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script type="text/javascript">
 
         $(document).ready(function()
         {
@@ -102,6 +103,15 @@
                     $("#check").val(id);
                 });
             });
+
+            var session = "{{Session::get('notify')}}"
+            if (session == 'success') {
+                Swal.fire(
+                'Uploaded!',
+                'File berhasil diupload.',
+                'success'
+                )
+            }
         });
 
     </script>

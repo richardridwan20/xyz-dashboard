@@ -143,7 +143,7 @@
             'success'
             )
     }else if(session1 == '5 insurance'){
-        Swal.fire(
+            Swal.fire(
             'Error!',
             'Customer Already Buy 5 Insurance',
             'error'
