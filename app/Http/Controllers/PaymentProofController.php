@@ -47,7 +47,7 @@ class PaymentProofController extends Controller
         $total = $request->input('total');
         $file_name = rand().$file->getClientOriginalName();
 
-        $path = $file->storeAs('public/files', $file_name);
+        $path = $file->storeAs('public/files/uploads', $file_name);
 
         $data = [
             'transaction_id' => $transactionId,
@@ -90,7 +90,7 @@ class PaymentProofController extends Controller
         $paid_at = $request->input('paid_at');
         $file_name = rand().$file->getClientOriginalName();
 
-        $path = $file->storeAs('public/files', $file_name);
+        $path = $file->storeAs('public/files/uploads', $file_name);
 
         $data = [
             'invoice_number' => $invoice_number,
@@ -101,8 +101,6 @@ class PaymentProofController extends Controller
             'total_paid' => $total
         ];
 
-        Log::info($data);
-
         $uploadInvoice = $this->service->invoicePayment($data)->upload($data);
 
         $error = $uploadInvoice->bodyResponse;
@@ -112,7 +110,7 @@ class PaymentProofController extends Controller
             ->withErrors($error['errors']);
         } else {
             return back()
-            ->with('success','File berhasil diupload.');
+            ->with('notify', 'success');
         }
     }
 

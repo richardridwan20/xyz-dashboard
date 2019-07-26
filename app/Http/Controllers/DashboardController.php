@@ -616,17 +616,16 @@ class DashboardController extends Controller
             $year = $request->input('select-year');
         }
 
-        $report = $this->service->downloadReport($id, $name, $month, $year)->get();
+        $this->service->downloadReport($id, $name, $month, $year)->get();
 
-        // return Storage::download('transaction_report_'.$request->id.$request->month.$request->year.'.xlsx');
-        return response()->download(storage_path('app/public/transaction_report_'.$id.$month.$year.'.xlsx'));
+        return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$month.$year.'.xlsx'));
     }
 
     public function createInvoice($invoiceNumber)
     {
         $invoice = $this->service->createInvoice($invoiceNumber)->get();
 
-        return response()->download(storage_path('app/public/Invoice_'.$invoice['name'].'_'.$invoice['month'].'_'.$invoice['year'].'.pdf'));
+        return response()->download(storage_path('app/public/files/invoices/Invoice_'.$invoice['name'].'_'.$invoice['month'].'_'.$invoice['year'].'.pdf'));
     }
 
     public function detail($id)

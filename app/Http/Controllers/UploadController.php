@@ -41,7 +41,7 @@ class UploadController extends Controller
             $file = $request->file('file');
         $file_name = rand().$file->getClientOriginalName();
 
-        $path = $file->storeAs('public/files', $file_name);
+        $path = $file->storeAs('public/files/uploads', $file_name);
 
         $data = ['file_name' => $file_name, 'path' => $path];
 
