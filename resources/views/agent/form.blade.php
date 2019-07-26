@@ -6,6 +6,7 @@
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
+                <a class="btn btn-alt-info back-btn" href="{{url()->previous()}}">Back to Manage agent</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">

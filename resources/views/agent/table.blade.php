@@ -35,7 +35,7 @@
                     <td>{{$agent['phone_number']}}</td>
                     <td>{{$agent['dob']}}</td>
                     <td>{{$agent['username']}}</td>
-                    <td><a href="{{ route('dashboard.delete_agent', $agent['id']) }}" data-method="delete"><button class='btn btn-primary' >Delete</button></a></td>
+                    <td><a onclick="confirmation('delete/{{$agent['id']}}')"><button class='btn btn-primary'>Delete</button></a></td>
                 </tr>
             @empty
                 <tr>

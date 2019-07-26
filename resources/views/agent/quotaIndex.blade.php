@@ -13,7 +13,7 @@
             <div class="block-content block-content-full">
                 <form method="GET">
                     <div class="form-group row">
-                        <div class="col-4"></div>
+                        <div class="col-4"><a class="btn btn-alt-info back-btn" href="{{url()->previous()}}">Back to Manage agent</a></div>
                         <div class="col-2">
                             <input type="hidden" name="id" value="{{Auth::user()->id}}">
                         </div>
