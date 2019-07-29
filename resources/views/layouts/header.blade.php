@@ -105,16 +105,6 @@
                         <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Payment Proof</span></a>
                     </li>
                     @endrole
-                    @role('supadmin|financial|operation')
-                    <li>
-                        <a  href=""><i class="si si-users"></i><span class="sidebar-mini-hide">Customers</span></a>
-                    </li>
-                    @endrole
-                    {{-- @role('supadmin')
-                    <li>
-                        <a class="{{ Route::is('dashboard.testing') ? 'active' : '' }}" href="{{ route('dashboard.testing') }}"><i class="fa fa-simplybuilt"></i><span class="sidebar-mini-hide">Testing Create Transaction</span></a>
-                    </li>
-                    @endrole --}}
                     @can('register partner')
                     <li>
                         <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
