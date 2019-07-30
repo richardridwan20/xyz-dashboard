@@ -349,7 +349,7 @@ class DashboardController extends Controller
             $sumTotalPartnerBill += $totalPartnerBill;
         }
 
-        return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill'));
+        return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill', 'name'));
     }
 
     public function inputTransaction(Request $request)
