@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="block-content block-content-full">
-                <div align='right'>
+                <div class="block-options">
                 @role('supadmin|financial|operation')
-                    <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
+                    <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
                 @endrole
-                    <a href="{{ route('dashboard.agent_form') }}"><button class="btn btn-primary"><i class="fa fa-plus"></i> Agent</button></a>
+                    <a href="{{ route('dashboard.agent_form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Agent</button></a>
                 </div>
                 @include('agent.table')
             </div>

@@ -8,12 +8,7 @@
             <!-- Default Elements -->
             <div class="block">
                 <div class="block-header block-header-default bg-primary-lighter">
-                    <h3 class="block-title">Pending Transactions</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option">
-                            <i class="si si-wrench"></i>
-                        </button>
-                    </div>
+                    <h3 class="block-title">PENDING TRANSACTIONS</h3>
                 </div>
                 <div class="block-content">
                     @include('payment-proof.table')

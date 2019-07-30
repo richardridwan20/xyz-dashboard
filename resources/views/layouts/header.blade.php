@@ -91,10 +91,17 @@
                     <li>
                         <a class="{{ Route::is('dashboard.index') ? 'active' : '' }}" href="{{ route('dashboard.index') }}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
+
+                    {{-- Manage Sub-menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">MG</span><span class="sidebar-mini-hidden">Manage</span></li>
                     @can('view upload form')
                     <li>
-                        <a class="{{ Route::is('upload.index') ? 'active' : '' }}" href="{{ route('upload.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Upload</span></a>
+                        <a class="{{ Route::is('upload.index') ? 'active' : '' }}" href="{{ route('upload.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Bulk Upload</span></a>
+                    </li>
+                    @endcan
+                    @can('input invoice number')
+                    <li>
+                        <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
                     @endcan
                     @role('supadmin')
@@ -102,9 +109,12 @@
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
                     </li>
                     <li>
-                        <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Payment Proof</span></a>
+                        <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Pending Transactions</span></a>
                     </li>
                     @endrole
+
+                    {{-- Partner Sub-menu --}}
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>
                     @can('register partner')
                     <li>
                         <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
@@ -120,21 +130,14 @@
                         <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
                     </li>
                     @endrole
+
+                    {{-- Agent Sub-menu --}}
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">AG</span><span class="sidebar-mini-hidden">Agent</span></li>
                     @role('supadmin|financial|operation|partner financial|partner operational')
                     <li>
                         <a class="{{ Route::is('dashboard.manage_agent') ? 'active' : '' }}" href="{{ route('dashboard.manage_agent') }}"><i class="fa fa-drivers-license-o"></i><span class="sidebar-mini-hide">Manage Agent</span></a>
                     </li>
                     @endrole
-                    @can('create certificate')
-                    <li>
-                        {{-- <a class="{{ Route::is('certificate.index') ? 'active' : '' }}" href="{{ route('certificate.index') }}"><i class="si si-book-open"></i><span class="sidebar-mini-hide">Certificates</span></a> --}}
-                    </li>
-                    @endcan
-                    @can('input invoice number')
-                    <li>
-                        <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
-                    </li>
-                    @endcan
                 </ul>
             </div>
             <!-- END Side Navigation -->

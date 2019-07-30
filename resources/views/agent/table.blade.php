@@ -35,7 +35,7 @@
                     <td>{{$agent['phone_number']}}</td>
                     <td>{{$agent['dob']}}</td>
                     <td>{{$agent['username']}}</td>
-                    <td><a onclick="confirmation('delete/{{$agent['id']}}')"><button class='btn btn-primary'>Delete</button></a></td>
+                    <td><a onclick="confirmation('delete/{{$agent['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
                 </tr>
             @empty
                 <tr>
