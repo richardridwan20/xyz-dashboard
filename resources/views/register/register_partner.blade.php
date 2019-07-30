@@ -39,17 +39,19 @@
                         </div>
                         <div class="col-12">
                         <div class="form-group row">
-                                <div class="form-material floating">
 
-                                    <input type="name" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required autocomplete="name">
-                                    <label for="name">Partner Name</label>
+                                    <select type="dropdown" class="form-control" id="name" name="name">
+                                        <option  disabled selected>Select Partner</option>
+                                        @for($i=0;$i<count($partnerName);$i++)
+                                            <option value="{{$partnerName[$i]['name']}}">{{$partnerName[$i]['name']}}</option>
+                                        @endfor
+                                    </select>
 
                                     @error('name')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
                                     @enderror
-                                </div>
                             </div>
                         </div>
                         <div class="form-group row">

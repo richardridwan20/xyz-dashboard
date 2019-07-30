@@ -27,7 +27,8 @@ class RegisterController extends Controller
     public function register()
     {
         $success = "failed";
-        return view('register.register_partner', compact('success'));
+        $partnerName = $this->service->partnerName()->get();
+        return view('register.register_partner', compact('success', 'partnerName'));
     }
 
     public function registerPartner()

@@ -30,5 +30,12 @@ class RegisterService extends ApiService
         return $this;
     }
 
+    public function partnerName()
+    {
+        $this->endPoint = 'partner/name';
+
+        return $this;
+    }
+
 
 }

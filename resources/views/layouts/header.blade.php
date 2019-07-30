@@ -58,7 +58,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <img class="content-header-logo" src="assets\media\photos\sequis-online-s.png" alt="">
+                        <img style="margin: -5px;" class="content-header-logo" src="assets\media\photos\sovera-s.png" alt="">
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -76,7 +76,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
-                            <img class="content-header-logo" src="assets\media\photos\sequis-online-logo-white.png" alt="">
+                            <img class="content-header-logo" src="assets\media\photos\sovera-logo-white.png" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -135,13 +135,6 @@
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
                     @endcan
-                    <li class="nav-main-heading"><span class="sidebar-mini-visible">ST</span><span class="sidebar-mini-hidden">Settings</span></li>
-                    <li>
-                        <a href=""><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="si si-lock"></i><span class="sidebar-mini-hide">Security</span></a>
-                    </li>
                 </ul>
             </div>
             <!-- END Side Navigation -->
