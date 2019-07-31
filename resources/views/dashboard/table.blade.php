@@ -79,13 +79,13 @@
                 <small>(dalam rupiah)</small>
             </th>
             <th style='line-height: 100%' id="bpartner" data-sort="bpartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Tagihan Partner</b>
+                <b>Komisi Net</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
                 <br>
                 <small>(dalam rupiah)</small>
             </th>
             <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Tagihan Premi Partner</b>
+                <b>Tagihan ke Partner</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
                 <br>
                 <small>(dalam rupiah)</small>
