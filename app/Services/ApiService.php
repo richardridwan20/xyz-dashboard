@@ -73,11 +73,9 @@ class ApiService
         return $this;
     }
 
-    protected function fetch()
+    public function fetch()
     {
         $fetchApi = $this->api->setUrl($this->endPoint)->get();
-
-        // dd($fetchApi);
 
         $this->statusCode = $fetchApi->statusCode();
         $this->bodyResponse = $fetchApi->response();

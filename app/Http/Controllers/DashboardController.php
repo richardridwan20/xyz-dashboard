@@ -616,7 +616,7 @@ class DashboardController extends Controller
             $year = $request->input('select-year');
         }
 
-        $this->service->downloadReport($id, $name, $month, $year)->get();
+        $this->service->downloadReport($id, $name, $month, $year)->fetch();
 
         return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$month.$year.'.xlsx'));
     }

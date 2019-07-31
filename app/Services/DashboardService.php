@@ -135,7 +135,7 @@ class DashboardService extends ApiService
     public function partnerTransactionByName($page, $name)
     {
         $user = Auth::user()->name;
-        $this->endPoint = 'transaction/partner/search-name?partner_name='.$user.'&page='.$page.'&name='.$name;
+        $this->endPoint = 'transaction/partner/search-name?partner_name='.$user.'&page='.$page.'&insured_name='.$name;
         return $this;
     }
 

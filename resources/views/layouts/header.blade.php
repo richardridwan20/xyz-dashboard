@@ -104,7 +104,7 @@
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
                     @endcan
-                    @role('supadmin')
+                    @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
                     </li>
