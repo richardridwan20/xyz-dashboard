@@ -61,9 +61,11 @@
                         <div class="col-1">
                             <input type="submit" class="btn btn-primary" value="Search" formaction="{{ route('dashboard.index') }}"/>
                         </div>
+                        @role('supadmin|operation|financial|partner operation|partner financial')
                         <div class="col-1">
                             <input type="submit" class="btn btn-primary" value="Download Report" formaction="{{ route('dashboard.download')}}"/>
                         </div>
+                        @endrole
                     </div>
 
                 </form>
