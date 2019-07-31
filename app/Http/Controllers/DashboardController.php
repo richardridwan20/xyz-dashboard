@@ -487,7 +487,9 @@ class DashboardController extends Controller
             $agents = $this->service->partnerAgent($partnerName)->paginate();
         }
 
-        return view('agent.index', compact('agents','append','user'));
+        $quotaRemain = '';
+
+        return view('agent.index', compact('agents','append','user','quotaRemain'));
     }
 
     public function agentForm()
@@ -574,7 +576,7 @@ class DashboardController extends Controller
         $partner = $this->service->getPartnerDataByName($name)->get();
 
         $data = [
-            'partner_id' => 1,
+            'partner_id' => $partner['id'],
             'agent_branch_name' => $request->aname,
             'username' => $request->ausername,
             'password' => $request->apassword,
@@ -600,7 +602,7 @@ class DashboardController extends Controller
     {
         $deleteAgent = $this->service->deleteAgent($id)->get();
 
-        return redirect()->back()->with('notify', 'success');
+        return redirect()->back()->with('notify', 'delete');
     }
 
     public function downloadReport(Request $request)

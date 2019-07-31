@@ -6,7 +6,7 @@
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
-                <a class="btn btn-alt-info back-btn" href="{{url()->previous()}}">Back to Manage agent</a>
+                <a class="btn btn-alt-info back-btn" href="{{ Route('dashboard.manage_agent') }}">Back to Manage agent</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
@@ -40,8 +40,7 @@
     var session1 = "{{$notify}}"
     var quotaRemain1 = "{{$quotaRemain}}";
 
-    console.log(session1)
-    if (session1 == 'success') {
+    if (session1 == 'add') {
             Swal.fire(
             'Success!',
             'Agent successfully added, agent quota remaining:'+quotaRemain1,

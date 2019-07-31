@@ -133,7 +133,7 @@
 
                     {{-- Agent Sub-menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">AG</span><span class="sidebar-mini-hidden">Agent</span></li>
-                    @role('supadmin|financial|operation|partner financial|partner operational')
+                    @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('dashboard.manage_agent') ? 'active' : '' }}" href="{{ route('dashboard.manage_agent') }}"><i class="fa fa-drivers-license-o"></i><span class="sidebar-mini-hide">Manage Agent</span></a>
                     </li>
