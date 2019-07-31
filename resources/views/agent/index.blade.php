@@ -3,21 +3,21 @@
 @section('content')
 <div class="content">
     <div class="block block-fx-shadow">
-        <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Manage Agent</h3>
-                <div class="block-options">
+        <div class="block-header block-header-default bg-primary-lighter">
+            <h3 class="block-title text-uppercase">Manage Agent</h3>
+        </div>
+        <div class="block-content block-content-full">
+            <div class="form-group row">
+                <div class="col-2">
+                    @role('supadmin|financial|operation')
+                        <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
+                    @endrole
                 </div>
-            </div>
-            <div class="block-content block-content-full">
-                <div class="block-options">
-                @role('supadmin|financial|operation')
-                    <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
-                @endrole
+                <div class="col-2" style="margin-left: 20px;">
                     <a href="{{ route('dashboard.agent_form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Agent</button></a>
                 </div>
-                @include('agent.table')
             </div>
+            @include('agent.table')
         </div>
     </div>
 </div>
@@ -25,7 +25,7 @@
 <script>
     var session1 = "{{Session::get('notify')}}"
     var quotaRemain1 = "{{$quotaRemain}}";
-    
+
     console.log(session1)
     if (session1 == 'delete') {
             Swal.fire(
