@@ -72,7 +72,7 @@ class DashboardService extends ApiService
 
     public function changeQuota()
     {
-        $this->endPoint = 'partner/change_quota';
+        $this->endPoint = 'partner/change-quota';
 
         return $this;
     }
@@ -150,7 +150,7 @@ class DashboardService extends ApiService
 
     public function getTransactionById($id)
     {
-        $this->endPoint = 'detail_transaction/?id='.$id;
+        $this->endPoint = 'detail-transaction/?id='.$id;
 
         return $this;
     }

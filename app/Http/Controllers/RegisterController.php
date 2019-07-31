@@ -26,9 +26,8 @@ class RegisterController extends Controller
 
     public function register()
     {
-        $success = "failed";
         $partnerName = $this->service->partnerName()->get();
-        return view('register.register_partner', compact('success', 'partnerName'));
+        return view('register.register_partner', compact('partnerName'));
     }
 
     public function registerPartner()
@@ -102,7 +101,7 @@ class RegisterController extends Controller
         $rules = [
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'password_confirmation' => 'required|in:'.$password
         ];
@@ -123,6 +122,7 @@ class RegisterController extends Controller
             'password' => $request->password,
         ];
         $inputPartner = $this->service->inputPartner()->post($data);
+
         if($request->role == 'financial'){
             $user = User::find($inputPartner->bodyResponse['id']);
             $user->assignRole('partner financial');
@@ -134,9 +134,10 @@ class RegisterController extends Controller
             $user->assignRole('partner viewer');
         }
 
-        $success = 'success';
+        $notify = 'created';
 
-        return redirect()->back()->with('success', 'Partner Account Has Been Created');
+
+        return redirect()->back()->with('notify','created');
     }
 
     /**

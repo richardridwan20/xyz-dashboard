@@ -109,11 +109,6 @@
                             </div>
                         </div>
                     </form>
-                    @if(session()->has('success'))
-                    <span class="alert alert-success">
-                        <strong>{{ session()->get('success') }}</strong>
-                    </span>
-                    @endif
                 </div>
             </div>
             <!-- END Sign In Form -->
@@ -121,6 +116,19 @@
     </div>
     <!-- END Page Content -->
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    var session1 = "{{Session::get('notify')}}"
+
+    if (session1 == 'created') {
+            Swal.fire(
+            'Success!',
+            'Partner successfully added',
+            'success'
+            )
+    }
+</script>
 
 @endsection
 
