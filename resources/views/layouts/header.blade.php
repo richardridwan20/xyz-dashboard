@@ -99,11 +99,11 @@
                         <a class="{{ Route::is('upload.index') ? 'active' : '' }}" href="{{ route('upload.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Bulk Upload</span></a>
                     </li>
                     @endcan
-                    @can('input invoice number')
+                    @role('supadmin|financial')
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
-                    @endcan
+                    @endrole
                     @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
