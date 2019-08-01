@@ -48,7 +48,7 @@
                             </div>
                             <div class="block-content">
                                 @if ($type == 'Yearly')
-                                    {{$detailTransaction['transaction']['protection_duration']}} year
+                                    {{$detailTransaction['transaction']['protection_duration']/12}} year
                                 @else
                                     {{$detailTransaction['transaction']['protection_duration']}} month
                                 @endif

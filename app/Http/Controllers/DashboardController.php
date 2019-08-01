@@ -16,6 +16,7 @@ use App\Models\Agent;
 use Illuminate\Support\Facades\Storage;
 
 use App\Services\DashboardService;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
@@ -328,31 +329,33 @@ class DashboardController extends Controller
 
         foreach ($transactionsCount as $transaction){
 
-            $commision = $transaction['partner_id']['commision'];
-            $type = $transaction['partner_id']['payment_type'];
-            $duration = $transaction['protection_duration'];
+            if($transaction['status'] != "Canceled"){
+                $commision = $transaction['partner_id']['commision'];
+                $type = $transaction['partner_id']['payment_type'];
+                $duration = $transaction['protection_duration'];
 
-            if ($type == 'Yearly'){
-                $premium = $transaction['product_id']['plan_id']['premium_yearly'];
-                $grossPremium = $premium * $duration;
-            }else if ($type == 'Monthly'){
-                $premium = $transaction['product_id']['plan_id']['premium_monthly'];
-                $grossPremium = $premium;
+                if ($type == 'Yearly'){
+                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    $grossPremium = $premium * $duration;
+                }else if ($type == 'Monthly'){
+                    $premium = $transaction['product_id']['plan_id']['premium_monthly'];
+                    $grossPremium = $premium;
+                }
+
+                $pCommision = ($grossPremium * $commision) * 0.9;
+                $ppnCommision = ($grossPremium * $commision) * 0.1;
+                $totalCommision = ($grossPremium * $commision);
+                $pphCommision = ($pCommision * 0.02);
+                $partnerBill = ($totalCommision - $pphCommision);
+                $totalPartnerBill = ($grossPremium - $partnerBill);
+                $sumCommision += $pCommision;
+                $sumPpnCommision += $ppnCommision;
+                $sumTotalCommision += $totalCommision;
+                $sumPphCommision += $pphCommision;
+                $sumPartnerBill += $partnerBill;
+                $sumTotalPartnerBill += $totalPartnerBill;
+                }
             }
-
-            $pCommision = ($grossPremium * $commision) * 0.9;
-            $ppnCommision = ($grossPremium * $commision) * 0.1;
-            $totalCommision = ($grossPremium * $commision);
-            $pphCommision = ($pCommision * 0.02);
-            $partnerBill = ($totalCommision - $pphCommision);
-            $totalPartnerBill = ($grossPremium - $partnerBill);
-            $sumCommision += $pCommision;
-            $sumPpnCommision += $ppnCommision;
-            $sumTotalCommision += $totalCommision;
-            $sumPphCommision += $pphCommision;
-            $sumPartnerBill += $partnerBill;
-            $sumTotalPartnerBill += $totalPartnerBill;
-        }
 
         return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill', 'name'));
     }
@@ -369,12 +372,10 @@ class DashboardController extends Controller
         $rules = [
             'plan' => 'required',
             'duration' => 'required',
-            'phgender' => 'required',
             'phname' => 'required|regex:/^[\pL\s]+$/u',
             'phcitizen_id' => 'required|digits:16',
             'phdob' => 'required|before_or_equal:'.$minCustomerAge,
             'phemail' => 'required|email',
-            'igender' => 'required',
             'irelation' => 'required',
             'iname' => 'required|regex:/^[\pL\s]+$/u',
             'icitizen_id' => 'required|digits:16',
@@ -421,7 +422,11 @@ class DashboardController extends Controller
             'b4name' => 'Fourth Beneficiary Name',
         ];
 
-        $request->validate($rules, $customMessages, $customAttributes);
+        $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $name = Auth::user()->name;
         $durationYear = $request->duration/12;

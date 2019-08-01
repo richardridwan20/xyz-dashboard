@@ -9,10 +9,10 @@
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
-                    <img class="content-header-logo" src="assets\media\photos\sequis-online-logo.png" alt="">
+                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
                 </a>
-                <h1 class="h2 font-w700 mt-50 mb-10">SPAJ Page for Micro Insurance</h1>
-                <h2 class="h4 font-w400 text-muted mb-0">Register transaction, please add transaction detail</h2>
+                <h1 class="h2 font-w700 mt-50 mb-10">Data Input Form for Sequis Mikro Sejahtera</h1>
+                <h2 class="h4 font-w400 text-muted mb-0">Please add transaction detail</h2>
             </div>
             <form action="{{ route('dashboard.input_transaction') }}" method="POST" novalidate>
             @csrf
@@ -22,8 +22,8 @@
                         <div class="col-12">
                             <select type="dropdown" class="form-control" id="plan" name="plan">
                                 <option disabled selected>Select Plan</option>
-                                <option value="Standard">Standard</option>
-                                <option value="Deluxe">Deluxe</option>
+                                <option value="Standard" @if(old('plan') == "Standard") selected @endif>Standard</option>
+                                <option value="Deluxe" @if(old('plan') == "Deluxe") selected @endif>Deluxe</option>
                             </select>
                             @error('plan')
                                 <p style="color:red">
@@ -36,11 +36,11 @@
                         <div class="col-12">
                             <select type="dropdown" class="form-control" id="duration" name="duration">
                                 <option  disabled selected>Select Duration</option>
-                                <option value=12>1 Year</option>
-                                <option value=24>2 Year</option>
-                                <option value=36>3 Year</option>
-                                <option value=48>4 Year</option>
-                                <option value=60>5 Year</option>
+                                <option value=12 @if(old('duration') == 12) selected @endif>1 Year</option>
+                                <option value=24 @if(old('duration') == 24) selected @endif>2 Year</option>
+                                <option value=36 @if(old('duration') == 36) selected @endif>3 Year</option>
+                                <option value=48 @if(old('duration') == 48) selected @endif>4 Year</option>
+                                <option value=60 @if(old('duration') == 60) selected @endif>5 Year</option>
                             </select>
                             @error('duration')
                                 <p style="color:red">
@@ -74,13 +74,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
     var irelation = document.getElementById('irelation');
-    var igender = document.getElementById('igender');
     var iname = document.getElementById('iname');
     var icitizen_id = document.getElementById('icitizen_id');
     var idob = document.getElementById('idob');
     var iemail = document.getElementById('iemail');
     var phrelation = document.getElementById('phrelation');
-    var phgender = document.getElementById('phgender');
     var phname = document.getElementById('phname');
     var phcitizen_id = document.getElementById('phcitizen_id');
     var phdob = document.getElementById('phdob');
@@ -100,11 +98,9 @@
                     if(i == 0){
                         myself[i].disabled = false;
                         iname.value = phname.value;
-                        igender.value = phgender.value;
                         icitizen_id.value = phcitizen_id.value;
                         idob.value = phdob.value;
                         iemail.value = phemail.value;
-                        igender.setAttribute("style", "pointer-events:none");
                         iname.readOnly = true;
                         icitizen_id.readOnly = true;
                         idob.readOnly = true;
@@ -122,7 +118,6 @@
             for(var i=0; i<myself.length; i++){
                 if(i==0){
                     myself[i].disabled = false;
-                    igender.setAttribute("style", "pointer-events:auto");
                     iname.readOnly = false;
                     icitizen_id.readOnly = false;
                     idob.readOnly = false;

@@ -13,10 +13,6 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="insuredNumber" data-sort="insuredNumber" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Insured Name</b>
-                <i class="status fa fa-pull-right fa-sort"></i>
-            </th>
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>PH Name</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
@@ -24,6 +20,10 @@
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>PH Email</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="insuredNumber" data-sort="insuredNumber" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Insured Name</b>
+                <i class="status fa fa-pull-right fa-sort"></i>
             </th>
             <th id="product_id" data-sort="product_id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Plan</b>
@@ -113,9 +113,9 @@
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
-                    <td>{{$transaction['insured_name']}}</td>
                     <td>{{$transaction['customer_id']['name']}}</td>
                     <td>{{$transaction['customer_id']['email']}}</td>
+                    <td>{{$transaction['insured_name']}}</td>
                     <td>{{$transaction['product_id']['plan_id']['name']}}</td>
                     <td>{{$transaction['protection_duration']}}</td>
                     <td>{{$start}}</td>
@@ -123,6 +123,15 @@
                     <td>{{$transaction['certificate_number']}}</td>
                     <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
+                    @if($transaction['status'] == "Canceled")
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    @else
                     <td>{{$grossPremium}}</td>
                     <td>{{$pCommision = ($grossPremium * $commision) * 0.9}}</td>
                     <td>{{$ppn = $pCommision * 0.1}}</td>
@@ -130,6 +139,7 @@
                     <td>{{$pphCommision = $pCommision * 0.02}}</td>
                     <td>{{$partnerBill = ($totalCommision - $pphCommision)}}</td>
                     <td>{{$totalPartnerBill = ($grossPremium - $partnerBill)}}</td>
+                    @endif
                     @endrole
                 </tr>
             @empty
@@ -219,7 +229,7 @@
             {{-- Start of Tagihan Partner Row --}}
                 <div class="col-md-2">
                     <div class="block">
-                        <b>Total Tagihan Partner</b>
+                        <b>Total Komisi Net</b>
                         <br>
                         <small>(dalam rupiah)</small>
                     </div>
@@ -234,7 +244,7 @@
             {{-- Start of Tagihan Premi Partner Row --}}
                 <div class="col-md-2">
                     <div class="block">
-                        <b>Total Tagihan Premi Partner</b>
+                        <b>Total Tagihan ke Partner</b>
                         <br>
                         <small>(dalam rupiah)</small>
                     </div>

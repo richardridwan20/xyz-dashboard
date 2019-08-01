@@ -2,33 +2,21 @@
     <div class="col-md-12">
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title"><b>Insured Data Data</b></h3>
+                <h3 class="block-title"><b>Insured Data</b></h3>
             </div>
             <div class="block-content block-content-full">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group row">
-                            <div class="col-6">
-                                <select type="dropdown" class="form-control" id="igender" name="igender">
-                                    <option readonly selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                @error('igender')
-                                    <p style="color:red">
-                                        <strong>{{ $message }}</strong>
-                                    </p>
-                                @enderror
-                            </div>
-                            <div class="col-6">
+                            <div class="col-12">
                                 <select type="dropdown" class="form-control" id="irelation" name="irelation" onchange="myselfRelation()">
                                     <option  disabled selected>Select Relation</option>
-                                    <option value="Myself" class="Myself">Myself</option>
-                                    <option value="Father">Father</option>
-                                    <option value="Mother">Mother</option>
-                                    <option value="Brother / Sister">Brother / Sister</option>
-                                    <option value="Child">Child</option>
-                                    <option value="Husband / Wife">Husband / Wife</option>
+                                    <option value="Myself" class="Myself" @if(old('irelation') == "Myself") selected @endif>Myself</option>
+                                    <option value="Father" @if(old('irelation') == "Father") selected @endif>Father</option>
+                                    <option value="Mother" @if(old('irelation') == "Mother") selected @endif>Mother</option>
+                                    <option value="Brother / Sister" @if(old('irelation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                    <option value="Child" @if(old('irelation') == "Child") selected @endif>Child</option>
+                                    <option value="Husband / Wife" @if(old('irelation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                 </select>
                                 @error('irelation')
                                     <p style="color:red">
@@ -43,7 +31,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="name" class="form-control @error('iname') is-invalid @enderror" id="iname" name="iname" required autocomplete="iname">
+                                <input type="name" class="form-control @error('iname') is-invalid @enderror" id="iname" name="iname" required autocomplete="iname" value="{{ old('iname') }}">
                                 <label for="name">Name</label>
                                 @error('iname')
                                     <p style="color:red">
@@ -57,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="date" class="form-control @error('idob') is-invalid @enderror" id="idob" name="idob" required autocomplete="idob">
+                                <input type="date" class="form-control @error('idob') is-invalid @enderror" id="idob" name="idob" required autocomplete="idob" value="{{ old('idob') }}" required >
                                 <label for="name">Date of Birth</label>
                                 @error('idob')
                                     <p style="color:red">
@@ -72,7 +60,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="name" class="form-control @error('icitizen_id') is-invalid @enderror" id="icitizen_id" name="icitizen_id" required autocomplete="icitizen_id">
+                                <input type="name" class="form-control @error('icitizen_id') is-invalid @enderror" id="icitizen_id" name="icitizen_id" required autocomplete="icitizen_id" value="{{ old('icitizen_id') }}">
                                 <label for="name">Citizen Id</label>
                                 @error('icitizen_id')
                                     <p style="color:red">
@@ -86,7 +74,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="email" class="form-control @error('iemail') is-invalid @enderror" id="iemail" name="iemail" required autocomplete="iemail">
+                                <input type="email" class="form-control @error('iemail') is-invalid @enderror" id="iemail" name="iemail" required autocomplete="iemail" value="{{ old('iemail') }}">
                                 <label for="name">Email</label>
                                 @error('iemail')
                                     <p style="color:red">
