@@ -87,7 +87,7 @@
 @endsection
 
 @push('script')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script type="text/javascript">
 
         $(document).ready(function()
@@ -100,6 +100,16 @@
                 });
             });
         });
+
+        var session1 = "{{Session::get('notify')}}"
+        console.log(session1)
+        if (session1 == 'uploaded') {
+            Swal.fire(
+            'Success!',
+            'Payment proof successfully uploaded',
+            'success'
+            )
+        }
 
     </script>
 

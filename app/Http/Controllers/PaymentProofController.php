@@ -68,7 +68,7 @@ class PaymentProofController extends Controller
             ->withErrors($error['errors']);
         } else {
             return back()
-            ->with('success','File berhasil diupload.');
+            ->with('notify','uploaded');
         }
     }
 
