@@ -272,7 +272,11 @@ class DashboardController extends Controller
 
         $month = $request->input('select-month');
         $year = $request->input('select-year');
-        $name = $request->input('text-name');
+        if($request->input('text-name') == null || $request->input('text-name') == ""){
+            $name = "a";
+        }else{
+            $name = $request->input('text-name');
+        }
         $name = strtolower($name);
         $name = ucwords($name);
 
@@ -323,6 +327,7 @@ class DashboardController extends Controller
         }
 
         foreach ($transactionsCount as $transaction){
+
             $commision = $transaction['partner_id']['commision'];
             $type = $transaction['partner_id']['payment_type'];
             $duration = $transaction['protection_duration'];
@@ -589,7 +594,7 @@ class DashboardController extends Controller
         $inputAgent = $this->service->createAgent()->post($data);
         $quotaRemain = $inputAgent->bodyResponse['quota_remaining'];
         if($inputAgent->bodyResponse['code'] == 201){
-            $notify = 'success';
+            $notify = 'add';
         }else{
             $notify = 'quota_full';
         }
