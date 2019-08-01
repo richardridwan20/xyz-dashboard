@@ -57,7 +57,7 @@ class UploadController extends Controller
         // Excel::import(new TransactionImport, request()->file('file'));
 
         return back()
-            ->with('success','File berhasil diupload.');
+            ->with('notify','uploaded');
         }else{
             return back()
             ->withErrors('File harus dengan ekstensi yang benar.');

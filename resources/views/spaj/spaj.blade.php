@@ -14,7 +14,7 @@
                 <h1 class="h2 font-w700 mt-50 mb-10">Data Input Form for Sequis Mikro Sejahtera</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please add transaction detail</h2>
             </div>
-            <form action="{{ route('dashboard.input_transaction') }}" method="POST" novalidate>
+            <form action="{{ route('dashboard.input_transaction') }}" method="POST" id="spajform" novalidate>
             @csrf
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
@@ -61,7 +61,7 @@
                 <br>
                 <div class="form-group row gutters-tiny">
                     <div class="col-12 mb-10">
-                        <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" >
+                        <button type="button" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" onclick="confirmation()">
                             <i class="si si-register mr-10"></i>  {{ __('Register') }}
                         </button>
                     </div>
@@ -143,6 +143,21 @@
             'Customer Already Buy 5 Insurance',
             'error'
             )
+    }
+
+    function confirmation(){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Make sure the data you input is correct',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            if (result.value) {
+                document.getElementById("spajform").submit();          }
+        })
     }
 </script>
 
