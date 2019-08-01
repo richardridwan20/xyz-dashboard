@@ -102,8 +102,9 @@
                     $end = \Carbon\Carbon::parse($transaction['protection_end'])->format('d-F-Y');
                     if($transaction['partner_id']['payment_type'] == 'Yearly')
                     {
+                        $year = $duration/12;
                         $premium = ($transaction['product_id']['plan_id']['premium_yearly']);
-                        $grossPremium = $premium * $duration;
+                        $grossPremium = $premium * $year;
                     } else {
                         $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
                         $grossPremium = $premium;
@@ -123,7 +124,11 @@
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['insured_name']}}</td>
                     <td>{{$transaction['product_id']['plan_id']['name']}}</td>
-                    <td>{{$transaction['protection_duration']}}</td>
+                    @if ($transaction['partner_id']['payment_type'] == 'Yearly')
+                        <td>{{$year}} year</td>
+                    @else
+                        <td>{{$transaction['protection_duration']}} month</td>
+                    @endif
                     <td>{{$start}}</td>
                     <td>{{$end}}</td>
                     <td>{{$transaction['certificate_number']}}</td>

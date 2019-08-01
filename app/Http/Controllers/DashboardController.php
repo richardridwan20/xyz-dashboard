@@ -335,6 +335,7 @@ class DashboardController extends Controller
                 $duration = $transaction['protection_duration'];
 
                 if ($type == 'Yearly'){
+                    $duration = $duration/12;
                     $premium = $transaction['product_id']['plan_id']['premium_yearly'];
                     $grossPremium = $premium * $duration;
                 }else if ($type == 'Monthly'){
