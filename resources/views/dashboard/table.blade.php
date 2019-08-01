@@ -108,6 +108,12 @@
                         $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
                         $grossPremium = $premium;
                     }
+                    $pCommision = ($grossPremium * $commision) * 0.9;
+                    $ppn = $pCommision * 0.1;
+                    $totalCommision = $grossPremium * $commision;
+                    $pphCommision = $pCommision * 0.02;
+                    $partnerBill = ($totalCommision - $pphCommision);
+                    $totalPartnerBill = ($grossPremium - $partnerBill);
                 @endphp
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
@@ -132,13 +138,13 @@
                     <td>0</td>
                     <td>0</td>
                     @else
-                    <td>{{$grossPremium}}</td>
-                    <td>{{$pCommision = ($grossPremium * $commision) * 0.9}}</td>
-                    <td>{{$ppn = $pCommision * 0.1}}</td>
-                    <td>{{$totalCommision = $grossPremium * $commision}}</td>
-                    <td>{{$pphCommision = $pCommision * 0.02}}</td>
-                    <td>{{$partnerBill = ($totalCommision - $pphCommision)}}</td>
-                    <td>{{$totalPartnerBill = ($grossPremium - $partnerBill)}}</td>
+                    <td>{{number_format($grossPremium)}}</td>
+                    <td>{{number_format($pCommision)}}</td>
+                    <td>{{number_format($ppn)}}</td>
+                    <td>{{number_format($totalCommision)}}</td>
+                    <td>{{number_format($pphCommision)}}</td>
+                    <td>{{number_format($partnerBill)}}</td>
+                    <td>{{number_format($totalPartnerBill)}}</td>
                     @endif
                     @endrole
                 </tr>
@@ -175,7 +181,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumCommision}}
+                        {{number_format($sumCommision)}}
                     </div>
                 </div>
             {{-- End of Partner Commision Row --}}
@@ -190,7 +196,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumPpnCommision}}
+                        {{number_format($sumPpnCommision)}}
                     </div>
                 </div>
             {{-- End of PPN Row --}}
@@ -205,7 +211,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumTotalCommision}}
+                        {{number_format($sumTotalCommision)}}
                     </div>
                 </div>
             </div>
@@ -222,7 +228,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumPphCommision}}
+                        {{number_format($sumPphCommision)}}
                     </div>
                 </div>
             {{-- End of PPH Komisi Row --}}
@@ -237,7 +243,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumPartnerBill}}
+                        {{number_format($sumPartnerBill)}}
                     </div>
                 </div>
             {{-- End of Tagihan Partner Row --}}
@@ -252,7 +258,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{$sumTotalPartnerBill}}
+                        {{number_format($sumTotalPartnerBill)}}
                     </div>
                 </div>
             </div>

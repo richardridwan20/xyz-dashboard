@@ -124,16 +124,14 @@
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
                     </li>
-                    @endrole
-                    @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
                     </li>
                     @endrole
 
                     {{-- Agent Sub-menu --}}
-                    <li class="nav-main-heading"><span class="sidebar-mini-visible">AG</span><span class="sidebar-mini-hidden">Agent</span></li>
                     @role('supadmin|financial|operation|partner financial|partner operation')
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">AG</span><span class="sidebar-mini-hidden">Agent</span></li>
                     <li>
                         <a class="{{ Route::is('dashboard.manage_agent') ? 'active' : '' }}" href="{{ route('dashboard.manage_agent') }}"><i class="fa fa-drivers-license-o"></i><span class="sidebar-mini-hide">Manage Agent</span></a>
                     </li>
