@@ -53,9 +53,9 @@
                         </div>
                         @endrole
                         @role("viewer|partner viewer")
-                        <div class="col-2"></div>
-                        <div class="col-2">
-                            <input class="form-control" type="text" name="text-name" placeholder="Insured Name">
+                        <div class="col-1"></div>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="text-name" placeholder="Policy Holder / Insured Name">
                         </div>
                         @endrole
                         <div class="col-1">

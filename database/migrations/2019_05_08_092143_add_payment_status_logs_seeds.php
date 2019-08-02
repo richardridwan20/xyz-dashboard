@@ -17,12 +17,16 @@ class AddPaymentStatusLogsSeeds extends Migration
             [
                 'transaction_id' => '1',
                 'status' => "Payment Done",
-                'total_paid' => '75000'
+                'total_paid' => '150000',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'transaction_id' => '2',
-                "status" => "Waiting for Payment",
-                'total_paid' => '75000',
+                "status" => "Payment Done",
+                'total_paid' => '270000',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ]
         ]);
     }

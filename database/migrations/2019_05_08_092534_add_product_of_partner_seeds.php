@@ -17,11 +17,63 @@ class AddProductOfPartnerSeeds extends Migration
             [
                 'product_id' => '1',
                 'partner_id' => '1',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '2',
+                'partner_id' => '1',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '1',
+                'partner_id' => '2',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'product_id' => '2',
                 'partner_id' => '2',
-            ]
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '1',
+                'partner_id' => '3',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '2',
+                'partner_id' => '3',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '1',
+                'partner_id' => '4',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '2',
+                'partner_id' => '4',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '1',
+                'partner_id' => '5',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '2',
+                'partner_id' => '5',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
         ]);
     }
 
