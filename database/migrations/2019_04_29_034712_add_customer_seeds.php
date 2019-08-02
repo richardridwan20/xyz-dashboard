@@ -20,6 +20,8 @@ class AddCustomerSeeds extends Migration
                 'citizen_id' => '1236547896541236',
                 'gender' => 'Male',
                 'email' => 'peter@sequislife.com',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'name' => 'Susi Susanti',
@@ -27,6 +29,8 @@ class AddCustomerSeeds extends Migration
                 'citizen_id' => '2256998731745569',
                 'gender' => 'Female',
                 'email' => 'susi@sequislife.com',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
         ]);
     }
