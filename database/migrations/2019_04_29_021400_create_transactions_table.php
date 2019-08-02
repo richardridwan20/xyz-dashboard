@@ -21,7 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->string('insured_relation');
             $table->string('insured_name');
             $table->string('insured_dob');
-            $table->string('insured_gender');
+            $table->string('insured_gender')->nullable();
             $table->string('protection_duration');
             $table->dateTime('protection_start')->nullable();
             $table->dateTime('protection_end')->nullable();

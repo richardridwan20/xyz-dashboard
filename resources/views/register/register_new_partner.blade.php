@@ -71,10 +71,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="name" class="form-control @error('commision') is-invalid @enderror" id="commision" name="commision" required autocomplete="commision">
-                                    <label for="name">Commision</label>
+                                    <input type="name" class="form-control @error('commission') is-invalid @enderror" id="commission" name="commission" required autocomplete="commission">
+                                    <label for="name">commission</label>
 
-                                    @error('commision')
+                                    @error('commission')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -196,7 +196,7 @@
 <script>
     var session1 = "{{Session::get('success')}}"
     console.log(session1)
-    
+
     if (session1 == 'success') {
             Swal.fire(
             'Success!',

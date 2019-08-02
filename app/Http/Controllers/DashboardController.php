@@ -273,11 +273,7 @@ class DashboardController extends Controller
 
         $month = $request->input('select-month');
         $year = $request->input('select-year');
-        if($request->input('text-name') == null || $request->input('text-name') == ""){
-            $name = "a";
-        }else{
-            $name = $request->input('text-name');
-        }
+        $name = $request->input('text-name');
         $name = strtolower($name);
         $name = ucwords($name);
 
@@ -306,10 +302,10 @@ class DashboardController extends Controller
 
         $user = User::find(Auth::id());
 
-        $sumCommision = 0;
-        $sumPpnCommision = 0;
-        $sumTotalCommision = 0;
-        $sumPphCommision = 0;
+        $sumcommission = 0;
+        $sumPpncommission = 0;
+        $sumTotalcommission = 0;
+        $sumPphcommission = 0;
         $sumPartnerBill = 0;
         $sumTotalPartnerBill = 0;
 
@@ -330,7 +326,7 @@ class DashboardController extends Controller
         foreach ($transactionsCount as $transaction){
 
             if($transaction['status'] != "Canceled"){
-                $commision = $transaction['partner_id']['commision'];
+                $commission = $transaction['partner_id']['commission'];
                 $type = $transaction['partner_id']['payment_type'];
                 $duration = $transaction['protection_duration'];
 
@@ -343,22 +339,22 @@ class DashboardController extends Controller
                     $grossPremium = $premium;
                 }
 
-                $pCommision = ($grossPremium * $commision) * 0.9;
-                $ppnCommision = ($grossPremium * $commision) * 0.1;
-                $totalCommision = ($grossPremium * $commision);
-                $pphCommision = ($pCommision * 0.02);
-                $partnerBill = ($totalCommision - $pphCommision);
+                $pcommission = ($grossPremium * $commission) * 0.9;
+                $ppncommission = ($grossPremium * $commission) * 0.1;
+                $totalcommission = ($grossPremium * $commission);
+                $pphcommission = ($pcommission * 0.02);
+                $partnerBill = ($totalcommission - $pphcommission);
                 $totalPartnerBill = ($grossPremium - $partnerBill);
-                $sumCommision += $pCommision;
-                $sumPpnCommision += $ppnCommision;
-                $sumTotalCommision += $totalCommision;
-                $sumPphCommision += $pphCommision;
+                $sumcommission += $pcommission;
+                $sumPpncommission += $ppncommission;
+                $sumTotalcommission += $totalcommission;
+                $sumPphcommission += $pphcommission;
                 $sumPartnerBill += $partnerBill;
                 $sumTotalPartnerBill += $totalPartnerBill;
                 }
             }
 
-        return view('dashboard.index', compact('transactions', 'append', 'data', 'sumCommision', 'sumPpnCommision', 'sumTotalCommision', 'sumPphCommision', 'sumPartnerBill', 'sumTotalPartnerBill', 'name'));
+        return view('dashboard.index', compact('transactions', 'append', 'data', 'sumcommission', 'sumPpncommission', 'sumTotalcommission', 'sumPphcommission', 'sumPartnerBill', 'sumTotalPartnerBill', 'name'));
     }
 
     public function inputTransaction(Request $request)
@@ -439,7 +435,6 @@ class DashboardController extends Controller
             $product = 2;
             $total_paid = $durationYear * 135000;
         }
-
         $data = [
             'partner_id' => $partner['id'],
             'product_id' => $product,

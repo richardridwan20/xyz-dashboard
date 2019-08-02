@@ -1,6 +1,6 @@
 @php
     $type = $detailTransaction['transaction']['partner']['payment_type'];
-    $commision = $detailTransaction['transaction']['partner']['commision'];
+    $commission = $detailTransaction['transaction']['partner']['commission'];
     $duration = $detailTransaction['transaction']['protection_duration'];
     $certificateNumber = $detailTransaction['transaction']['certificate_number'];
 

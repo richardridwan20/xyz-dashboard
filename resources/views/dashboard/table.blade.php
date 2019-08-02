@@ -56,7 +56,7 @@
                 <small>(dalam rupiah)</small>
             </th>
             <th style='line-height: 80%' id="premi" data-sort="premi" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Partner Commision</b><i class="status fa fa-pull-right fa-sort"></i>
+                <b>Partner commission</b><i class="status fa fa-pull-right fa-sort"></i>
                 <br>
                 <small>(dalam rupiah)</small>
             </th>
@@ -96,7 +96,7 @@
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
                 @php
-                    $commision = $transaction['partner_id']['commision'];
+                    $commission = $transaction['partner_id']['commission'];
                     $duration = $transaction['protection_duration'];
                     $start = \Carbon\Carbon::parse($transaction['protection_start'])->format('d-F-Y');
                     $end = \Carbon\Carbon::parse($transaction['protection_end'])->format('d-F-Y');
@@ -109,11 +109,11 @@
                         $premium = ($transaction['product_id']['plan_id']['premium_monthly']);
                         $grossPremium = $premium;
                     }
-                    $pCommision = ($grossPremium * $commision) * 0.9;
-                    $ppn = $pCommision * 0.1;
-                    $totalCommision = $grossPremium * $commision;
-                    $pphCommision = $pCommision * 0.02;
-                    $partnerBill = ($totalCommision - $pphCommision);
+                    $pcommission = ($grossPremium * $commission) * 0.9;
+                    $ppn = $pcommission * 0.1;
+                    $totalcommission = $grossPremium * $commission;
+                    $pphcommission = $pcommission * 0.02;
+                    $partnerBill = ($totalcommission - $pphcommission);
                     $totalPartnerBill = ($grossPremium - $partnerBill);
                 @endphp
                 <tr>
@@ -144,10 +144,10 @@
                     <td>0</td>
                     @else
                     <td>{{number_format($grossPremium)}}</td>
-                    <td>{{number_format($pCommision)}}</td>
+                    <td>{{number_format($pcommission)}}</td>
                     <td>{{number_format($ppn)}}</td>
-                    <td>{{number_format($totalCommision)}}</td>
-                    <td>{{number_format($pphCommision)}}</td>
+                    <td>{{number_format($totalcommission)}}</td>
+                    <td>{{number_format($pphcommission)}}</td>
                     <td>{{number_format($partnerBill)}}</td>
                     <td>{{number_format($totalPartnerBill)}}</td>
                     @endif
@@ -174,11 +174,11 @@
 @role('supadmin|treasury|financial|partner financial')
 <div class="row" align="left">
         <div class="block-content block-content-full order-1">
-            {{-- Start of Partner Commision Row --}}
+            {{-- Start of Partner commission Row --}}
             <div class="row">
                 <div class="col-md-2">
                     <div class="block">
-                        <b>Total Partner Commision</b>
+                        <b>Total Partner commission</b>
                         <br>
                         <small>(dalam rupiah)</small>
                     </div>
@@ -186,10 +186,10 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{number_format($sumCommision)}}
+                        {{number_format($sumcommission)}}
                     </div>
                 </div>
-            {{-- End of Partner Commision Row --}}
+            {{-- End of Partner commission Row --}}
             {{-- Start of PPN Row --}}
                 <div class="col-md-2">
                     <div class="block">
@@ -201,7 +201,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{number_format($sumPpnCommision)}}
+                        {{number_format($sumPpncommission)}}
                     </div>
                 </div>
             {{-- End of PPN Row --}}
@@ -216,7 +216,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{number_format($sumTotalCommision)}}
+                        {{number_format($sumTotalcommission)}}
                     </div>
                 </div>
             </div>
@@ -233,7 +233,7 @@
 
                 <div class="col-md-2">
                     <div class="block">
-                        {{number_format($sumPphCommision)}}
+                        {{number_format($sumPphcommission)}}
                     </div>
                 </div>
             {{-- End of PPH Komisi Row --}}
