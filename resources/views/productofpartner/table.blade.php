@@ -1,4 +1,4 @@
-<table id="example" class="table table-hover table-striped table-vcenter table-bordered table-responsive">
+<table id="example" class="table table-hover table-striped table-vcenter table-bordered ">
     <thead>
         <tr>
             <th id="id" data-sort="id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -21,14 +21,6 @@
                 <b>Plan</b>
                 <i class="customer_id fa fa-pull-right"></i>
             </th>
-            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Created At</b>
-                <i class="customer_id fa fa-pull-right"></i>
-            </th>
-            <th id="product_id" data-sort="product_id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Updated At</b>
-                <i class="product_id fa fa-pull-right"></i>
-            </th>
         </tr>
     </thead>
     <tbody id="tableAjax">
@@ -46,8 +38,6 @@
                     <td>{{$productOfPartner['product_id']['plan_id']['id']}}</td>
                     <td>{{$productOfPartner['product_id']['name']}}</td>
                     <td>{{$productOfPartner['product_id']['plan_id']['name']}}</td>
-                    <td>{{$productOfPartner['created_at']}}</td>
-                    <td>{{$productOfPartner['updated_at']}}</td>
                 </tr>
             @empty
                 <tr>
