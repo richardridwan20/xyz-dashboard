@@ -50,6 +50,7 @@ class RegisterController extends Controller
             'sender' => 'required',
             'ptype' => 'required',
             'npinduk' => 'required',
+            'quota' => 'required|numeric'
         ];
         $customMessages = [
             'asdata.required' => 'please choose :attribute',
@@ -68,7 +69,8 @@ class RegisterController extends Controller
             'asdata' => 'Allow Send Data',
             'sender' => 'Email Sender',
             'ptype' => 'Payment Type',
-            'npinduk' => 'Nomor Polis Induk'
+            'npinduk' => 'Nomor Polis Induk',
+            'quota' => 'Agent Quota'
         ];
         $request->validate($rules, $customMessages, $customAttributes);
         if($request->ptype == "Monthly"){
@@ -89,8 +91,11 @@ class RegisterController extends Controller
             'no_polis_induk' => $request->npinduk,
             'payment_type' => $request->ptype,
             'duration' => $duration,
+            'agent_quota' => $request->quota,
         ];
         $inputPartner = $this->service->inputNewPartner()->post($data);
+
+        dd($inputPartner);
 
         return redirect()->back()->with('success', 'success');
     }
@@ -122,6 +127,8 @@ class RegisterController extends Controller
             'password' => $request->password,
         ];
         $inputPartner = $this->service->inputPartner()->post($data);
+
+
 
         if($request->role == 'financial'){
             $user = User::find($inputPartner->bodyResponse['id']);

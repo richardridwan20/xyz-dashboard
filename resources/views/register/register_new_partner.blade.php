@@ -149,6 +149,22 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
+                                <div class="form-material floating">
+
+                                    <input type="name" class="form-control @error('quota') is-invalid @enderror" id="quota" name="quota" required autocomplete="quota">
+                                    <label for="npinduk">Agent Quota</label>
+
+                                    @error('quota')
+                                        <p style="color:red">
+                                            <strong>{{ $message }}</strong>
+                                        </p>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
                                 <select type="dropdown" class="form-control" id="asdata" name="asdata">
                                     <option  disabled selected>Allow Send Data?</option>
                                     <option value=1>Yes</option>

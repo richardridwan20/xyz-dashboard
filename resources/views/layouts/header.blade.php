@@ -112,6 +112,11 @@
                         <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Pending Transactions</span></a>
                     </li>
                     @endrole
+                    {{-- @role('supadmin')
+                    <li>
+                        <a class="{{ Route::is('dashboard.spaj-voucher') ? 'active' : '' }}" href="{{ route('dashboard.spaj-voucher') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ Voucher</span></a>
+                    </li>
+                    @endrole --}}
 
                     {{-- Partner Sub-menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>
