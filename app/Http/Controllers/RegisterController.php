@@ -95,8 +95,6 @@ class RegisterController extends Controller
         ];
         $inputPartner = $this->service->inputNewPartner()->post($data);
 
-        dd($inputPartner);
-
         return redirect()->back()->with('success', 'success');
     }
 
