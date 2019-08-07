@@ -39,7 +39,7 @@ class RegisterController extends Controller
     public function inputNewPartner(Request $request)
     {
         $rules = [
-            'pname' => 'required',
+            'pname' => 'required|unique:partners,name',
             'cname' => 'required',
             'address' => 'required',
             'commission' => 'required',
