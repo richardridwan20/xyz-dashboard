@@ -13,7 +13,7 @@ class AddProductOfPartnerSeeds extends Migration
      */
     public function up()
     {
-        DB::connection('mysql.log')->table('product_of_partners')->insert([
+        DB::connection('mysql')->table('product_of_partners')->insert([
             [
                 'product_id' => '1',
                 'partner_id' => '1',
