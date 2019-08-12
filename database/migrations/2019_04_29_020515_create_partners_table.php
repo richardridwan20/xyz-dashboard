@@ -25,7 +25,6 @@ class CreatePartnersTable extends Migration
             $table->string('subject');
             $table->string('body');
             $table->string('no_polis_induk');
-            $table->string('payment_type');
             $table->integer('agent_quota')->default(50);
             $table->timestamps();
         });
