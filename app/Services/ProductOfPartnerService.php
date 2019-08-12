@@ -28,4 +28,18 @@ class ProductOfPartnerService extends ApiService
 
         return $this;
     }
+
+    public function product()
+    {
+        $this->endPoint = 'product';
+
+        return $this;
+    }
+
+    public function createProductPartner()
+    {
+        $this->endPoint = 'productofpartner/create';
+
+        return $this;
+    }
 }

@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');
+    Route::post('/productofpartner/create', 'ProductOfPartnerController@create')->name('productofpartner.create');
     Route::post('/register-new-partner-role', 'RegisterController@inputPartner')->name('register.input_partner');
     Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
     Route::post('/spaj-input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
