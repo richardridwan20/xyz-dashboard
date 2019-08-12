@@ -16,11 +16,39 @@ class AddProductSeeds extends Migration
         DB::table('products')->insert([
             [
                 'name' => 'Asuransi Sequis Mikro Sejahtera',
-                'plan_id' => 1
+                'duration' => 'Yearly',
+                'plan_name' => 'Standard',
+                'sum_assured' => '23000000',
+                'benefits' => 'Asuransi Mikro yang Terjangkau',
+                'description' => 'Asuransi yang sangat terjangkau',
+                'premium' => 75000
             ],
             [
                 'name' => 'Asuransi Sequis Mikro Sejahtera',
-                'plan_id' => 2
+                'duration' => 'Yearly',
+                'plan_name' => 'Deluxe',
+                'sum_assured' => '36000000',
+                'benefits' => 'Asuransi Mikro yang Terjangkau',
+                'description' => 'Asuransi yang sangat terjangkau',
+                'premium' => 135000,
+            ],
+            [
+                'name' => 'Asuransi Sequis Mikro Sejahtera',
+                'duration' => 'Monthly',
+                'plan_name' => 'Standard',
+                'sum_assured' => '23000000',
+                'benefits' => 'Asuransi Mikro yang Terjangkau',
+                'description' => 'Asuransi yang sangat terjangkau',
+                'premium' => 7800
+            ],
+            [
+                'name' => 'Asuransi Sequis Mikro Sejahtera',
+                'duration' => 'Monthly',
+                'plan_name' => 'Deluxe',
+                'sum_assured' => '36000000',
+                'benefits' => 'Asuransi Mikro yang Terjangkau',
+                'description' => 'Asuransi yang sangat terjangkau',
+                'premium' => 14000,
             ]
         ]);
     }
