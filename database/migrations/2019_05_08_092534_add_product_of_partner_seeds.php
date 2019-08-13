@@ -74,6 +74,18 @@ class AddProductOfPartnerSeeds extends Migration
                 'created_at' => '2019-08-02',
                 'updated_at' => '2019-08-02'
             ],
+            [
+                'product_id' => '3',
+                'partner_id' => '5',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
+            [
+                'product_id' => '4',
+                'partner_id' => '5',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
+            ],
         ]);
     }
 

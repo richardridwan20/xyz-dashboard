@@ -181,15 +181,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <select type="dropdown" class="form-control" id="ptype" name="ptype">
-                                    <option  disabled selected>Payment Type</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Yearly">Yearly</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="form-group row gutters-tiny">
                             <div class="col-12 mb-10">
                                 <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" formaction="{{ route('register.input_new_partner')}}">

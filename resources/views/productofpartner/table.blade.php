@@ -21,6 +21,14 @@
                 <b>Plan</b>
                 <i class="customer_id fa fa-pull-right"></i>
             </th>
+            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Duration</b>
+                <i class="customer_id fa fa-pull-right"></i>
+            </th>
+            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Action</b>
+                <i class="customer_id fa fa-pull-right"></i>
+            </th>
         </tr>
     </thead>
     <tbody id="tableAjax">
@@ -35,9 +43,11 @@
                     <td></td>
                     <td></td>
                     @endif
-                    <td>{{$productOfPartner['product_id']['plan_id']['id']}}</td>
+                    <td>{{$productOfPartner['product_id']['id']}}</td>
                     <td>{{$productOfPartner['product_id']['name']}}</td>
-                    <td>{{$productOfPartner['product_id']['plan_id']['name']}}</td>
+                    <td>{{$productOfPartner['product_id']['plan_name']}}</td>
+                    <td>{{$productOfPartner['product_id']['duration']}}</td>
+                    <td><a onclick="confirmation('delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
                 </tr>
             @empty
                 <tr>

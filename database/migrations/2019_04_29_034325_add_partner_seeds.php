@@ -25,7 +25,6 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1234567890123',
-                'payment_type' => 'Yearly',
                 'agent_quota' => 50
             ],
             [
@@ -39,7 +38,6 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Yearly',
                 'agent_quota' => 50
             ],
             [
@@ -53,7 +51,6 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Monthly',
                 'agent_quota' => 50
             ],
             [
@@ -67,7 +64,6 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Yearly',
                 'agent_quota' => 50
             ],
             [
@@ -81,7 +77,6 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'payment_type' => 'Yearly',
                 'agent_quota' => 50
             ],
         ]);

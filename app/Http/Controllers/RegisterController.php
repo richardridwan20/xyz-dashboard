@@ -48,14 +48,12 @@ class RegisterController extends Controller
             'body' => 'required',
             'asdata' => 'required',
             'sender' => 'required',
-            'ptype' => 'required',
             'npinduk' => 'required',
             'quota' => 'required|numeric'
         ];
         $customMessages = [
             'asdata.required' => 'please choose :attribute',
             'sender.required' => 'please choose :attribute',
-            'ptype.required' => 'please choose :attribute',
             'required' => 'please fill the :attribute',
         ];
         $customAttributes = [
@@ -68,7 +66,6 @@ class RegisterController extends Controller
             'body' => 'Email Body',
             'asdata' => 'Allow Send Data',
             'sender' => 'Email Sender',
-            'ptype' => 'Payment Type',
             'npinduk' => 'Nomor Polis Induk',
             'quota' => 'Agent Quota'
         ];
@@ -89,11 +86,11 @@ class RegisterController extends Controller
             'subject' => $request->subject,
             'body' => $request->body,
             'no_polis_induk' => $request->npinduk,
-            'payment_type' => $request->ptype,
-            'duration' => $duration,
             'agent_quota' => $request->quota,
         ];
         $inputPartner = $this->service->inputNewPartner()->post($data);
+
+        dd($inputPartner);
 
         return redirect()->back()->with('success', 'success');
     }

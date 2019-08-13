@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\notExist;
+use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
 use App\Services\ProductOfPartnerService;
+use App\Services\RegisterService;
 
 class ProductOfPartnerController extends Controller
 {
     public function __construct(ProductOfPartnerService $service)
     {
         $this->service = $service;
+        $this->registerService = new RegisterService;
     }
 
     /**
@@ -21,11 +25,13 @@ class ProductOfPartnerController extends Controller
     public function index(Request $request)
     {
         $productOfPartners = $this->service->allProductOfPartner()->get();
+        $partnerName = $this->registerService->partnerName()->get();
+        $product = $this->service->product()->get();
         $column = 'partner_id';
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        return view('productofpartner.index', compact('productOfPartners', 'append'));
+        return view('productofpartner.index', compact('productOfPartners', 'append', 'partnerName','product'));
     }
 
     /**
@@ -33,9 +39,23 @@ class ProductOfPartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $rules = [
+            'product_id' => ['required', new notExist($request->partner_id)],
+            'partner_id' => 'required'
+        ];
+
+        $request->validate($rules);
+
+        $data = [
+            'product_id' => $request->product_id,
+            'partner_id' => $request->partner_id
+        ];
+
+        $this->service->createProductPartner()->post($data);
+
+        return redirect()->back()->with('notify', 'created');
     }
 
     /**
