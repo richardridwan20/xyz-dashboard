@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class ApiRepository implements RepositoryInterface
 {
@@ -10,6 +12,7 @@ class ApiRepository implements RepositoryInterface
     protected $url;
     protected $arrayData = [];
     protected $response;
+    public $token;
 
     public function __construct()
     {
@@ -22,15 +25,25 @@ class ApiRepository implements RepositoryInterface
 
     public function get()
     {
-        $this->response = $this->client->get($this->url);
+        $this->token = Session::get('token');
+        $this->response = $this->client->get($this->url, [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer '.$this->token
+            ],
+        ]);
 
         return $this;
     }
 
     public function post(array $data)
     {
+        $this->token = Session::get('token');
         $this->response = $this->client->post($this->url, [
-                'headers' => ['Accept' => 'application/json'],
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer '.$this->token
+                    ],
                 'json' => $data,
             ]);
         return $this;
@@ -38,8 +51,12 @@ class ApiRepository implements RepositoryInterface
 
     public function put(array $data)
     {
+        $this->token = Session::get('token');
         $this->response = $this->client->put($this->url, [
-                'headers' => ['Accept' => 'application/json'],
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer '.$this->token
+                ],
                 'json' => $data,
             ]);
         return $this;
@@ -47,8 +64,12 @@ class ApiRepository implements RepositoryInterface
 
     public function upload(array $data)
     {
+        $this->token = Session::get('token');
         $this->response = $this->client->post($this->url, [
-                'headers' => ['Accept' => 'application/json'],
+                'headers' =>[
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer '.$this->token
+                ],
                 'json' => $data,
             ]);
         return $this;

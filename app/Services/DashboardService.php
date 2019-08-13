@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Services\ApiService;
-use App\Models\Partner;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +14,11 @@ class DashboardService extends ApiService
         $this->pageHeaderEndPoint = '';
     }
 
+    public function login()
+    {
+        $this->endPoint = 'login';
+        return $this;
+    }
 
     public function createAgent()
     {

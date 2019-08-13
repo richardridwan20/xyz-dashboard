@@ -3,23 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaction;
-use App\Models\Partner;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\Models\Agent;
-use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Session;
 use App\Services\DashboardService;
 use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
+    public $accessToken;
+
     public function __construct(DashboardService $service)
     {
         $this->service = $service;
@@ -27,6 +24,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        $this->accessToken = Session::get('token');
         if(Role::count() == 0){
             // Create Role
             Role::create(['name'=>'supadmin']);//1

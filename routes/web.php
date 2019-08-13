@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
     Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
