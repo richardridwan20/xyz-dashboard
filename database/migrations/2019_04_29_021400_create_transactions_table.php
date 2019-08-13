@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('partner_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('plan_id');
             $table->string('insured_relation');
             $table->string('insured_name');
             $table->string('insured_dob');

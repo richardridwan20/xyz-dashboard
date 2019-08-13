@@ -16,7 +16,7 @@ class CreateTransactionForeignKeyTable extends Migration
         Schema::table('transactions', function (Blueprint $table) {
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('plan_id')->references('id')->on('sovera.product_plans')->onDelete('cascade');
         });
     }
 
@@ -30,7 +30,7 @@ class CreateTransactionForeignKeyTable extends Migration
         Schema::table('transactions', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
             $table->dropForeign(['partner_id']);
-            $table->dropForeign(['product_id']);
+            $table->dropForeign(['plan_id']);
         });
     }
 }

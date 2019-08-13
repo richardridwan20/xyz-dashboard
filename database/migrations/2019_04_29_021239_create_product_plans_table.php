@@ -14,7 +14,7 @@ class CreateProductPlansTable extends Migration
     public function up()
     {
         Schema::create('product_plans', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('name');
             $table->string('sum_assured');
