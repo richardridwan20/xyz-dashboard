@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductOfPartnersTable extends Migration
+class CreateProductPlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,18 @@ class CreateProductOfPartnersTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('product_of_partners', function (Blueprint $table) {
+        Schema::create('product_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('product_id');
-            $table->unsignedInteger('partner_id');
+            $table->string('name');
+            $table->string('sum_assured');
+            $table->string('benefits');
+            $table->string('description');
+            $table->string('premium');
+            $table->string('duration');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('sequis-b2b-dashboard.products');
-            $table->foreign('partner_id')->references('id')->on('sequis-b2b-dashboard.partners');
+            $table->foreign('product_id')->references('id')->on('sovera.products');
         });
     }
 
@@ -31,6 +35,6 @@ class CreateProductOfPartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_of_partners');
+        Schema::dropIfExists('product_plans');
     }
 }

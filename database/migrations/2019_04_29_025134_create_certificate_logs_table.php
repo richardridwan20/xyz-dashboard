@@ -31,6 +31,6 @@ class CreateCertificateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certificate_logs');
+        Schema::connection('mysql.log')->dropIfExists('certificate_logs');
     }
 }
