@@ -43,11 +43,11 @@
                     <td></td>
                     <td></td>
                     @endif
-                    <td>{{$productOfPartner['product_id']['id']}}</td>
-                    <td>{{$productOfPartner['product_id']['name']}}</td>
-                    <td>{{$productOfPartner['product_id']['plan_name']}}</td>
-                    <td>{{$productOfPartner['product_id']['duration']}}</td>
-                    <td><a onclick="confirmation('delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
+                    <td>{{$productOfPartner['plan_id']['id']}}</td>
+                    <td>{{$productOfPartner['plan_id']['product_id']['name']}}</td>
+                    <td>{{$productOfPartner['plan_id']['name']}}</td>
+                    <td>{{$productOfPartner['plan_id']['duration']}}</td>
+                    <td><a onclick="confirmation('productofpartner/delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
                 </tr>
             @empty
                 <tr>

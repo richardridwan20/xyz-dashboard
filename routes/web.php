@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('permission:view upload form');
     Route::get('/certificate/{id}', 'CertificateController@index')->name('certificate.index');
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
+    Route::get('/productofpartner/delete/{id}', 'ProductOfPartnerController@destroy')->name('productofpartner.delete')->middleware('role:supadmin|financial|operation');
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
     Route::get('/check', 'DashboardController@check')->name('dashboard.check');
     Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');

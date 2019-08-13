@@ -26,12 +26,12 @@ class ProductOfPartnerController extends Controller
     {
         $productOfPartners = $this->service->allProductOfPartner()->get();
         $partnerName = $this->registerService->partnerName()->get();
-        $product = $this->service->product()->get();
+        $plan = $this->service->plan()->fetch();
         $column = 'partner_id';
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        return view('productofpartner.index', compact('productOfPartners', 'append', 'partnerName','product'));
+        return view('productofpartner.index', compact('productOfPartners', 'append', 'partnerName','plan'));
     }
 
     /**
@@ -42,18 +42,18 @@ class ProductOfPartnerController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            'product_id' => ['required', new notExist($request->partner_id)],
+            'plan_id' => ['required', new notExist($request->partner_id)],
             'partner_id' => 'required'
         ];
 
         $request->validate($rules);
 
         $data = [
-            'product_id' => $request->product_id,
+            'plan_id' => $request->plan_id,
             'partner_id' => $request->partner_id
         ];
 
-        $this->service->createProductPartner()->post($data);
+        $create = $this->service->createProductPartner()->post($data);
 
         return redirect()->back()->with('notify', 'created');
     }
@@ -111,6 +111,8 @@ class ProductOfPartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->service->PpDelete($id)->get();
+
+        return redirect()->back()->with('notify', 'deleted');
     }
 }

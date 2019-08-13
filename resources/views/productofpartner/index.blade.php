@@ -12,7 +12,7 @@
             </div>
             <div class="block-content block-content-full">
                     <div align='right' class="col-12" style="margin-right: 20px; margin-buttom: 20px;">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addModal" align='right'>Edit</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addModal" align='right'>Add Partner Product</button>
                     </div>
                 @include('productofpartner.table')
             </div>
@@ -55,10 +55,10 @@
                         <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                                 <div class="form-group row">
 
-                                        <select type="dropdown" class="form-control" id="product_id" name="product_id">
-                                            <option  disabled selected>Select Partner</option>
-                                            @for($i=0;$i<count($product);$i++)
-                                                <option value="{{$product[$i]['id']}}">{{$product[$i]['name']}} {{$product[$i]['plan_name']}} {{$product[$i]['duration']}}</option>
+                                        <select type="dropdown" class="form-control" id="plan_id" name="plan_id">
+                                            <option  disabled selected>Select Product</option>
+                                            @for($i=0;$i<count($plan->bodyResponse);$i++)
+                                                <option value="{{$plan->bodyResponse[$i]['id']}}">{{$plan->bodyResponse[$i]['product']['name']}} {{$plan->bodyResponse[$i]['name']}} {{$plan->bodyResponse[$i]['duration']}}</option>
                                             @endfor
                                         </select>
 
@@ -121,8 +121,14 @@ var session1 = "{{Session::get('notify')}}"
         console.log(session1)
         if (session1 == 'created') {
                 Swal.fire(
-                'Success!',
+                'Created!',
                 'Product Partner has been created',
+                'success'
+                )
+        }else if (session1 == 'deleted'){
+                Swal.fire(
+                'Deleted!',
+                'Product Partner has been deleted',
                 'success'
                 )
         }
