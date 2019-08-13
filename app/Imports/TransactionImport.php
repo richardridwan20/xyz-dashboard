@@ -19,7 +19,7 @@ class TransactionImport implements ToModel, WithHeadingRow
         return new Transaction([
            'customer_id'            => $row['customer_id'],
            'partner_id'             => $row['partner_id'],
-           'product_id'             => $row['product_id'],
+           'plan_id'                => $row['product_id'],
            'insured_relation'       => $row['insured_relation'],
            'insured_name'           => $row['insured_name'],
            'insured_dob'            => $row['insured_dob'],

@@ -325,15 +325,15 @@ class DashboardController extends Controller
 
             if($transaction['status'] != "Canceled"){
                 $commission = $transaction['partner_id']['commission'];
-                $type = $transaction['partner_id']['payment_type'];
+                $type = $transaction['plan_id']['duration'];
                 $duration = $transaction['protection_duration'];
 
                 if ($type == 'Yearly'){
                     $duration = $duration/12;
-                    $premium = $transaction['product_id']['plan_id']['premium_yearly'];
+                    $premium = $transaction['plan_id']['premium'];
                     $grossPremium = $premium * $duration;
                 }else if ($type == 'Monthly'){
-                    $premium = $transaction['product_id']['plan_id']['premium_monthly'];
+                    $premium = $transaction['plan_id']['premium'];
                     $grossPremium = $premium;
                 }
 
