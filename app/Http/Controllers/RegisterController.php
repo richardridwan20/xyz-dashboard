@@ -90,8 +90,6 @@ class RegisterController extends Controller
         ];
         $inputPartner = $this->service->inputNewPartner()->post($data);
 
-        dd($inputPartner);
-
         return redirect()->back()->with('success', 'success');
     }
 
@@ -137,7 +135,6 @@ class RegisterController extends Controller
         }
 
         $notify = 'created';
-
 
         return redirect()->back()->with('notify','created');
     }

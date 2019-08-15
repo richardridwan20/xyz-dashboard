@@ -134,6 +134,13 @@
                     </li>
                     @endrole
 
+                    {{-- Product Sub-Menu --}}
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">PO</span><span class="sidebar-mini-hidden">Product</span></li>
+                    @role('supadmin|financial|operation')
+                    <li>
+                        <a class="{{ Route::is('register.product') ? 'active' : '' }}" href="{{ route('register.product') }}"><i class="fa fa-archive"></i><span class="sidebar-mini-hide">Register Product</span></a>
+                    </li>
+                    @endrole
                     {{-- Agent Sub-menu --}}
                     @role('supadmin|financial|operation|partner financial|partner operation')
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">AG</span><span class="sidebar-mini-hidden">Agent</span></li>

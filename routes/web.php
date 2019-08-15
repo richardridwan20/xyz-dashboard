@@ -15,6 +15,7 @@ Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
+    Route::get('/register-product', 'ProductController@index')->name('register.product');
     Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
     Route::get('/register-partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');
+    Route::post('/register-product', 'ProductController@create')->name('product.create');
     Route::post('/productofpartner/create', 'ProductOfPartnerController@create')->name('productofpartner.create');
     Route::post('/register-new-partner-role', 'RegisterController@inputPartner')->name('register.input_partner');
     Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');

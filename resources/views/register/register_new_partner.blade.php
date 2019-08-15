@@ -21,8 +21,8 @@
                 <div class="col-sm-8 col-md-6 col-xl-4">
                     <form class="js-validation-signin" action="{{ route('register.input_partner') }}" method="POST">
                         @csrf
-                        <div class="col-12">
                         <div class="form-group row">
+                            <div class="col-12">
                                 <div class="form-material floating">
 
                                     <input type="name" class="form-control @error('name') is-invalid @enderror" id="pname" name="pname" required autocomplete="pname">

@@ -21,7 +21,9 @@ class AddProductPlanSeeds extends Migration
                 'sum_assured' => '23000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premium' => 75000
+                'premium' => 75000,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'product_id' => 1,
@@ -30,7 +32,9 @@ class AddProductPlanSeeds extends Migration
                 'sum_assured' => '36000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premium' => 135000
+                'premium' => 135000,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'product_id' => 1,
@@ -39,7 +43,9 @@ class AddProductPlanSeeds extends Migration
                 'sum_assured' => '23000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premium' => 7800
+                'premium' => 7800,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'product_id' => 1,
@@ -48,7 +54,9 @@ class AddProductPlanSeeds extends Migration
                 'sum_assured' => '36000000',
                 'benefits' => 'Asuransi Mikro yang Terjangkau',
                 'description' => 'Asuransi yang sangat terjangkau',
-                'premium' => 14000
+                'premium' => 14000,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
         ]);
     }

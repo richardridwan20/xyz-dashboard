@@ -16,6 +16,8 @@ class AddProductSeeds extends Migration
         DB::table('products')->insert([
             [
                 'name' => 'Asuransi Sequis Mikro Sejahtera',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
         ]);
     }

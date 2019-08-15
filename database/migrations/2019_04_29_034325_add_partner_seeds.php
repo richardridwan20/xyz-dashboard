@@ -25,7 +25,9 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1234567890123',
-                'agent_quota' => 50
+                'agent_quota' => 50,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'name' => 'Smailing',
@@ -38,7 +40,9 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'agent_quota' => 50
+                'agent_quota' => 50,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'name' => 'Sepulsa',
@@ -51,7 +55,9 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'agent_quota' => 50
+                'agent_quota' => 50,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'name' => 'Warung Pintar',
@@ -64,7 +70,9 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'agent_quota' => 50
+                'agent_quota' => 50,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'name' => 'Macroad',
@@ -77,7 +85,9 @@ class AddPartnerSeeds extends Migration
                 'subject' => 'Test',
                 'body' => 'Test',
                 'no_polis_induk' => '1902103366589',
-                'agent_quota' => 50
+                'agent_quota' => 50,
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
         ]);
     }

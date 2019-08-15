@@ -21,7 +21,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Peter',
                 'citizen_id' => '2019283746583012',
                 'phone_number' => '0819283746543',
-                'dob' => '2019-06-28'
+                'dob' => '2019-06-28',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 1,
@@ -30,7 +32,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Richard',
                 'citizen_id' => '2019283746583013',
                 'phone_number' => '082746383073',
-                'dob' => '2019-06-19'
+                'dob' => '2019-06-19',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 2,
@@ -39,7 +43,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Manuel',
                 'citizen_id' => '2019283746583012',
                 'phone_number' => '0819283746543',
-                'dob' => '2019-06-28'
+                'dob' => '2019-06-28',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 2,
@@ -48,7 +54,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Fredy',
                 'citizen_id' => '2019283746583013',
                 'phone_number' => '082746383073',
-                'dob' => '2019-06-19'
+                'dob' => '2019-06-19',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 3,
@@ -57,7 +65,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'pulde',
                 'citizen_id' => '2019283746583012',
                 'phone_number' => '0819283746543',
-                'dob' => '2019-06-28'
+                'dob' => '2019-06-28',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 3,
@@ -66,7 +76,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Richard',
                 'citizen_id' => '2019283746583013',
                 'phone_number' => '082746383073',
-                'dob' => '2019-06-19'
+                'dob' => '2019-06-19',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 4,
@@ -75,7 +87,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Peter',
                 'citizen_id' => '2019283746583012',
                 'phone_number' => '0819283746543',
-                'dob' => '2019-06-28'
+                'dob' => '2019-06-28',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 4,
@@ -84,7 +98,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Richard',
                 'citizen_id' => '2019283746583013',
                 'phone_number' => '082746383073',
-                'dob' => '2019-06-19'
+                'dob' => '2019-06-19',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 5,
@@ -93,7 +109,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Peter',
                 'citizen_id' => '2019283746583012',
                 'phone_number' => '0819283746543',
-                'dob' => '2019-06-28'
+                'dob' => '2019-06-28',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
             [
                 'partner_id' => 5,
@@ -102,7 +120,9 @@ class AddAgentsSeeds extends Migration
                 'agent_branch_name' => 'Richard',
                 'citizen_id' => '2019283746583013',
                 'phone_number' => '082746383073',
-                'dob' => '2019-06-19'
+                'dob' => '2019-06-19',
+                'created_at' => '2019-08-02',
+                'updated_at' => '2019-08-02'
             ],
         ]);
     }
