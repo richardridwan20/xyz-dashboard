@@ -103,6 +103,9 @@
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
+                    {{-- <li>
+                        <a class="{{ Route::is('dashboard.addProduct') ? 'active' : '' }}" href="{{ route('dashboard.addProduct') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
+                    </li> --}}
                     @endrole
                     @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>

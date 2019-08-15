@@ -1,5 +1,5 @@
 @php
-    $type = $detailTransaction['transaction']['partner']['payment_type'];
+    $type = $detailTransaction['plan']['duration'];
     $commission = $detailTransaction['transaction']['partner']['commission'];
     $duration = $detailTransaction['transaction']['protection_duration'];
     $certificateNumber = $detailTransaction['transaction']['certificate_number'];
@@ -103,7 +103,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['product']['name']}}
+                            {{$detailTransaction['plan']['product']['name']}}
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['product']['plan']['name']}}
+                            {{$detailTransaction['plan']['name']}}
                         </div>
                     </div>
                 </div>
