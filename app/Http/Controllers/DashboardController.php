@@ -11,6 +11,7 @@ use App\User;
 use App\Models\Agent;
 use Illuminate\Support\Facades\Session;
 use App\Services\DashboardService;
+use App\Services\ProductOfPartnerService;
 use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
@@ -20,6 +21,7 @@ class DashboardController extends Controller
     public function __construct(DashboardService $service)
     {
         $this->service = $service;
+        $this->PpService = new ProductOfPartnerService;
     }
 
     public function index(Request $request)
@@ -357,6 +359,10 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
+        $planArray = explode("|", $request->plan_id);
+        $request->merge(["plan_id" => $planArray[0]]);
+        $request->merge(["duration_type" => $planArray[1]]);
+        $request->merge(["premium" => $planArray[2]]);
         $year = Carbon::today()->year;
         $month = Carbon::today()->month;
         $day = Carbon::today()->day;
@@ -365,7 +371,7 @@ class DashboardController extends Controller
         $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
         $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
         $rules = [
-            'plan' => 'required',
+            'plan_id' => 'required',
             'duration' => 'required',
             'phname' => 'required|regex:/^[\pL\s]+$/u',
             'phcitizen_id' => 'required|digits:16',
@@ -373,9 +379,7 @@ class DashboardController extends Controller
             'phemail' => 'required|email',
             'irelation' => 'required',
             'iname' => 'required|regex:/^[\pL\s]+$/u',
-            'icitizen_id' => 'required|digits:16',
             'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
-            'iemail' => 'required|email',
             'b1gender' => 'nullable',
             'b1relation' => 'required',
             'b1name' => 'required|regex:/^[\pL\s]+$/u',
@@ -387,13 +391,13 @@ class DashboardController extends Controller
             'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
         ];
         $customMessages = [
-            'plan.required' => 'please select the :attribute',
+            'plan_id.required' => 'please select the :attribute',
             'phgender.required' => 'please select the :attribute',
             'before_or_equal' => ':attribute should more than 18 years',
             'after_or_equal' => ':attribute should less than 55 years'
         ];
         $customAttributes = [
-            'plan' => 'Product Plan',
+            'plan_id' => 'Product Plan',
             'duration' => 'Protection Duration',
             'phgender' => 'Policy Holder Gender',
             'phname' => 'Policy Holder Name',
@@ -424,27 +428,24 @@ class DashboardController extends Controller
         }
 
         $name = Auth::user()->name;
-        $durationYear = $request->duration/12;
-        $partner = $this->service->getPartnerDataByName($name)->get();
-        if($request->plan == "Standard"){
-            $product = 1;
-            $total_paid = $durationYear * 75000;
+        if($request->durationType == "Yearly"){
+            $durationYear = $request->duration/12;
+            $total_paid = $durationYear * $request->premimum;
         }else{
-            $product = 2;
-            $total_paid = $durationYear * 135000;
+            $total_paid = $request->duration * $request->premium;
         }
+        $partner = $this->service->getPartnerDataByName($name)->get();
+
         $data = [
-            'partner_id' => $partner['id'],
-            'product_id' => $product,
+            'partner_id' => $partner["id"],
+            'plan_id' => $request->plan_id,
             'insured_relation' => $request->irelation,
             'insured_name' => $request->iname,
-            'insured_gender' => $request->igender,
             'insured_dob' => $request->idob,
             'protection_duration' => $request->duration,
             'customer_name' => $request->phname,
             'customer_dob' => $request->phdob,
             'customer_citizen_id' => $request->phcitizen_id,
-            'customer_gender' => $request->phgender,
             'customer_email' => $request->phemail,
             'total_paid' => $total_paid,
             '1_bene_relation' => $request->b1relation,
@@ -453,6 +454,7 @@ class DashboardController extends Controller
             '1_bene_gender' => $request->b1gender,
             '1_bene_email' => $request->b1email,
         ];
+
 
         for($i=2;$i<=4;$i++){
             if($request['b'.$i.'name'] != null){
@@ -465,7 +467,7 @@ class DashboardController extends Controller
                 ];
             }
         }
-
+        // dd($data);
         $transactionAdded = $this->service->inputTransaction()->post($data);
 
         if($transactionAdded->bodyResponse['data']['code'] == 101){
@@ -661,7 +663,9 @@ class DashboardController extends Controller
 
     public function spaj()
     {
-        return view('spaj.spaj');
+        $name = Auth::user()->name;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        return view('spaj.spaj', compact('name', 'productOfPartners'));
     }
 
     public function testing()

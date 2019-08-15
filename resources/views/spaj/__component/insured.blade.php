@@ -56,35 +56,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-material ">
-                                <input type="name" class="form-control @error('icitizen_id') is-invalid @enderror" id="icitizen_id" name="icitizen_id" required autocomplete="icitizen_id" value="{{ old('icitizen_id') }}">
-                                <label for="name">Citizen Id</label>
-                                @error('icitizen_id')
-                                    <p style="color:red">
-                                        <strong>{{ $message }}</strong>
-                                    </p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-material ">
-                                <input type="email" class="form-control @error('iemail') is-invalid @enderror" id="iemail" name="iemail" required autocomplete="iemail" value="{{ old('iemail') }}">
-                                <label for="name">Email</label>
-                                @error('iemail')
-                                    <p style="color:red">
-                                        <strong>{{ $message }}</strong>
-                                    </p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

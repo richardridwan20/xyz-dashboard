@@ -49,6 +49,14 @@ class ProductOfPartnerService extends ApiService
 
         return $this;
     }
+
+    public function ProductOfPartnerByPartnerName($name)
+    {
+        $this->endPoint = 'productofpartner/partner/name?pname='.$name;
+
+        return $this;
+    }
+
     public function PpDelete($id)
     {
         $this->endPoint = 'productofpartner/delete/'.$id;
