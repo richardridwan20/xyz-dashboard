@@ -19,7 +19,7 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form class="js-validation-signin" action="{{ route('product.create') }}" method="POST">
+                    <form action="{{ route('product.create') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                                 <div class="col-12">
@@ -76,7 +76,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="benefits" name="benefits" required>
+                                    <input type="text" class="form-control @error('benefits') is-invalid @enderror" id="benefits" name="benefits" required>
                                     <label for="benefits">Benefits</label>
 
                                     @error('benefits')
@@ -92,7 +92,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('commission') is-invalid @enderror" id="description" name="description" required autocomplete="description">
+                                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required autocomplete="description">
                                     <label for="description">Description</label>
 
                                     @error('description')
@@ -136,9 +136,10 @@
                                 </div>
                             </div>
                         </div>
+                        <br><br>
                         <div class="form-group row gutters-tiny">
                             <div class="col-12 mb-10">
-                                <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" formaction="{{ route('product.create')}}">
+                                <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary">
                                     <i class="si si-register mr-10"></i>  {{ __('Register') }}
                                 </button>
                             </div>

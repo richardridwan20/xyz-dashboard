@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\RegisterService;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -20,8 +21,8 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            'product_id' => 'required',
-            'name' => 'required|in:Standard,Deluxe',
+            'product' => 'required',
+            'plan' => 'required|in:Standard,Deluxe',
             'sum_assured' => 'required|numeric',
             'benefits' => 'required',
             'description' => 'required',
@@ -33,7 +34,7 @@ class ProductController extends Controller
         ];
         $customAttributes = [
             'product_id' => 'Product ID',
-            'name' => 'Product Name',
+            'plan' => 'Product Plan',
             'sum_assured' => 'Sum Assured',
             'benefits' => 'Benefits',
             'description' => 'Description',
@@ -45,11 +46,11 @@ class ProductController extends Controller
         $data = [
             'product_id' => $request->product,
             'name' => $request->plan,
+            'duration' => $request->duration,
             'sum_assured' => $request->sum_assured,
             'benefits' => $request->benefits,
             'description' => $request->description,
             'premium' => $request->premium,
-            'duration' => $request->duration,
         ];
 
         $create = $this->service->create()->post($data);
