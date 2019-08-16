@@ -1,7 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-
+@php
+$planValue = [];
+    foreach($productOfPartners as $productOfPartner){
+       array_push($planValue, $productOfPartner['plan']['id']."|".$productOfPartner['plan']['duration']."|".$productOfPartner['plan']['premium']);
+    }
+@endphp
 <div class="content">
     <!-- Page Content -->
     <div class="bg-gd-primary">
@@ -14,6 +19,7 @@
                 <h1 class="h2 font-w700 mt-50 mb-10">Data Input Form for Sequis Mikro Sejahtera</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please add transaction detail</h2>
             </div>
+            {{-- {{dd($productOfPartners[1]['plan']['premium'])}} --}}
             <form action="{{ route('dashboard.input_transaction') }}" method="POST" id="spajform" novalidate>
             @csrf
             <div class="row justify-content-center px-5">
@@ -23,7 +29,10 @@
                             <select type="dropdown" class="form-control" id="plan_id" name="plan_id" onchange="durationManager()">
                                 <option disabled selected>Select Plan</option>
                                 @for($i=0;$i<count($productOfPartners);$i++)
-                                    <option value="{{$productOfPartners[$i]['plan']['id']}}|{{$productOfPartners[$i]['plan']['duration']}}|{{$productOfPartners[$i]['plan']['premium']}}" @if(old('plan_id') == "{$productOfPartners[$i]['plan']['id']}|{$productOfPartners[$i]['plan']['duration']}") selected @endif> {{$productOfPartners[0]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}</option>
+                                <option value={{$planValue[$i]}}
+                                    @if(old('plan_id') == $planValue[$i]) selected @endif>
+                                    {{$productOfPartners[$i]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}
+                                </option>
                                 @endfor
                             </select>
                             @error('plan')

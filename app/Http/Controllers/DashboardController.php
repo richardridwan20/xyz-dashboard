@@ -359,10 +359,6 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
-        $planArray = explode("|", $request->plan_id);
-        $request->merge(["plan_id" => $planArray[0]]);
-        $request->merge(["duration_type" => $planArray[1]]);
-        $request->merge(["premium" => $planArray[2]]);
         $year = Carbon::today()->year;
         $month = Carbon::today()->month;
         $day = Carbon::today()->day;
@@ -426,6 +422,11 @@ class DashboardController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $planArray = explode("|", $request->plan_id);
+        $request->merge(["plan_id" => $planArray[0]]);
+        $request->merge(["duration_type" => $planArray[1]]);
+        $request->merge(["premium" => $planArray[2]]);
 
         $name = Auth::user()->name;
         if($request->durationType == "Yearly"){
