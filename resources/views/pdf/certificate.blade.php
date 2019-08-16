@@ -404,12 +404,12 @@
                 <tr class="vertical-top">
                     <td width="50%">{!! __('pdf.sum_assured', [], $locale) !!}</td>
                     <td width="3%">:</td>
-                    <td width="47%" style="text-align: left;">Rp. {{ $data['data']['product_id']['plan_id']['sum_assured'] }},- </td>
+                    <td width="47%" style="text-align: left;">Rp. {{ $data['data']['plan_id']['sum_assured'] }},- </td>
                 </tr>
                 <tr class="vertical-top">
                     <td width="50%">{!! __('pdf.premium', [], $locale) !!}</td>
                     <td width="3%">:</td>
-                    <td width="47%" style="text-align: left;">Rp. {{ $data['data']['product_id']['plan_id']['premi'] }},-</td>
+                    <td width="47%" style="text-align: left;">Rp. {{ $data['data']['plan_id']['premium'] }},-</td>
                 </tr>
                 <tr class="vertical-top">
                     <td width="50%">{!! __('pdf.policy_start', [], $locale) !!}</td>
