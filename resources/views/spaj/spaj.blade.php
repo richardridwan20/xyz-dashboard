@@ -29,8 +29,8 @@ $planValue = [];
                             <select type="dropdown" class="form-control" id="plan_id" name="plan_id" onchange="durationManager()">
                                 <option disabled selected>Select Plan</option>
                                 @for($i=0;$i<count($productOfPartners);$i++)
-                                <option value={{$planValue[$i]}}
-                                    @if(old('plan_id') == $planValue[$i]) selected @endif>
+                                <option value="{{$productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']}}"
+                                    @if(old('plan_id') == $productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']) selected @endif>
                                     {{$productOfPartners[$i]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}
                                 </option>
                                 @endfor

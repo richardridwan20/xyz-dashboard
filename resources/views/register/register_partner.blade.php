@@ -26,9 +26,9 @@
                             <div class="col-12">
                                 <select type="dropdown" class="form-control" id="role" name="role">
                                     <option  disabled selected>Select Role</option>
-                                    <option value="financial">Financial</option>
-                                    <option value="operation">Operation</option>
-                                    <option value="viewer">Viewer</option>
+                                    <option value="financial" @if(old('role') == "financial") selected @endif>Financial</option>
+                                    <option value="operation" @if(old('role') == "operation") selected @endif>Operation</option>
+                                    <option value="viewer" @if(old('role') == "viewer") selected @endif>Viewer</option>
                                 </select>
                                 @error('role')
                                     <p style="color:red">
@@ -43,7 +43,7 @@
                                     <select type="dropdown" class="form-control" id="name" name="name">
                                         <option  disabled selected>Select Partner</option>
                                         @for($i=0;$i<count($partnerName);$i++)
-                                            <option value="{{$partnerName[$i]['name']}}">{{$partnerName[$i]['name']}}</option>
+                                            <option value="{{$partnerName[$i]['name']}}" @if(old('name') == $partnerName[$i]['name']) selected @endif>{{$partnerName[$i]['name']}}</option>
                                         @endfor
                                     </select>
 
@@ -58,7 +58,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email" value="{{ old('email') }}">
                                     <label for="email">Partner Email</label>
 
                                     @error('email')
