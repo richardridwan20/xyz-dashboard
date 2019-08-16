@@ -121,7 +121,7 @@ class RegisterController extends Controller
         ];
         $inputPartner = $this->service->inputPartner()->post($data);
 
-
+        dd($inputPartner);
 
         if($request->role == 'financial'){
             $user = User::find($inputPartner->bodyResponse['id']);

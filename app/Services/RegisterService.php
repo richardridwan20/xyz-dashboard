@@ -18,7 +18,7 @@ class RegisterService extends ApiService
 
     public function inputPartner()
     {
-        $this->endPoint = 'partner/create_account';
+        $this->endPoint = 'partner/create-account';
 
         return $this;
     }
