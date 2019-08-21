@@ -124,15 +124,15 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function allAgent()
+    public function allAgent($page)
     {
-        $this->endPoint = 'agent/all';
+        $this->endPoint = 'agent/all?page='.$page;
         return $this;
     }
 
-    public function partnerAgent($partnerName)
+    public function partnerAgent($page, $partnerName)
     {
-        $this->endPoint = 'agent/partner/'.$partnerName;
+        $this->endPoint = 'agent/partner/'.$partnerName.'?page='.$page;
         return $this;
     }
 
@@ -173,9 +173,9 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function getVoucher()
+    public function getVoucher($page)
     {
-        $this->endPoint = 'voucher';
+        $this->endPoint = 'voucher?page='.$page;
 
         return $this;
     }

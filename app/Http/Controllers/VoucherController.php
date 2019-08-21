@@ -12,13 +12,15 @@ class VoucherController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $page = $request->page;
+
         $column = 'created_at';
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        $vouchers = $this->service->getVoucher()->paginate();
+        $vouchers = $this->service->getVoucher($page)->paginate();
 
         return view('voucher.index', compact('vouchers', 'append'));
     }
@@ -58,7 +60,7 @@ class VoucherController extends Controller
 
         $data = [
             'voucher_number' => $request->voucher_number,
-            'certificate_number' => $request->certificate,
+            'voucher_quantity' => $request->voucher_quantity,
             'expiry_date' => $request->expiry,
             'partner' => $request->partner_name,
         ];

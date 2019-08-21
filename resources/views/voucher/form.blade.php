@@ -44,9 +44,9 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="form-material">
-                                                <input type="text" class="form-control @error('certificate') is-invalid @enderror" id="certificate" name="certificate" required autocomplete="certificate">
-                                                <label for="certificate">Certificate Number</label>
-                                                @error('certificate')
+                                                <input type="text" class="form-control @error('voucher_quantity') is-invalid @enderror" id="voucher_quantity" name="voucher_quantity" required autocomplete="certificate">
+                                                <label for="voucher_quantity">Voucher Quantity</label>
+                                                @error('voucher_quantity')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>
                                                     </p>
