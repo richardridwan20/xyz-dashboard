@@ -81,6 +81,10 @@
                                 </p>
                             @enderror
                         </div>
+                        <div class="form-group">
+                                <label for="example-nf-email">Masukkan quota</label>
+                                <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Agent...">
+                            </div>
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

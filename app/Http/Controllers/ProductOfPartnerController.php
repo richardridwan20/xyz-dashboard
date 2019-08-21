@@ -43,14 +43,16 @@ class ProductOfPartnerController extends Controller
     {
         $rules = [
             'plan_id' => ['required', new notExist($request->partner_id)],
-            'partner_id' => 'required'
+            'partner_id' => 'required',
+            'quota' => 'required|numeric'
         ];
 
         $request->validate($rules);
 
         $data = [
             'plan_id' => $request->plan_id,
-            'partner_id' => $request->partner_id
+            'partner_id' => $request->partner_id,
+            'quota' => $request->quota,
         ];
 
         $create = $this->service->createProductPartner()->post($data);
@@ -125,7 +127,7 @@ class ProductOfPartnerController extends Controller
      */
     public function destroy($id)
     {
-        $this->service->PpDelete($id)->get();
+        $this->service->PpDelete($id)->fetch();
 
         return redirect()->back()->with('notify', 'deleted');
     }
