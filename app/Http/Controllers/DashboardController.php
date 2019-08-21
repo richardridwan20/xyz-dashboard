@@ -488,10 +488,12 @@ class DashboardController extends Controller
         $user = User::find(Auth::id());
         $partnerName = Auth::user()->name;
 
+        $page = $request->page;
+
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
-            $agents = $this->service->allAgent()->paginate();
+            $agents = $this->service->allAgent($page)->paginate();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
-            $agents = $this->service->partnerAgent($partnerName)->paginate();
+            $agents = $this->service->partnerAgent($page, $partnerName)->paginate();
         }
 
         $quotaRemain = '';
