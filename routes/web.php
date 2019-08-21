@@ -40,6 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/agent-form', 'DashboardController@agentForm')->name('dashboard.agent_form');
     Route::get('/agent-quota', 'DashboardController@agentQuota')->name('dashboard.agent_quota');
     Route::get('/agent/delete/{id}', 'DashboardController@deleteAgent')->name('dashboard.delete_agent');
+    Route::get('/voucher', 'VoucherController@index')->name('voucher.index');
+    Route::get('/voucher/form', 'VoucherController@showForm')->name('voucher.form');
+    Route::get('/voucher/delete/{id}', 'VoucherController@deleteVoucher')->name('voucher.delete');
+    Route::post('/voucher/create', 'VoucherController@create')->name('voucher.create');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');

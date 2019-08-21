@@ -24,20 +24,19 @@
         </tr>
     </thead>
     <tbody data-id="tableAjax">
-            @forelse ($transactions as $transaction)
-                <tr>
-                    <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
-                    <td>{{$transaction['partner_id']['name']}}</td>
-                    <td>{{$transaction['customer_id']['name']}}</td>
-                    <td>{{$transaction['status']}}</td>
-                    <td><button class="btn btn-alt-danger" data-toggle="modal" data-target="#uploadModal" data-id="{{$transaction['id']}}">Upload Payment Proof</button></td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5">No data to be shown.</td>
-                </tr>
-            @endforelse
-
+        @forelse ($transactions as $transaction)
+            <tr>
+                <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
+                <td>{{$transaction['partner_id']['name']}}</td>
+                <td>{{$transaction['customer_id']['name']}}</td>
+                <td>{{$transaction['status']}}</td>
+                <td><button class="btn btn-alt-danger" data-toggle="modal" data-target="#uploadModal" data-id="{{$transaction['id']}}">Upload Payment Proof</button></td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="5">No data to be shown.</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 <div class="row">

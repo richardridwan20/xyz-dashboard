@@ -173,6 +173,26 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getVoucher()
+    {
+        $this->endPoint = 'voucher';
+
+        return $this;
+    }
+
+    public function createVoucher()
+    {
+        $this->endPoint = 'voucher/create';
+
+        return $this;
+    }
+
+    public function deleteVoucher($id)
+    {
+        $this->endPoint = 'voucher/destroy/'.$id;
+        return $this;
+    }
+
     public function createInvoice($invoiceNumber)
     {
         $this->endPoint = 'invoice?invoice_number='.$invoiceNumber;
