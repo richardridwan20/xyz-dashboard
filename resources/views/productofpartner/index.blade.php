@@ -92,6 +92,7 @@
             </div>
         </div>
     </div>
+</div>
 
 @endsection
 
@@ -129,7 +130,29 @@ var session1 = "{{Session::get('notify')}}"
                 'Product Partner has been deleted',
                 'success'
                 )
+        }else if(session1 == 'quotaChanged'){
+                Swal.fire(
+                'Changed!',
+                'Product Partner Quota Successfully Changed',
+                'success'
+                )
         }
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $(function() {
+            $('#uploadModal').on("show.bs.modal", function (e) {
+                var id = $(e.relatedTarget).data('id');
+                // var name = $(e.relatedTarget).data('name');
+                $("#uploadModalLabel").html($(e.relatedTarget).data('title'));
+                $("#PpId").val(id);
+            });
+        });
+    });
+
 </script>
 
 @endpush

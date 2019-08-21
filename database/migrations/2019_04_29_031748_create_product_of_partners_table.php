@@ -17,6 +17,7 @@ class CreateProductOfPartnersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('plan_id');
             $table->unsignedInteger('partner_id');
+            $table->integer('quota');
             $table->timestamps();
 
             $table->foreign('plan_id')->references('id')->on('sovera.product_plans');

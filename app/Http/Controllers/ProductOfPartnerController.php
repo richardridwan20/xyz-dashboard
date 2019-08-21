@@ -58,6 +58,20 @@ class ProductOfPartnerController extends Controller
         return redirect()->back()->with('notify', 'created');
     }
 
+    public function changeQuota(Request $request)
+    {
+        $rules = [
+            'PpId' => 'required',
+            'quota' => 'required|numeric'
+        ];
+
+        $request->validate($rules);
+
+        $changeQuota = $this->service->changeQuota($request->PpId, $request->quota)->fetch();
+
+        return redirect()->back()->with('notify', 'quotaChanged');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

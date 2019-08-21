@@ -29,6 +29,13 @@ class ProductOfPartnerService extends ApiService
         return $this;
     }
 
+    public function changeQuota($id, $quota)
+    {
+        $this->endPoint = 'productofpartner/changequota?id='.$id.'&quota='.$quota;
+
+        return $this;
+    }
+
     public function product()
     {
         $this->endPoint = 'product';
