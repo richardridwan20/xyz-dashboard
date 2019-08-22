@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAgentsForeign extends Migration
+class CreateLimitationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddAgentsForeign extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function (Blueprint $table) {
-            $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
+        Schema::create('limitations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('limit_code');
+            $table->string('area_name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddAgentsForeign extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function (Blueprint $table) {
-            // $table->dropForeign(['partner_id']);
-        });
+        Schema::dropIfExists('limitations');
     }
 }

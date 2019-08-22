@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionLogsTable extends Migration
+class CreateDetailLimitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTransactionLogsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql.log')->create('transaction_logs', function (Blueprint $table) {
+        Schema::create('detail_limits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('transaction_id');
+            $table->unsignedInteger('product_of_partner_id');
+            $table->unsignedInteger('limitation_id');
             $table->timestamps();
-
-            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateTransactionLogsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql.log')->dropIfExists('transaction_logs');
+        Schema::dropIfExists('detail_limits');
     }
 }

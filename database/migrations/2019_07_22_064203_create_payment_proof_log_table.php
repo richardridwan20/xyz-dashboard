@@ -31,6 +31,6 @@ class CreatePaymentProofLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_proofs_log');
+        Schema::connection('mysql.log')->dropIfExists('payment_proof_logs');
     }
 }

@@ -14,7 +14,7 @@ class CreateProductOfPartnersTable extends Migration
     public function up()
     {
         Schema::connection('mysql')->create('product_of_partners', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('plan_id');
             $table->unsignedInteger('partner_id');
             $table->integer('quota');

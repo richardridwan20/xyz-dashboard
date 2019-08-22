@@ -31,6 +31,6 @@ class CreateInvoicePaymentLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_payment_logs');
+        Schema::connection('mysql.log')->dropIfExists('invoice_payment_logs');
     }
 }

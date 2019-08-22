@@ -31,6 +31,6 @@ class CreateEmailLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_logs');
+        Schema::connection('mysql.log')->dropIfExists('email_logs');
     }
 }
