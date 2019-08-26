@@ -18,7 +18,35 @@ class LimitationService extends ApiService
 
     public function getAllDataPaginated($page)
     {
-        $this->endPoint = 'detail_limit?page='.$page;
+        $this->endPoint = 'detail-limitation?page='.$page;
+
+        return $this;
+    }
+
+    public function deleteDetail($id)
+    {
+        $this->endPoint = 'detail-limitation/destroy/'.$id;
+
+        return $this;
+    }
+
+    public function createDetail()
+    {
+        $this->endPoint = 'detail-limitation/create';
+
+        return $this;
+    }
+
+    public function getProductOfPartner()
+    {
+        $this->endPoint = 'productofpartner';
+
+        return $this;
+    }
+
+    public function getLimitation()
+    {
+        $this->endPoint = 'limitation';
 
         return $this;
     }

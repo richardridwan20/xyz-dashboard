@@ -42,9 +42,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/agent/delete/{id}', 'DashboardController@deleteAgent')->name('dashboard.delete_agent');
     Route::get('/voucher', 'VoucherController@index')->name('voucher.index');
     Route::get('/voucher/form', 'VoucherController@showForm')->name('voucher.form');
+    Route::post('/voucher/create', 'VoucherController@create')->name('voucher.create');
     Route::get('/voucher/delete/{id}', 'VoucherController@deleteVoucher')->name('voucher.delete');
     Route::get('/limitation', 'LimitationController@index')->name('limitation.index');
-    Route::post('/voucher/create', 'VoucherController@create')->name('voucher.create');
+    Route::get('/limitation/form', 'LimitationController@showForm')->name('limitation.form');
+    Route::post('/limitation/create', 'LimitationController@create')->name('limitation.create');
+    Route::get('/limitation/delete/{id}', 'LimitationController@deleteDetailLimitation')->name('detail.limitation.delete');
     Route::post('/productofpartner/changequota', 'ProductOfPartnerController@changeQuota')->name('ProductOfPartner.change_quota');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');

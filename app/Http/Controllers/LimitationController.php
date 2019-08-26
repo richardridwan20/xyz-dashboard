@@ -31,14 +31,38 @@ class LimitationController extends Controller
         return view('limitation.index', compact('detailLimitations', 'append'));
     }
 
+    public function showForm()
+    {
+        $notify = '';
+        $productOfPartners = $this->service->getProductOfPartner()->get();
+        $limitations = $this->service->getLimitation()->get();
+        return view('limitation.form', compact('notify', 'productOfPartners', 'limitations'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = [
+            'product_of_partner_id' => $request->select_product,
+            'limitation_id' => $request->select_limitation,
+        ];
+
+        $createDetail = $this->service->createDetail()->post($data);
+
+        if($createDetail->bodyResponse['code'] == 201){
+            $notify = 'add';
+        } else if ($createDetail->bodyResponse['code'] == 401) {
+            $notify = 'exist';
+        }
+
+        $productOfPartners = $this->service->getProductOfPartner()->get();
+        $limitations = $this->service->getLimitation()->get();
+
+        return view('limitation.form', compact('notify', 'productOfPartners', 'limitations'));
     }
 
     /**
@@ -86,14 +110,10 @@ class LimitationController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deleteDetailLimitation($id)
     {
-        //
+        $deleteLimitation = $this->service->deleteDetail($id)->get();
+
+        return redirect()->back()->with('notify', 'delete');
     }
 }

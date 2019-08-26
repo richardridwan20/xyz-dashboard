@@ -30,12 +30,12 @@
     <tbody id="tableAjax">
             @forelse ($detailLimitations as $detailLimitation)
                 <tr>
-                    <td>{{$detailLimitation['product_of_partner']['partner_id']['name']}}</td>
-                    <td>{{$detailLimitation['product_of_partner']['plan_id']['product_id']['name']}}</td>
-                    <td>{{$detailLimitation['product_of_partner']['plan_id']['name']}}</td>
-                    <td>{{$detailLimitation['limitation']['limit_code']}}</td>
-                    <td>{{$detailLimitation['limitation']['area_name']}}</td>
-                    <td></td>
+                    <td>{{$detailLimitation['product_of_partner_id']['partner_id']['name']}}</td>
+                    <td>{{$detailLimitation['product_of_partner_id']['plan_id']['product_id']['name']}}</td>
+                    <td>{{$detailLimitation['product_of_partner_id']['plan_id']['name']}}</td>
+                    <td>{{$detailLimitation['limitation_id']['limit_code']}}</td>
+                    <td>{{$detailLimitation['limitation_id']['area_name']}}</td>
+                    <td><a onclick="confirmation('limitation/delete/{{$detailLimitation['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
                 </tr>
             @empty
                 <tr>
@@ -45,12 +45,12 @@
     </tbody>
 </table>
 <div class="row">
-    {{-- <div class="col page-info">
-        Showing {{$detailLimitation->firstItem()}} to {{$detailLimitation->lastItem()}} of {{$detailLimitation->total()}} entries
+    <div class="col page-info">
+        Showing {{$detailLimitations->firstItem()}} to {{$detailLimitations->lastItem()}} of {{$detailLimitations->total()}} entries
     </div>
     <div class="col">
         <div class="float-right paginate">
-            {{$detailLimitation->appends($append)->links('pagination/simple-bootstrap-4')}}
+            {{$detailLimitations->appends($append)->links('pagination/simple-bootstrap-4')}}
         </div>
-    </div> --}}
+    </div>
 </div>
