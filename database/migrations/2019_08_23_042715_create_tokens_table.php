@@ -17,7 +17,7 @@ class CreateTokensTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('partner_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('token');
+            $table->text('token');
             $table->timestamps();
         });
     }
