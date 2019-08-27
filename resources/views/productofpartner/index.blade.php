@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="example-nf-email">Masukkan quota</label>
-                                <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Agent...">
+                                <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Product of Partner...">
                             </div>
                         <div class="form-group row">
                             <div class="col-12">

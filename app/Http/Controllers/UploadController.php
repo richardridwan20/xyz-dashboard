@@ -39,25 +39,23 @@ class UploadController extends Controller
         if(in_array($result[0],$extensions)){
 
             $file = $request->file('file');
-        $file_name = rand().$file->getClientOriginalName();
+            $file_name = rand().$file->getClientOriginalName();
 
-        $path = $file->storeAs('public/files/uploads', $file_name);
+            $path = $file->storeAs('public/files/uploads', $file_name);
 
-        $data = ['file_name' => $file_name, 'path' => $path];
+            $data = ['file_name' => $file_name, 'path' => $path];
 
-        $upload = $this->service->import($data)->upload($data);
+            $upload = $this->service->import($data)->upload($data);
 
-        $error = $upload->bodyResponse;
+            $error = $upload->bodyResponse;
 
-        if (!empty($error['errors'])) {
+            if (!empty($error['errors'])) {
+                return back()
+                ->withErrors($error['errors']);
+            }
+
             return back()
-            ->withErrors($error['errors']);
-        }
-
-        // Excel::import(new TransactionImport, request()->file('file'));
-
-        return back()
-            ->with('notify','uploaded');
+                ->with('notify','uploaded');
         }else{
             return back()
             ->withErrors('File harus dengan ekstensi yang benar.');

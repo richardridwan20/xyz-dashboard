@@ -10,7 +10,7 @@
             <div class="form-group row">
                 <div class="col-2">
                     @role('supadmin|financial|operation')
-                        <a href="{{ route('limitation.form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i>Add Detail Limitation</button></a>
+                        <a href="{{ route('limitation.form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add Detail Limitation</button></a>
                     @endrole
                 </div>
             </div>

@@ -5,7 +5,7 @@
                 <b>Partner ID</b>
                 <i class="id fa fa-pull-right"></i>
             </th>
-            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th style='line-height: 100%' id="tpPartner" data-sort="tpPartner" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Partner Name</b>
                 <i class="status fa fa-pull-right"></i>
             </th>
@@ -29,7 +29,7 @@
                 <b>Quota</b>
                 <i class="customer_id fa fa-pull-right"></i>
             </th>
-            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Action</b>
                 <i class="customer_id fa fa-pull-right"></i>
             </th>
@@ -53,8 +53,8 @@
                     <td>{{$productOfPartner['plan_id']['duration']}}</td>
                     <td>{{$productOfPartner['quota']}}</td>
                     <td>
+                        <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$productOfPartner['id']}}" data-name="">Edit</button>
                         <a onclick="confirmation('productofpartner/delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$productOfPartner['id']}}" data-name="">Edit</button>
                     </td>
                 </tr>
             @empty
@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-nf-email">Masukkan quota</label>
-                            <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Agent...">
+                            <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Product of Partner...">
                         </div>
                         <div class="form-group row">
                             <div class="col-12">

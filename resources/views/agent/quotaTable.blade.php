@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{$agent['name']}}</td>
                     <td>{{$agent['agent_quota']}}</td>
-                    <td><button class="btn btn-alt-danger" data-toggle="modal" data-target="#uploadModal" data-id="{{$agent['id']}}" data-name="{{$agent['name']}}">Edit</button></td>
+                    <td><button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$agent['id']}}" data-name="{{$agent['name']}}">Edit</button></td>
                 </tr>
             @empty
                 <tr>

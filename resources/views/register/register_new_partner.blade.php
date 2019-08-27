@@ -8,7 +8,7 @@
         <div class="hero-static content content-full bg-white" data-toggle="appear">
             <!-- Header -->
             <div class="py-30 px-5 text-center">
-                <a class="link-effect font-w700" href="index.html">
+                <a class="link-effect font-w700">
                     <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Register new Partner</h1>
@@ -72,7 +72,7 @@
                                 <div class="form-material floating">
 
                                     <input type="name" class="form-control @error('commission') is-invalid @enderror" id="commission" name="commission" required autocomplete="commission">
-                                    <label for="name">commission</label>
+                                    <label for="name">Commission</label>
 
                                     @error('commission')
                                         <p style="color:red">

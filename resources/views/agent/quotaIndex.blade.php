@@ -13,7 +13,7 @@
             <div class="block-content block-content-full">
                 <form method="GET">
                     <div class="form-group row">
-                        <div class="col-4"><a class="btn btn-alt-info back-btn" href="{{url()->previous()}}">Back to Manage agent</a></div>
+                        <div class="col-4"><a class="btn btn-alt-info back-btn" href="{{url()->previous()}}"><i class="fa fa-arrow-left"></i>  Back to Manage Agent</a></div>
                         <div class="col-2">
                             <input type="hidden" name="id" value="{{Auth::user()->id}}">
                         </div>
@@ -22,7 +22,7 @@
                             <input class="form-control" type="text" name="text-name" placeholder="Partner Name">
                         </div>
                         <div class="col-1">
-                            <input type="submit" class="btn btn-primary" value="Search" formaction="{{ route('dashboard.agent_quota') }}"/>
+                            <input type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.agent_quota') }}"/>
                         </div>
                     </div>
                 </form>

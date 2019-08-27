@@ -6,10 +6,10 @@
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
-                <a class="btn btn-alt-info back-btn" href="{{ Route('limitation.index') }}">Back to Manage Detail Limitation</a>
+                <a class="btn btn-alt-info back-btn" href="{{ Route('limitation.index') }}"><i class="fa fa-arrow-left"></i> Back to Manage Detail Limitation</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
-                <a class="link-effect font-w700" href="index.html">
+                <a class="link-effect font-w700">
                     <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Detail Limitation Form</h1>
@@ -90,13 +90,13 @@
     if (session1 == 'add') {
         Swal.fire(
         'Success!',
-        'Voucher successfully added',
+        'Detail Limitation successfully added',
         'success'
         )
     } else if(session1 == 'exist'){
         Swal.fire(
         'Error!',
-        'Detail Transaction Already Exists',
+        'Detail Limitation Already Exists',
         'error'
         )
     }
