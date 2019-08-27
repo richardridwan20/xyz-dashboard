@@ -17,7 +17,7 @@ class ApiRepository implements RepositoryInterface
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri'    => 'http://sequis-b2b-api.test/api/v1/',
+            'base_uri'    => 'http://sovera-api.sequis.co.id/api/v1/',
             'http_errors' => false,
             'verify' => false,
         ]);
