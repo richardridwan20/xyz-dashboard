@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Log;
 
 class ApiRepository implements RepositoryInterface
 {
@@ -17,7 +16,7 @@ class ApiRepository implements RepositoryInterface
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri'    => 'http://sovera-api.sequis.co.id/api/v1/',
+            'base_uri'    => ENV('SOVERA_API_URL'),
             'http_errors' => false,
             'verify' => false,
         ]);
