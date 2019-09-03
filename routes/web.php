@@ -12,6 +12,7 @@
 */
 
 Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
+Route::post('/login', 'Auth/LoginController@login')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer.index');
