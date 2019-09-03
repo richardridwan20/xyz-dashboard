@@ -17,13 +17,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
      * Show the application's login form.
      *
      * @return \Illuminate\Http\Response
