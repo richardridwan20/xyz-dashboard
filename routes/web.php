@@ -12,10 +12,9 @@
 */
 
 Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
-Route::post('/login', 'Auth/LoginController@login')->name('login');
+Route::post('/login', 'Auth/LoginController@login')->name('login.access');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/customer', 'CustomerController@index')->name('customer.index');
     Route::get('/register-product', 'ProductController@index')->name('register.product');
     Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
     Route::get('/register-partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
@@ -27,7 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
     Route::get('/productofpartner/delete/{id}', 'ProductOfPartnerController@destroy')->name('productofpartner.delete')->middleware('role:supadmin|financial|operation');
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
-    Route::get('/check', 'DashboardController@check')->name('dashboard.check');
     Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
     Route::get('/download-certificate', 'CertificateController@downloadCertificate')->name('certificate.download');
