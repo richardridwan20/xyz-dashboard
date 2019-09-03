@@ -17,7 +17,7 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form action="{{ route('login.access') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-12">
