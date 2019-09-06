@@ -104,7 +104,7 @@
                         <a class="{{ Route::is('limitation.index') ? 'active' : '' }}" href="{{ route('limitation.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Limitation</span></a>
                     </li>
                     @endrole
-                    @role('supadmin|financial')
+                    @role('supadmin|financial|partner financial')
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>

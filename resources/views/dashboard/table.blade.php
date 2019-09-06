@@ -13,6 +13,10 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
+            <th id="agent_branch_id" data-sort="agent_branch_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Agent / Branch Name</b>
+                <i class="agent_branch_id fa fa-pull-right fa-sort"></i>
+            </th>
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>PH Name</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
@@ -120,6 +124,7 @@
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
+                    <td>{{$transaction['agent_id']['agent_branch_name']}}</td>
                     <td>{{$transaction['customer_id']['name']}}</td>
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['insured_name']}}</td>

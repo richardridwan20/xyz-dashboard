@@ -2,6 +2,23 @@
 
 @section('content')
 
+@php
+if($errors->any()){
+    $i=0;
+    foreach ($errors->getMessages() as $element => $value) {
+        $elementData = explode(".",$element);
+        $datas[$i] = [
+            'row' => $elementData[0],
+            'column' => $elementData[1],
+            'desc' => $value
+        ];
+        $i++;
+    }
+
+    sort($datas);
+}
+@endphp
+
 <div class="content">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -11,26 +28,6 @@
                     <h3 class="block-title">UPLOAD DATA</h3>
                 </div>
                 <div class="block-content">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong>{{ $message }}</strong>
-                        </div>
-                    @endif
-                    @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>
-                                    {{ $error }}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
@@ -51,6 +48,52 @@
                             </div>
                         </div>
                     </form>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                    <div>
+
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                            {{-- {{dd($errors->getMessages()) }} --}}
+
+                            <table id="example" class="table table-hover table-striped table-vcenter table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th id="id" data-sort="id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                                            <b>Row</b>
+                                            <i class="id fa fa-pull-right fa-sort"></i>
+                                        </th>
+                                        <th id="id" data-sort="id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                                            <b>Column</b>
+                                            <i class="id fa fa-pull-right fa-sort"></i>
+                                        </th>
+                                        <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                                            <b>Description</b>
+                                            <i class="id fa fa-pull-right fa-sort"></i>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($datas as $data)
+                                        <tr>
+                                            <td>{{$data['row']}}</td>
+                                            <td>{{$data['column']}}</td>
+                                            <td>
+                                                @foreach($data['desc'] as $val)
+                                                    <li>{{$val}}</li>
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                    </div>
+                    @endif
                 </div>
             </div>
             <!-- END Default Elements -->

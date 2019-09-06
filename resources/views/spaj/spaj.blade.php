@@ -35,7 +35,7 @@ $planValue = [];
                                 </option>
                                 @endfor
                             </select>
-                            @error('plan')
+                            @error('plan_id')
                                 <p style="color:red">
                                     <strong>{{ $message }}</strong>
                                 </p>
