@@ -6,7 +6,7 @@
         <div class="hero-static content content-full bg-white" data-toggle="appear">
             <!-- Header -->
             <div class="py-30 px-5 text-center">
-                <a class="link-effect font-w700" href="index.html">
+                <a class="link-effect font-w700" href="">
                     <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Welcome to Your Dashboard</h1>
@@ -17,7 +17,7 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ secure_url('login') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-12">
