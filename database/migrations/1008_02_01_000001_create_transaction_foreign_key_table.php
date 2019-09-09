@@ -17,6 +17,7 @@ class CreateTransactionForeignKeyTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
             $table->foreign('plan_id')->references('id')->on('product_plans')->onDelete('cascade');
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
         });
     }
 
