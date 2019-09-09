@@ -30,6 +30,7 @@ class CreateTransactionsTable extends Migration
             $table->string('status');
             $table->string('invoice_number');
             $table->integer('total_paid');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

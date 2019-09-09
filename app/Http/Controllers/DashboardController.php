@@ -359,6 +359,7 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
+
         $year = Carbon::today()->year;
         $month = Carbon::today()->month;
         $day = Carbon::today()->day;
@@ -449,6 +450,7 @@ class DashboardController extends Controller
             'customer_citizen_id' => $request->phcitizen_id,
             'customer_email' => $request->phemail,
             'total_paid' => $total_paid,
+            'note' => $request->note,
             '1_bene_relation' => $request->b1relation,
             '1_bene_name' => $request->b1name,
             '1_bene_dob' => $request->b1dob,
@@ -669,6 +671,13 @@ class DashboardController extends Controller
         $name = Auth::user()->name;
         $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
         return view('spaj.spaj', compact('name', 'productOfPartners'));
+    }
+
+    public function spajVoucher()
+    {
+        $name = Auth::user()->name;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        return view('spaj.spaj-voucher', compact('name', 'productOfPartners'));
     }
 
     public function testing()

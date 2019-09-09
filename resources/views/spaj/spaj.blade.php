@@ -69,6 +69,19 @@ $planValue = [];
                 @include('spaj.__component.policyHolder')
                 @include('spaj.__component.insured')
                 @include('spaj.__component.beneficiary')
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-material ">
+                            <textarea class="form-control @error('note') is-invalid @enderror" id="note" name="note" required autocomplete="note" value="{{ old('note') }}"></textarea>
+                            <label for="name">Note (optional)   </label>
+                            @error('note')
+                                <p style="color:red">
+                                    <strong>{{ $message }}</strong>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class="form-group row gutters-tiny">
                     <div class="col-12 mb-10">
