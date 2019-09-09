@@ -13,8 +13,12 @@
                 <b>Partner Name</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
+            <th id="partner_id" data-sort="partner_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Agent Name</b>
+                <i class="partner_id fa fa-pull-right fa-sort"></i>
+            </th>
             <th id="agent_branch_id" data-sort="agent_branch_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Agent / Branch Name</b>
+                <b>Branch Name</b>
                 <i class="agent_branch_id fa fa-pull-right fa-sort"></i>
             </th>
             <th id="customer_id" data-sort="customer_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -97,6 +101,7 @@
             @endrole
         </tr>
     </thead>
+    {{-- {{dd($transactions)}} --}}
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
                 @php
@@ -124,7 +129,22 @@
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
-                    <td>{{$transaction['agent_id']['agent_branch_name']}}</td>
+                    @if($transaction['agent_id'] == null)
+                    <td>-</td>
+                    <td>-</td>
+                    @else
+                    @if($transaction['agent_id'][0]['agent_name'] == null)
+                    <td>-</td>
+                    @else
+                    <td>{{$transaction['agent_id'][0]['agent_name']}}</td>
+                    @endif
+                    @if($transaction['agent_id'][0]['branch_name'] == null)
+                    <td>-</td>
+                    @else
+                    <td>{{$transaction['agent_id'][0]['branch_name']}}</td>
+                    @endif
+                    @endif
+
                     <td>{{$transaction['customer_id']['name']}}</td>
                     <td>{{$transaction['customer_id']['email']}}</td>
                     <td>{{$transaction['insured_name']}}</td>

@@ -18,7 +18,8 @@ class CreateAgentsTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->string('username');
             $table->string('password');
-            $table->string('agent_branch_name');
+            $table->string('branch_name')->nullable();
+            $table->string('agent_name')->nullable();
             $table->string('citizen_id');
             $table->string('phone_number');
             $table->date('dob');
