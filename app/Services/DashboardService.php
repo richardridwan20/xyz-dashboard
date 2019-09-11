@@ -60,9 +60,23 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function checkVoucherStatusByCode($code)
+    {
+        $this->endPoint = 'voucher/status?code='.$code;
+
+        return $this;
+    }
+
     public function inputTransaction()
     {
         $this->endPoint = 'transaction/create';
+
+        return $this;
+    }
+
+    public function inputVoucherTransaction()
+    {
+        $this->endPoint = 'transaction/voucher/create';
 
         return $this;
     }

@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->unsignedInteger('plan_id');
             $table->unsignedBigInteger('agent_id')->nullable();
+            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->string('insured_relation');
             $table->string('insured_name');
             $table->string('insured_dob');

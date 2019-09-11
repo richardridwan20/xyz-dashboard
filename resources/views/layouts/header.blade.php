@@ -112,6 +112,11 @@
                         <a class="{{ Route::is('dashboard.addProduct') ? 'active' : '' }}" href="{{ route('dashboard.addProduct') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li> --}}
                     @endrole
+                    @role('supadmin')
+                    <li>
+                        <a class="{{ Route::is('dashboard.spaj_voucher') ? 'active' : '' }}" href="{{ route('dashboard.spaj_voucher') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ with voucher</span></a>
+                    </li>
+                    @endrole
                     @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>

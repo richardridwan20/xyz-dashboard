@@ -20,7 +20,7 @@ $planValue = [];
                 <h2 class="h4 font-w400 text-muted mb-0">Please add transaction detail</h2>
             </div>
             {{-- {{dd($productOfPartners[1]['plan']['premium'])}} --}}
-            <form action="{{ route('dashboard.input_transaction') }}" method="POST" id="spajform" novalidate>
+            <form action="{{ route('dashboard.input_voucher_transaction') }}" method="POST" id="spajform" novalidate>
             @csrf
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
@@ -62,6 +62,19 @@ $planValue = [];
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-material ">
+                        <input type="name" class="form-control @error('voucher') is-invalid @enderror" id="voucher" name="voucher" required autocomplete="voucher" value="{{ old('voucher') }}">
+                        <label for="name">Voucher Code</label>
+                        @error('voucher')
+                            <p style="color:red">
+                                <strong>{{ $message }}</strong>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
             <!-- END Header -->
 
             <!-- SPAJ Form -->
@@ -69,19 +82,6 @@ $planValue = [];
                 @include('spaj.__component.policyHolder')
                 @include('spaj.__component.insured')
                 @include('spaj.__component.beneficiary')
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="form-material ">
-                            <textarea class="form-control @error('note') is-invalid @enderror" id="note" name="note" required autocomplete="note" value="{{ old('note') }}" maxlength="150"></textarea>
-                            <label for="name">Note (optional)</label>
-                            @error('note')
-                                <p style="color:red">
-                                    <strong>{{ $message }}</strong>
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
                 <br>
                 <div class="form-group row gutters-tiny">
                     <div class="col-12 mb-10">
