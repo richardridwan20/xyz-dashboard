@@ -19,6 +19,13 @@ class InvoiceLogService extends ApiService
         return $this;
     }
 
+    public function getInvoiceLogs($page)
+    {
+        $this->endPoint = 'invoicelog/all?page='.$page;
+
+        return $this;
+    }
+
     public function getInvoiceById($id)
     {
         $this->endPoint = 'invoicelog/'.$id;

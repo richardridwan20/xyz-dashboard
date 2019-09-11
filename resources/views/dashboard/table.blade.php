@@ -180,7 +180,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="19">No data to be shown.</td>
+                    <td colspan="21">No data to be shown.</td>
                 </tr>
             @endforelse
 

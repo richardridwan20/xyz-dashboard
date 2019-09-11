@@ -17,9 +17,9 @@
                 <b>Invoice Number</b>
                 <i class="invoice_number fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="total" data-sort="total" data-order="DESC" class="small-th session-head text-capitalize">
-                <b>Total</b>
-                <i class="total fa fa-pull-right fa-sort"></i>
+            <th id="paid_at" data-sort="paid_at" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Status</b>
+                <i class="paid_at fa fa-pull-right fa-sort"></i>
             </th>
             <th id="action" data-sort="action" data-order="DESC" class="medium-th session-head text-capitalize">
                 <b>Action</b>
@@ -29,18 +29,18 @@
     </thead>
     <tbody id="tableAjax">
 
-        @forelse ($invoices as $invoice)
-        @php
-            $month = substr($invoice['invoice_number'], 3, 2);
-            $year = substr($invoice['invoice_number'], 5, 4);
-        @endphp
+        @forelse ($invoiceLogs as $invoice)
         <tr>
             <td>{{$invoice['partner_id']['name']}}</td>
-            <td>{{$month}}</td>
-            <td>{{$year}}</td>
+            <td>{{$invoice['month']}}</td>
+            <td>{{$invoice['year']}}</td>
             <td>{{$invoice['invoice_number']}}</td>
-            <td>{{$invoice['total']}}</td>
-            <td><a onclick="confirmation('create-invoice/{{$invoice['invoice_number']}}')"><button class="btn btn-alt-danger"><small>Create Invoice</small></button></a></td>
+            <td>{{$invoice['status']}}</td>
+            <td><a href="{{ route('invoice.download', $invoice['invoice_number']) }}"><button class="btn btn-alt-danger"><small>Download</small></button></a>
+                @if ($invoice['status'] == 'Invoice Created')
+                    <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-invoice="{{$invoice['invoice_number']}}"><small>Update</small></button>
+                @endif
+            </td>
         </tr>
         @empty
             <tr>
@@ -53,11 +53,11 @@
 
 <div class="row">
     <div class="col page-info">
-        Showing {{$invoices->firstItem()}} to {{$invoices->lastItem()}} of {{$invoices->total()}} entries
+        Showing {{$invoiceLogs->firstItem()}} to {{$invoiceLogs->lastItem()}} of {{$invoiceLogs->total()}} entries
     </div>
     <div class="col">
         <div class="float-right paginate">
-            {{$invoices->appends($append)->links('pagination/simple-bootstrap-4')}}
+            {{$invoiceLogs->appends($append)->links('pagination/simple-bootstrap-4')}}
         </div>
     </div>
 </div>

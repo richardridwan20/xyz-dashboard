@@ -24,8 +24,10 @@ class InvoiceLogController extends Controller
 
         $invoices = $this->service->allInvoice($page)->paginate();
 
+        $invoiceLogs = $this->service->getInvoiceLogs($page)->paginate();
+
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        return view('invoice.index', compact('invoices', 'append'));
+        return view('invoice.index', compact('invoices', 'invoiceLogs', 'append'));
     }
 }
