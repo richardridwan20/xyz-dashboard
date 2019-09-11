@@ -351,8 +351,8 @@ class DashboardController extends Controller
                 $sumPphcommission += $pphcommission;
                 $sumPartnerBill += $partnerBill;
                 $sumTotalPartnerBill += $totalPartnerBill;
-                }
             }
+        }
 
         return view('dashboard.index', compact('transactions', 'append', 'data', 'sumcommission', 'sumPpncommission', 'sumTotalcommission', 'sumPphcommission', 'sumPartnerBill', 'sumTotalPartnerBill', 'name'));
     }
@@ -635,6 +635,11 @@ class DashboardController extends Controller
     }
 
     public function createInvoice($invoiceNumber)
+    {
+        $invoice = $this->service->createInvoice($invoiceNumber)->get();
+    }
+
+    public function downloadInvoice($invoiceNumber)
     {
         $invoice = $this->service->createInvoice($invoiceNumber)->get();
 

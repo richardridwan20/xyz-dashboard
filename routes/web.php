@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
     Route::get('/download-certificate', 'CertificateController@downloadCertificate')->name('certificate.download');
     Route::get('/create-invoice/{invoiceNumber}', 'DashboardController@createInvoice')->name('dashboard.invoice');
+    Route::get('/download-invoice/{invoiceNumber}', 'DashboardController@downloadInvoice')->name('invoice.download');
     Route::get('/product/add', 'DashboardController@addProduct')->name('dashboard.addProduct');
     Route::get('/spaj', 'DashboardController@spaj')->name('dashboard.spaj')->middleware('role:supadmin|operation|financial|partner operation|partner financial');
     Route::get('/payment-proof', 'PaymentProofController@index')->name('payment.index')->middleware('role:supadmin|operation|financial|partner operation|partner financial');
