@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/download-invoice/{invoiceNumber}', 'DashboardController@downloadInvoice')->name('invoice.download');
     Route::get('/product/add', 'DashboardController@addProduct')->name('dashboard.addProduct');
     Route::get('/spaj', 'DashboardController@spaj')->name('dashboard.spaj')->middleware('role:supadmin|operation|financial|partner operation|partner financial');
+    Route::get('/spaj_voucher', 'DashboardController@spajVoucher')->name('dashboard.spaj_voucher')->middleware('role:supadmin');
     Route::get('/payment-proof', 'PaymentProofController@index')->name('payment.index')->middleware('role:supadmin|operation|financial|partner operation|partner financial');
     Route::post('/payment-proof', 'PaymentProofController@upload')->name('payment.upload')->middleware('role:supadmin|operation|financial|partner operation|partner financial');
     Route::post('/invoice-payment', 'PaymentProofController@uploadInvoicePayment')->name('payment.invoice')->middleware('role:supadmin|financial');
@@ -57,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/register-new-partner-role', 'RegisterController@inputPartner')->name('register.input_partner');
     Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
     Route::post('/spaj-input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
+    Route::post('/spaj-voucher-input', 'DashboardController@inputVoucherTransaction')->name('dashboard.input_voucher_transaction');
 });
 
 Auth::routes(['verify' => true]);

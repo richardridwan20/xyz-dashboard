@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\Models\Agent;
+use App\Rules\CheckVoucherStatus;
 use Illuminate\Support\Facades\Session;
 use App\Services\DashboardService;
 use App\Services\ProductOfPartnerService;
@@ -359,7 +360,6 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
-
         $year = Carbon::today()->year;
         $month = Carbon::today()->month;
         $day = Carbon::today()->day;
@@ -472,6 +472,132 @@ class DashboardController extends Controller
         }
         // dd($data);
         $transactionAdded = $this->service->inputTransaction()->post($data);
+
+        if($transactionAdded->bodyResponse['data']['code'] == 101){
+            return redirect()->back()->with('notify', '5 insurance');
+        }else{
+            return redirect()->back()->with('notify', 'success');
+        }
+
+    }
+
+    public function inputVoucherTransaction(Request $request)
+    {
+        // dd($this->service->checkVoucherStatusByCode($request->voucher)->fetch()->bodyResponse['status']);
+        $year = Carbon::today()->year;
+        $month = Carbon::today()->month;
+        $day = Carbon::today()->day;
+        $tz = "Asia/Jakarta";
+        $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
+        $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
+        $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
+        $rules = [
+            'plan_id' => 'required',
+            'duration' => 'required',
+            'phname' => 'required|regex:/^[\pL\s]+$/u',
+            'phcitizen_id' => 'required|digits:16',
+            'phdob' => 'required|before_or_equal:'.$minCustomerAge,
+            'phemail' => 'required|email',
+            'irelation' => 'required',
+            'iname' => 'required|regex:/^[\pL\s]+$/u',
+            'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
+            'b1gender' => 'nullable',
+            'b1relation' => 'required',
+            'b1name' => 'required|regex:/^[\pL\s]+$/u',
+            'b2relation' => 'nullable|required_with:b2name',
+            'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
+            'b3relation' => 'nullable|required_with:b3name',
+            'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
+            'b4relation' => 'nullable|required_with:b4name',
+            'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
+            'voucher' => ['required','exists:reserved_vouchers,voucher_code', new CheckVoucherStatus()]
+        ];
+        $customMessages = [
+            'plan_id.required' => 'please select the :attribute',
+            'phgender.required' => 'please select the :attribute',
+            'before_or_equal' => ':attribute should more than 18 years',
+            'after_or_equal' => ':attribute should less than 55 years'
+        ];
+        $customAttributes = [
+            'plan_id' => 'Product Plan',
+            'duration' => 'Protection Duration',
+            'phgender' => 'Policy Holder Gender',
+            'phname' => 'Policy Holder Name',
+            'phcitizen_id' => 'Policy Holder Citizen Id',
+            'phdob' => 'Policy Holder Date of Birth',
+            'phemail' => 'Policy Holder Email',
+            'igender' => 'Insured Gender',
+            'irelation' => 'Insured Relation',
+            'iname' => 'Insured Name',
+            'icitizen_id' => 'Insured Citizen Id',
+            'idob' => 'Insured Date of Birth',
+            'iemail' => 'Insured Email',
+            'b1gender' => 'First Beneficiary Gender',
+            'b1relation' => 'First Beneficiary Relation',
+            'b1name' => 'First Beneficiary Name',
+            'b2relation' => 'Second Beneficiary Relation',
+            'b2name' => 'Second Beneficiary Name',
+            'b3relation' => 'Third Beneficiary Relation',
+            'b3name' => 'Third Beneficiary Name',
+            'b4relation' => 'Fourth Beneficiary Relation',
+            'b4name' => 'Fourth Beneficiary Name',
+        ];
+
+        $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $planArray = explode("|", $request->plan_id);
+        $request->merge(["plan_id" => $planArray[0]]);
+        $request->merge(["duration_type" => $planArray[1]]);
+        $request->merge(["premium" => $planArray[2]]);
+
+        $name = Auth::user()->name;
+        if($request->durationType == "Yearly"){
+            $durationYear = $request->duration/12;
+            $total_paid = $durationYear * $request->premimum;
+        }else{
+            $total_paid = $request->duration * $request->premium;
+        }
+        $partner = $this->service->getPartnerDataByName($name)->get();
+
+        $data = [
+            'partner_id' => $partner["id"],
+            'plan_id' => $request->plan_id,
+            'insured_relation' => $request->irelation,
+            'insured_name' => $request->iname,
+            'insured_dob' => $request->idob,
+            'protection_duration' => $request->duration,
+            'customer_name' => $request->phname,
+            'customer_dob' => $request->phdob,
+            'customer_citizen_id' => $request->phcitizen_id,
+            'customer_email' => $request->phemail,
+            'total_paid' => $total_paid,
+            'note' => $request->note,
+            'voucher' => $request->voucher,
+            '1_bene_relation' => $request->b1relation,
+            '1_bene_name' => $request->b1name,
+            '1_bene_dob' => $request->b1dob,
+            '1_bene_gender' => $request->b1gender,
+            '1_bene_email' => $request->b1email,
+        ];
+
+
+        for($i=2;$i<=4;$i++){
+            if($request['b'.$i.'name'] != null){
+                $data = $data + [
+                    $i.'_bene_relation' => $request['b'.$i.'relation'],
+                    $i.'_bene_name' => $request['b'.$i.'name'],
+                    $i.'_bene_dob' => $request['b'.$i.'dob'],
+                    $i.'_bene_gender' => $request['b'.$i.'gender'],
+                    $i.'_bene_email' => $request['b'.$i.'email'],
+                ];
+            }
+        }
+        // dd($data);
+        $transactionAdded = $this->service->inputVoucherTransaction()->post($data);
 
         if($transactionAdded->bodyResponse['data']['code'] == 101){
             return redirect()->back()->with('notify', '5 insurance');
