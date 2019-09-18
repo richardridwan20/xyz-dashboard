@@ -15,8 +15,8 @@ class AddReservedVouchersSeeds extends Migration
     {
         DB::connection('mysql')->table('reserved_vouchers')->insert([
             [
-                'voucher_number' => 'SEMARAKSEQUIS01',
-                'certificate_number' => '6001092019',
+                'voucher_code' => 'SEMARAKSEQUIS01',
+                'policy_number' => '6001092019',
                 'status' => 'Available',
                 'expiry_date' => '2019-08-02',
                 'partner' => 'Sequis',
@@ -24,8 +24,8 @@ class AddReservedVouchersSeeds extends Migration
                 'updated_at' => '2019-08-02'
             ],
             [
-                'voucher_number' => 'SEMARAKSEQUIS02',
-                'certificate_number' => '6002092019',
+                'voucher_code' => 'SEMARAKSEQUIS02',
+                'policy_number' => '6002092019',
                 'status' => 'Available',
                 'expiry_date' => '2019-08-02',
                 'partner' => 'Sequis',

@@ -59,7 +59,7 @@ class VoucherController extends Controller
         // $request->validate($rules, $customMessages, $customAttributes);
 
         $data = [
-            'voucher_number' => $request->voucher_number,
+            'voucher_code' => $request->voucher_code,
             'voucher_quantity' => $request->voucher_quantity,
             'expiry_date' => $request->expiry,
             'partner' => $request->partner_name,
