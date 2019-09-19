@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <div class="form-material ">
                                                 <input type="text" class="form-control @error('voucher_code') is-invalid @enderror" id="voucher_code" name="voucher_code" required autocomplete="voucher_code">
-                                                <label for="voucher_Code">Voucher Code</label>
+                                                <label for="voucher_code">Voucher Code</label>
                                                 @error('voucher_code')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>

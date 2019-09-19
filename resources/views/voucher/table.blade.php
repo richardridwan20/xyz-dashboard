@@ -1,13 +1,13 @@
 <table id="example" class="table table-hover table-striped table-vcenter table-bordered">
     <thead>
         <tr>
-            <th id="voucher_number" data-sort="voucher_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Voucher Number</b>
-                <i class="voucher_number fa fa-pull-right fa-sort"></i>
+            <th id="voucher_code" data-sort="voucher_code" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Voucher Code</b>
+                <i class="voucher_code fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="certificate_number" data-sort="certificate_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Certificate Number</b>
-                <i class="certificate_number fa fa-pull-right fa-sort"></i>
+            <th id="policy_number" data-sort="policy_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Policy Number</b>
+                <i class="policy_number fa fa-pull-right fa-sort"></i>
             </th>
             <th id="status" data-sort="status" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Status</b>
@@ -31,7 +31,7 @@
             @forelse ($vouchers as $voucher)
                 <tr>
                     <td>{{$voucher['voucher_code']}}</td>
-                    <td>{{$voucher['certificate_number']}}</td>
+                    <td>{{$voucher['policy_number']}}</td>
                     <td>{{$voucher['status']}}</td>
                     <td>{{$voucher['expiry_date']}}</td>
                     <td>{{$voucher['partner']}}</td>
