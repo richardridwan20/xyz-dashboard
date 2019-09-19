@@ -104,6 +104,12 @@
             'Product name successfully changed',
             'success'
             )
+    }else if(session1 == 'edited') {
+            Swal.fire(
+            'Success!',
+            'plan successfully changed',
+            'success'
+            )
     }
 
     function confirmation(routeHref){

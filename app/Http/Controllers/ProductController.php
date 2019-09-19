@@ -126,7 +126,7 @@ class ProductController extends Controller
         $edit = $this->service->editPlan()->post($data);
 
         if($edit->bodyResponse == 1){
-            return $this->index("edited");
+            return redirect("/product")->with('notify', 'edited');
         }else if($edit->bodyResponse == 0){
             return redirect()->back()->with('notify', 'edit fail');
         }
