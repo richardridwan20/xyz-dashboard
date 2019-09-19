@@ -30,7 +30,7 @@
     <tbody id="tableAjax">
             @forelse ($vouchers as $voucher)
                 <tr>
-                    <td>{{$voucher['voucher_number']}}</td>
+                    <td>{{$voucher['voucher_code']}}</td>
                     <td>{{$voucher['certificate_number']}}</td>
                     <td>{{$voucher['status']}}</td>
                     <td>{{$voucher['expiry_date']}}</td>

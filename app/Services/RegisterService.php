@@ -37,12 +37,5 @@ class RegisterService extends ApiService
         return $this;
     }
 
-    public function create()
-    {
-        $this->endPoint = 'product/create';
-
-        return $this;
-    }
-
 
 }

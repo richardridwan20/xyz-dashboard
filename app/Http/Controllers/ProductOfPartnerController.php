@@ -31,6 +31,8 @@ class ProductOfPartnerController extends Controller
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
+        // dd($plan->bodyResponse['data']);
+
         return view('productofpartner.index', compact('productOfPartners', 'append', 'partnerName','plan'));
     }
 
@@ -127,7 +129,7 @@ class ProductOfPartnerController extends Controller
      */
     public function destroy($id)
     {
-        $this->service->PpDelete($id)->fetch();
+        $delete = $this->service->PpDelete($id)->fetch();
 
         return redirect()->back()->with('notify', 'deleted');
     }

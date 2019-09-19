@@ -1,11 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-
+{{-- {{dd($products)}} --}}
 <div class="content">
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
+                <a class="btn btn-alt-info back-btn" href="{{url()->previous()}}"><i class="fa fa-arrow-circle-left"></i> Back to Manage Product & Plan</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
@@ -19,36 +20,55 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form action="{{ route('product.create') }}" method="POST">
-                        @csrf
-                        <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="form-material floating">
+                    <form action="{{ route('plan.change_data') }}" method="POST">
+                    @csrf
+                    <input type="hidden" id="id" name="id" value={{$plans['id']}}>
+                    <div class="form-group row">
+                            <div class="col-12">
+                                <div class="form-material floating">
+                                    <div>before: {{$plans['product']['name']}}</div>
+                                    <select type="dropdown" class="form-control" id="product_id" name="product_id">
+                                        <option disabled selected>Select New Product</option>
+                                        @for($i=0;$i<count($products);$i++)
+                                            <option value="{{$products[$i]['id']}}" @if($products[$i]['id'] == $plans['product']['id'] && $plans['product']['id'] != null) selected @elseif(old('product') == $products[$i]['id']) selected @endif>{{$products[$i]['name']}}</option>
+                                        @endfor
+                                    </select>
 
-                                        <select type="dropdown" class="form-control" id="product" name="product">
-                                            <option disabled selected>Select Product</option>
-                                            <option value=1>Sequis Mikro Sejahtera</option>
-                                        </select>
-
-                                        @error('product')
-                                            <p style="color:red">
-                                                <strong>{{ $message }}</strong>
-                                            </p>
-                                        @enderror
-                                    </div>
+                                    @error('product_id')
+                                        <p style="color:red">
+                                            <strong>{{ $message }}</strong>
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="form-material floating">
+                                    <div>before: {{$plans['duration']}}</div>
+                                    <select type="dropdown" class="form-control" id="duration" name="duration">
+                                        <option disabled selected>Select duration</option>
+                                        <option value="Monthly" @if($plans['duration'] == "Monthly" && old('duration') == null) selected @elseif(old('duration') == "Monthly") selected @endif>Monthly</option>
+                                        <option value="Yearly" @if($plans['duration'] == "Yearly" && old('duration') == null) selected @elseif(old('duration') == "Yearly") selected @endif>Yearly</option>
+                                    </select>
+
+                                    @error('duration')
+                                        <p style="color:red">
+                                            <strong>{{ $message }}</strong>
+                                        </p>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <select type="dropdown" class="form-control" id="plan" name="plan">
-                                        <option  disabled selected>Select Plan</option>
-                                        <option value="Standard">Standard</option>
-                                        <option value="Deluxe">Deluxe</option>
-                                    </select>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required autocomplete="name" value=@if($plans['name'] != null && old('duration') == null) {{$plans['name']}}  @else "{{ old('name') }}" @endif>
+                                    <label for="name">Plan Name</label>
 
-                                    @error('plan')
+                                    @error('name')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -60,7 +80,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('sum_assured') is-invalid @enderror" id="sum_assured" name="sum_assured" required autocomplete="sum_assured">
+                                    <input type="text" class="form-control @error('sum_assured') is-invalid @enderror" id="sum_assured" name="sum_assured" required autocomplete="sum_assured" value=@if($plans['sum_assured'] != null && old('sum_assured') == null) {{$plans['sum_assured']}}  @else "{{ old('sum_assured') }}" @endif>
                                     <label for="sum_assured">Sum Assured</label>
 
                                     @error('sum_assured')
@@ -76,7 +96,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('benefits') is-invalid @enderror" id="benefits" name="benefits" required>
+                                    <input type="text" class="form-control @error('benefits') is-invalid @enderror" id="benefits" name="benefits" required autocomplete="benefits" value=@if($plans['benefits'] != null && old('benefits') == null) {{$plans['benefits']}}  @else "{{ old('benefits') }}" @endif>
                                     <label for="benefits">Benefits</label>
 
                                     @error('benefits')
@@ -92,7 +112,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required autocomplete="description">
+                                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required autocomplete="description" value=@if($plans['description'] != null && old('description') == null) {{$plans['description']}}  @else "{{ old('description') }}" @endif>
                                     <label for="description">Description</label>
 
                                     @error('description')
@@ -108,26 +128,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('premium') is-invalid @enderror" id="premium" name="premium" required autocomplete="premium">
+                                    <input type="text" class="form-control @error('premium') is-invalid @enderror" id="premium" name="premium" required autocomplete="premium" value=@if($plans['premium'] != null && old('premium') == null) {{$plans['premium']}}  @else "{{ old('premium') }}" @endif>
                                     <label for="premium">Premium</label>
 
                                     @error('premium')
-                                        <p style="color:red">
-                                            <strong>{{ $message }}</strong>
-                                        </p>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <div class="form-material floating">
-
-                                    <input type="text" class="form-control @error('duration') is-invalid @enderror" id="duration" name="duration" required autocomplete="duration">
-                                    <label for="duration">Duration</label>
-
-                                    @error('duration')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
