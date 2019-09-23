@@ -32,9 +32,9 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function allTransaction($page, $month, $year)
+    public function allTransaction($page, $month, $year, $name, $agent)
     {
-        $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year;
+        $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year.'&name='.$name.'&agent='.$agent;
 
         return $this;
     }

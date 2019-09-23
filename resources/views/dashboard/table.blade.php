@@ -133,15 +133,15 @@
                     <td>-</td>
                     <td>-</td>
                     @else
-                    @if($transaction['agent_id'][0]['agent_name'] == null)
+                    @if($transaction['agent_id']['agent_name'] == null)
                     <td>-</td>
                     @else
-                    <td>{{$transaction['agent_id'][0]['agent_name']}}</td>
+                    <td>{{$transaction['agent_id']['agent_name']}}</td>
                     @endif
-                    @if($transaction['agent_id'][0]['branch_name'] == null)
+                    @if($transaction['agent_id']['branch_name'] == null)
                     <td>-</td>
                     @else
-                    <td>{{$transaction['agent_id'][0]['branch_name']}}</td>
+                    <td>{{$transaction['agent_id']['branch_name']}}</td>
                     @endif
                     @endif
 

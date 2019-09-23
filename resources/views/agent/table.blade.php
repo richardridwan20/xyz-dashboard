@@ -2,7 +2,11 @@
     <thead>
         <tr>
             <th id="agent_name" data-sort="agent_name" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Agent/Branch Name</b>
+                <b>Agent Name</b>
+                <i class="id fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="agent_name" data-sort="agent_name" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Branch Name</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
             <th id="citizen_id" data-sort="citizen_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -30,7 +34,8 @@
     <tbody id="tableAjax">
             @forelse ($agents as $agent)
                 <tr>
-                    <td>{{$agent['agent_branch name']}}</td>
+                    <td>{{$agent['agent_name']}}</td>
+                    <td>{{$agent['branch_name']}}</td>
                     <td>{{$agent['citizen_id']}}</td>
                     <td>{{$agent['phone_number']}}</td>
                     <td>{{$agent['dob']}}</td>
