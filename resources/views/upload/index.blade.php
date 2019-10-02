@@ -3,25 +3,37 @@
 @section('content')
 
 @php
-if($errors->any()){
-    $i=0;
-    foreach ($errors->getMessages() as $element => $value) {
-        $elementData = explode(".",$element);
-        $datas[$i] = [
-            'row' => $elementData[0],
-            'column' => $elementData[1],
-            'desc' => $value
+$error = session('error');
+if($error != null){
+// $datas = [];
+    for($i=0;$i<$error['total_row'];$i++){
+        if(array_key_exists('row '.($i+2), $error['error'])){
+            $datas[$i] = [
+            'row' => $i+2,
+            'status' => "Failed",
+            'desc' => $error['error']['row '.($i+2)]
         ];
-        $i++;
+        }
+        // else{
+        //     $datas[$i] = [
+        //     'row' => $i+2,
+        //     'status' => "Success",
+        //     'desc' => "Succesfully Added to database"];
+        // }
     }
 
     sort($datas);
+    // dd($datas);
+
+
+
 }
+// dd($datas);
 @endphp
 
 <div class="content">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <!-- Default Elements -->
             <div class="block">
                 <div class="block-header block-header-default bg-primary-lighter">
@@ -54,9 +66,21 @@ if($errors->any()){
                                 <strong>{{ $message }}</strong>
                         </div>
                     @endif
-                    @if ($errors->any())
-                    <div>
-
+                    @if ($error != null)
+                    <div class="row">
+                        <div class="col-md-2">
+                            total fail: {{$error['fail_row']}}
+                        </div>
+                        <div class="col-md-3">
+                            total success: {{$error['total_row']-$error['fail_row']}}
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <form action="GET">
+                                @csrf
+                                <input type="submit" class="btn btn-alt-primary" value="Download Fail Report" formaction="{{ route('upload.download_fail_report', $error['file_name'])}}"/>
+                            </form>
+                        </div>
                     </div>
                     <div class="alert alert-danger alert-dismissible" role="alert">
                             {{-- {{dd($errors->getMessages()) }} --}}
@@ -69,7 +93,7 @@ if($errors->any()){
                                             <i class="id fa fa-pull-right fa-sort"></i>
                                         </th>
                                         <th id="id" data-sort="id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                                            <b>Column</b>
+                                            <b>Status</b>
                                             <i class="id fa fa-pull-right fa-sort"></i>
                                         </th>
                                         <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -82,10 +106,10 @@ if($errors->any()){
                                     @foreach ($datas as $data)
                                         <tr>
                                             <td>{{$data['row']}}</td>
-                                            <td>{{$data['column']}}</td>
+                                            <td>{{$data['status']}}</td>
                                             <td>
-                                                @foreach($data['desc'] as $val)
-                                                    <li>{{$val}}</li>
+                                                @foreach($data['desc'] as $key => $val)
+                                                    <li>{{$key}}={{$val[0]}}</li>
                                                 @endforeach
                                             </td>
                                         </tr>

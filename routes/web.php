@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
     Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
+    Route::get('/download-fail-report/{fileName}', 'UploadController@downloadFailReport')->name('upload.download_fail_report')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
     Route::get('/download-certificate', 'CertificateController@downloadCertificate')->name('certificate.download');
     Route::get('/create-invoice/{invoiceNumber}', 'DashboardController@createInvoice')->name('dashboard.invoice');
     Route::get('/download-invoice/{invoiceNumber}', 'DashboardController@downloadInvoice')->name('invoice.download');

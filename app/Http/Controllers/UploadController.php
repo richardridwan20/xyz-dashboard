@@ -25,6 +25,11 @@ class UploadController extends Controller
         return view('upload.index');
     }
 
+    public function downloadFailReport($fileName)
+    {
+        return response()->download(storage_path('app/public/files/reports/fail/'.$fileName));
+    }
+
     public function upload(Request $request)
     {
         $request->validate([
@@ -47,15 +52,23 @@ class UploadController extends Controller
 
             $upload = $this->service->import($data)->upload($data);
 
+            // dd($upload);
+
             $error = $upload->bodyResponse;
 
-            if (!empty($error['errors'])) {
+            // dd($upload);
+
+            // dd($error);
+
+            if ($error['code'] == 422) {
                 return back()
-                ->withErrors($error['errors']);
+                ->with("error", $error);
+            }else{
+                return back()
+                ->with('notify','uploaded');
             }
 
-            return back()
-                ->with('notify','uploaded');
+
         }else{
             return back()
             ->withErrors('File harus dengan ekstensi yang benar.');
