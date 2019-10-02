@@ -7,12 +7,25 @@
             <div class="block-content">
                 <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="aname" name="aname" required autocomplete="aname">
-                                <label for="aname">Agent / Branch Name</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="aname" name="aname" required autocomplete="aname">
+                                <label for="aname">Agent Name</label>
                                 @error('aname')
+                                    <p style="color:red">
+                                        <strong>{{ $message }}</strong>
+                                    </p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-material ">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="bname" name="bname" required autocomplete="bname">
+                                <label for="bname">Branch Name</label>
+                                @error('bname')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>

@@ -73,15 +73,18 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <div class="form-material">
-                                                <input type="text" class="form-control @error('partner_name') is-invalid @enderror" id="partner_name" name="partner_name" required autocomplete="partner_name">
-                                                <label for="partner_name">Partner Name</label>
-                                                @error('partner_name')
-                                                    <p style="color:red">
-                                                        <strong>{{ $message }}</strong>
-                                                    </p>
-                                                @enderror
-                                            </div>
+                                            <select type="dropdown" class="form-control" id="partner_name" name="partner_name">
+                                                <option disabled selected>Select Partner</option>
+                                                @for($i=0;$i<count($partnerName);$i++)
+                                                    <option value="{{$partnerName[$i]['name']}}">{{$partnerName[$i]['name']}}</option>
+                                                @endfor
+                                            </select>
+
+                                            @error('name')
+                                                <p style="color:red">
+                                                    <strong>{{ $message }}</strong>
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +110,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-    var session1 = "{{$notify}}"
+    var session1 = "{{Session::get('notify')}}"
 
     if (session1 == 'add') {
         Swal.fire(

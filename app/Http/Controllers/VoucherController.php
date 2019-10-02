@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
+use App\Services\RegisterService;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -10,6 +11,7 @@ class VoucherController extends Controller
     public function __construct(DashboardService $service)
     {
         $this->service = $service;
+        $this->registerService = new RegisterService;
     }
 
     public function index(Request $request)
@@ -20,6 +22,7 @@ class VoucherController extends Controller
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
+
         $vouchers = $this->service->getVoucher($page)->paginate();
 
         return view('voucher.index', compact('vouchers', 'append'));
@@ -27,8 +30,8 @@ class VoucherController extends Controller
 
     public function showForm()
     {
-        $notify = '';
-        return view('voucher.form', compact('notify'));
+        $partnerName = $this->registerService->partnerName()->get();
+        return view('voucher.form', compact('notify','partnerName'));
     }
 
     public function create(Request $request)
@@ -68,10 +71,10 @@ class VoucherController extends Controller
         $inputVoucher = $this->service->createVoucher()->post($data);
 
         if($inputVoucher->bodyResponse['code'] == 201){
-            $notify = 'add';
+            return redirect()->back()->with('notify', 'add');
         }
 
-        return view('voucher.form', compact('notify'));
+
     }
 
     public function deleteVoucher($id)

@@ -12,25 +12,39 @@
             </div>
             <div class="block-content block-content-full">
                 <form method="GET">
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
-                        </div>
-                        <div class="col-3" class="form-control">
-                            @role("viewer|partner viewer")
-                            @if($name == '')
-                                <label for="" class="col-form-label">Search Name First</label>
-                            @else
-                                <label for="" class="col-form-label">Showing search result for "{{$data['name']}}"</label>
-                            @endif
-                            @else
-                                <label for="" class="col-form-label">Showing data for {{$data['date']}}</label>
+                    <div class="col-12" class="form-control">
+                        @if(Session::get('name') != "" || Session::get('agent') != "" || Session::get('month') != "" || Session::get('year') != "")
+                        <label for="" class="col-form-label">Showing search result for :</label>
+                        @endif
+                        @if(Session::get('name') != "")
+                            <label for="" class="col-form-label"> PH/Insured Name: "{{Session::get('name')}}", </label>
+                        @else
+                            @role('viewer|partner viewer')
+                            <label for="" class="col-form-label">Search Name First</label>
                             @endrole
-                        </div>
+                        @endif
+                        @if(Session::get('agent') != "")
+                            <label for="" class="col-form-label"> Agent/Branch Name: "{{Session::get('agent')}}", </label>
+                        @endif
+                        @if(Session::has('date'))
+                            <label for="" class="col-form-label">Date: {{Session::get('date')}}</label>
+                        @elseIf(Session::has('month'))
+                            <label for="" class="col-form-label">Month: {{Session::get('month')}} </label>
+                        @elseIf(Session::has('year'))
+                            <label for="" class="col-form-label">Year: {{Session::get('year')}} </label>
+                        @endIf
+
+                    </div>
+                    <div class="form-group row">
+                        {{-- <div class="col-2"> --}}
+                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="status" value="opened">
+                        {{-- </div> --}}
                         @role('supadmin|financial|operation|partner financial|partner operation')
                         <div class="col-2">
                             <select class="form-control" id="select-month" name="select-month">
-                                <option value="0">Pilih Bulan</option>
+                                <option value="0" disabled>Choose Month</option>
+                                <option value= "" {{ null == $data['month'] ? 'selected="selected"' : '' }}>Without Month</option>
                                 <option value="01" {{ '01' == $data['month'] ? 'selected="selected"' : '' }}>Januari</option>
                                 <option value="02" {{ '02' == $data['month'] ? 'selected="selected"' : '' }}>Februari</option>
                                 <option value="03" {{ '03' == $data['month'] ? 'selected="selected"' : '' }}>Maret</option>
@@ -47,17 +61,21 @@
                         </div>
                         <div class="col-2">
                             <select class="form-control" id="select-year" name="select-year">
-                                <option value="0">Pilih Tahun</option>
+                                <option value="0" disabled>Choose Year</option>
+                                <option value= "" {{ null == $data['year'] ? 'selected="selected"' : '' }}>Without Year</option>
                                 <option value="2019" {{ '2019' == $data['year'] ? 'selected="selected"' : '' }}>2019</option>
                             </select>
                         </div>
-                        @endrole
-                        @role("viewer|partner viewer")
-                        <div class="col-1"></div>
-                        <div class="col-3">
-                            <input class="form-control" type="text" name="text-name" placeholder="Policy Holder / Insured Name">
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="agent-name" placeholder="Agent Name" value= "{{Session::get('agent')}}">
                         </div>
                         @endrole
+                        {{-- @role("viewer|partner viewer") --}}
+                        {{-- <div class="col-1"></div> --}}
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="text-name" placeholder="Policy Holder / Insured Name" value= "{{Session::get('name')}}">
+                        </div>
+                        {{-- @endrole --}}
                         <div class="col-1">
                             <input type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"/>
                         </div>
@@ -67,6 +85,7 @@
                         </div>
                         @endrole
                     </div>
+
 
                 </form>
                 @include('dashboard.table')

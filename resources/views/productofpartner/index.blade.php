@@ -56,8 +56,8 @@
                         <div class="form-group">
                             <select type="dropdown" class="form-control" id="plan_id" name="plan_id">
                                 <option disabled selected>Select Product</option>
-                                @for($i=0;$i<count($plan->bodyResponse);$i++)
-                                    <option value="{{$plan->bodyResponse[$i]['id']}}">{{$plan->bodyResponse[$i]['product']['name']}} {{$plan->bodyResponse[$i]['name']}} {{$plan->bodyResponse[$i]['duration']}}</option>
+                                @for($i=0;$i<count($plan->bodyResponse['data']);$i++)
+                                    <option value="{{$plan->bodyResponse['data'][$i]['id']}}">{{$plan->bodyResponse['data'][$i]['product_id']['name']}} {{$plan->bodyResponse['data'][$i]['name']}} {{$plan->bodyResponse['data'][$i]['duration']}}</option>
                                 @endfor
                             </select>
 

@@ -274,32 +274,41 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
+        // if($request->session()->has('try')){
+        //     $request->session()->push('try', $request->session()->get('try')+1);
+        // }else{
+
+        // }
+
         $month = $request->input('select-month');
         $year = $request->input('select-year');
         $name = $request->input('text-name');
+        $agent = $request->input('agent-name');
         $name = strtolower($name);
         $name = ucwords($name);
 
-        $date = Carbon::createFromDate($year, $month, 1);
-        $date = Carbon::parse($date)->format('F Y');
+        // dd($month);
 
-        if (!empty($month) && !empty($year)) {
+        if($year != "" && $month != ""){
+            $date = Carbon::createFromDate($year, $month, 1);
+            $date = Carbon::parse($date)->format('F Y');
+        }else{
+            $date = null;
+        }
+
+
+        if ($request->status == null) {
+            $month = Carbon::now()->format('m');
+            $year = Carbon::now()->format('Y');
+            $date = Carbon::now()->format('F Y');
+        } else{
             $request->session()->flash('month', $month);
             $request->session()->flash('year', $year);
             $request->session()->flash('name', $name);
             $request->session()->flash('date', $date);
-        } else if ($request->session()->get('month') == null || $request->session()->get('year') == null)
-        {
-            $month = Carbon::now()->format('m');
-            $year = Carbon::now()->format('Y');
-            $date = Carbon::now()->format('F Y');
-        } else {
-            $request->session()->keep(['month', 'year', 'name', 'date']);
-            $month = $request->session()->get('month');
-            $year = $request->session()->get('year');
-            $name = $request->session()->get('name');
-            $date = $request->session()->get('date');
+            $request->session()->flash('agent', $agent);
         }
+        // dd($month);
 
         $data = ['name' => $name, 'date' => $date, 'month' => $month, 'year' => $year];
 
@@ -313,8 +322,8 @@ class DashboardController extends Controller
         $sumTotalPartnerBill = 0;
 
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
-            $transactions = $this->service->allTransaction($page, $month, $year)->paginate();
-            $transactionsCount = $this->service->allTransaction($page, $month, $year)->get();
+            $transactions = $this->service->allTransaction($page, $month, $year, $name, $agent)->paginate();
+            $transactionsCount = $this->service->allTransaction($page, $month, $year, $name, $agent)->get();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
             $transactions = $this->service->partnerTransaction($page, $month, $year)->paginate();
             $transactionsCount = $this->service->partnerTransaction($page, $month, $year)->get();
@@ -691,7 +700,8 @@ class DashboardController extends Controller
     public function addAgent(Request $request)
     {
         $rules = [
-            'aname' => 'required',
+            'aname' => 'required_without:bname',
+            'bname' => 'required_without:aname',
             'ausername' => 'required|unique:agents,username',
             'aphone' => 'required|numeric',
             'apassword' => 'required',
@@ -703,7 +713,8 @@ class DashboardController extends Controller
 
         ];
         $customAttributes = [
-            'aname' => 'Agent / branch Name',
+            'aname' => 'Agent Name',
+            'bname' => 'Branch Name',
             'ausername' => 'Agent Username',
             'aphone' => 'Agent Phone Number',
             'apassword' => 'Agent Password',
@@ -719,7 +730,8 @@ class DashboardController extends Controller
 
         $data = [
             'partner_id' => $partner['id'],
-            'agent_branch_name' => $request->aname,
+            'agent_name' => $request->aname,
+            'branch_name' => $request->bname,
             'username' => $request->ausername,
             'password' => $request->apassword,
             'dob' => $request->adob,
@@ -729,6 +741,7 @@ class DashboardController extends Controller
 
 
         $inputAgent = $this->service->createAgent()->post($data);
+        // dd($inputAgent);
         $quotaRemain = $inputAgent->bodyResponse['quota_remaining'];
         if($inputAgent->bodyResponse['code'] == 201){
             $notify = 'add';

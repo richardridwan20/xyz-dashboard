@@ -151,7 +151,7 @@
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PO</span><span class="sidebar-mini-hidden">Product</span></li>
                     @role('supadmin|financial|operation')
                     <li>
-                        <a class="{{ Route::is('register.product') ? 'active' : '' }}" href="{{ route('register.product') }}"><i class="fa fa-archive"></i><span class="sidebar-mini-hide">Register Product</span></a>
+                        <a class="{{ Route::is('product.index') ? 'active' : '' }}" href="{{ route('product.index') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">Manage Product & Plan</span></a>
                     </li>
                     @endrole
                     {{-- Agent Sub-menu --}}

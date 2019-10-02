@@ -15,7 +15,13 @@ Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
 Route::post('/login', 'Auth/LoginController@login')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/register-product', 'ProductController@index')->name('register.product');
+    Route::get('/product', 'ProductController@index')->name('product.index');
+    Route::get('/plan/delete/{id}', 'ProductController@deletePlan')->name('plan.delete');
+    Route::get('/plan/edit/{id}', 'ProductController@editPlan')->name('plan.edit');
+    Route::post('/plan/change_data', 'ProductController@changePlanData')->name('plan.change_data');
+    Route::get('/product/delete/{id}', 'ProductController@deleteProduct')->name('product.delete');
+    Route::get('/product/register_product', 'ProductController@addProduct')->name('product.add_product');
+    Route::get('/product/register_plan', 'ProductController@addPlan')->name('product.add_plan');
     Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
     Route::get('/register-partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
@@ -53,7 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');
-    Route::post('/register-product', 'ProductController@create')->name('product.create');
+    Route::post('/product/create', 'ProductController@create')->name('product.create');
+    Route::post('/product/change_name', 'ProductController@changeName')->name('product.change_name');
+    Route::post('/product/create_plan', 'ProductController@createPlan')->name('product.create_plan');
     Route::post('/productofpartner/create', 'ProductOfPartnerController@create')->name('productofpartner.create');
     Route::post('/register-new-partner-role', 'RegisterController@inputPartner')->name('register.input_partner');
     Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');

@@ -32,9 +32,9 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function allTransaction($page, $month, $year)
+    public function allTransaction($page, $month, $year, $name, $agent)
     {
-        $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year;
+        $this->endPoint = 'transaction/?page='.$page.'&month='.$month.'&year='.$year.'&name='.$name.'&agent='.$agent;
 
         return $this;
     }
@@ -194,9 +194,86 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function changeName()
+    {
+        $this->endPoint = 'product/change_name';
+
+        return $this;
+    }
+
     public function createVoucher()
     {
         $this->endPoint = 'voucher/create';
+
+        return $this;
+    }
+
+    public function createProduct()
+    {
+        $this->endPoint = 'product/create';
+
+        return $this;
+    }
+
+    public function createPlan()
+    {
+        $this->endPoint = 'plan/create';
+
+        return $this;
+    }
+
+    public function checkPlan($plan_name, $product_id, $duration)
+    {
+        $this->endPoint = 'plan/check?product_id='.$product_id.'&plan_name='.$plan_name.'&duration='.$duration;
+
+        return $this;
+    }
+
+    public function deletePlan($id)
+    {
+        $this->endPoint = 'plan/destroy/'.$id;
+
+        return $this;
+    }
+
+    public function deleteProduct($id)
+    {
+        $this->endPoint = 'product/destroy/'.$id;
+
+        return $this;
+    }
+
+    public function getPlanDataById($id)
+    {
+        $this->endPoint = 'plan/'.$id;
+
+        return $this;
+    }
+
+    public function editPlan()
+    {
+        $this->endPoint = 'plan/edit';
+
+        return $this;
+    }
+
+    public function getAllPlan()
+    {
+        $this->endPoint = 'plan';
+
+        return $this;
+    }
+
+    public function getAllProduct()
+    {
+        $this->endPoint = 'product/get_all';
+
+        return $this;
+    }
+
+    public function getAllProductPaginated()
+    {
+        $this->endPoint = 'product/get_all_paginated';
 
         return $this;
     }
