@@ -2,7 +2,7 @@
     $type = $detailTransaction['plan']['duration'];
     $commission = $detailTransaction['transaction']['partner']['commission'];
     $duration = $detailTransaction['transaction']['protection_duration'];
-    $certificateNumber = $detailTransaction['transaction']['certificate_number'];
+    $policyNumber = $detailTransaction['transaction']['policy_number'];
 
     $start = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_start'])->format('d-F-Y');
     $end = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_end'])->format('d-F-Y');
@@ -59,9 +59,9 @@
                     <div class="col-sm-3">
                         <div class="block block-rounded block-bordered">
                             <div class="block-header block-header-default">
-                                <b>Certificate Number</b>
+                                <b>Policy Number</b>
                                 <div class="block-option">
-                                    @if ($certificateNumber != null)
+                                    @if ($policy_number != null)
                                         <a href="{{ route('certificate.download', ['certificate_number' => ''.$certificateNumber.'']) }}">
                                             <i class="fa fa-download"></i>
                                         </a>
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="block-content">
-                                @if ($certificateNumber != null)
+                                @if ($policy_number != null)
                                     {{$certificateNumber}}
                                 @else
                                     No data.
@@ -123,21 +123,21 @@
                     </div>
                 </div>
                 {{-- End of Protection Duration Row --}}
-                {{-- Start of Certificate Number Row --}}
+                {{-- Start of Policy Number Row --}}
                 <div class="row">
                     <div class="col-md-5">
                         <div class="block">
-                            <b>Certificate Number</b>
+                            <b>Policy Number</b>
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['certificate_number']}}
+                            {{$detailTransaction['transaction']['policy_number']}}
                         </div>
                     </div>
                 </div>
-                {{-- End of Certificate Number Row --}}
+                {{-- End of Policy Number Row --}}
                 {{-- Start of Payment Status Row --}}
                 <div class="row">
                     <div class="col-md-5">

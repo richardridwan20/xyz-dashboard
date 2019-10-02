@@ -112,7 +112,7 @@
         function confirmation(routeHref){
             Swal.fire({
                 title: 'Do you want to create Invoice?',
-                text: "If succeed you can download it on the 'Invoice Created' table",
+                text: "If succeeded you can download it on the 'Invoice Created' table",
                 type: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -121,7 +121,6 @@
             }).then((result) => {
                 if (result.value) {
                     window.location.href = routeHref;
-                    location.reload();
                 }
             })
         }
