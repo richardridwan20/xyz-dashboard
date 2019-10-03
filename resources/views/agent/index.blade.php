@@ -60,7 +60,8 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                window.location.href = routeHref;            }
+                window.location.href = routeHref;
+            }
         })
     }
 </script>

@@ -27,7 +27,7 @@ class CreateTransactionsTable extends Migration
             $table->string('protection_duration');
             $table->dateTime('protection_start')->nullable();
             $table->dateTime('protection_end')->nullable();
-            $table->string('certificate_number')->nullable();
+            $table->string('policy_number')->nullable();
             $table->string('status');
             $table->string('invoice_number');
             $table->integer('total_paid');

@@ -49,9 +49,9 @@
                 <b>Protection End</b>
                 <i class="protection_end fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="certificate_number" data-sort="certificate_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Certificate Number</b>
-                <i class="certificate_number fa fa-pull-right fa-sort"></i>
+            <th id="policy_number" data-sort="policy_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Policy Number</b>
+                <i class="policy_number fa fa-pull-right fa-sort"></i>
             </th>
             <th id="status" data-sort="status" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Status</b>
@@ -156,7 +156,7 @@
                     @endif
                     <td>{{$start}}</td>
                     <td>{{$end}}</td>
-                    <td>{{$transaction['certificate_number']}}</td>
+                    <td>{{$transaction['policy_number']}}</td>
                     <td>{{$transaction['status']}}</td>
                     @role('supadmin|treasury|financial|partner financial')
                     @if($transaction['status'] == "Canceled")

@@ -28,20 +28,20 @@
         </tr>
     </thead>
     <tbody id="tableAjax">
-            @forelse ($vouchers as $voucher)
-                <tr>
-                    <td>{{$voucher['voucher_code']}}</td>
-                    <td>{{$voucher['policy_number']}}</td>
-                    <td>{{$voucher['status']}}</td>
-                    <td>{{$voucher['expiry_date']}}</td>
-                    <td>{{$voucher['partner']}}</td>
-                    <td><a onclick="confirmation('voucher/delete/{{$voucher['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="6">No data to be shown.</td>
-                </tr>
-            @endforelse
+        @forelse ($vouchers as $voucher)
+            <tr>
+                <td>{{$voucher['voucher_code']}}</td>
+                <td>{{$voucher['policy_number']}}</td>
+                <td>{{$voucher['status']}}</td>
+                <td>{{$voucher['expiry_date']}}</td>
+                <td>{{$voucher['partner']}}</td>
+                <td><a onclick="confirmation('voucher/delete/{{$voucher['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6">No data to be shown.</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 <div class="row">

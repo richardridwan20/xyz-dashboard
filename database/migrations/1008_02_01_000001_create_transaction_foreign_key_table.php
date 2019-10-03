@@ -33,6 +33,8 @@ class CreateTransactionForeignKeyTable extends Migration
             $table->dropForeign(['customer_id']);
             $table->dropForeign(['partner_id']);
             $table->dropForeign(['plan_id']);
+            $table->dropForeign(['agent_id']);
+            $table->dropForeign(['voucher_id']);
         });
     }
 }

@@ -12,6 +12,7 @@ use App\Models\Agent;
 use App\Rules\CheckVoucherStatus;
 use Illuminate\Support\Facades\Session;
 use App\Services\DashboardService;
+use App\Services\InvoiceLogService;
 use App\Services\ProductOfPartnerService;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,6 +23,7 @@ class DashboardController extends Controller
     public function __construct(DashboardService $service)
     {
         $this->service = $service;
+        $this->invoiceService = new InvoiceLogService;
         $this->PpService = new ProductOfPartnerService;
     }
 
@@ -376,6 +378,7 @@ class DashboardController extends Controller
         $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
         $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
         $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
+
         $rules = [
             'plan_id' => 'required',
             'duration' => 'required',
@@ -396,12 +399,14 @@ class DashboardController extends Controller
             'b4relation' => 'nullable|required_with:b4name',
             'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
         ];
+
         $customMessages = [
             'plan_id.required' => 'please select the :attribute',
             'phgender.required' => 'please select the :attribute',
             'before_or_equal' => ':attribute should more than 18 years',
             'after_or_equal' => ':attribute should less than 55 years'
         ];
+
         $customAttributes = [
             'plan_id' => 'Product Plan',
             'duration' => 'Protection Duration',
@@ -479,7 +484,7 @@ class DashboardController extends Controller
                 ];
             }
         }
-        // dd($data);
+
         $transactionAdded = $this->service->inputTransaction()->post($data);
 
         if($transactionAdded->bodyResponse['data']['code'] == 101){
@@ -776,6 +781,20 @@ class DashboardController extends Controller
     public function createInvoice($invoiceNumber)
     {
         $invoice = $this->service->createInvoice($invoiceNumber)->get();
+
+        $column = 'created_at';
+        $typeOfSort = 'DESC';
+
+        $page = 1;
+        $currentPage = $page;
+
+        $invoices = $this->invoiceService->allInvoice($page)->paginate();
+
+        $invoiceLogs = $this->invoiceService->getInvoiceLogs($page)->paginate();
+
+        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+
+        return view('invoice.index', compact('invoices', 'invoiceLogs', 'append'));
     }
 
     public function downloadInvoice($invoiceNumber)

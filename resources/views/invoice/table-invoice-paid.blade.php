@@ -13,12 +13,16 @@
                 <b>Year</b>
                 <i class="year fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="invoice_number" data-sort="invoice_number" data-order="DESC" class="medium-th session-head text-capitalize">
+            <th id="invoice_number" data-sort="invoice_number" data-order="DESC" class="small-th session-head text-capitalize">
                 <b>Invoice Number</b>
                 <i class="invoice_number fa fa-pull-right fa-sort"></i>
             </th>
             <th id="paid_at" data-sort="paid_at" data-order="DESC" class="medium-th session-head text-capitalize">
                 <b>Status</b>
+                <i class="paid_at fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="paid_at" data-sort="paid_at" data-order="DESC" class="medium-th session-head text-capitalize">
+                <b>Paid At</b>
                 <i class="paid_at fa fa-pull-right fa-sort"></i>
             </th>
             <th id="action" data-sort="action" data-order="DESC" class="medium-th session-head text-capitalize">
@@ -36,6 +40,7 @@
             <td>{{$invoice['year']}}</td>
             <td>{{$invoice['invoice_number']}}</td>
             <td>{{$invoice['status']}}</td>
+            <td>{{$invoice['paid_at']}}</td>
             <td><a href="{{ route('invoice.download', $invoice['invoice_number']) }}"><button class="btn btn-alt-danger"><small>Download</small></button></a>
                 @if ($invoice['status'] == 'Invoice Created')
                     <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-invoice="{{$invoice['invoice_number']}}"><small>Update</small></button>

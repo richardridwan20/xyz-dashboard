@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCertificateLogsTable extends Migration
+class CreatePolicyCreationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCertificateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql.log')->create('certificate_logs', function (Blueprint $table) {
+        Schema::connection('mysql.log')->create('policy_creation_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('transaction_id');
             $table->string('policy_number');
@@ -31,6 +31,6 @@ class CreateCertificateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql.log')->dropIfExists('certificate_logs');
+        Schema::connection('mysql.log')->dropIfExists('policy_creation_logs');
     }
 }
