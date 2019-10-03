@@ -6,12 +6,12 @@
     <div class="block block-fx-shadow">
         <div class="block">
             <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Invoices to be Created</h3>
+                <h3 class="block-title text-uppercase">Invoices Created</h3>
                 <div class="block-options">
                 </div>
             </div>
             <div class="block-content block-content-full">
-                @include('invoice.table')
+                @include('invoice.table-invoice-paid')
             </div>
         </div>
     </div>
@@ -21,12 +21,12 @@
     <div class="block block-fx-shadow">
         <div class="block">
             <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Invoices Created</h3>
+                <h3 class="block-title text-uppercase">Invoices to be Created</h3>
                 <div class="block-options">
                 </div>
             </div>
             <div class="block-content block-content-full">
-                @include('invoice.table-invoice-paid')
+                @include('invoice.table')
             </div>
         </div>
     </div>
