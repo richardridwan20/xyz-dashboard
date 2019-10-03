@@ -14,7 +14,7 @@ class CreateReservedVouchersTable extends Migration
     public function up()
     {
         Schema::connection('mysql')->create('reserved_vouchers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('voucher_code');
             $table->string('certificate_number');
             $table->string('status');
