@@ -13,9 +13,9 @@ class AddAgentsForeign extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function (Blueprint $table) {
-            $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
-        });
+        // Schema::table('agents', function (Blueprint $table) {
+        //     $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddAgentsForeign extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function (Blueprint $table) {
+        //Schema::table('agents', function (Blueprint $table) {
             // $table->dropForeign(['partner_id']);
-        });
+        //});
     }
 }

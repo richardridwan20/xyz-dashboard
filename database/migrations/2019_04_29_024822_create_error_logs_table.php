@@ -22,8 +22,6 @@ class CreateErrorLogsTable extends Migration
             $table->string('message');
             $table->string('trace');
             $table->timestamps();
-
-            // $table->foreign('transaction_id')->references('id')->on('sequis-b2b-dashboard.transactions');
         });
     }
 
