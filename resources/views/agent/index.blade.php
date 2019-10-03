@@ -8,11 +8,11 @@
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
-                <div class="col-2">
-                    @role('supadmin|financial|operation')
-                        <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
-                    @endrole
-                </div>
+                @role('supadmin|financial|operation')
+                    <div class="col-2">
+                            <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
+                    </div>
+                @endrole
                 <div class="col-2" style="margin-left: 20px;">
                     <a href="{{ route('dashboard.agent_form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Agent</button></a>
                 </div>

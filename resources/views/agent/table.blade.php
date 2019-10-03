@@ -17,7 +17,7 @@
                 <b>Phone Number</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="dob" data-sort="dob" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="dob" data-sort="dob" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Date of Birth</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
             </th>
@@ -25,7 +25,7 @@
                 <b>Username</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="action" data-sort="action" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="action" data-sort="action" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Actions</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
             </th>
