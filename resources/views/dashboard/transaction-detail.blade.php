@@ -61,16 +61,16 @@
                             <div class="block-header block-header-default">
                                 <b>Policy Number</b>
                                 <div class="block-option">
-                                    @if ($policy_number != null)
-                                        <a href="{{ route('certificate.download', ['certificate_number' => ''.$certificateNumber.'']) }}">
+                                    @if ($policyNumber != null)
+                                        <a href="{{ route('certificate.download', ['certificate_number' => ''.$policyNumber.'']) }}">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     @endif
                                 </div>
                             </div>
                             <div class="block-content">
-                                @if ($policy_number != null)
-                                    {{$certificateNumber}}
+                                @if ($policyNumber != null)
+                                    {{$policyNumber}}
                                 @else
                                     No data.
                                 @endif

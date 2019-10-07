@@ -129,19 +129,25 @@
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
+
+                    {{-- If there is no agent, then show no data  --}}
                     @if($transaction['agent_id'] == null)
-                    <td>-</td>
-                    <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                     @else
+
+                    {{-- If there is no agent, then show no data  --}}
                     @if($transaction['agent_id']['agent_name'] == null)
-                    <td>-</td>
+                        <td>-</td>
                     @else
-                    <td>{{$transaction['agent_id']['agent_name']}}</td>
+                        <td>{{$transaction['agent_id']['agent_name']}}</td>
                     @endif
+
+                    {{-- If there is no agent, then show no data  --}}
                     @if($transaction['agent_id']['branch_name'] == null)
-                    <td>-</td>
+                        <td>-</td>
                     @else
-                    <td>{{$transaction['agent_id']['branch_name']}}</td>
+                        <td>{{$transaction['agent_id']['branch_name']}}</td>
                     @endif
                     @endif
 
@@ -157,7 +163,11 @@
                     <td>{{$start}}</td>
                     <td>{{$end}}</td>
                     <td>{{$transaction['policy_number']}}</td>
-                    <td>{{$transaction['status']}}</td>
+                    @if ($transaction['status'] == "Payment Done")
+                        <td><span class="badge badge-success">{{$transaction['status']}}</span></td>
+                    @else
+                        <td><span class="badge badge-warning">{{$transaction['status']}}</span></td>
+                    @endif
                     @role('supadmin|treasury|financial|partner financial')
                     @if($transaction['status'] == "Canceled")
                     <td>0</td>
