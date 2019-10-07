@@ -28,7 +28,7 @@ class CreateTransactionsTable extends Migration
             $table->dateTime('protection_start')->nullable();
             $table->dateTime('protection_end')->nullable();
             $table->string('policy_number')->nullable();
-            $table->string('status');
+            $table->enum('status', ['Payment Done', 'Waiting For Payment']);
             $table->string('invoice_number');
             $table->integer('total_paid');
             $table->string('note')->nullable();
