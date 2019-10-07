@@ -16,6 +16,7 @@ class AddTokensForeign extends Migration
         Schema::table('tokens', function (Blueprint $table) {
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
         });
     }
 

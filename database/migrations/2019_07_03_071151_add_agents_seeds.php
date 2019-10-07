@@ -16,7 +16,7 @@ class AddAgentsSeeds extends Migration
         DB::table('agents')->insert([
             [
                 'partner_id' => 1,
-                'username' => 'Sequis0001',
+                'email' => 'sequis0001@sequislife.com',
                 'password' => Hash::make("S0001"),
                 'branch_name' => 'Sequis Kemanggisan',
                 'agent_name' => 'Pater',
@@ -28,7 +28,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 1,
-                'username' => 'Sequis0002',
+                'email' => 'sequis0002@sequislife.com',
                 'password' => Hash::make("S0002"),
                 'branch_name' => 'Sequis Kemanggisan',
                 'agent_name' => 'Rachird',
@@ -40,7 +40,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 2,
-                'username' => 'Smailing0001',
+                'email' => 'smailing0001@sequislife.com',
                 'password' => Hash::make("s0001"),
                 'branch_name' => 'Smailing Kelapa Gading',
                 'agent_name' => 'Don',
@@ -52,7 +52,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 2,
-                'username' => 'Smailing0002',
+                'email' => 'smailing0002@sequislife.com',
                 'password' => Hash::make("s0002"),
                 'branch_name' => 'Smailing Kemanggisan',
                 'agent_name' => 'Pater',
@@ -64,7 +64,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 3,
-                'username' => 'Sepulsa0001',
+                'email' => 'sepulsa0001@sequislife.com',
                 'password' => Hash::make("se0101"),
                 'branch_name' => '',
                 'agent_name' => 'Pater',
@@ -76,7 +76,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 3,
-                'username' => 'Sepulsa0002',
+                'email' => 'sepulsa0002@sequislife.com',
                 'password' => Hash::make("se0002"),
                 'branch_name' => '',
                 'agent_name' => 'didon',
@@ -88,7 +88,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 4,
-                'username' => 'Warpin0001',
+                'email' => 'warpin0001@sequislife.com',
                 'password' => Hash::make("w0001"),
                 'branch_name' => '',
                 'agent_name' => 'didon',
@@ -100,7 +100,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 4,
-                'username' => 'Warpin0002',
+                'email' => 'warpin0002@sequislife.com',
                 'password' => Hash::make("w0002"),
                 'branch_name' => '',
                 'agent_name' => 'didon',
@@ -112,7 +112,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 5,
-                'username' => 'Macroad0001',
+                'email' => 'macroad0001@sequislife.com',
                 'password' => Hash::make("m0001"),
                 'branch_name' => '',
                 'agent_name' => 'didon',
@@ -124,7 +124,7 @@ class AddAgentsSeeds extends Migration
             ],
             [
                 'partner_id' => 5,
-                'username' => 'Macroad0002',
+                'email' => 'macroad0002@sequislife.com',
                 'password' => Hash::make("m0002"),
                 'branch_name' => '',
                 'agent_name' => 'didon',
