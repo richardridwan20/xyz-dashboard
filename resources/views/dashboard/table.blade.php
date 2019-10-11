@@ -163,7 +163,7 @@
                     <td>{{$start}}</td>
                     <td>{{$end}}</td>
                     <td>{{$transaction['policy_number']}}</td>
-                    @if ($transaction['status'] == "Payment Done")
+                    @if ($transaction['status'] == "Payment Done" || $transaction['status'] == "Certificate Issued")
                         <td><span class="badge badge-success">{{$transaction['status']}}</span></td>
                     @elseif($transaction['status'] == "Waiting for Payment")
                         <td><span class="badge badge-warning">{{$transaction['status']}}</span></td>
