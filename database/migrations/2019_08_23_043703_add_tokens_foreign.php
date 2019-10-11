@@ -27,6 +27,10 @@ class AddTokensForeign extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tokens', function (Blueprint $table) {
+            $table->dropForeign(['partner_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['agent_id']);
+        });
     }
 }

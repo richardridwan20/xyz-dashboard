@@ -26,6 +26,9 @@ class AddDetailLimitsForeign extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('detail_limits', function (Blueprint $table) {
+            $table->dropForeign(['product_of_partner_id']);
+            $table->dropForeign(['limitation_id']);
+        });
     }
 }
