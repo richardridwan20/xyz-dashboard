@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAgentsForeign extends Migration
+class CreateReservedVouchersForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddAgentsForeign extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function (Blueprint $table) {
+        Schema::table('reserved_vouchers', function (Blueprint $table) {
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
+            $table->foreign('plan_id')->references('id')->on('product_plans')->onDelete('cascade');
         });
     }
 
@@ -25,8 +26,9 @@ class AddAgentsForeign extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function (Blueprint $table) {
+        Schema::table('reserved_vouchers', function (Blueprint $table) {
             $table->dropForeign(['partner_id']);
+            $table->dropForeign(['plan_id']);
         });
     }
 }

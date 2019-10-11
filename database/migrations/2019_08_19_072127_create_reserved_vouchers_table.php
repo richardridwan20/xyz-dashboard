@@ -15,11 +15,13 @@ class CreateReservedVouchersTable extends Migration
     {
         Schema::connection('mysql')->create('reserved_vouchers', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('partner_id');
+            $table->unsignedInteger('plan_id');
             $table->string('voucher_code');
             $table->string('certificate_number');
+            $table->integer('protection_duration');
             $table->string('status');
             $table->string('expiry_date');
-            $table->string('partner');
             $table->timestamps();
         });
     }

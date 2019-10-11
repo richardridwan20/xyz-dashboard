@@ -25,7 +25,7 @@ class CreateAgentsTable extends Migration
             $table->date('dob');
             $table->timestamps();
 
-            $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
+            // $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
         });
     }
 
@@ -36,10 +36,10 @@ class CreateAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function (Blueprint $table) {
-            $table->dropForeign(['partner_id']);
-            $table->dropColumn('partner_id');
-        });
+        // Schema::table('agents', function (Blueprint $table) {
+        //     $table->dropForeign(['partner_id']);
+        //     $table->dropColumn('partner_id');
+        // });
 
         Schema::dropIfExists('agents');
     }
