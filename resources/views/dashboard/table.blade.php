@@ -165,8 +165,10 @@
                     <td>{{$transaction['policy_number']}}</td>
                     @if ($transaction['status'] == "Payment Done")
                         <td><span class="badge badge-success">{{$transaction['status']}}</span></td>
-                    @else
+                    @elseif($transaction['status'] == "Waiting for Payment")
                         <td><span class="badge badge-warning">{{$transaction['status']}}</span></td>
+                    @else
+                        <td><span class="badge badge-danger">{{$transaction['status']}}</span></td>
                     @endif
                     @role('supadmin|treasury|financial|partner financial')
                     @if($transaction['status'] == "Canceled")
