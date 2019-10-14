@@ -21,6 +21,7 @@ class CreateReservedVouchersTable extends Migration
             $table->string('certificate_number');
             $table->integer('protection_duration');
             $table->string('status');
+            $table->integer('total_paid');
             $table->string('expiry_date');
             $table->timestamps();
         });
