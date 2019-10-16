@@ -274,43 +274,34 @@ class DashboardController extends Controller
 
         $page = $request->page;
 
-        // if($request->session()->has('try')){
-        //     $request->session()->push('try', $request->session()->get('try')+1);
-        // }else{
+        $date = $request->input('daterange');
+        $formatedDate = explode('-', $date);
 
-        // }
+        if ($date != null){
+            $startDate = Carbon::parse($formatedDate[0])->format('Y-m-d');
+            $endDate = Carbon::parse($formatedDate[1])->format('Y-m-d');
+        } else {
+            $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
+            $endDate = Carbon::now()->format('Y-m-d');
+        }
 
-        $month = $request->input('select-month');
-        $year = $request->input('select-year');
         $name = $request->input('text-name');
-        $agent = $request->input('agent-name');
         $name = strtolower($name);
         $name = ucwords($name);
 
-        // dd($month);
-
-        if($year != "" && $month != ""){
-            $date = Carbon::createFromDate($year, $month, 1);
-            $date = Carbon::parse($date)->format('F Y');
-        }else{
-            $date = null;
-        }
-
-
         if ($request->status == null) {
-            $month = Carbon::now()->format('m');
-            $year = Carbon::now()->format('Y');
-            $date = Carbon::now()->format('F Y');
+            // $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
+            // $endDate = Carbon::now()->format('Y-m-d');
         } else{
-            $request->session()->flash('month', $month);
-            $request->session()->flash('year', $year);
+            $request->session()->flash('start_date', $startDate);
+            $request->session()->flash('end_date', $endDate);
             $request->session()->flash('name', $name);
             $request->session()->flash('date', $date);
-            $request->session()->flash('agent', $agent);
         }
-        // dd($month);
 
-        $data = ['name' => $name, 'date' => $date, 'month' => $month, 'year' => $year];
+        // dd($startDate);
+
+        $data = ['name' => $name, 'date' => $date, 'start_date' => $startDate, 'end_date' => $endDate];
 
         $user = User::find(Auth::id());
 
@@ -322,8 +313,8 @@ class DashboardController extends Controller
         $sumTotalPartnerBill = 0;
 
         if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
-            $transactions = $this->service->allTransaction($page, $month, $year, $name, $agent)->paginate();
-            $transactionsCount = $this->service->allTransaction($page, $month, $year, $name, $agent)->get();
+            $transactions = $this->service->allTransaction($page, $startDate, $endDate, $name)->paginate();
+            $transactionsCount = $this->service->allTransaction($page, $startDate, $endDate, $name)->get();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
             $transactions = $this->service->partnerTransaction($page, $month, $year)->paginate();
             $transactionsCount = $this->service->partnerTransaction($page, $month, $year)->get();
