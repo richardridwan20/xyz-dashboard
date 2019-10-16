@@ -22,6 +22,7 @@ class AddReservedVouchersSeeds extends Migration
                 'status' => 'Available',
                 'expiry_date' => '2019-08-02',
                 'protection_duration' => '12',
+                'total_paid' => '150000',
                 'created_at' => '2019-08-02',
                 'updated_at' => '2019-08-02'
             ],
@@ -32,6 +33,7 @@ class AddReservedVouchersSeeds extends Migration
                 'certificate_number' => '6002092019',
                 'protection_duration' => '12',
                 'status' => 'Available',
+                'total_paid' => '150000',
                 'expiry_date' => '2019-08-02',
                 'created_at' => '2019-08-02',
                 'updated_at' => '2019-08-02'

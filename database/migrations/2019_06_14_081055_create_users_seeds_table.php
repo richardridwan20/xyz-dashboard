@@ -17,7 +17,7 @@ class CreateUsersSeedsTable extends Migration
             [
                 'name' => 'Sequis',
                 'email' => 'supadmin@sequislife.com',
-                'password' => Hash::make("supadminsequis"),
+                'password' => Hash::make("Wujibif4n"),
             ],
             [
                 'name' => 'Treasury',
