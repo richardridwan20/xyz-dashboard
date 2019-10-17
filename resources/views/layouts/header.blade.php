@@ -116,11 +116,11 @@
                     <li>
                         <a class="{{ Route::is('dashboard.spaj_voucher') ? 'active' : '' }}" href="{{ route('dashboard.spaj_voucher') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ with voucher</span></a>
                     </li>
-                    @endrole
-                    @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
                     </li>
+                    @endrole
+                    @role('supadmin|financial|operation|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Pending Transactions</span></a>
                     </li>
@@ -185,8 +185,8 @@
             <!-- END Toggle Sidebar -->
 
             <!-- User Dropdown -->
-            <div class="dropdown d-inline-block" role="group">
-                <button type="button" class="btn btn-dual-secondary dropdown-toggle" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="d-inline-block" role="group">
+                <button type="button" class="btn btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{ Auth::user()->name }}
                 </button>
             </div>
