@@ -13,14 +13,15 @@
             <div class="block-content">
                 <div class="block">
                     <div class="block-header">
-                        <h3 class="block-title"></h3>
+                        <h3 class="block-title">
+
+                        </h3>
                         <div class="block-options">
                             <form method="GET">
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-xs-12 col-md-5">
                                         <div class="input-group" id="reportrange" style="cursor: pointer">
                                             <input readonly data-toggle="popover" title="Search by Date" data-placement="top" data-content="You can search by predefined or custom date range" name="daterange" id="date" type="text" class="form-control" value="">
-                                            {{-- <label class="form-control" type="text" readonly><label> --}}
                                             <div class="input-group-append">
                                                 <span class="input-group-text" >
                                                     <i class="fa fa-fw fa-calendar"></i>
@@ -28,7 +29,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-12 col-md-3">
                                         <div class="input-group">
                                             <input class="form-control" data-toggle="popover" title="Search by Name" data-placement="top" data-content="You can search by Policy Holder / Insured / Agent Name"  type="text" name="text-name" placeholder="Name" value= "{{$data['name']}}">
                                             <div class="input-group-append">
@@ -38,9 +39,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="input-group">
-                                           <input type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"/>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="">
+                                           <button type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"><i class="si si-magnifier"></i> Search</button>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-2">
+                                        <div class="">
+                                           <button type="submit" class="btn btn-alt-primary dropdown-toggle pull-right" id="btnDownload" value="Download" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download</button>
+                                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnDownload">
+                                                <button type="submit" class="dropdown-item" formaction="{{ route('dashboard.download') }}" style="cursor: pointer">
+                                                    <i class="fa fa-fw fa-envelope mr-5"></i>Download Transaction Report
+                                                </button>
+                                                {{-- <div class="dropdown-divider"></div>
+                                                <button type="submit" class="dropdown-item" style="cursor: disabled">
+                                                    <i class="fa fa-fw fa-envelope mr-5"></i>Download Journal Report
+                                                </button> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
