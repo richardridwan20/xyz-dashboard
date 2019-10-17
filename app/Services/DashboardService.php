@@ -180,9 +180,9 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function downloadReport($id, $name, $month, $year)
+    public function downloadReport($id, $name, $startDate, $endDate)
     {
-        $this->endPoint = 'export?id='.$id.'&name='.$name.'&month='.$month.'&year='.$year;
+        $this->endPoint = 'export?id='.$id.'&name='.$name.'&start_date='.$startDate.'&end_date='.$endDate;
 
         return $this;
     }

@@ -755,18 +755,21 @@ class DashboardController extends Controller
     {
         $id = $request->input('id');
         $name = Auth::user()->name;
-        $month = Carbon::now()->format('m');
-        $year = Carbon::now()->format('Y');
 
-        if ($request->input('select-month') != 0) {
-            $month = $request->input('select-month');
-        } else if ($request->input('select-year') != 0) {
-            $year = $request->input('select-year');
+        $date = $request->input('daterange');
+        $formatedDate = explode('-', $date);
+
+        if ($date != null){
+            $startDate = Carbon::parse($formatedDate[0])->format('Y-m-d');
+            $endDate = Carbon::parse($formatedDate[1])->format('Y-m-d');
+        } else {
+            $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
+            $endDate = Carbon::now()->format('Y-m-d');
         }
 
-        $this->service->downloadReport($id, $name, $month, $year)->fetch();
+        $this->service->downloadReport($id, $name, $startDate, $endDate)->fetch();
 
-        return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$month.$year.'.xlsx'));
+        return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$startDate.'_'.$endDate.'.xlsx'));
     }
 
     public function createInvoice($invoiceNumber)

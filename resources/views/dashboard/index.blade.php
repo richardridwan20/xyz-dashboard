@@ -22,6 +22,7 @@
                                     <div class="col-xs-12 col-md-5">
                                         <div class="input-group" id="reportrange" style="cursor: pointer">
                                             <input readonly data-toggle="popover" title="Search by Date" data-placement="top" data-content="You can search by predefined or custom date range" name="daterange" id="date" type="text" class="form-control" value="">
+                                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" >
                                                     <i class="fa fa-fw fa-calendar"></i>
