@@ -1,1 +1,1 @@
-# sequis-b2b-dashboard
+# SOVERA (Sequis Online Value Enabler Platform)
