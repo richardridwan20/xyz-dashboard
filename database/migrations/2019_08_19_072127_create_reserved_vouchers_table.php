@@ -18,7 +18,7 @@ class CreateReservedVouchersTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->unsignedInteger('plan_id');
             $table->string('voucher_code');
-            $table->string('certificate_number');
+            $table->string('policy_number');
             $table->integer('protection_duration');
             $table->string('status');
             $table->integer('total_paid');
