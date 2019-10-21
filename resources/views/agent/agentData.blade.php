@@ -40,9 +40,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="name" class="form-control @error('ausername') is-invalid @enderror" id="ausername" name="ausername" required autocomplete="ausername">
-                                <label for="name">Username</label>
-                                @error('ausername')
+                                <input type="email" class="form-control @error('aemail') is-invalid @enderror" id="aemail" name="aemail" required autocomplete="aemail">
+                                <label for="email">Email</label>
+                                @error('aemail')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
