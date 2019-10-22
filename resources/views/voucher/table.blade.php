@@ -5,10 +5,6 @@
                 <b>Voucher Code</b>
                 <i class="voucher_code fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="policy_number" data-sort="policy_number" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Policy Number</b>
-                <i class="policy_number fa fa-pull-right fa-sort"></i>
-            </th>
             <th id="status" data-sort="status" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Status</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
@@ -18,7 +14,7 @@
                 <i class="expiry_date fa fa-pull-right fa-sort"></i>
             </th>
             <th id="partner" data-sort="partner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Partner</b>
+                <b>Partner Name</b>
                 <i class="partner fa fa-pull-right fa-sort"></i>
             </th>
             <th id="action" data-sort="action" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -31,10 +27,9 @@
         @forelse ($vouchers as $voucher)
             <tr>
                 <td>{{$voucher['voucher_code']}}</td>
-                <td>{{$voucher['policy_number']}}</td>
                 <td>{{$voucher['status']}}</td>
                 <td>{{$voucher['expiry_date']}}</td>
-                <td>{{$voucher['partner']}}</td>
+                <td>{{$voucher['partner_name']}}</td>
                 <td><a onclick="confirmation('voucher/delete/{{$voucher['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
             </tr>
         @empty

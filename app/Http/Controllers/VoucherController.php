@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
+use App\Services\ProductOfPartnerService;
 use App\Services\RegisterService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoucherController extends Controller
 {
@@ -12,6 +14,7 @@ class VoucherController extends Controller
     {
         $this->service = $service;
         $this->registerService = new RegisterService;
+        $this->PpService = new ProductOfPartnerService;
     }
 
     public function index(Request $request)
@@ -22,7 +25,6 @@ class VoucherController extends Controller
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-
         $vouchers = $this->service->getVoucher($page)->paginate();
 
         return view('voucher.index', compact('vouchers', 'append'));
@@ -30,42 +32,21 @@ class VoucherController extends Controller
 
     public function showForm()
     {
+        $name = Auth::user()->name;
         $partnerName = $this->registerService->partnerName()->get();
-        return view('voucher.form', compact('notify','partnerName'));
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        return view('voucher.form', compact('notify', 'partnerName', 'productOfPartners'));
     }
 
     public function create(Request $request)
     {
-        // $rules = [
-        //     'aname' => 'required',
-        //     'ausername' => 'required|unique:agents,username',
-        //     'aphone' => 'required|numeric',
-        //     'apassword' => 'required',
-        //     'acpassword' => 'required|same:apassword',
-        //     'adob' => 'required',
-        //     'acitizen_id' => 'required|digits:16'
-        // ];
-        // $customMessages = [
-
-        // ];
-        // $customAttributes = [
-        //     'aname' => 'Agent / b
-        //     +ranch Name',
-        //     'ausername' => 'Agent Username',
-        //     'aphone' => 'Agent Phone Number',
-        //     'apassword' => 'Agent Password',
-        //     'acpassword' => 'Confirm Password',
-        //     'adob' => 'Agent Date of Birth',
-        //     'acitizen_id' => 'Agent Citizen Id'
-        // ];
-
-        // $request->validate($rules, $customMessages, $customAttributes);
-
         $data = [
             'voucher_code' => $request->voucher_code,
             'voucher_quantity' => $request->voucher_quantity,
             'expiry_date' => $request->expiry,
-            'partner' => $request->partner_name,
+            'partner_name' => $request->partner_name,
+            'plan_id' => $request->plan_id,
+            'protection_duration' => $request->duration
         ];
 
         $inputVoucher = $this->service->createVoucher()->post($data);
@@ -73,8 +54,6 @@ class VoucherController extends Controller
         if($inputVoucher->bodyResponse['code'] == 201){
             return redirect()->back()->with('notify', 'add');
         }
-
-
     }
 
     public function deleteVoucher($id)

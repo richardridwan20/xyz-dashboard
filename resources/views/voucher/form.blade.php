@@ -2,6 +2,13 @@
 
 @section('content')
 
+@php
+$planValue = [];
+    foreach($productOfPartners as $productOfPartner){
+       array_push($planValue, $productOfPartner['plan']['id']."|".$productOfPartner['plan']['duration']."|".$productOfPartner['plan']['premium']);
+    }
+@endphp
+
 <div class="content">
     <!-- Page Content -->
     <div class="bg-gd-primary">
@@ -29,7 +36,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="form-material ">
-                                                <input type="text" class="form-control @error('voucher_code') is-invalid @enderror" id="voucher_code" name="voucher_code" required autocomplete="voucher_code">
+                                                <input type="text" class="js-maxlength maxlength form-control @error('voucher_code') is-invalid @enderror" id="voucher_code" name="voucher_code" required autocomplete="voucher_code" maxlength="20" placeholder="Masukkan kode voucher yang diinginkan (hanya huruf)">
                                                 <label for="voucher_code">Voucher Code</label>
                                                 @error('voucher_code')
                                                     <p style="color:red">
@@ -44,7 +51,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="form-material">
-                                                <input type="text" class="form-control @error('voucher_quantity') is-invalid @enderror" id="voucher_quantity" name="voucher_quantity" required autocomplete="certificate">
+                                                <input type="number" class="form-control @error('voucher_quantity') is-invalid @enderror" id="voucher_quantity" name="voucher_quantity" required min="1" autocomplete="voucher_quantity" placeholder="Masukkan jumlah voucher yang ingin dibuat">
                                                 <label for="voucher_quantity">Voucher Quantity</label>
                                                 @error('voucher_quantity')
                                                     <p style="color:red">
@@ -59,7 +66,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="form-material">
-                                                <input type="date" class="form-control @error('expiry') is-invalid @enderror" id="expiry" name="expiry" required autocomplete="expiry">
+                                                <input class="form-control @error('expiry') is-invalid @enderror" id="expiry" name="expiry" required autocomplete="expiry" placeholder="Pilih tanggal">
                                                 <label for="expiry">Expiry Date</label>
                                                 @error('expiry')
                                                     <p style="color:red">
@@ -81,6 +88,45 @@
                                             </select>
 
                                             @error('name')
+                                                <p style="color:red">
+                                                    <strong>{{ $message }}</strong>
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select type="dropdown" class="form-control" id="duration" name="duration">
+                                                <option disabled selected>Select Duration</option>
+                                                <option value="12">1 Year</option>
+                                                <option value="24">2 Year</option>
+                                                <option value="36">3 Year</option>
+                                                <option value="48">4 Year</option>
+                                                <option value="60">5 Year</option>
+                                            </select>
+                                            @error('name')
+                                                <p style="color:red">
+                                                    <strong>{{ $message }}</strong>
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select type="dropdown" class="form-control" id="plan_id" name="plan_id" onchange="durationManager()">
+                                                <option disabled selected>Select Plan</option>
+                                                @for($i=0;$i<count($productOfPartners);$i++)
+                                                <option value="{{$productOfPartners[$i]['plan']['id']}}"
+                                                    @if(old('plan_id') == $productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']) selected @endif>
+                                                    {{$productOfPartners[$i]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}
+                                                </option>
+                                                @endfor
+                                            </select>
+                                            @error('plan_id')
                                                 <p style="color:red">
                                                     <strong>{{ $message }}</strong>
                                                 </p>
@@ -119,6 +165,19 @@
         'success'
         )
     }
+    $(document).ready(function()
+        {
+            $('input.maxlength').maxlength({
+                threshold: 10,
+                warningClass: "label label-info",
+                limitReachedClass: "label label-warning",
+            });
+
+            $('#expiry').datepicker({
+                startDate: '-3d',
+                format:'yyyy-mm-dd'
+            });
+        });
 </script>
 
 @endsection

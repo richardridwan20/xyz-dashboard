@@ -18,11 +18,10 @@ class CreateReservedVouchersTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->unsignedInteger('plan_id');
             $table->string('voucher_code');
-            $table->string('policy_number');
             $table->integer('protection_duration');
-            $table->string('status');
+            $table->enum('status', ['Available','Used','Expired']);
             $table->integer('total_paid');
-            $table->string('expiry_date');
+            $table->dateTime('expiry_date');
             $table->timestamps();
         });
     }
