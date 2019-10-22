@@ -693,7 +693,7 @@ class DashboardController extends Controller
         $rules = [
             'aname' => 'required_without:bname',
             'bname' => 'required_without:aname',
-            'ausername' => 'required|unique:agents,username',
+            'aemail' => 'required|unique:agents,email',
             'aphone' => 'required|numeric',
             'apassword' => 'required',
             'acpassword' => 'required|same:apassword',
@@ -723,7 +723,7 @@ class DashboardController extends Controller
             'partner_id' => $partner['id'],
             'agent_name' => $request->aname,
             'branch_name' => $request->bname,
-            'username' => $request->ausername,
+            'email' => $request->aemail,
             'password' => $request->apassword,
             'dob' => $request->adob,
             'phone_number' => $request->aphone,
