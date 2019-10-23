@@ -767,9 +767,35 @@ class DashboardController extends Controller
             $endDate = Carbon::now()->endOfDay()->format('Y-m-d');
         }
 
-        $this->service->downloadReport($id, $name, $startDate, $endDate)->fetch();
+        $test = $this->service->downloadReport($id, $name, $startDate, $endDate)->fetch();
+
+        // dd($test);
 
         return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$startDate.'_'.$endDate.'.xlsx'));
+    }
+
+    public function downloadJournal(Request $request)
+    {
+        $date = $request->input('daterange');
+        $formatedDate = explode('-', $date);
+
+        if ($date != null){
+            $startDate = Carbon::parse($formatedDate[0])->format('Y-m-d');
+            $endDate = Carbon::parse($formatedDate[1])->endOfDay()->format('Y-m-d');
+        } else {
+            $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
+            $endDate = Carbon::now()->endOfDay()->format('Y-m-d');
+        }
+
+        try{
+            return response()->download(storage_path('app/public/files/reports/journal_report_'.$startDate.'_'.$endDate.'.xlsx'));
+        }catch(\Exception $e){
+            $test = $this->service->downloadJournal($startDate, $endDate)->fetch();
+
+            return response()->download(storage_path('app/public/files/reports/journal_report_'.$startDate.'_'.$endDate.'.xlsx'));
+        }
+
+
     }
 
     public function createInvoice($invoiceNumber)

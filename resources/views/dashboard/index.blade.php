@@ -56,6 +56,9 @@
                                                 <button type="submit" class="dropdown-item" style="cursor: disabled">
                                                     <i class="fa fa-fw fa-envelope mr-5"></i>Download Journal Report
                                                 </button> --}}
+                                                <button type="submit" class="dropdown-item" formaction="{{ route('dashboard.download_journal') }}" style="cursor: pointer">
+                                                    <i class="fa fa-fw fa-envelope mr-5"></i>Download Accounting Journal
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

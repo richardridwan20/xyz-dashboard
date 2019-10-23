@@ -187,6 +187,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function downloadJournal($startDate, $endDate)
+    {
+        $this->endPoint = 'export_journal?start_date='.$startDate.'&end_date='.$endDate;
+
+        return $this;
+    }
+
     public function getVoucher($page)
     {
         $this->endPoint = 'voucher?page='.$page;
