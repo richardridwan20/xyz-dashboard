@@ -761,10 +761,10 @@ class DashboardController extends Controller
 
         if ($date != null){
             $startDate = Carbon::parse($formatedDate[0])->format('Y-m-d');
-            $endDate = Carbon::parse($formatedDate[1])->format('Y-m-d')->endOfDay();
+            $endDate = Carbon::parse($formatedDate[1])->endOfDay()->format('Y-m-d');
         } else {
             $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
-            $endDate = Carbon::now()->format('Y-m-d')->endOfDay();
+            $endDate = Carbon::now()->endOfDay()->format('Y-m-d');
         }
 
         $this->service->downloadReport($id, $name, $startDate, $endDate)->fetch();
