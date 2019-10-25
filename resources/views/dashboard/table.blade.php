@@ -5,6 +5,10 @@
                 <b>Transaction ID</b>
                 <i class="id fa fa-pull-right fa-sort"></i>
             </th>
+            <th id="id" data-sort="id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Voucher Code</b>
+                <i class="id fa fa-pull-right fa-sort"></i>
+            </th>
             <th id="tpPartner" data-sort="tpPartner" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Invoice Number</b>
                 <i class="status fa fa-pull-right fa-sort"></i>
@@ -127,6 +131,11 @@
                 @endphp
                 <tr>
                     <td><a href="{{ route('dashboard.detail', $transaction['id']) }}">{{$transaction['id']}}</a></td>
+                    @if($transaction['voucher_id']['voucher_code'] == null)
+                        <td>-</td>
+                    @else
+                        <td>{{$transaction['voucher_id']['voucher_code']}}</td>
+                    @endif
                     <td>{{$transaction['invoice_number']}}</td>
                     <td>{{$transaction['partner_id']['name']}}</td>
 
