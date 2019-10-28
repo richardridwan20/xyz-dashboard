@@ -20,7 +20,7 @@ class CreateUsersSeedsTable extends Migration
                 'password' => Hash::make("Wujibif4n"),
             ],
             [
-                'name' => 'Treasury',
+                'name' => 'Sequis',
                 'email' => 'treasury@sequislife.com',
                 'password' => Hash::make("treasurysequis"),
             ],
