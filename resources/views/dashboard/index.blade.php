@@ -45,6 +45,7 @@
                                            <button type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"><i class="si si-magnifier"></i> Search</button>
                                         </div>
                                     </div>
+                                    @role('supadmin|financial')
                                     <div class=" col-md-2">
                                         <div class="">
                                            <button type="submit" class="btn btn-alt-primary dropdown-toggle pull-right" id="btnDownload" value="Download" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download</button>
@@ -62,6 +63,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endrole
                                 </div>
                             </form>
                         </div>

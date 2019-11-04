@@ -104,7 +104,7 @@
                         <a class="{{ Route::is('limitation.index') ? 'active' : '' }}" href="{{ route('limitation.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Limitation</span></a>
                     </li>
                     @endrole
-                    @role('supadmin|financial|partner financial')
+                    @role('supadmin|financial')
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
@@ -120,7 +120,7 @@
                         <a class="{{ Route::is('dashboard.spaj') ? 'active' : '' }}" href="{{ route('dashboard.spaj') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">SPAJ</span></a>
                     </li>
                     @endrole
-                    @role('supadmin|financial|operation|partner financial|partner operation')
+                    @role('supadmin|partner financial|partner operation')
                     <li>
                         <a class="{{ Route::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}"><i class="fa fa-file-text-o"></i><span class="sidebar-mini-hide">Pending Transactions</span></a>
                     </li>
