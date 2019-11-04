@@ -19,6 +19,7 @@
                         <div class="block-options">
                             <form method="GET">
                                 <div class="row">
+                                    @role('supadmin|operation|financial|partner operation|partner financial')
                                     <div class="col-xs-12 col-md-5">
                                         <div class="input-group" id="reportrange" style="cursor: pointer">
                                             <input readonly data-toggle="popover" title="Search by Date" data-placement="top" data-content="You can search by predefined or custom date range" name="daterange" id="date" type="text" class="form-control" value="">
@@ -30,6 +31,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endrole
+                                    @role('viewer|partner viewer')
+                                    <div class="col-xs-12 col-md-3">
+
+                                    </div>
+                                    <div class="col-xs-12 col-md-5">
+                                        <div class="input-group">
+                                            <input class="form-control" data-toggle="popover" title="Search by Name" data-placement="top" data-content="You can search by Policy Holder / Insured / Agent Name"  type="text" name="text-name" placeholder="Name" value= "{{$data['name']}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" >
+                                                    <i class="fa fa-fw fa-user"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endrole
+                                    @role('supadmin|operation|financial|partner operation|partner financial')
                                     <div class="col-xs-12 col-md-3">
                                         <div class="input-group">
                                             <input class="form-control" data-toggle="popover" title="Search by Name" data-placement="top" data-content="You can search by Policy Holder / Insured / Agent Name"  type="text" name="text-name" placeholder="Name" value= "{{$data['name']}}">
@@ -40,6 +58,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endrole
                                     <div class="col-xs-12 col-md-2">
                                         <div class="">
                                            <button type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"><i class="si si-magnifier"></i> Search</button>
@@ -53,10 +72,7 @@
                                                 <button type="submit" class="dropdown-item" formaction="{{ route('dashboard.download') }}" style="cursor: pointer">
                                                     <i class="fa fa-fw fa-envelope mr-5"></i>Download Transaction Report
                                                 </button>
-                                                {{-- <div class="dropdown-divider"></div>
-                                                <button type="submit" class="dropdown-item" style="cursor: disabled">
-                                                    <i class="fa fa-fw fa-envelope mr-5"></i>Download Journal Report
-                                                </button> --}}
+
                                                 <button type="submit" class="dropdown-item" formaction="{{ route('dashboard.download_journal') }}" style="cursor: pointer">
                                                     <i class="fa fa-fw fa-envelope mr-5"></i>Download Accounting Journal
                                                 </button>
