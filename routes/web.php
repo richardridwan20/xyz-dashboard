@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
     Route::post('/spaj-input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
     Route::post('/spaj-voucher-input', 'DashboardController@inputVoucherTransaction')->name('dashboard.input_voucher_transaction');
+    Route::post('/voucher/download', 'VoucherController@download')->name('voucher.download');
 });
 
 Auth::routes(['verify' => true]);
