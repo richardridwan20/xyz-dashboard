@@ -122,11 +122,11 @@ class DashboardService extends ApiService
         return $this;
     }
 
-    public function partnerTransaction($page, $startDate, $endDate)
+    public function partnerTransaction($page, $startDate, $endDate, $name)
     {
         $user = Auth::user()->name;
 
-        $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&start_date='.$startDate.'&end_date='.$endDate;
+        $this->endPoint = 'transaction/partner?partner_name='.$user.'&page='.$page.'&start_date='.$startDate.'&end_date='.$endDate.'&name='.$name;
         return $this;
     }
 

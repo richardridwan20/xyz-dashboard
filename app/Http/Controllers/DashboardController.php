@@ -316,8 +316,8 @@ class DashboardController extends Controller
             $transactions = $this->service->allTransaction($page, $startDate, $endDate, $name)->paginate();
             $transactionsCount = $this->service->allTransaction($page, $startDate, $endDate, $name)->get();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
-            $transactions = $this->service->partnerTransaction($page, $startDate, $endDate)->paginate();
-            $transactionsCount = $this->service->partnerTransaction($page, $startDate, $endDate)->get();
+            $transactions = $this->service->partnerTransaction($page, $startDate, $endDate, $name)->paginate();
+            $transactionsCount = $this->service->partnerTransaction($page, $startDate, $endDate, $name)->get();
         }else if($user->hasRole('viewer')){
             $transactions = $this->service->allTransactionByName($page, $name)->paginate();
             $transactionsCount = $this->service->allTransactionByName($page, $name)->get();
