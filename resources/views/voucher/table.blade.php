@@ -29,7 +29,7 @@
                 <td>{{$voucher['voucher_code']}}</td>
                 <td>{{$voucher['status']}}</td>
                 <td>{{$voucher['expiry_date']}}</td>
-                <td>{{$voucher['partner_name']}}</td>
+                <td>{{$voucher['partner']['name']}}</td>
                 <td><a onclick="confirmation('voucher/delete/{{$voucher['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
             </tr>
         @empty

@@ -13,8 +13,22 @@
                         <a href="{{ route('voucher.form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add Voucher</button></a>
                     @endrole
                 </div>
-                <div class="col-2" style="margin-left: 20px;">
+                <div class="col-6"></div>
+                <div class="col-4">
+                    <form action="{{ route('voucher.download') }}" method="POST" novalidate>
+                        @csrf
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="voucher_code" name="voucher_code" placeholder="Voucher Code">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">Download List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    </form>
                 </div>
             </div>
             @include('voucher.table')

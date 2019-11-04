@@ -38,6 +38,16 @@ class VoucherController extends Controller
         return view('voucher.form', compact('notify', 'partnerName', 'productOfPartners'));
     }
 
+    public function download(Request $request)
+    {
+        $voucherExcel = $this->service->createVoucherExcel($request->voucher_code)->fetch();
+        if(array_key_exists("errors", $voucherExcel->bodyResponse)){
+            return redirect()->back()->withErrors($voucherExcel->bodyResponse['errors'])->with('notify', 'voucherNotFound');
+        }else{
+            return response()->download(storage_path('app/public/files/vouchers/'.$voucherExcel->bodyResponse['file_name']));
+        }
+    }
+
     public function create(Request $request)
     {
         $data = [
