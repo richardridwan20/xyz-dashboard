@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('voucher_id')->nullable();
             $table->string('insured_relation');
             $table->string('insured_name');
-            $table->string('insured_dob');
+            $table->dateTime('insured_dob');
             $table->string('insured_gender')->nullable();
             $table->string('protection_duration');
             $table->dateTime('protection_start')->nullable();
