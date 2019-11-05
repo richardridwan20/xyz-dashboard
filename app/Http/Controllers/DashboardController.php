@@ -98,6 +98,7 @@ class DashboardController extends Controller
             $role->givePermissionTo($permission1);
             $role->givePermissionTo($permission5);
             $role->givePermissionTo($permission6);
+            $role->givePermissionTo($permission8);
             $role->givePermissionTo($permission10);
             $role->givePermissionTo($permission12);
 
@@ -106,6 +107,7 @@ class DashboardController extends Controller
             $role->givePermissionTo($permission1);
             $role->givePermissionTo($permission5);
             $role->givePermissionTo($permission6);
+            $role->givePermissionTo($permission8);
             $role->givePermissionTo($permission10);
             $role->givePermissionTo($permission12);
 
@@ -118,14 +120,12 @@ class DashboardController extends Controller
             $role->givePermissionTo($permission2);
             $role->givePermissionTo($permission4);
             $role->givePermissionTo($permission7);
-            $role->givePermissionTo($permission8);
             $role->givePermissionTo($permission10);
 
             //partner operation
             $role = Role::findById(7);
             $role->givePermissionTo($permission4);
             $role->givePermissionTo($permission7);
-            $role->givePermissionTo($permission8);
             $role->givePermissionTo($permission10);
 
             //partner viewer
