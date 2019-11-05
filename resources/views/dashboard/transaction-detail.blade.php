@@ -36,7 +36,14 @@
                                 <b>Transaction Status</b>
                             </div>
                             <div class="block-content">
-                                {{$detailTransaction['transaction']['status']}}
+                                @if ($detailTransaction['transaction']['status'] == "Payment Done" || $detailTransaction['transaction']['status'] == "Policy Issued")
+                                    <span class="badge badge-success">{{$detailTransaction['transaction']['status']}}</span>
+                                @elseif($transaction['status'] == "Waiting for Payment")
+                                    <span class="badge badge-warning">{{$detailTransaction['transaction']['status']}}</span>
+                                @else
+                                    <span class="badge badge-danger">{{$detailTransaction['transaction']['status']}}</span>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -355,3 +362,23 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+
+    function confirmation(routeHref){
+        Swal.fire({
+            title: 'Batalkan polis?',
+            text: "Polis yang batal tidak dapat diubah lagi!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, batalkan polis'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = routeHref;
+            }
+        })
+    }
+</script>
