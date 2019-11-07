@@ -199,77 +199,86 @@
 @endsection
 
 @push('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script type="text/javascript">
 
-    <script type="text/javascript">
+    var session1 = "{{Session::get('notify')}}"
+    if (session1 == 'canceled') {
+        Swal.fire(
+        'Canceled!',
+        'Transaction successfully canceled.',
+        'success'
+        )
+    }
 
-        $(document).ready(function()
-        {
-            var startFromController = {!! json_encode($data['start_date']) !!};
-            var endFromController = {!! json_encode($data['end_date']) !!};
+    $(document).ready(function()
+    {
+        var startFromController = {!! json_encode($data['start_date']) !!};
+        var endFromController = {!! json_encode($data['end_date']) !!};
 
-            var start = moment(startFromController);
-            var end = moment(endFromController);
+        var start = moment(startFromController);
+        var end = moment(endFromController);
 
-            function cb(start, end) {
-                var start = start.format('D MMMM YYYY');
-                var end = end.format('D MMMM YYYY');
-                var e = document.getElementById("date");
-                e.setAttribute("value", start + ' - ' + end);
+        function cb(start, end) {
+            var start = start.format('D MMMM YYYY');
+            var end = end.format('D MMMM YYYY');
+            var e = document.getElementById("date");
+            e.setAttribute("value", start + ' - ' + end);
+        }
+
+        $('#reportrange').daterangepicker({
+            opens: 'left',
+            locale: {
+                "format": "D MMMM YYYY",
+                "separator": " - ",
+                "applyLabel": "Apply",
+                "cancelLabel": "Cancel",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Range",
+                "weekLabel": "M",
+                "daysOfWeek": [
+                    "Min",
+                    "Sen",
+                    "Sel",
+                    "Rab",
+                    "Kam",
+                    "Jum",
+                    "Sab"
+                ],
+                "monthNames": [
+                    "Januari",
+                    "Februari",
+                    "Maret",
+                    "April",
+                    "Mei",
+                    "Juni",
+                    "Juli",
+                    "Agustus",
+                    "September",
+                    "Oktober",
+                    "November",
+                    "Desember"
+                ],
+                "firstDay": 1
+            },
+            startDate: start,
+            endDate: end,
+            ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
+        }, cb);
 
-            $('#reportrange').daterangepicker({
-                opens: 'left',
-                locale: {
-                    "format": "D MMMM YYYY",
-                    "separator": " - ",
-                    "applyLabel": "Apply",
-                    "cancelLabel": "Cancel",
-                    "fromLabel": "From",
-                    "toLabel": "To",
-                    "customRangeLabel": "Range",
-                    "weekLabel": "M",
-                    "daysOfWeek": [
-                        "Min",
-                        "Sen",
-                        "Sel",
-                        "Rab",
-                        "Kam",
-                        "Jum",
-                        "Sab"
-                    ],
-                    "monthNames": [
-                        "Januari",
-                        "Februari",
-                        "Maret",
-                        "April",
-                        "Mei",
-                        "Juni",
-                        "Juli",
-                        "Agustus",
-                        "September",
-                        "Oktober",
-                        "November",
-                        "Desember"
-                    ],
-                    "firstDay": 1
-                },
-                startDate: start,
-                endDate: end,
-                ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, cb);
+        cb(start, end);
 
-            cb(start, end);
+    });
 
-        });
-
-    </script>
+</script>
 
 @endpush
 

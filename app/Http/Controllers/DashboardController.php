@@ -846,7 +846,7 @@ class DashboardController extends Controller
         $data = ['status' => $status];
         $this->service->changeStatus($id)->post($data);
 
-        return redirect('');
+        return redirect('')->with('notify', 'canceled');
     }
 
     public function spaj()

@@ -13,7 +13,7 @@
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
-                    <button class="btn btn-alt-primary"><a href="{{ URL::route('dashboard.changeStatus', [$detailTransaction['transaction']['id'], 'Canceled']) }}">Change Status into Canceled</a></button>
+            <button class="btn btn-alt-primary"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')">Change Status into Canceled</a></button>
                 @endcan
             </div>
             <div class="block-content block-content-full">
@@ -377,7 +377,7 @@
             confirmButtonText: 'Ya, batalkan polis'
         }).then((result) => {
             if (result.value) {
-                window.location.href = routeHref;
+                window.location.href = window.location.origin + '/' +routeHref;
             }
         })
     }
