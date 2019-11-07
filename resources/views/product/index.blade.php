@@ -163,6 +163,12 @@
             'plan successfully changed',
             'success'
             )
+    }else if(session1 == 'plan_still_exist') {
+            Swal.fire(
+            'Failed!',
+            'Please delete the plan first',
+            'error'
+            )
     }
 
     function confirmation(routeHref){

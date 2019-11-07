@@ -271,6 +271,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getDataByProductId($id)
+    {
+        $this->endPoint = 'plan/search/product_id?product_id='.$id;
+
+        return $this;
+    }
+
     public function createVoucherExcel($voucherCode)
     {
         $this->endPoint = 'voucher/create_excel?voucher_code='.$voucherCode;
