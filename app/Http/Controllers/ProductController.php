@@ -152,7 +152,7 @@ class ProductController extends Controller
 
         $create = $this->service->createProduct()->post($data);
 
-        return redirect()->back()->with('notify', 'add_product');
+        return redirect()->route('product.index')->with('notify', 'add_product');
     }
 
     public function createPlan(Request $request)
@@ -192,7 +192,7 @@ class ProductController extends Controller
 
         // dd($create);
 
-        return redirect()->back()->with('notify', 'add_plan');
+        return redirect()->route('product.index')->with('notify', 'add_plan');
     }
 
     public function addPlan()

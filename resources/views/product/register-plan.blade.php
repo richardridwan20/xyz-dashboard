@@ -12,8 +12,8 @@
                 <a class="link-effect font-w700" href="index.html">
                     <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
                 </a>
-                <h1 class="h2 font-w700 mt-50 mb-10">Register new Product</h1>
-                <h2 class="h4 font-w400 text-muted mb-0">Please add product details</h2>
+                <h1 class="h2 font-w700 mt-50 mb-10">Register new Plan</h1>
+                <h2 class="h4 font-w400 text-muted mb-0">Please add plan details</h2>
             </div>
             <!-- END Header -->
 
