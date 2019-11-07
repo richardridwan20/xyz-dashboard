@@ -24,7 +24,7 @@ class CreateProductPlansTable extends Migration
             $table->string('duration');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('sovera.products');
+            $table->foreign('product_id')->references('id')->on('sovera.products')->onDelete('cascade');
         });
     }
 
