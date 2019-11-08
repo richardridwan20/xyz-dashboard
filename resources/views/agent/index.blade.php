@@ -5,6 +5,7 @@
     <div class="block block-fx-shadow">
         <div class="block-header block-header-default">
             <h3 class="block-title text-uppercase"><b>Manage Agent</b></h3>
+            <i class="fa fa-info-circle" data-toggle="popover" title="Agent" data-placement="right" data-content="Partner yang mempunyai agent dapat diatur disini seperti menambahkan atau menghapus agent."></i>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">

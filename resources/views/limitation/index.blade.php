@@ -4,7 +4,8 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block-header block-header-default">
-            <h3 class="block-title text-uppercase"><b>Manage Limitation</b></h3>
+            <h3 class="block-title text-uppercase"><b>Area Limitation</b></h3>
+            <i class="fa fa-info-circle" data-toggle="popover" title="Area Limitation" data-placement="right" data-content="Area Limitation berisikan kode-kode provinsi di Indonesia yang dibatasi untuk melakukan transaksi. Kode-kode provinsi bisa dilihat dari 2 angka diawal nomor KTP masing-masing nasabah."></i>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">

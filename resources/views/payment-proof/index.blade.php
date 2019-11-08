@@ -9,6 +9,7 @@
             <div class="block">
                 <div class="block-header block-header-default">
                     <h3 class="block-title text-uppercase"><b>Pending Transactions</b></h3>
+                    <i class="fa fa-info-circle" data-toggle="popover" title="Pending Transactions" data-placement="right" data-content="Berisikan transaksi yang pending karena suatu atau lain hal. Transaksi yang pending dapat dipilih dan dilakukan update seperti upload bukti pembayaran, atau bukti lain yang mendukung."></i>
                 </div>
                 <div class="block-content">
                     @include('payment-proof.table')

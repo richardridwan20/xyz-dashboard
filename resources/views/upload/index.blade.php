@@ -25,7 +25,7 @@ if($error != null){
             <div class="block">
                 <div class="block-header block-header-default">
                     <h3 class="block-title text-uppercase"><b>Bulk Upload</b></h3>
-                    <i class="fa fa-info-circle"></i>
+                    <i class="fa fa-info-circle" data-toggle="popover" title="Bulk Upload" data-placement="right" data-content="Bulk Upload dilakukan dengan mengupload file excel yang berisikan data-data nasabah yang melakukan transaksi lewat partner. Polis akan dibuat berdasarkan data tersebut."></i>
                 </div>
                 <div class="block-content">
                     <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">

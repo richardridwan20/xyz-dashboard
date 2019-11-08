@@ -7,8 +7,7 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title text-uppercase"><b>Invoices Created</b></h3>
-                <div class="block-options">
-                </div>
+                <i class="fa fa-info-circle" data-toggle="popover" title="Invoices Created" data-placement="right" data-content="Berisikan invoice kepada partner yang sudah dibuat. Invoice dapat didownload dan dikirimkan ke partner pada tanggal 20 setiap bulannya."></i>
             </div>
             <div class="block-content block-content-full">
                 @include('invoice.table-invoice-paid')
@@ -22,8 +21,7 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title text-uppercase"><b>Invoices to be Created</b></h3>
-                <div class="block-options">
-                </div>
+                <i class="fa fa-info-circle" data-toggle="popover" title="Invoices To Be Created" data-placement="right" data-content="Berisikan transaksi dari periode sebelumnya yang dapat dibuatkan invoice. Invoice kemudian dapat didownload di tabel diatas."></i>
             </div>
             <div class="block-content block-content-full">
                 @include('invoice.table')

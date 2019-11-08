@@ -5,6 +5,7 @@
     <div class="block block-fx-shadow">
         <div class="block-header block-header-default">
             <h3 class="block-title text-uppercase"><b>Manage Vouchers</b></h3>
+            <i class="fa fa-info-circle" data-toggle="popover" title="Vouchers" data-placement="right" data-content="Berisikan tabel daftar voucher yang aktif dan dapat digunakan oleh partner. Dalam halaman ini juga bisa menambahkan voucher dan mendownload list voucher."></i>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">

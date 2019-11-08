@@ -5,6 +5,7 @@
     <div class="block block-fx-shadow">
         <div class="block-header block-header-default">
             <h3 class="block-title text-uppercase"><b>Manage Product</b></h3>
+            <i class="fa fa-info-circle" data-toggle="popover" title="Product" data-placement="right" data-content="Berisikan produk-produk yang disediakan oleh Sequis. Disini juga bisa menambahkan produk baru."></i>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
@@ -22,6 +23,7 @@
     <div class="block block-fx-shadow">
         <div class="block-header block-header-default">
             <h3 class="block-title text-uppercase"><b>Manage Plan</b></h3>
+            <i class="fa fa-info-circle" data-toggle="popover" title="Product" data-placement="right" data-content="Berisikan plan dari tiap produk yang disediakan oleh Sequis. Disini juga bisa menambahkan plan dari produk."></i>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">

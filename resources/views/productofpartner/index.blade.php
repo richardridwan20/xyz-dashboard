@@ -7,6 +7,7 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title text-uppercase"><b>Product Of Partner</b></h3>
+                <i class="fa fa-info-circle" data-toggle="popover" title="Product of Partner" data-placement="right" data-content="Berisikan produk-produk apa saja yang dapat dijual oleh tiap partner. Di halaman ini juga dapat menambahkan produk yang dapat dijual oleh partner."></i>
             </div>
             <div class="block-content block-content-full">
                 <div class="form-group row">
