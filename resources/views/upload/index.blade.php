@@ -30,8 +30,6 @@ if($error != null){
                 <div class="block-content">
                     <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
-                        <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                         <div class="form-group row">
                             <label class="col-12">Upload file Excel yang diinginkan (format .xlsx atau .csv)</label>
                             <div class="col-8">
@@ -117,8 +115,15 @@ var session1 = "{{Session::get('notify')}}"
     if (session1 == 'uploaded') {
             Swal.fire(
             'Success!',
-            'file uploaded successfully',
+            'File berhasil diupload.',
             'success'
+            )
+    }
+    if (session1 == 'extension') {
+            Swal.fire(
+            'Error!',
+            'File harus dengan ekstensi yang benar.',
+            'error'
             )
     }
 </script>
