@@ -3,12 +3,12 @@
 @section('content')
 <div class="content">
     <div class="block block-fx-shadow">
-        <div class="block-header block-header-default bg-primary-lighter">
-            <h3 class="block-title text-uppercase">Manage Product</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title text-uppercase"><b>Manage Product</b></h3>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-12 text-right">
                     @role('supadmin')
                         <a href="{{ route('product.add_product') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add New Product</button></a>
                     @endrole
@@ -20,12 +20,12 @@
 </div>
 <div class="content">
     <div class="block block-fx-shadow">
-        <div class="block-header block-header-default bg-primary-lighter">
-            <h3 class="block-title text-uppercase">Manage Plan</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title text-uppercase"><b>Manage Plan</b></h3>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-12 text-right">
                     <a href="{{ route('product.add_plan') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add New Plan</button></a>
                 </div>
             </div>

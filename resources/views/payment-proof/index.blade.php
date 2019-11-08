@@ -7,8 +7,8 @@
         <div class="col-md-12">
             <!-- Default Elements -->
             <div class="block">
-                <div class="block-header block-header-default bg-primary-lighter">
-                    <h3 class="block-title">PENDING TRANSACTIONS</h3>
+                <div class="block-header block-header-default">
+                    <h3 class="block-title text-uppercase"><b>Pending Transactions</b></h3>
                 </div>
                 <div class="block-content">
                     @include('payment-proof.table')

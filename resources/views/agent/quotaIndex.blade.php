@@ -5,8 +5,8 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Transaction</h3>
+            <div class="block-header block-header-default">
+                <h3 class="block-title text-uppercase"><b>Partner Quota</b></h3>
                 <div class="block-options">
                 </div>
             </div>

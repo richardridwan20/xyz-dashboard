@@ -5,13 +5,13 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Product Of Partner</h3>
+            <div class="block-header block-header-default">
+                <h3 class="block-title text-uppercase"><b>Product Of Partner</b></h3>
             </div>
             <div class="block-content block-content-full">
                 <div class="form-group row">
                     <div class="col-12 text-right">
-                        <button class="btn btn-alt-primary" data-toggle="modal" data-target="#addModal">Add Partner Product</button>
+                        <button class="btn btn-alt-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add Partner Product</button>
                     </div>
                 </div>
                 @include('productofpartner.table')

@@ -3,17 +3,15 @@
 @section('content')
 <div class="content">
     <div class="block block-fx-shadow">
-        <div class="block-header block-header-default bg-primary-lighter">
-            <h3 class="block-title text-uppercase">Manage Agent</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title text-uppercase"><b>Manage Agent</b></h3>
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
-                @role('supadmin|financial|operation')
-                    <div class="col-2">
-                            <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
-                    </div>
-                @endrole
-                <div class="col-2" style="margin-left: 20px;">
+                <div class="col-12 text-right">
+                    @role('supadmin|financial|operation')
+                        <a href="{{ route('dashboard.agent_quota') }}"><button class="btn btn-alt-primary"><i class="fa fa-tasks"></i> Manage Partner Quota</button></a>
+                    @endrole
                     <a href="{{ route('dashboard.agent_form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Agent</button></a>
                 </div>
             </div>

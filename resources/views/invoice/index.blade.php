@@ -5,8 +5,8 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Invoices Created</h3>
+            <div class="block-header block-header-default">
+                <h3 class="block-title text-uppercase"><b>Invoices Created</b></h3>
                 <div class="block-options">
                 </div>
             </div>
@@ -20,8 +20,8 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Invoices to be Created</h3>
+            <div class="block-header block-header-default">
+                <h3 class="block-title text-uppercase"><b>Invoices to be Created</b></h3>
                 <div class="block-options">
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<table id="example" class="table table-hover table-striped table-vcenter table-bordered">
+<table id="example" class="table table-responsive table-hover table-striped table-vcenter table-bordered">
     <thead>
         <tr>
             <th id="agent_name" data-sort="agent_name" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
