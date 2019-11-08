@@ -169,6 +169,12 @@
             'Please delete the plan first',
             'error'
             )
+    }else if(session1 == 'pop_still_exist') {
+            Swal.fire(
+            'Failed!',
+            'Please delete the partner using this plan first',
+            'error'
+            )
     }
 
     function confirmation(routeHref){

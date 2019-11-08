@@ -24,7 +24,7 @@ class CreateProductPlansTable extends Migration
             $table->string('duration');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('sovera.products');
+            $table->foreign('product_id')->references('id')->on('sovera.products')->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,10 @@ class CreateProductPlansTable extends Migration
      */
     public function down()
     {
+        Schema::table('product_plans', function (Blueprint $table) {
+            $table->dropForeign(['product_id']);
+        });
+
         Schema::dropIfExists('product_plans');
     }
 }

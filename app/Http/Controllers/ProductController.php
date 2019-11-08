@@ -204,11 +204,16 @@ class ProductController extends Controller
 
     public function deletePlan($id)
     {
-        $deletePlan = $this->service->deletePlan($id)->fetch();
+        $checkPlan = $this->service->checkPpPlan($id)->fetch();
+        if(count($checkPlan->bodyResponse) != 0){
+            return redirect()->back()->with('notify', 'pop_still_exist');
+        }else{
+            $deletePlan = $this->service->deletePlan($id)->fetch();
 
-        // dd($deleteProduct);
+            // dd($deleteProduct);
 
-        return redirect()->back()->with('notify', 'delete_plan');
+            return redirect()->back()->with('notify', 'delete_plan');
+        }
     }
 
     public function deleteProduct($id)
