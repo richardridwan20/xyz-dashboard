@@ -25,7 +25,7 @@
         </div>
         <div class="block-content block-content-full">
             <div class="form-group row">
-                <div class="col-2" style="margin-left: -10px;">
+                <div class="col-2">
                     <a href="{{ route('product.add_plan') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add New Plan</button></a>
                 </div>
             </div>

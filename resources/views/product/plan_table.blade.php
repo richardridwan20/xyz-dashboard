@@ -41,7 +41,7 @@
                     <td>{{$plan['duration']}}</td>
                     <td>{{$plan['sum_assured']}}</td>
                     <td>
-                        <a href="{{route('plan.edit', $plan['id'])}}"><button class='btn btn-outline-primary'>Edit</button></a>
+                        <a href="{{route('plan.edit', $plan['id'])}}"><button class='btn btn-alt-primary'>Edit</button></a>
                         <a onclick="confirmation('plan/delete/{{$plan['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a>
                     </td>
                 </tr>

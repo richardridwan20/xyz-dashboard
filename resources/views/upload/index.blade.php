@@ -5,30 +5,17 @@
 @php
 $error = session('error');
 if($error != null){
-// $datas = [];
     for($i=0;$i<$error['total_row'];$i++){
         if(array_key_exists('row '.($i+2), $error['error'])){
             $datas[$i] = [
             'row' => $i+2,
             'status' => "Failed",
             'desc' => $error['error']['row '.($i+2)]
-        ];
+            ];
         }
-        // else{
-        //     $datas[$i] = [
-        //     'row' => $i+2,
-        //     'status' => "Success",
-        //     'desc' => "Succesfully Added to database"];
-        // }
     }
-
     sort($datas);
-    // dd($datas);
-
-
-
 }
-// dd($datas);
 @endphp
 
 <div class="content">
@@ -83,8 +70,6 @@ if($error != null){
                         </div>
                     </div>
                     <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{-- {{dd($errors->getMessages()) }} --}}
-
                             <table id="example" class="table table-hover table-striped table-vcenter table-bordered">
                                 <thead>
                                     <tr>
