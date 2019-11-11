@@ -13,7 +13,7 @@
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
-            <button class="btn btn-alt-primary"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')">Change Status into Canceled</a></button>
+            <button class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
                 @endcan
             </div>
             <div class="block-content block-content-full">

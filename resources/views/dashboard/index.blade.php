@@ -312,12 +312,6 @@
 
     });
 
-    /*
- *  Document   : be_pages_dahboard.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Dashboard Page
- */
-
     var BePagesDashboard = function() {
         // Init Onboarding modal
         var initOnboardingModal = function(){
@@ -338,13 +332,14 @@
             init: function () {
 
                 // Init Onboarding modal
-                initOnboardingModal();
+                // initOnboardingModal();
             }
         };
     }();
 
     // Initialize when page loads
-    jQuery(function(){ BePagesDashboard.init(); });
+    jQuery(function(){ BePagesDashboard.init();
+    });
 
 </script>
 
