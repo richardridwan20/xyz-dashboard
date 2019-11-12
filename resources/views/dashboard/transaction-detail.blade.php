@@ -6,6 +6,8 @@
 
     $start = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_start'])->format('d-F-Y');
     $end = \Carbon\Carbon::parse($detailTransaction['transaction']['protection_end'])->format('d-F-Y');
+    $customerDOB = \Carbon\Carbon::parse($detailTransaction['transaction']['customer']['dob'])->format('d-F-Y');
+    $insuredDOB = \Carbon\Carbon::parse($detailTransaction['transaction']['insured_dob'])->format('d-F-Y');
 @endphp
 <div class="row">
     <div class="block-content bg-body-light">
@@ -13,8 +15,16 @@
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
-            <button class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
+                    @if ($detailTransaction['transaction']['status'] != 'Canceled')
+                        <button style="margin-right: 15px" class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
+                    @endif
                 @endcan
+                @role('supadmin|claim')
+                    @if ($detailTransaction['transaction']['status'] == 'Policy Issued')
+                    <button class="btn btn-alt-primary">
+                        <a onclick="confirmationClaim('claim/form/{{$detailTransaction['transaction']['id']}}')"><i class="fa fa-umbrella"></i> Klaim</a></button>
+                    @endif
+                @endrole
             </div>
             <div class="block-content block-content-full">
                 <div class="row">
@@ -38,7 +48,7 @@
                             <div class="block-content">
                                 @if ($detailTransaction['transaction']['status'] == "Payment Done" || $detailTransaction['transaction']['status'] == "Policy Issued")
                                     <span class="badge badge-success">{{$detailTransaction['transaction']['status']}}</span>
-                                @elseif($transaction['status'] == "Waiting for Payment")
+                                @elseif($detailTransaction['transaction']['status'] == "Waiting for Payment")
                                     <span class="badge badge-warning">{{$detailTransaction['transaction']['status']}}</span>
                                 @else
                                     <span class="badge badge-danger">{{$detailTransaction['transaction']['status']}}</span>
@@ -210,7 +220,7 @@
 
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['customer']['dob']}}
+                            {{$customerDOB}}
                         </div>
                     </div>
                 </div>
@@ -311,7 +321,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="block">
-                            {{$detailTransaction['transaction']['insured_dob']}}
+                            {{$insuredDOB}}
                         </div>
                     </div>
                 </div>
@@ -375,6 +385,22 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, batalkan polis'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = window.location.origin + '/' +routeHref;
+            }
+        })
+    }
+
+    function confirmationClaim(routeHref){
+        Swal.fire({
+            title: 'Masukkan Klaim?',
+            text: "Anda akan diarahkan ke halaman form klaim.",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, klaim polis'
         }).then((result) => {
             if (result.value) {
                 window.location.href = window.location.origin + '/' +routeHref;

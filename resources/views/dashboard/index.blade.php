@@ -17,7 +17,7 @@
                         <div class="block-options">
                             <form method="GET">
                                 <div class="row">
-                                    @role('supadmin|operation|financial|partner operation|partner financial')
+                                    @role('supadmin|operation|financial|partner operation|partner financial|claim')
                                     <div class="col-xs-12 col-md-5">
                                         <div class="input-group" id="reportrange" style="cursor: pointer">
                                             <input readonly data-toggle="popover" title="Search by Date" data-placement="top" data-content="You can search by predefined or custom date range" name="daterange" id="date" type="text" class="form-control" value="">
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     @endrole
-                                    @role('supadmin|operation|financial|partner operation|partner financial')
+                                    @role('supadmin|operation|financial|partner operation|partner financial|claim')
                                     <div class="col-xs-12 col-md-3">
                                         <div class="input-group">
                                             <input class="form-control" data-toggle="popover" title="Search by Name" data-placement="top" data-content="You can search by Policy Holder / Insured / Agent Name"  type="text" name="text-name" placeholder="Name" value= "{{$data['name']}}">

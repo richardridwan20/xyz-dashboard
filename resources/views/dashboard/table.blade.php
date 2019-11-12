@@ -105,7 +105,6 @@
             @endrole
         </tr>
     </thead>
-    {{-- {{dd($transactions)}} --}}
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
                 @php
@@ -201,10 +200,9 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="21">No data to be shown.</td>
+                    <td colspan="22">No data to be shown.</td>
                 </tr>
             @endforelse
-
     </tbody>
 </table>
 <div class="row">

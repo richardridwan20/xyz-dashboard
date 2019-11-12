@@ -10,7 +10,7 @@ class ApiService
     protected $api;
     protected $endPoint;
     protected $pageHeaderEndPoint;
-    protected $statusCode;
+    public $statusCode;
     public $bodyResponse;
     protected $lang = 'id';
     public $hasError = false;

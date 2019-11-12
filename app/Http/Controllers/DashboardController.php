@@ -41,6 +41,7 @@ class DashboardController extends Controller
             Role::create(['name'=>'partner operation']);//7
             Role::create(['name'=>'partner viewer']);//8
             Role::create(['name'=>'agent']);//9
+            Role::create(['name'=>'claim']);//10
 
             //Create Permission
             Permission::create(['name'=>'view all transaction']);//1
@@ -188,6 +189,9 @@ class DashboardController extends Controller
             $user = User::find(17);
             $user->assignRole('partner viewer');
 
+            $user = User::find(18);
+            $user->assignRole('claim');
+
             $user = Agent::find(1);
             $user->assignRole('agent');
         }
@@ -312,7 +316,7 @@ class DashboardController extends Controller
         $sumPartnerBill = 0;
         $sumTotalPartnerBill = 0;
 
-        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation')){
+        if($user->hasRole('supadmin') || $user->hasRole('treasury') || $user->hasRole('financial') || $user->hasRole('operation') || $user->hasRole('claim')){
             $transactions = $this->service->allTransaction($page, $startDate, $endDate, $name)->paginate();
             $transactionsCount = $this->service->allTransaction($page, $startDate, $endDate, $name)->get();
         }else if($user->hasRole('partner financial') || $user->hasRole('partner operation')){
