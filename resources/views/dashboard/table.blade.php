@@ -105,7 +105,6 @@
             @endrole
         </tr>
     </thead>
-    {{-- {{dd($transactions)}} --}}
     <tbody id="tableAjax">
             @forelse ($transactions as $transaction)
                 @php

@@ -13,8 +13,12 @@
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
-            <button class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
+                    <button style="margin-right: 15px" class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
                 @endcan
+                @role('supadmin|claim')
+                    <button class="btn btn-alt-primary">
+                        <a onclick="confirmationClaim('claim/form/{{$detailTransaction['transaction']['id']}}')"><i class="fa fa-umbrella"></i> Klaim</a></button>
+                @endrole
             </div>
             <div class="block-content block-content-full">
                 <div class="row">
@@ -375,6 +379,22 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, batalkan polis'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = window.location.origin + '/' +routeHref;
+            }
+        })
+    }
+
+    function confirmationClaim(routeHref){
+        Swal.fire({
+            title: 'Masukkan Klaim?',
+            text: "Anda akan diarahkan ke halaman form klaim.",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, klaim polis'
         }).then((result) => {
             if (result.value) {
                 window.location.href = window.location.origin + '/' +routeHref;
