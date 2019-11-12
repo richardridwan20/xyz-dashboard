@@ -25,7 +25,7 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="name" class="form-control @error('name') is-invalid @enderror" id="pname" name="pname" required autocomplete="pname">
+                                    <input type="name" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required autocomplete="name">
                                     <label for="name">Partner Name</label>
 
                                     @error('pname')
@@ -40,10 +40,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('cname') is-invalid @enderror" id="cname" name="cname" required autocomplete="address">
-                                    <label for="address">Partner Company Name</label>
+                                    <input type="text" class="form-control @error('company_name') is-invalid @enderror" id="company_name" name="company_name" required autocomplete="company_name">
+                                    <label for="company_name">Partner Company Name</label>
 
-                                    @error('address')
+                                    @error('company_name')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -56,9 +56,9 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" required autocomplete="address">
+                                    <input type="text" class="form-control @error('company_address') is-invalid @enderror" id="company_address" name="company_address" required autocomplete="company_address">
                                     <label for="name">Partner Address</label>
-                                    @error('address')
+                                    @error('company_address')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -135,26 +135,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="name" class="form-control @error('npinduk') is-invalid @enderror" id="npinduk" name="npinduk" required autocomplete="npinduk">
-                                    <label for="npinduk">Nomor Polis Induk</label>
-
-                                    @error('npinduk')
-                                        <p style="color:red">
-                                            <strong>{{ $message }}</strong>
-                                        </p>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <div class="form-material floating">
-
-                                    <input type="name" class="form-control @error('quota') is-invalid @enderror" id="quota" name="quota" required autocomplete="quota">
+                                    <input type="name" class="form-control @error('agent_quota') is-invalid @enderror" id="agent_quota" name="agent_quota" required autocomplete="agent_quota">
                                     <label for="npinduk">Agent Quota</label>
 
-                                    @error('quota')
+                                    @error('agent_quota')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -165,7 +149,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
-                                <select type="dropdown" class="form-control" id="asdata" name="asdata">
+                                <select type="dropdown" class="form-control" id="allow_send_data" name="allow_send_data">
                                     <option  disabled selected>Allow Send Data?</option>
                                     <option value=1>Yes</option>
                                     <option value=0>No</option>
@@ -178,6 +162,15 @@
                                     <option  disabled selected>Email Sender</option>
                                     <option value="Partner">Partner</option>
                                     <option value="Sequis">Sequis</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <select type="dropdown" class="form-control" id="allow_phone_data" name="allow_phone_data">
+                                    <option  disabled selected>Allow Phone Data</option>
+                                    <option value=1>Yes</option>
+                                    <option value=0>No</option>
                                 </select>
                             </div>
                         </div>

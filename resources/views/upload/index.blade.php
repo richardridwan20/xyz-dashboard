@@ -135,6 +135,12 @@ var session1 = "{{Session::get('notify')}}"
             'success'
             )
     }
+var session2 = "{{Session::get('filepath')}}"
+    if (session2 != "" ) {
+        let url = "{{ route('upload.download_sms_report', 'filepath') }}";
+        url = url.replace('filepath', session2);
+        document.location.href=url;
+    }
 </script>
 @endsection
 

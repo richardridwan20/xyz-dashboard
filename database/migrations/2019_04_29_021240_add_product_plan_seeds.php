@@ -15,7 +15,7 @@ class AddProductPlanSeeds extends Migration
     {
         DB::table('product_plans')->insert([
             [
-                'product_id' => 1,
+                'product_id' => "1",
                 'name' => 'Standard',
                 'duration' => 'Yearly',
                 'sum_assured' => '23000000',
@@ -26,7 +26,7 @@ class AddProductPlanSeeds extends Migration
                 'updated_at' => '2019-08-02'
             ],
             [
-                'product_id' => 1,
+                'product_id' => "1",
                 'name' => 'Deluxe',
                 'duration' => 'Yearly',
                 'sum_assured' => '36000000',
@@ -37,7 +37,7 @@ class AddProductPlanSeeds extends Migration
                 'updated_at' => '2019-08-02'
             ],
             [
-                'product_id' => 1,
+                'product_id' => "1",
                 'name' => 'Standard',
                 'duration' => 'Monthly',
                 'sum_assured' => '23000000',
@@ -48,7 +48,7 @@ class AddProductPlanSeeds extends Migration
                 'updated_at' => '2019-08-02'
             ],
             [
-                'product_id' => 1,
+                'product_id' => "1",
                 'name' => 'Deluxe',
                 'duration' => 'Monthly',
                 'sum_assured' => '36000000',

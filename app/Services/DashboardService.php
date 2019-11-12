@@ -88,6 +88,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getPartnerDataById($id)
+    {
+        $this->endPoint = 'partner/'.$id;
+
+        return $this;
+    }
+
     public function changeQuota()
     {
         $this->endPoint = 'partner/change-quota';
@@ -267,6 +274,13 @@ class DashboardService extends ApiService
     public function getAllPlan()
     {
         $this->endPoint = 'plan';
+
+        return $this;
+    }
+
+    public function storeSms()
+    {
+        $this->endPoint = 'transaction/store_sms_excel';
 
         return $this;
     }

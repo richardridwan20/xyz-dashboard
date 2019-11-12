@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
     Route::get('/register-partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
+    Route::get('/upload/sms/download/{filePath}', 'UploadController@downloadSmsReport')->name('upload.download_sms_report');
     Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
     Route::get('/invoice', 'InvoiceLogController@index')->name('invoice.index')->middleware('role:supadmin|financial');
     Route::get('/upload', 'UploadController@index')->name('upload.index')->middleware('permission:view upload form');

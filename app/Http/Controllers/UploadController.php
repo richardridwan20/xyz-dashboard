@@ -30,6 +30,11 @@ class UploadController extends Controller
         return response()->download(storage_path('app/public/files/reports/fail/'.$fileName));
     }
 
+    public function downloadSmsReport($filePath)
+    {
+        return response()->download(storage_path('app/public/files/sms/'.$filePath));
+    }
+
     public function upload(Request $request)
     {
         $request->validate([
@@ -60,12 +65,31 @@ class UploadController extends Controller
 
             // dd($error);
 
+            // dd($error);
+
             if ($error['code'] == 422) {
-                return back()
-                ->with("error", $error);
+                if(count($error['csv_data']) != 0){
+                    $storeSms = $this->service->storeSms()->post($error['csv_data']);
+                    $filePath = $storeSms->bodyResponse['file_name'];
+                    return back()
+                    ->with("error", $error)
+                    ->with('filepath', $filePath);
+                }else{
+                    return back()
+                    ->with("error", $error);
+                }
             }else{
-                return back()
-                ->with('notify','uploaded');
+                if(count($error['csv_data']) != 0){
+                    $storeSms = $this->service->storeSms()->post($error['csv_data']);
+                    $filePath = $storeSms->bodyResponse['file_name'];
+                    return back()
+                    ->with('notify','uploaded')
+                    ->with('filepath', $filePath);
+                }else{
+                    return back()
+                    ->with('notify','uploaded');
+                }
+
             }
 
 

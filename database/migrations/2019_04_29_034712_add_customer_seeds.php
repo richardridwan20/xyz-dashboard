@@ -21,7 +21,8 @@ class AddCustomerSeeds extends Migration
                 'gender' => 'Male',
                 'email' => 'peter@sequislife.com',
                 'created_at' => '2019-08-02',
-                'updated_at' => '2019-08-02'
+                'updated_at' => '2019-08-02',
+                'phone_number' => '081231312121'
             ],
             [
                 'name' => 'Susi Susanti',
@@ -30,7 +31,8 @@ class AddCustomerSeeds extends Migration
                 'gender' => 'Female',
                 'email' => 'susi@sequislife.com',
                 'created_at' => '2019-08-02',
-                'updated_at' => '2019-08-02'
+                'updated_at' => '2019-08-02',
+                'phone_number' => '081231312121'
             ],
         ]);
     }
