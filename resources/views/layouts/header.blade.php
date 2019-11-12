@@ -103,14 +103,19 @@
                     <li>
                         <a class="{{ Route::is('limitation.index') ? 'active' : '' }}" href="{{ route('limitation.index') }}"><i class="si si-briefcase"></i><span class="sidebar-mini-hide">Limitation</span></a>
                     </li>
+                    <li>
+                        <a class="{{ Route::is('claim.index') ? 'active' : '' }}" href="{{ route('claim.index') }}"><i class="si si-people"></i><span class="sidebar-mini-hide">Claim</span></a>
+                    </li>
+                    @endrole
+                    @role('claim')
+                    <li>
+                        <a class="{{ Route::is('claim.index') ? 'active' : '' }}" href="{{ route('claim.index') }}"><i class="si si-people"></i><span class="sidebar-mini-hide">Claim</span></a>
+                    </li>
                     @endrole
                     @role('supadmin|financial')
                     <li>
                         <a class="{{ Route::is('invoice.index') ? 'active' : '' }}" href="{{ route('invoice.index') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
                     </li>
-                    {{-- <li>
-                        <a class="{{ Route::is('dashboard.addProduct') ? 'active' : '' }}" href="{{ route('dashboard.addProduct') }}"><i class="si si-docs"></i><span class="sidebar-mini-hide">Invoices</span></a>
-                    </li> --}}
                     @endrole
                     @role('supadmin')
                     <li>
@@ -131,9 +136,9 @@
                     </li>
                     @endrole
 
+                    @can('register partner')
                     {{-- Partner Sub-menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>
-                    @can('register partner')
                     <li>
                         <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
                     </li>
@@ -147,9 +152,9 @@
                     </li>
                     @endrole
 
+                    @role('supadmin|financial|operation')
                     {{-- Product Sub-Menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PO</span><span class="sidebar-mini-hidden">Product</span></li>
-                    @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('product.index') ? 'active' : '' }}" href="{{ route('product.index') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">Manage Product & Plan</span></a>
                     </li>

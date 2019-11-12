@@ -5,30 +5,17 @@
 @php
 $error = session('error');
 if($error != null){
-// $datas = [];
     for($i=0;$i<$error['total_row'];$i++){
         if(array_key_exists('row '.($i+2), $error['error'])){
             $datas[$i] = [
             'row' => $i+2,
             'status' => "Failed",
             'desc' => $error['error']['row '.($i+2)]
-        ];
+            ];
         }
-        // else{
-        //     $datas[$i] = [
-        //     'row' => $i+2,
-        //     'status' => "Success",
-        //     'desc' => "Succesfully Added to database"];
-        // }
     }
-
     sort($datas);
-    // dd($datas);
-
-
-
 }
-// dd($datas);
 @endphp
 
 <div class="content">
@@ -36,14 +23,13 @@ if($error != null){
         <div class="col-md-8">
             <!-- Default Elements -->
             <div class="block">
-                <div class="block-header block-header-default bg-primary-lighter">
-                    <h3 class="block-title">UPLOAD DATA</h3>
+                <div class="block-header block-header-default">
+                    <h3 class="block-title text-uppercase"><b>Bulk Upload</b></h3>
+                    <i class="fa fa-info-circle" data-toggle="popover" title="Bulk Upload" data-placement="right" data-content="Bulk Upload dilakukan dengan mengupload file excel yang berisikan data-data nasabah yang melakukan transaksi lewat partner. Polis akan dibuat berdasarkan data tersebut."></i>
                 </div>
                 <div class="block-content">
                     <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
-                        <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                         <div class="form-group row">
                             <label class="col-12">Upload file Excel yang diinginkan (format .xlsx atau .csv)</label>
                             <div class="col-8">
@@ -83,8 +69,6 @@ if($error != null){
                         </div>
                     </div>
                     <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{-- {{dd($errors->getMessages()) }} --}}
-
                             <table id="example" class="table table-hover table-striped table-vcenter table-bordered">
                                 <thead>
                                     <tr>
@@ -131,8 +115,15 @@ var session1 = "{{Session::get('notify')}}"
     if (session1 == 'uploaded') {
             Swal.fire(
             'Success!',
-            'file uploaded successfully',
+            'File berhasil diupload.',
             'success'
+            )
+    }
+    if (session1 == 'extension') {
+            Swal.fire(
+            'Error!',
+            'File harus dengan ekstensi yang benar.',
+            'error'
             )
     }
 var session2 = "{{Session::get('filepath')}}"
@@ -140,7 +131,7 @@ var session2 = "{{Session::get('filepath')}}"
         let url = "{{ route('upload.download_sms_report', 'filepath') }}";
         url = url.replace('filepath', session2);
         document.location.href=url;
-    }
+    
 </script>
 @endsection
 

@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/limitation/form', 'LimitationController@showForm')->name('limitation.form');
     Route::post('/limitation/create', 'LimitationController@create')->name('limitation.create');
     Route::get('/limitation/delete/{id}', 'LimitationController@deleteDetailLimitation')->name('detail.limitation.delete');
+    Route::get('/claim', 'ClaimController@index')->name('claim.index');
+    Route::post('/claim/create', 'ClaimController@create')->name('claim.create');
+    Route::get('/claim/form/{id}', 'ClaimController@showForm')->name('claim.form');
     Route::post('/productofpartner/changequota', 'ProductOfPartnerController@changeQuota')->name('ProductOfPartner.change_quota');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');

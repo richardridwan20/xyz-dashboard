@@ -38,7 +38,6 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            // 'title' => 'nullable|max:100',
             'file' => 'required|file|max:2000', // max 2MB
         ]);
 
@@ -56,8 +55,6 @@ class UploadController extends Controller
             $data = ['file_name' => $file_name, 'path' => $path];
 
             $upload = $this->service->import($data)->upload($data);
-
-            // dd($upload);
 
             $error = $upload->bodyResponse;
 
@@ -91,11 +88,11 @@ class UploadController extends Controller
                 }
 
             }
-
+            }
 
         }else{
             return back()
-            ->withErrors('File harus dengan ekstensi yang benar.');
+                ->with('notify','extension');
         }
 
     }

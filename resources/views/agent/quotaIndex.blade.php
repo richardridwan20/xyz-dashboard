@@ -5,10 +5,9 @@
 <div class="content">
     <div class="block block-fx-shadow">
         <div class="block">
-            <div class="block-header block-header-default bg-primary-lighter">
-                <h3 class="block-title text-uppercase">Transaction</h3>
-                <div class="block-options">
-                </div>
+            <div class="block-header block-header-default">
+                <h3 class="block-title text-uppercase"><b>Partner Quota</b></h3>
+                <i class="fa fa-info-circle" data-toggle="popover" title="Partner Quota" data-placement="right" data-content="Setiap partner dapat diatur kuota agentnya disini."></i>
             </div>
             <div class="block-content block-content-full">
                 <form method="GET">

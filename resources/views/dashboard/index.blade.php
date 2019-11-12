@@ -6,9 +6,7 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title text-uppercase"><b>Transaction</b></h3>
-                <div class="block-options">
-
-                </div>
+                <i class="fa fa-info-circle" data-toggle="popover" title="Transactions" data-placement="right" data-content="Berisikan data transaksi yang dikirim oleh partner. Disini dapat dilakukan download report, download jurnal report dan search data berdasarkan nama."></i>
             </div>
             <div class="block-content">
                 <div class="block">
@@ -19,7 +17,7 @@
                         <div class="block-options">
                             <form method="GET">
                                 <div class="row">
-                                    @role('supadmin|operation|financial|partner operation|partner financial')
+                                    @role('supadmin|operation|financial|partner operation|partner financial|claim')
                                     <div class="col-xs-12 col-md-5">
                                         <div class="input-group" id="reportrange" style="cursor: pointer">
                                             <input readonly data-toggle="popover" title="Search by Date" data-placement="top" data-content="You can search by predefined or custom date range" name="daterange" id="date" type="text" class="form-control" value="">
@@ -47,7 +45,7 @@
                                         </div>
                                     </div>
                                     @endrole
-                                    @role('supadmin|operation|financial|partner operation|partner financial')
+                                    @role('supadmin|operation|financial|partner operation|partner financial|claim')
                                     <div class="col-xs-12 col-md-3">
                                         <div class="input-group">
                                             <input class="form-control" data-toggle="popover" title="Search by Name" data-placement="top" data-content="You can search by Policy Holder / Insured / Agent Name"  type="text" name="text-name" placeholder="Name" value= "{{$data['name']}}">
@@ -196,6 +194,42 @@
         </div>
     </div>
 </div>
+
+ <!-- Onboarding Modal -->
+ <div class="modal fade" id="modal-onboarding" tabindex="-1" role="dialog" aria-labelledby="modal-onboarding" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-popout" role="document">
+        <div class="modal-content rounded">
+            <div class="block block-rounded block-transparent mb-0 bg-pattern" style="background-image: url('assets/media/various/bg-pattern-inverse.png');">
+                <div class="block-header justify-content-end">
+                    <div class="block-options">
+                        <a class="font-w600 text-danger" href="#" data-dismiss="modal" aria-label="Close">
+                            Skip Intro
+                        </a>
+                    </div>
+                </div>
+                <div class="block-content block-content-full">
+                    <div class="js-slider slick-dotted-inner" data-dots="true" data-arrows="false" data-infinite="false">
+                        <div class="pb-50">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-md-10 col-lg-8">
+                                    <i class="si si-fire fa-4x text-primary"></i>
+                                    <h3 class="font-size-h2 font-w300 mt-20">Welcome to Sovera!</h3>
+                                    <p class="text-muted">
+                                        This is a modal you can show to your users when they first sign in to their dashboard. It is a great place to welcome and introduce them to your application and its functionality.
+                                    </p>
+                                    <button type="button" class="btn btn-sm btn-hero btn-noborder btn-primary mb-10 mx-5">
+                                        Key features <i class="fa fa-arrow-right ml-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Onboarding Modal -->
 @endsection
 
 @push('script')
@@ -276,6 +310,35 @@
 
         cb(start, end);
 
+    });
+
+    var BePagesDashboard = function() {
+        // Init Onboarding modal
+        var initOnboardingModal = function(){
+            // Show Onboarding Modal by default
+            jQuery('#modal-onboarding').modal('show');
+
+            // Re-init Slick Slider every time the modal is shown
+            $('#modal-onboarding').on('shown.bs.modal', function(e) {
+                // Remove enabled class added by the helper to prevent re-init
+                jQuery('js-slider', '#modal-onboarding').removeClass('js-slider-enabled');
+
+                // Re-init Slick Slider
+                Codebase.helpers('slick');
+            })
+        };
+
+        return {
+            init: function () {
+
+                // Init Onboarding modal
+                // initOnboardingModal();
+            }
+        };
+    }();
+
+    // Initialize when page loads
+    jQuery(function(){ BePagesDashboard.init();
     });
 
 </script>

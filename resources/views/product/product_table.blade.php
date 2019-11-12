@@ -32,7 +32,7 @@
                     <td>{{$product['created_at']['date']}}</td>
                     <td>{{$product['updated_at']['date']}}</td>
                     <td>
-                        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#editProductModal" data-id="{{$product['id']}}" data-name="{{$product['name']}}">Edit</button>
+                        <button class="btn btn-alt-primary" data-toggle="modal" data-target="#editProductModal" data-id="{{$product['id']}}" data-name="{{$product['name']}}">Edit</button>
                         <a onclick="confirmation('product/delete/{{$product['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a>
                     </td>
                 </tr>
