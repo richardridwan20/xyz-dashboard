@@ -9947,6 +9947,10 @@ textarea.form-control.form-control-lg, .input-group-lg > textarea.form-control,
   height: 34px;
 }
 
+.main-logo {
+    height: 75px;
+}
+
 #page-header > .content-header {
   padding-left: 12px;
   padding-right: 12px;

@@ -14,7 +14,7 @@ $planValue = [];
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
-                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Data Input Form for Sequis Mikro Sejahtera</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please add transaction detail</h2>

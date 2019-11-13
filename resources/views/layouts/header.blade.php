@@ -58,7 +58,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <img style="margin: -5px;" class="content-header-logo" src="assets\media\photos\sovera-s.png" alt="">
+                        <img style="margin: -5px;" class="content-header-logo" src="{{asset('assets\media\photos\sovera-s.png')}}" alt="">
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -76,7 +76,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
-                            <img class="content-header-logo" src="assets\media\photos\sovera-logo-white.png" alt="">
+                            <img class="content-header-logo" src="{{asset('assets\media\photos\sovera-logo-white.png')}}" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -135,7 +135,6 @@
                         <a class="{{ Route::is('voucher.index') ? 'active' : '' }}" href="{{ route('voucher.index') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">Vouchers</span></a>
                     </li>
                     @endrole
-
                     @can('register partner')
                     {{-- Partner Sub-menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>

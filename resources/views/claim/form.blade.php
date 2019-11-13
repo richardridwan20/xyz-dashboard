@@ -21,7 +21,7 @@
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700">
-                    <img src="{{asset('media/photos/logo.png')}}" alt="">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Form Klaim</h1>
                 <br>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="col-lg-7 offset-lg-1">
                             <div class="form-group">
-                                <label for="name">Tanggal Masuk Rumah Sakit <span class="text-danger">*</span></label>
+                                <label for="name">Tanggal Masuk Rumah Sakit </label>
                                 <input type="text" class="form-control @error('hospital_in') is-invalid @enderror datepicker" id="hospital_in" name="hospital_in" required autocomplete="hospital_in" value="{{ $hospitalIn }}" placeholder="dd/mm/yyyy">
                                 @error('hospital_in')
                                     <p style="color:red">
@@ -126,7 +126,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="name">Tanggal Keluar Rumah Sakit <span class="text-danger">*</span></label>
+                                <label for="name">Tanggal Keluar Rumah Sakit</label>
                                 <input type="text" class="form-control @error('hospital_out') is-invalid @enderror datepicker" id="hospital_out" name="hospital_out" required autocomplete="hospital_out" value="{{ $hospitalOut }}" placeholder="dd/mm/yyyy">
                                 @error('hospital_out')
                                     <p style="color:red">
