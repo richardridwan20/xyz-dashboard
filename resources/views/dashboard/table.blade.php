@@ -179,7 +179,7 @@
                         <td><span class="badge badge-danger">{{$transaction['status']}}</span></td>
                     @endif
                     @role('supadmin|treasury|financial|partner financial')
-                    @if($transaction['status'] == "Canceled")
+                    @if($transaction['status'] == "Canceled" || $transaction['status'] == "Waiting For Payment")
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
