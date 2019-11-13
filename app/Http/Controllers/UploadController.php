@@ -88,7 +88,6 @@ class UploadController extends Controller
                 }
 
             }
-            }
 
         }else{
             return back()
