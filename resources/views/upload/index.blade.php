@@ -131,7 +131,8 @@ var session2 = "{{Session::get('filepath')}}"
         let url = "{{ route('upload.download_sms_report', 'filepath') }}";
         url = url.replace('filepath', session2);
         document.location.href=url;
-    
+    }
+
 </script>
 @endsection
 
