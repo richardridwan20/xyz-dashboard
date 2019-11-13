@@ -49,12 +49,14 @@ class PaymentProofController extends Controller
 
         $path = $file->storeAs('public/files/uploads', $file_name);
 
+        $transactionData = $this->service->getTransactionById($transactionId)->fetch();
         $data = [
             'transaction_id' => $transactionId,
             'file_name' => $file_name,
             'path' => $path,
             'notes' => $notes,
-            'total_paid' => $total
+            'total_paid' => $total,
+            'plan_id' => $transactionData->bodyResponse['data']['plan']['id']
         ];
 
         Log::info($data);

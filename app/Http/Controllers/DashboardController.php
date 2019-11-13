@@ -332,7 +332,7 @@ class DashboardController extends Controller
 
         foreach ($transactionsCount as $transaction){
 
-            if($transaction['status'] != "Canceled"){
+            if($transaction['status'] != "Canceled" && $transaction['status'] != "Waiting For Payment"){
                 $commission = $transaction['partner_id']['commission'];
                 $type = $transaction['plan_id']['duration'];
                 $duration = $transaction['protection_duration'];
