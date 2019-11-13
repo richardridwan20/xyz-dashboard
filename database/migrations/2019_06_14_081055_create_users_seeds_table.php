@@ -26,7 +26,7 @@ class CreateUsersSeedsTable extends Migration
             ],
             [
                 'name' => 'Sequis',
-                'email' => 'sequisfinancial@sequislife.com',
+                'email' => 'financial@sequislife.com',
                 'password' => Hash::make("financialsequis"),
             ],
             [
@@ -98,6 +98,11 @@ class CreateUsersSeedsTable extends Migration
                 'name' => 'Warung Pintar',
                 'email' => 'macroadviewer@sequislife.com',
                 'password' => Hash::make("mvsequis"),
+            ],
+            [
+                'name' => 'Sequis',
+                'email' => 'claim@sequislife.com',
+                'password' => Hash::make("claimsequis"),
             ],
         ]);
     }
