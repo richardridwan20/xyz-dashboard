@@ -161,7 +161,6 @@
 
 <script>
     var session1 = "{{Session::get('success')}}"
-    console.log(session1)
 
     if (session1 == 'success') {
             Swal.fire(

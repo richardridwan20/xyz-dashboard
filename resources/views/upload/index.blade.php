@@ -111,7 +111,7 @@ if($error != null){
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
 var session1 = "{{Session::get('notify')}}"
-    console.log(session1)
+
     if (session1 == 'uploaded') {
             Swal.fire(
             'Success!',

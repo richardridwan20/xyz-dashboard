@@ -122,7 +122,7 @@ function confirmation(routeHref){
 }
 
 var session1 = "{{Session::get('notify')}}"
-        console.log(session1)
+
         if (session1 == 'created') {
                 Swal.fire(
                 'Created!',

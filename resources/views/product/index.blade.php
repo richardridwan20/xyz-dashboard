@@ -125,8 +125,6 @@
 <script>
     var session1 = "{{Session::get('notify')}}"
 
-
-    console.log(session1)
     if (session1 == 'delete_plan') {
             Swal.fire(
             'Deleted!',

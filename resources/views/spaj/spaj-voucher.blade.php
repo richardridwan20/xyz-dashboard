@@ -152,7 +152,7 @@ $planValue = [];
         }
     }
     var session1 = "{{Session::get('notify')}}"
-    console.log(session1)
+
     if (session1 == 'success') {
             Swal.fire(
             'Success!',

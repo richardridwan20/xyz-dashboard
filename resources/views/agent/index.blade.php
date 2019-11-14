@@ -25,7 +25,6 @@
     var session1 = "{{Session::get('notify')}}"
     var quotaRemain1 = "{{$quotaRemain}}";
 
-    console.log(session1)
     if (session1 == 'delete') {
             Swal.fire(
             'Deleted!',
