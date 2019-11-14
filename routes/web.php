@@ -22,8 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/product/delete/{id}', 'ProductController@deleteProduct')->name('product.delete');
     Route::get('/product/register_product', 'ProductController@addProduct')->name('product.add_product');
     Route::get('/product/register_plan', 'ProductController@addPlan')->name('product.add_plan');
-    Route::get('/register-partner-role', 'RegisterController@register')->name('dashboard.registerrole')->middleware('permission:register partner');
-    Route::get('/register-partner', 'RegisterController@registerPartner')->name('dashboard.registerpartner')->middleware('role:supadmin|financial|operation');
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/upload/sms/download/{filePath}', 'UploadController@downloadSmsReport')->name('upload.download_sms_report');
     Route::get('/detail/{id}', 'DashboardController@detail')->name('dashboard.detail');
@@ -33,7 +31,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
     Route::get('/productofpartner/delete/{id}', 'ProductOfPartnerController@destroy')->name('productofpartner.delete')->middleware('role:supadmin|financial|operation');
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
-    Route::get('/partner', 'DashboardController@partner')->name('dashboard.partner');
+    Route::get('/partner', 'PartnerController@index')->name('partner.index');
+    Route::get('/form', 'PartnerController@showForm')->name('partner.form')->middleware('role:supadmin|financial|operation');
+    Route::get('/form-role', 'PartnerController@showRoleForm')->name('partner.form-role')->middleware('permission:register partner');
+    Route::post('/form/input', 'PartnerController@inputPartner')->name('partner.input');
+    Route::post('/form-role/input', 'PartnerController@inputPartnerRole')->name('partner.input-role');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download')->middleware('role:supadmin|financial|partner financial');
     Route::get('/download-journal', 'DashboardController@downloadJournal')->name('dashboard.download_journal')->middleware('role:supadmin|financial');
     Route::get('/download-fail-report/{fileName}', 'UploadController@downloadFailReport')->name('upload.download_fail_report')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
@@ -69,8 +71,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/product/change_name', 'ProductController@changeName')->name('product.change_name');
     Route::post('/product/create_plan', 'ProductController@createPlan')->name('product.create_plan');
     Route::post('/productofpartner/create', 'ProductOfPartnerController@create')->name('productofpartner.create');
-    Route::post('/register-new-partner-role', 'RegisterController@inputPartner')->name('register.input_partner');
-    Route::post('/register-new-partner', 'RegisterController@inputNewPartner')->name('register.input_new_partner');
     Route::post('/spaj-input', 'DashboardController@inputTransaction')->name('dashboard.input_transaction');
     Route::post('/spaj-voucher-input', 'DashboardController@inputVoucherTransaction')->name('dashboard.input_voucher_transaction');
     Route::post('/voucher/download', 'VoucherController@download')->name('voucher.download');

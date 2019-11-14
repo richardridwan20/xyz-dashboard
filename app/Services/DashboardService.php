@@ -81,6 +81,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getPartners()
+    {
+        $this->endPoint = 'partner/paginate';
+
+        return $this;
+    }
+
     public function getPartnerDataByName($name)
     {
         $this->endPoint = 'partner/getDataByName?name='.$name;

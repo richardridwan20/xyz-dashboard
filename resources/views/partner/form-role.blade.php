@@ -19,7 +19,7 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form class="js-validation-signin" action="{{ route('register.input_partner') }}" method="POST">
+                    <form class="js-validation-signin" action="{{ route('partner.input-role') }}" method="POST">
                         @csrf
                         <div class="form-group row">
 
@@ -103,7 +103,7 @@
                         </div>
                         <div class="form-group row gutters-tiny">
                             <div class="col-12 mb-10">
-                                <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" formaction="{{ route('register.input_partner')}}">
+                                <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" formaction="{{ route('partner.input-role')}}">
                                     <i class="si si-register mr-10"></i>  {{ __('Register') }}
                                 </button>
                             </div>
@@ -117,14 +117,16 @@
     <!-- END Page Content -->
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script>
-    var session1 = "{{Session::get('notify')}}"
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8">
+</script>
 
-    if (session1 == 'created') {
+<script>
+    var session1 = "{{Session::get('success')}}"
+
+    if (session1 == 'success') {
             Swal.fire(
             'Success!',
-            'Partner successfully added',
+            'Partner successfully added!',
             'success'
             )
     }

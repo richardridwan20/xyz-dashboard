@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\DashboardService;
 use App\Services\RegisterService;
-use App\User;
+use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class PartnerController extends Controller
 {
-    public function __construct(RegisterService $service)
+    public function __construct(DashboardService $service)
     {
         $this->service = $service;
+        $this->registerService = new RegisterService;
     }
 
     /**
@@ -18,23 +19,63 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $column = 'created_at';
+        $typeOfSort = 'DESC';
+        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+
+        $page = $request->page;
+
+        $partners = $this->service->getPartners($page)->paginate();
+
+        return view('partner.index', compact('partners', 'append'));
     }
 
-    public function inputNewPartner(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showForm(Request $request)
     {
-        $inputPartner = $this->service->inputNewPartner()->post($request->toArray());
+        $success = "failed";
+        return view('partner.form', compact('success'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRoleForm(Request $request)
+    {
+        $partnerName = $this->registerService->partnerName()->get();
+        return view('partner.form-role', compact('success', 'partnerName'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inputPartner(Request $request)
+    {
+        $inputPartner = $this->registerService->inputNewPartner()->post($request->toArray());
 
         if(array_key_exists("errors", $inputPartner->bodyResponse)){
             return redirect()->back()->withErrors($inputPartner->bodyResponse['errors'])->withInput();
         }else{
-            return redirect()->back()->with('success', 'success');
+            return redirect('/partner')->with('success', 'success');
         }
     }
 
-    public function inputPartner(Request $request)
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inputPartnerRole(Request $request)
     {
         $password = $request->password;
         $rules = [

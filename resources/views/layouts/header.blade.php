@@ -76,7 +76,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
-                            <img class="content-header-logo" src="{{asset('assets\media\photos\sovera-logo-white.png')}}" alt="">
+                            <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo-white.png')}}" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -135,22 +135,17 @@
                         <a class="{{ Route::is('voucher.index') ? 'active' : '' }}" href="{{ route('voucher.index') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">Vouchers</span></a>
                     </li>
                     @endrole
-                    @can('register partner')
-                    {{-- Partner Sub-menu --}}
+                    @role('supadmin|financial|operation')
+                    {{-- Partner Sub-Menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>
                     <li>
-                        <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
-                    </li>
-                    @endcan
-                    @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
                     </li>
                     <li>
-                        <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
+                        <a class="{{ Route::is('partner.index') ? 'active' : '' }}" href="{{ route('partner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Manage Partner</span></a>
                     </li>
                     @endrole
-
                     @role('supadmin|financial|operation')
                     {{-- Product Sub-Menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PO</span><span class="sidebar-mini-hidden">Product</span></li>
