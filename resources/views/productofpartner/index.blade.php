@@ -141,6 +141,12 @@ var session1 = "{{Session::get('notify')}}"
                 'Product Partner Quota Successfully Changed',
                 'success'
                 )
+        }else if(session1 == 'success'){
+                Swal.fire(
+                'Success!',
+                'Plan berhasil dibuat!',
+                'success'
+                )
         }
 </script>
 
