@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('content')
 <div class="content">
     <!-- Page Content -->
@@ -10,7 +11,7 @@
                     <img src="{{asset('assets\media\photos\logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Add Plan Baru</h1>
-                <h2 class="h4 font-w400 text-muted mb-0">Silahkan masukkan data-data mengenai plan</h2>
+                <h2 class="h4 font-w400 text-muted mb-0">Silahkan masukkan data-data mengenai plan yang akan dibuat.</h2>
                 <br>
                 <h2 class="h6 font-w400 text-muted mb-0"><span class="text-danger">*</span> : Harus diisi</h2>
             </div>
@@ -144,6 +145,7 @@
                     </div>
                     <!-- END Vital Info -->
 
+                    <br><br><br>
                     <div class="form-group row gutters-tiny align-items-center">
                         <div class="col-12 mb-10">
                             <button type="button" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" onclick="confirmation()" id="btnsubmit">
@@ -168,6 +170,12 @@
             'Success!',
             'Plan berhasil ditambahkan!',
             'success'
+            )
+    } else if (session1 == 'error') {
+            Swal.fire(
+            'Error!',
+            'Maaf mohon cek kembali data yang dimasukkan!',
+            'error'
             )
     }
 

@@ -45,23 +45,19 @@ class ProductController extends Controller
         ];
         $request->validate($rules, $customMessages, $customAttributes);
 
-        // dd($request);
         $data = $request->toArray();
 
         unset($data['_token']);
 
-        // dd($data);
 
         $change = $this->service->changeName()->post($data);
 
-        // dd($change);
 
         return redirect()->back()->with('notify', 'change_product_name_success');
     }
 
     public function addProduct()
     {
-        // dd($products);
         return view('product.register-product', compact('products'));
     }
 
@@ -112,24 +108,17 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $rules = [
-            'product_name' => 'required|unique:products,name',
-        ];
-        $customMessages = [
-            'unique' => ':attribute already exist'
-        ];
-        $customAttributes = [
-            'product_name' => 'Product Name'
-        ];
-        $request->validate($rules, $customMessages, $customAttributes);
-
         $data = [
             'name' => $request->product_name
         ];
 
         $create = $this->service->createProduct()->post($data);
 
-        return redirect()->route('product.index')->with('notify', 'add_product');
+        if(array_key_exists("errors", $create->bodyResponse)){
+            return redirect()->back()->withErrors($create->bodyResponse['errors'])->withInput()->with('notify', 'error');
+        }else{
+            return redirect()->route('product.index')->with('notify', 'add_product');
+        }
     }
 
     public function createPlan(Request $request)
@@ -149,12 +138,10 @@ class ProductController extends Controller
 
         $create = $this->service->createPlan()->post($data);
 
-        dd($create);
-
         if(array_key_exists("errors", $create->bodyResponse)){
-            return redirect()->back()->withErrors($create->bodyResponse['errors'])->withInput();
+            return redirect()->back()->withErrors($create->bodyResponse['errors'])->withInput()->with('notify', 'error');
         }else{
-            return redirect()->route('product.index')->with('notify', 'success');
+            return redirect()->route('product.index')->with('notify', 'add_plan');
         }
 
     }
