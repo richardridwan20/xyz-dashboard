@@ -48,8 +48,16 @@
                 <td>{{$partner['company_address']}}</td>
                 <td>{{$partner['commission']}}</td>
                 <td>{{$partner['email']}}</td>
-                <td>{{$partner['allow_send_data']}}</td>
-                <td>{{$partner['allow_phone_data']}}</td>
+                @if($partner['allow_send_data'] == 0)
+                <td>No</td>
+                @else
+                <td>Yes</td>
+                @endIf
+                @if($partner['allow_phone_data'] == 0)
+                <td>No</td>
+                @else
+                <td>Yes</td>
+                @endIf
                 <td>
                     {{-- <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$productOfPartner['id']}}" data-name="">Edit</button>
                     <a onclick="confirmation('productofpartner/delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a> --}}
