@@ -22,7 +22,7 @@
                 @role('supadmin|claim')
                     @if ($detailTransaction['transaction']['status'] == 'Policy Issued')
                     <button class="btn btn-alt-primary">
-                        <a onclick="confirmationClaim('claim/form/{{$detailTransaction['transaction']['id']}}')"><i class="fa fa-umbrella"></i> Klaim</a></button>
+                         <a href="{{route('claim.form', $detailTransaction['transaction']['id'])}}"><i class="fa fa-umbrella"></i> Klaim</a></button>
                     @endif
                 @endrole
             </div>
@@ -392,19 +392,4 @@
         })
     }
 
-    function confirmationClaim(routeHref){
-        Swal.fire({
-            title: 'Masukkan Klaim?',
-            text: "Anda akan diarahkan ke halaman form klaim.",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, klaim polis'
-        }).then((result) => {
-            if (result.value) {
-                window.location.href = window.location.origin + '/' +routeHref;
-            }
-        })
-    }
 </script>
