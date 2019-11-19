@@ -347,6 +347,26 @@
     <div class="block-content bg-body-light col-sm-6">
     </div>
 </div>
+@if(array_key_exists("filename", $getPaymentProof->bodyResponse))
+<div class="row">
+    <div class="block-content bg-body-light">
+        <div class="block block-bordered">
+            <div class="block-header block-header-default bg-white">
+                <h3 class="block-title"><b>Payment Proof</b></h3>
+            </div>
+            <div class="block-content block-content-full">
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <img src="{{asset('storage/files/uploads/'.$getPaymentProof->bodyResponse['filename'])}}" style="max-width:400px;height:auto;">
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endIf
 <div class="row">
     <div class="block-content bg-body-light">
         <div class="block block-bordered">
