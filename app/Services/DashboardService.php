@@ -123,6 +123,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function cancelTransaction($id)
+    {
+        $this->endPoint = 'transaction/cancel/'.$id;
+
+        return $this;
+    }
+
     public function getPartnerDataPaginated()
     {
         $this->endPoint = 'partner/paginate';

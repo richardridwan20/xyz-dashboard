@@ -845,10 +845,23 @@ class DashboardController extends Controller
         $transaction = $this->service->updateTransactionById($id, $data['parameter'], $data['value'])->put($data);
     }
 
-    public function changeStatus($id, $status)
+    public function changeStatus($id, $status, $reason)
     {
-        $data = ['status' => $status];
+        $data = [
+            'status' => $status
+        ];
         $this->service->changeStatus($id)->post($data);
+
+        return redirect('')->with('notify', 'canceled');
+    }
+
+    public function cancelTransaction($id, $status, $reason)
+    {
+        $data = [
+            'status' => $status,
+            'reason' => $reason
+        ];
+        $this->service->cancelTransaction($id)->post($data);
 
         return redirect('')->with('notify', 'canceled');
     }
