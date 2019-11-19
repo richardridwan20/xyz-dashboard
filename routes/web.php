@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productofpartner', 'ProductOfPartnerController@index')->name('productofpartner.index')->middleware('role:supadmin|financial|operation');
     Route::get('/productofpartner/delete/{id}', 'ProductOfPartnerController@destroy')->name('productofpartner.delete')->middleware('role:supadmin|financial|operation');
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
+    Route::get('/cancel-transaction/{id}/{status}/{reason}', 'DashboardController@cancelTransaction')->name('dashboard.cancelTransaction');
     Route::get('/partner', 'PartnerController@index')->name('partner.index');
     Route::get('/form', 'PartnerController@showForm')->name('partner.form')->middleware('role:supadmin|financial|operation');
     Route::get('/form-role', 'PartnerController@showRoleForm')->name('partner.form-role')->middleware('permission:register partner');

@@ -16,7 +16,7 @@
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
                     @if ($detailTransaction['transaction']['status'] != 'Canceled')
-                        <button style="margin-right: 15px" class="btn btn-danger"><a onclick="confirmation('statuschange/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
+                        <button style="margin-right: 15px" class="btn btn-danger"><a onclick="confirmation('cancel-transaction/{{$detailTransaction['transaction']['id']}}/Canceled')"><i class="fa fa-close"></i> Batalkan Polis</a></button>
                     @endif
                 @endcan
                 @role('supadmin|claim')
@@ -382,11 +382,22 @@
             text: "Polis yang batal tidak dapat diubah lagi!",
             type: 'warning',
             showCancelButton: true,
+            input: 'text',
+            inputPlaceholder: "Masukkan alasan pembatalan polis.",
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, batalkan polis'
+            confirmButtonText: 'Ya, batalkan polis',
+            preConfirm: (inputValue) => {
+                if (inputValue === false) return false;
+
+                if (inputValue === "") {
+                    Swal.showValidationMessage("Masukkan alasan pembatalan polis.");
+                    return false
+                }
+            },
         }).then((result) => {
             if (result.value) {
+                routeHref = routeHref + '/' + result.value;
                 window.location.href = window.location.origin + '/' +routeHref;
             }
         })
