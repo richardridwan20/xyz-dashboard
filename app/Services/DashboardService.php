@@ -285,6 +285,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getPaymentProof($id)
+    {
+        $this->endPoint = 'payment-proof/get_data_by_id?transaction_id='.$id;
+
+        return $this;
+    }
+
     public function getAllPlan()
     {
         $this->endPoint = 'plan';
