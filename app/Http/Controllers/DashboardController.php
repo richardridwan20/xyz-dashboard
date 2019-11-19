@@ -880,13 +880,6 @@ class DashboardController extends Controller
         return view('spaj.spaj-voucher', compact('name', 'productOfPartners'));
     }
 
-    public function testing()
-    {
-        $data = $this->service->checkCustomer(1, 123123);
-        $info = 'submit for check';
-        return view('dashboard.testing', compact('info'));
-    }
-
     public function check(Request $request)
     {
         $this->validate($request,[
