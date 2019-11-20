@@ -372,7 +372,7 @@
         </div>
     </div>
 </div>
-@if(array_key_exists("filename", $getPaymentProof->bodyResponse))
+@if($getPaymentProof->bodyResponse != null || $getPaymentProof->bodyResponse != "")
 <div class="row">
     <div class="block-content bg-body-light">
         <div class="block block-bordered">
