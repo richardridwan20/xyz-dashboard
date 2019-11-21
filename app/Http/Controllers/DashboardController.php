@@ -440,23 +440,16 @@ class DashboardController extends Controller
         }
 
         if($request->insured_dob != null){
-            try{
-                $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
-                $request->merge([
-                    "insured_dob" => $insuredDob,
-                ]);
-            }catch(\Exception $e){
-            }
+            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
         }
         if($request->customer_dob != null){
-            try{
-                $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
-
-                $request->merge([
-                    "customer_dob" => $PHDob,
-                ]);
-            }catch(\Exception $e){
-            }
+            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
         }
 
         $name = Auth::user()->name;
@@ -507,6 +500,18 @@ class DashboardController extends Controller
 
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("Y-m-d", $request->insured_dob)->format("d/m/Y");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
+        }
+        if($request->customer_dob != null){
+                $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
+                $request->merge([
+                    "customer_dob" => $PHDob,
+                ]);
+        }
         if(array_key_exists("errors", $transactionAdded->bodyResponse)){
             if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
                 if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
@@ -646,26 +651,33 @@ class DashboardController extends Controller
         // }
         // dd($data);
         if($request->insured_dob != null){
-            try{
-                $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
-                $request->merge([
-                    "insured_dob" => $insuredDob,
-                ]);
-            }catch(\Exception $e){
-            }
+            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
         }
         if($request->customer_dob != null){
-            try{
-                $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
 
-                $request->merge([
-                    "customer_dob" => $PHDob,
-                ]);
-            }catch(\Exception $e){
-            }
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
         }
 
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
+
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
+        }
+        if($request->customer_dob != null){
+            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
+        }
 
         if(array_key_exists("errors", $transactionAdded->bodyResponse)){
             if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
