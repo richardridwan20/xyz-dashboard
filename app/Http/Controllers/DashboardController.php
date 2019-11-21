@@ -763,8 +763,9 @@ class DashboardController extends Controller
     public function detail($id)
     {
         $detailTransaction = $this->service->getTransactionById($id)->get();
+        $getPaymentProof = $this->service->getPaymentProof($id)->fetch();
 
-        return view('dashboard.detail', compact('detailTransaction'));
+        return view('dashboard.detail', compact('detailTransaction', 'getPaymentProof'));
     }
 
     public function update($id, $param, $value)

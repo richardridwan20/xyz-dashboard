@@ -218,6 +218,12 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = $this->service->PartnerDelete($id)->fetch();
+
+        if($delete->bodyResponse['message'] == "Success"){
+            return redirect()->back()->with('notify', 'deleted');
+        }else{
+            return redirect()->back()->with('notify', 'fail_delete');
+        }
     }
 }
