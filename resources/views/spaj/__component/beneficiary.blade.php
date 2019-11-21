@@ -15,16 +15,16 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="col-12">
-                                            <select type="dropdown" class="form-control" id="b1relation" name="b1relation" onchange="myselfRelation()">
+                                            <select type="dropdown" class="form-control" id="1_bene_relation" name="1_bene_relation" onchange="myselfRelation()">
                                                 <option  disabled selected>Select Relation</option>
-                                                <option value="Myself" class="Myself" @if(old('b1relation') == "Myself") selected @endif>Myself</option>
-                                                <option value="Father" @if(old('b1relation') == "Father") selected @endif>Father</option>
-                                                <option value="Mother" @if(old('b1relation') == "Mother") selected @endif>Mother</option>
-                                                <option value="Brother / Sister" @if(old('b1relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
-                                                <option value="Child" @if(old('b1relation') == "Child") selected @endif>Child</option>
-                                                <option value="Husband / Wife" @if(old('b1relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
+                                                <option value="Myself" class="Myself" @if(old('1_bene_relation') == "Myself") selected @endif>Myself</option>
+                                                <option value="Father" @if(old('1_bene_relation') == "Father") selected @endif>Father</option>
+                                                <option value="Mother" @if(old('1_bene_relation') == "Mother") selected @endif>Mother</option>
+                                                <option value="Brother / Sister" @if(old('1_bene_relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                                <option value="Child" @if(old('1_bene_relation') == "Child") selected @endif>Child</option>
+                                                <option value="Husband / Wife" @if(old('1_bene_relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                             </select>
-                                            @error('b1relation')
+                                            @error('1_bene_relation')
                                                 <p style="color:red">
                                                     <strong>{{ $message }}</strong>
                                                 </p>
@@ -32,9 +32,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-material ">
-                                                <input type="text" class="form-control" id="b1name" name="b1name" required autocomplete="b1name" value="{{ old('b1name') }}">
-                                                <label for="b1name">Name</label>
-                                                @error('b1name')
+                                                <input type="text" class="form-control" id="1_bene_name" name="1_bene_name" required autocomplete="1_bene_name" value="{{ old('1_bene_name') }}">
+                                                <label for="1_bene_name">Name</label>
+                                                @error('1_bene_name')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>
                                                     </p>
@@ -56,16 +56,16 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="col-12">
-                                            <select type="dropdown" class="form-control" id="b2relation" name="b2relation" onchange="myselfRelation()" value="{{ old('b2relation') }}">
+                                            <select type="dropdown" class="form-control" id="2_bene_relation" name="2_bene_relation" onchange="myselfRelation()" value="{{ old('2_bene_relation') }}">
                                                 <option  disabled selected>Select Relation</option>
-                                                <option value="Myself" class="Myself" @if(old('b2relation') == "Myself") selected @endif>Myself</option>
-                                                <option value="Father" @if(old('b2relation') == "Father") selected @endif>Father</option>
-                                                <option value="Mother" @if(old('b2relation') == "Mother") selected @endif>Mother</option>
-                                                <option value="Brother / Sister" @if(old('b2relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
-                                                <option value="Child" @if(old('b2relation') == "Child") selected @endif>Child</option>
-                                                <option value="Husband / Wife" @if(old('b2relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
+                                                <option value="Myself" class="Myself" @if(old('2_bene_relation') == "Myself") selected @endif>Myself</option>
+                                                <option value="Father" @if(old('2_bene_relation') == "Father") selected @endif>Father</option>
+                                                <option value="Mother" @if(old('2_bene_relation') == "Mother") selected @endif>Mother</option>
+                                                <option value="Brother / Sister" @if(old('2_bene_relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                                <option value="Child" @if(old('2_bene_relation') == "Child") selected @endif>Child</option>
+                                                <option value="Husband / Wife" @if(old('2_bene_relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                             </select>
-                                            @error('b2relation')
+                                            @error('2_bene_relation')
                                                 <p style="color:red">
                                                     <strong>{{ $message }}</strong>
                                                 </p>
@@ -73,9 +73,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-material ">
-                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="b2name" name="b2name" required autocomplete="b2name" value="{{ old('b2name') }}">
+                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="2_bene_name" name="2_bene_name" required autocomplete="2_bene_name" value="{{ old('2_bene_name') }}">
                                                 <label for="name">Name</label>
-                                                @error('b2name')
+                                                @error('2_bene_name')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>
                                                     </p>
@@ -97,16 +97,16 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="col-12">
-                                            <select type="dropdown" class="form-control" id="b3relation" name="b3relation" onchange="myselfRelation()" value="{{ old('b3relation') }}">
+                                            <select type="dropdown" class="form-control" id="3_bene_relation" name="3_bene_relation" onchange="myselfRelation()" value="{{ old('3_bene_relation') }}">
                                                 <option  disabled selected>Select Relation</option>
-                                                <option value="Myself" class="Myself" @if(old('b3relation') == "Myself") selected @endif>Myself</option>
-                                                <option value="Father" @if(old('b3relation') == "Father") selected @endif>Father</option>
-                                                <option value="Mother" @if(old('b3relation') == "Mother") selected @endif>Mother</option>
-                                                <option value="Brother / Sister" @if(old('b3relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
-                                                <option value="Child" @if(old('b3relation') == "Child") selected @endif>Child</option>
-                                                <option value="Husband / Wife" @if(old('b3relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
+                                                <option value="Myself" class="Myself" @if(old('3_bene_relation') == "Myself") selected @endif>Myself</option>
+                                                <option value="Father" @if(old('3_bene_relation') == "Father") selected @endif>Father</option>
+                                                <option value="Mother" @if(old('3_bene_relation') == "Mother") selected @endif>Mother</option>
+                                                <option value="Brother / Sister" @if(old('3_bene_relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                                <option value="Child" @if(old('3_bene_relation') == "Child") selected @endif>Child</option>
+                                                <option value="Husband / Wife" @if(old('3_bene_relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                             </select>
-                                            @error('b3relation')
+                                            @error('3_bene_relation')
                                                 <p style="color:red">
                                                     <strong>{{ $message }}</strong>
                                                 </p>
@@ -114,9 +114,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-material ">
-                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="b3name" name="b3name" required autocomplete="b3name">
+                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="3_bene_name" name="3_bene_name" required autocomplete="3_bene_name">
                                                 <label for="name">Name</label>
-                                                @error('b3name')
+                                                @error('3_bene_name')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>
                                                     </p>
@@ -138,16 +138,16 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="col-12">
-                                            <select type="dropdown" class="form-control" id="b4relation" name="b4relation" onchange="myselfRelation()" value="{{ old('b4relation') }}">
+                                            <select type="dropdown" class="form-control" id="4_bene_relation" name="4_bene_relation" onchange="myselfRelation()" value="{{ old('4_bene_relation') }}">
                                                 <option  disabled selected>Select Relation</option>
-                                                <option value="Myself" class="Myself" @if(old('b4relation') == "Myself") selected @endif>Myself</option>
-                                                <option value="Father" @if(old('b4relation') == "Father") selected @endif>Father</option>
-                                                <option value="Mother" @if(old('b4relation') == "Mother") selected @endif>Mother</option>
-                                                <option value="Brother / Sister" @if(old('b4relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
-                                                <option value="Child" @if(old('b4relation') == "Child") selected @endif>Child</option>
-                                                <option value="Husband / Wife" @if(old('b4relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
+                                                <option value="Myself" class="Myself" @if(old('4_bene_relation') == "Myself") selected @endif>Myself</option>
+                                                <option value="Father" @if(old('4_bene_relation') == "Father") selected @endif>Father</option>
+                                                <option value="Mother" @if(old('4_bene_relation') == "Mother") selected @endif>Mother</option>
+                                                <option value="Brother / Sister" @if(old('4_bene_relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                                <option value="Child" @if(old('4_bene_relation') == "Child") selected @endif>Child</option>
+                                                <option value="Husband / Wife" @if(old('4_bene_relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                             </select>
-                                            @error('b4relation')
+                                            @error('4_bene_relation')
                                                 <p style="color:red">
                                                     <strong>{{ $message }}</strong>
                                                 </p>
@@ -155,9 +155,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-material ">
-                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="b4name" name="b4name" required autocomplete="b4name" value="{{ old('b4name') }}">
+                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="4_bene_name" name="4_bene_name" required autocomplete="4_bene_name" value="{{ old('4_bene_name') }}">
                                                 <label for="name">Name</label>
-                                                @error('b4name')
+                                                @error('4_bene_name')
                                                     <p style="color:red">
                                                         <strong>{{ $message }}</strong>
                                                     </p>

@@ -303,8 +303,6 @@ class DashboardController extends Controller
             $request->session()->flash('date', $date);
         }
 
-        // dd($startDate);
-
         $data = ['name' => $name, 'date' => $date, 'start_date' => $startDate, 'end_date' => $endDate];
 
         $user = User::find(Auth::id());
@@ -366,126 +364,140 @@ class DashboardController extends Controller
 
     public function inputTransaction(Request $request)
     {
-        $year = Carbon::today()->year;
-        $month = Carbon::today()->month;
-        $day = Carbon::today()->day;
-        $tz = "Asia/Jakarta";
-        $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
-        $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
-        $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
+        // $year = Carbon::today()->year;
+        // $month = Carbon::today()->month;
+        // $day = Carbon::today()->day;
+        // $tz = "Asia/Jakarta";
+        // $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
+        // $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
+        // $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
 
-        $rules = [
-            'plan_id' => 'required',
-            'duration' => 'required',
-            'phname' => 'required|regex:/^[\pL\s]+$/u',
-            'phcitizen_id' => 'required|digits:16',
-            'phdob' => 'required|before_or_equal:'.$minCustomerAge,
-            'phemail' => 'required|email',
-            'irelation' => 'required',
-            'iname' => 'required|regex:/^[\pL\s]+$/u',
-            'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
-            'b1gender' => 'nullable',
-            'b1relation' => 'required',
-            'b1name' => 'required|regex:/^[\pL\s]+$/u',
-            'b2relation' => 'nullable|required_with:b2name',
-            'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
-            'b3relation' => 'nullable|required_with:b3name',
-            'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
-            'b4relation' => 'nullable|required_with:b4name',
-            'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
-        ];
+        // $rules = [
+        //     'plan_id' => 'required',
+        //     'duration' => 'required',
+        //     'phname' => 'required|regex:/^[\pL\s]+$/u',
+        //     'phcitizen_id' => 'required|digits:16',
+        //     'phdob' => 'required|before_or_equal:'.$minCustomerAge,
+        //     'phemail' => 'required|email',
+        //     'irelation' => 'required',
+        //     'iname' => 'required|regex:/^[\pL\s]+$/u',
+        //     'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
+        //     'b1gender' => 'nullable',
+        //     'b1relation' => 'required',
+        //     'b1name' => 'required|regex:/^[\pL\s]+$/u',
+        //     'b2relation' => 'nullable|required_with:b2name',
+        //     'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
+        //     'b3relation' => 'nullable|required_with:b3name',
+        //     'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
+        //     'b4relation' => 'nullable|required_with:b4name',
+        //     'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
+        // ];
 
-        $customMessages = [
-            'plan_id.required' => 'please select the :attribute',
-            'phgender.required' => 'please select the :attribute',
-            'before_or_equal' => ':attribute should more than 18 years',
-            'after_or_equal' => ':attribute should less than 55 years'
-        ];
+        // $customMessages = [
+        //     'plan_id.required' => 'please select the :attribute',
+        //     'phgender.required' => 'please select the :attribute',
+        //     'before_or_equal' => ':attribute should more than 18 years',
+        //     'after_or_equal' => ':attribute should less than 55 years'
+        // ];
 
-        $customAttributes = [
-            'plan_id' => 'Product Plan',
-            'duration' => 'Protection Duration',
-            'phgender' => 'Policy Holder Gender',
-            'phname' => 'Policy Holder Name',
-            'phcitizen_id' => 'Policy Holder Citizen Id',
-            'phdob' => 'Policy Holder Date of Birth',
-            'phemail' => 'Policy Holder Email',
-            'igender' => 'Insured Gender',
-            'irelation' => 'Insured Relation',
-            'iname' => 'Insured Name',
-            'icitizen_id' => 'Insured Citizen Id',
-            'idob' => 'Insured Date of Birth',
-            'iemail' => 'Insured Email',
-            'b1gender' => 'First Beneficiary Gender',
-            'b1relation' => 'First Beneficiary Relation',
-            'b1name' => 'First Beneficiary Name',
-            'b2relation' => 'Second Beneficiary Relation',
-            'b2name' => 'Second Beneficiary Name',
-            'b3relation' => 'Third Beneficiary Relation',
-            'b3name' => 'Third Beneficiary Name',
-            'b4relation' => 'Fourth Beneficiary Relation',
-            'b4name' => 'Fourth Beneficiary Name',
-        ];
+        // $customAttributes = [
+        //     'plan_id' => 'Product Plan',
+        //     'duration' => 'Protection Duration',
+        //     'phgender' => 'Policy Holder Gender',
+        //     'phname' => 'Policy Holder Name',
+        //     'phcitizen_id' => 'Policy Holder Citizen Id',
+        //     'phdob' => 'Policy Holder Date of Birth',
+        //     'phemail' => 'Policy Holder Email',
+        //     'igender' => 'Insured Gender',
+        //     'irelation' => 'Insured Relation',
+        //     'iname' => 'Insured Name',
+        //     'icitizen_id' => 'Insured Citizen Id',
+        //     'idob' => 'Insured Date of Birth',
+        //     'iemail' => 'Insured Email',
+        //     'b1gender' => 'First Beneficiary Gender',
+        //     'b1relation' => 'First Beneficiary Relation',
+        //     'b1name' => 'First Beneficiary Name',
+        //     'b2relation' => 'Second Beneficiary Relation',
+        //     'b2name' => 'Second Beneficiary Name',
+        //     'b3relation' => 'Third Beneficiary Relation',
+        //     'b3name' => 'Third Beneficiary Name',
+        //     'b4relation' => 'Fourth Beneficiary Relation',
+        //     'b4name' => 'Fourth Beneficiary Name',
+        // ];
 
-        $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
+        // $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
 
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
+        // if($validator->fails()){
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+
+        if($request->has("plan_id")){
+            $planContainer = $request->plan_id;
+            $planArray = explode("|", $request->plan_id);
+            $request->merge(["plan_id" => $planArray[0]]);
+            $request->merge(["duration_type" => $planArray[1]]);
+            $request->merge(["premium" => $planArray[2]]);
         }
-
-        $planArray = explode("|", $request->plan_id);
-        $request->merge(["plan_id" => $planArray[0]]);
-        $request->merge(["duration_type" => $planArray[1]]);
-        $request->merge(["premium" => $planArray[2]]);
 
         $name = Auth::user()->name;
-        if($request->durationType == "Yearly"){
-            $durationYear = $request->duration/12;
-            $total_paid = $durationYear * $request->premimum;
-        }else{
-            $total_paid = $request->duration * $request->premium;
-        }
         $partner = $this->service->getPartnerDataByName($name)->get();
-
-        $data = [
-            'partner_id' => $partner["id"],
-            'plan_id' => $request->plan_id,
-            'insured_relation' => $request->irelation,
-            'insured_name' => $request->iname,
-            'insured_dob' => $request->idob,
-            'protection_duration' => $request->duration,
-            'customer_name' => $request->phname,
-            'customer_dob' => $request->phdob,
-            'customer_citizen_id' => $request->phcitizen_id,
-            'customer_email' => $request->phemail,
-            'total_paid' => $total_paid,
-            'note' => $request->note,
-            '1_bene_relation' => $request->b1relation,
-            '1_bene_name' => $request->b1name,
-            '1_bene_dob' => $request->b1dob,
-            '1_bene_gender' => $request->b1gender,
-            '1_bene_email' => $request->b1email,
-        ];
-
-
-        for($i=2;$i<=4;$i++){
-            if($request['b'.$i.'name'] != null){
-                $data = $data + [
-                    $i.'_bene_relation' => $request['b'.$i.'relation'],
-                    $i.'_bene_name' => $request['b'.$i.'name'],
-                    $i.'_bene_dob' => $request['b'.$i.'dob'],
-                    $i.'_bene_gender' => $request['b'.$i.'gender'],
-                    $i.'_bene_email' => $request['b'.$i.'email'],
-                ];
+        $request->merge(['partner_id' => $partner['id']]);
+        if($request->has('duration_type')){
+            if($request->duration_type == "Yearly"){
+                $durationYear = $request->protection_duration/12;
+                $total_paid = $durationYear*$request->premium;
+            }else{
+                $total_paid = $request->protection_duration * $request->premium;
             }
+            $request->merge(['total_paid' => $total_paid]);
         }
 
-        $transactionAdded = $this->service->inputTransaction()->post($data);
+        // $data = [
+        //     'partner_id' => $partner["id"],
+        //     'plan_id' => $request->plan_id,
+        //     'insured_relation' => $request->irelation,
+        //     'insured_name' => $request->iname,
+        //     'insured_dob' => $request->idob,
+        //     'protection_duration' => $request->duration,
+        //     'customer_name' => $request->phname,
+        //     'customer_dob' => $request->phdob,
+        //     'customer_citizen_id' => $request->phcitizen_id,
+        //     'customer_email' => $request->phemail,
+        //     'total_paid' => $total_paid,
+        //     'note' => $request->note,
+        //     '1_bene_relation' => $request->b1relation,
+        //     '1_bene_name' => $request->b1name,
+        //     '1_bene_dob' => $request->b1dob,
+        //     '1_bene_gender' => $request->b1gender,
+        //     '1_bene_email' => $request->b1email,
+        // ];
 
-        if($transactionAdded->bodyResponse['data']['code'] == 101){
-            return redirect()->back()->with('notify', '5 insurance');
+
+        // for($i=2;$i<=4;$i++){
+        //     if($request['b'.$i.'name'] != null){
+        //         $data = $data + [
+        //             $i.'_bene_relation' => $request['b'.$i.'relation'],
+        //             $i.'_bene_name' => $request['b'.$i.'name'],
+        //             $i.'_bene_dob' => $request['b'.$i.'dob'],
+        //             $i.'_bene_gender' => $request['b'.$i.'gender'],
+        //             $i.'_bene_email' => $request['b'.$i.'email'],
+        //         ];
+        //     }
+        // }
+
+        $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
+
+        if($request->plan_id != null){
+            $request->merge(['plan_id' => $planContainer]);
+        }
+        if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
+            if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
+                return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+            }else{
+                return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+            }
         }else{
-            return redirect()->back()->with('notify', 'success');
+            return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
         }
 
     }
@@ -493,124 +505,138 @@ class DashboardController extends Controller
     public function inputVoucherTransaction(Request $request)
     {
         // dd($this->service->checkVoucherStatusByCode($request->voucher)->fetch()->bodyResponse['status']);
-        $year = Carbon::today()->year;
-        $month = Carbon::today()->month;
-        $day = Carbon::today()->day;
-        $tz = "Asia/Jakarta";
-        $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
-        $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
-        $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
-        $rules = [
-            'plan_id' => 'required',
-            'duration' => 'required',
-            'phname' => 'required|regex:/^[\pL\s]+$/u',
-            'phcitizen_id' => 'required|digits:16',
-            'phdob' => 'required|before_or_equal:'.$minCustomerAge,
-            'phemail' => 'required|email',
-            'irelation' => 'required',
-            'iname' => 'required|regex:/^[\pL\s]+$/u',
-            'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
-            'b1gender' => 'nullable',
-            'b1relation' => 'required',
-            'b1name' => 'required|regex:/^[\pL\s]+$/u',
-            'b2relation' => 'nullable|required_with:b2name',
-            'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
-            'b3relation' => 'nullable|required_with:b3name',
-            'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
-            'b4relation' => 'nullable|required_with:b4name',
-            'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
-            'voucher' => ['required','exists:reserved_vouchers,voucher_code', new CheckVoucherStatus()]
-        ];
-        $customMessages = [
-            'plan_id.required' => 'please select the :attribute',
-            'phgender.required' => 'please select the :attribute',
-            'before_or_equal' => ':attribute should more than 18 years',
-            'after_or_equal' => ':attribute should less than 55 years'
-        ];
-        $customAttributes = [
-            'plan_id' => 'Product Plan',
-            'duration' => 'Protection Duration',
-            'phgender' => 'Policy Holder Gender',
-            'phname' => 'Policy Holder Name',
-            'phcitizen_id' => 'Policy Holder Citizen Id',
-            'phdob' => 'Policy Holder Date of Birth',
-            'phemail' => 'Policy Holder Email',
-            'igender' => 'Insured Gender',
-            'irelation' => 'Insured Relation',
-            'iname' => 'Insured Name',
-            'icitizen_id' => 'Insured Citizen Id',
-            'idob' => 'Insured Date of Birth',
-            'iemail' => 'Insured Email',
-            'b1gender' => 'First Beneficiary Gender',
-            'b1relation' => 'First Beneficiary Relation',
-            'b1name' => 'First Beneficiary Name',
-            'b2relation' => 'Second Beneficiary Relation',
-            'b2name' => 'Second Beneficiary Name',
-            'b3relation' => 'Third Beneficiary Relation',
-            'b3name' => 'Third Beneficiary Name',
-            'b4relation' => 'Fourth Beneficiary Relation',
-            'b4name' => 'Fourth Beneficiary Name',
-        ];
+        // $year = Carbon::today()->year;
+        // $month = Carbon::today()->month;
+        // $day = Carbon::today()->day;
+        // $tz = "Asia/Jakarta";
+        // $minAge = Carbon::createFromDate($year-18, $month, $day, $tz);
+        // $minCustomerAge = Carbon::createFromDate($year-17, $month, $day, $tz);
+        // $maxAge = Carbon::createFromDate($year-55, $month, $day, $tz);
+        // $rules = [
+        //     'plan_id' => 'required',
+        //     'duration' => 'required',
+        //     'phname' => 'required|regex:/^[\pL\s]+$/u',
+        //     'phcitizen_id' => 'required|digits:16',
+        //     'phdob' => 'required|before_or_equal:'.$minCustomerAge,
+        //     'phemail' => 'required|email',
+        //     'irelation' => 'required',
+        //     'iname' => 'required|regex:/^[\pL\s]+$/u',
+        //     'idob' => 'required|before_or_equal:'.$minAge.'|after_or_equal:'.$maxAge,
+        //     'b1gender' => 'nullable',
+        //     'b1relation' => 'required',
+        //     'b1name' => 'required|regex:/^[\pL\s]+$/u',
+        //     'b2relation' => 'nullable|required_with:b2name',
+        //     'b2name' => 'nullable|required_with:b2relation|regex:/^[\pL\s]+$/u',
+        //     'b3relation' => 'nullable|required_with:b3name',
+        //     'b3name' => 'nullable|required_with:b3relation|regex:/^[\pL\s]+$/u',
+        //     'b4relation' => 'nullable|required_with:b4name',
+        //     'b4name' => 'nullable|required_with:b4relation|regex:/^[\pL\s]+$/u',
+        //     'voucher' => ['required','exists:reserved_vouchers,voucher_code', new CheckVoucherStatus()]
+        // ];
+        // $customMessages = [
+        //     'plan_id.required' => 'please select the :attribute',
+        //     'phgender.required' => 'please select the :attribute',
+        //     'before_or_equal' => ':attribute should more than 18 years',
+        //     'after_or_equal' => ':attribute should less than 55 years'
+        // ];
+        // $customAttributes = [
+        //     'plan_id' => 'Product Plan',
+        //     'duration' => 'Protection Duration',
+        //     'phgender' => 'Policy Holder Gender',
+        //     'phname' => 'Policy Holder Name',
+        //     'phcitizen_id' => 'Policy Holder Citizen Id',
+        //     'phdob' => 'Policy Holder Date of Birth',
+        //     'phemail' => 'Policy Holder Email',
+        //     'igender' => 'Insured Gender',
+        //     'irelation' => 'Insured Relation',
+        //     'iname' => 'Insured Name',
+        //     'icitizen_id' => 'Insured Citizen Id',
+        //     'idob' => 'Insured Date of Birth',
+        //     'iemail' => 'Insured Email',
+        //     'b1gender' => 'First Beneficiary Gender',
+        //     'b1relation' => 'First Beneficiary Relation',
+        //     'b1name' => 'First Beneficiary Name',
+        //     'b2relation' => 'Second Beneficiary Relation',
+        //     'b2name' => 'Second Beneficiary Name',
+        //     'b3relation' => 'Third Beneficiary Relation',
+        //     'b3name' => 'Third Beneficiary Name',
+        //     'b4relation' => 'Fourth Beneficiary Relation',
+        //     'b4name' => 'Fourth Beneficiary Name',
+        // ];
 
-        $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
+        // $validator = Validator::make($request->all(),$rules, $customMessages, $customAttributes);
 
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+        // if($validator->fails()){
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
 
-        $planArray = explode("|", $request->plan_id);
-        $request->merge(["plan_id" => $planArray[0]]);
-        $request->merge(["duration_type" => $planArray[1]]);
-        $request->merge(["premium" => $planArray[2]]);
+        // if($request->has("plan_id")){
+        //     $planArray = explode("|", $request->plan_id);
+        //     $request->merge(["plan_id" => $planArray[0]]);
+        //     $request->merge(["duration_type" => $planArray[1]]);
+        //     $request->merge(["premium" => $planArray[2]]);
+        // }
 
-        $name = Auth::user()->name;
-        if($request->durationType == "Yearly"){
-            $durationYear = $request->duration/12;
-            $total_paid = $durationYear * $request->premimum;
-        }else{
-            $total_paid = $request->duration * $request->premium;
-        }
-        $partner = $this->service->getPartnerDataByName($name)->get();
+        // $name = Auth::user()->name;
+        // $partner = $this->service->getPartnerDataByName($name)->get();
+        // $request->merge(['partner_id' => $partner['id']]);
+        // if($request->has('duration_type')){
+        //     if($request->duration_type == "Yearly"){
+        //         $durationYear = $request->protection_duration/12;
+        //         $total_paid = $durationYear*$request->premium;
+        //     }else{
+        //         $total_paid = $request->protection_duration * $request->premium;
+        //     }
+        //     $request->merge(['total_paid' => $total_paid]);
+        // }
 
-        $data = [
-            'partner_id' => $partner["id"],
-            'plan_id' => $request->plan_id,
-            'insured_relation' => $request->irelation,
-            'insured_name' => $request->iname,
-            'insured_dob' => $request->idob,
-            'protection_duration' => $request->duration,
-            'customer_name' => $request->phname,
-            'customer_dob' => $request->phdob,
-            'customer_citizen_id' => $request->phcitizen_id,
-            'customer_email' => $request->phemail,
-            'total_paid' => $total_paid,
-            'note' => $request->note,
-            'voucher' => $request->voucher,
-            '1_bene_relation' => $request->b1relation,
-            '1_bene_name' => $request->b1name,
-            '1_bene_dob' => $request->b1dob,
-            '1_bene_gender' => $request->b1gender,
-            '1_bene_email' => $request->b1email,
-        ];
+        // $data = [
+        //     'partner_id' => $partner["id"],
+        //     'plan_id' => $request->plan_id,
+        //     'insured_relation' => $request->irelation,
+        //     'insured_name' => $request->iname,
+        //     'insured_dob' => $request->idob,
+        //     'protection_duration' => $request->duration,
+        //     'customer_name' => $request->phname,
+        //     'customer_dob' => $request->phdob,
+        //     'customer_citizen_id' => $request->phcitizen_id,
+        //     'customer_email' => $request->phemail,
+        //     'total_paid' => $total_paid,
+        //     'note' => $request->note,
+        //     'voucher' => $request->voucher,
+        //     '1_bene_relation' => $request->b1relation,
+        //     '1_bene_name' => $request->b1name,
+        //     '1_bene_dob' => $request->b1dob,
+        //     '1_bene_gender' => $request->b1gender,
+        //     '1_bene_email' => $request->b1email,
+        // ];
 
 
-        for($i=2;$i<=4;$i++){
-            if($request['b'.$i.'name'] != null){
-                $data = $data + [
-                    $i.'_bene_relation' => $request['b'.$i.'relation'],
-                    $i.'_bene_name' => $request['b'.$i.'name'],
-                    $i.'_bene_dob' => $request['b'.$i.'dob'],
-                    $i.'_bene_gender' => $request['b'.$i.'gender'],
-                    $i.'_bene_email' => $request['b'.$i.'email'],
-                ];
-            }
-        }
+        // for($i=2;$i<=4;$i++){
+        //     if($request['b'.$i.'name'] != null){
+        //         $data = $data + [
+        //             $i.'_bene_relation' => $request['b'.$i.'relation'],
+        //             $i.'_bene_name' => $request['b'.$i.'name'],
+        //             $i.'_bene_dob' => $request['b'.$i.'dob'],
+        //             $i.'_bene_gender' => $request['b'.$i.'gender'],
+        //             $i.'_bene_email' => $request['b'.$i.'email'],
+        //         ];
+        //     }
+        // }
         // dd($data);
-        $transactionAdded = $this->service->inputVoucherTransaction()->post($data);
+        $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
-        if($transactionAdded->bodyResponse['data']['code'] == 101){
-            return redirect()->back()->with('notify', '5 insurance');
-        }else{
+        if(array_key_exists("errors", $transactionAdded->bodyResponse)){
+            if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
+                if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
+                    return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }else{
+                    return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }
+            }else{
+                return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+            }
+        } else {
             return redirect()->back()->with('notify', 'success');
         }
 
