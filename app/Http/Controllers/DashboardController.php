@@ -439,6 +439,26 @@ class DashboardController extends Controller
             $request->merge(["premium" => $planArray[2]]);
         }
 
+        if($request->insured_dob != null){
+            try{
+                $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+                $request->merge([
+                    "insured_dob" => $insuredDob,
+                ]);
+            }catch(\Exception $e){
+            }
+        }
+        if($request->customer_dob != null){
+            try{
+                $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+
+                $request->merge([
+                    "customer_dob" => $PHDob,
+                ]);
+            }catch(\Exception $e){
+            }
+        }
+
         $name = Auth::user()->name;
         $partner = $this->service->getPartnerDataByName($name)->get();
         $request->merge(['partner_id' => $partner['id']]);
@@ -487,17 +507,18 @@ class DashboardController extends Controller
 
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
-        if($request->plan_id != null){
-            $request->merge(['plan_id' => $planContainer]);
-        }
-        if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
-            if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
-                return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+        if(array_key_exists("errors", $transactionAdded->bodyResponse)){
+            if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
+                if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
+                    return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }else{
+                    return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }
             }else{
                 return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
             }
-        }else{
-            return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+        } else {
+            return redirect()->back()->with('notify', 'success');
         }
 
     }
@@ -624,6 +645,26 @@ class DashboardController extends Controller
         //     }
         // }
         // dd($data);
+        if($request->insured_dob != null){
+            try{
+                $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+                $request->merge([
+                    "insured_dob" => $insuredDob,
+                ]);
+            }catch(\Exception $e){
+            }
+        }
+        if($request->customer_dob != null){
+            try{
+                $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+
+                $request->merge([
+                    "customer_dob" => $PHDob,
+                ]);
+            }catch(\Exception $e){
+            }
+        }
+
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
         if(array_key_exists("errors", $transactionAdded->bodyResponse)){
