@@ -2,6 +2,43 @@
 
 @section('content')
 <div class="content">
+    <div class="row invisible" data-toggle="appear">
+        <!-- Row #1 -->
+        <div class="col-6 col-xl-4">
+            <div class="block text-right">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="si si-bag fa-3x text-body-bg-dark"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="0" data-to="{{$countData['count_transaction']}}">0</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">Transaksi</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-xl-4">
+            <div class="block text-right">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="si si-envelope-open fa-3x text-body-bg-dark"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="0" data-to="{{$countData['policy_active']}}">0</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">Active Policy</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-xl-4">
+            <div class="block text-right">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="si si-users fa-3x text-body-bg-dark"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="0" data-to="{{$countData['count_customer']}}">0</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
+                </div>
+            </div>
+        </div>
+        <!-- END Row #1 -->
+    </div>
     <div class="block block-fx-shadow">
         <div class="block">
             <div class="block-header block-header-default">
@@ -81,109 +118,6 @@
                                 </div>
                             </form>
                         </div>
-                            {{-- <div class="col-12" class="form-control">
-                                @if(Session::get('name') != "" || Session::get('agent') != "" || Session::get('month') != "" || Session::get('year') != "")
-                                <label for="" class="col-form-label">Showing search result for :</label>
-                                @endif
-                                @if(Session::get('name') != "")
-                                    <label for="" class="col-form-label"> PH/Insured Name: "{{Session::get('name')}}", </label>
-                                @else
-                                    @role('viewer|partner viewer')
-                                    <label for="" class="col-form-label">Search Name First</label>
-                                    @endrole
-                                @endif
-                                @if(Session::get('agent') != "")
-                                    <label for="" class="col-form-label"> Agent/Branch Name: "{{Session::get('agent')}}", </label>
-                                @endif
-                                @if(Session::has('date'))
-                                    <label for="" class="col-form-label">Date: {{Session::get('date')}}</label>
-                                @elseIf(Session::has('month'))
-                                    <label for="" class="col-form-label">Month: {{Session::get('month')}} </label>
-                                @elseIf(Session::has('year'))
-                                    <label for="" class="col-form-label">Year: {{Session::get('year')}} </label>
-                                @endIf
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <input class="form-control"  type="text" name="text-name" placeholder="Search by Policy Holder / Insured Name" value= "{{Session::get('name')}}">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-fw fa-user"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form method="GET" class="form-group row">
-                                <div class="col-2">
-                                    <input type="hidden" name="id" value="{{Auth::user()->id}}">
-                                    <input type="hidden" name="status" value="opened">
-                                </div>
-                                @role('supadmin|financial|operation|partner financial|partner operation')
-                                <div class="col-2">
-                                    <select class="form-control" id="select-month" name="select-month">
-                                        <option value="0" disabled>Choose Month</option>
-                                        <option value= "" {{ null == $data['month'] ? 'selected="selected"' : '' }}>Without Month</option>
-                                        <option value="01" {{ '01' == $data['month'] ? 'selected="selected"' : '' }}>Januari</option>
-                                        <option value="02" {{ '02' == $data['month'] ? 'selected="selected"' : '' }}>Februari</option>
-                                        <option value="03" {{ '03' == $data['month'] ? 'selected="selected"' : '' }}>Maret</option>
-                                        <option value="04" {{ '04' == $data['month'] ? 'selected="selected"' : '' }}>April</option>
-                                        <option value="05" {{ '05' == $data['month'] ? 'selected="selected"' : '' }}>Mei</option>
-                                        <option value="06" {{ '06' == $data['month'] ? 'selected="selected"' : '' }}>Juni</option>
-                                        <option value="07" {{ '07' == $data['month'] ? 'selected="selected"' : '' }}>Juli</option>
-                                        <option value="08" {{ '08' == $data['month'] ? 'selected="selected"' : '' }}>Agustus</option>
-                                        <option value="09" {{ '09' == $data['month'] ? 'selected="selected"' : '' }}>September</option>
-                                        <option value="10" {{ '10' == $data['month'] ? 'selected="selected"' : '' }}>Oktober</option>
-                                        <option value="11" {{ '11' == $data['month'] ? 'selected="selected"' : '' }}>November</option>
-                                        <option value="12" {{ '12' == $data['month'] ? 'selected="selected"' : '' }}>Desember</option>
-                                    </select>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-control" id="select-year" name="select-year">
-                                        <option value="0" disabled>Choose Year</option>
-                                        <option value= "" {{ null == $data['year'] ? 'selected="selected"' : '' }}>Without Year</option>
-                                        <option value="2019" {{ '2019' == $data['year'] ? 'selected="selected"' : '' }}>2019</option>
-                                    </select>
-                                </div>
-                                <div class="col-8">
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" name="agent-name" placeholder="Agent Name" value= "{{Session::get('agent')}}">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-fw fa-user"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group input-daterange">
-                                        <input readonly type="text" name="daterange" class="form-control">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-fw fa-calendar"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endrole
-                                @role("viewer|partner viewer")
-                                <div class="col-1"></div>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="text-name" placeholder="Policy Holder / Insured Name" value= "{{Session::get('name')}}">
-                                </div>
-                                @endrole
-                                <div class="col-4">
-                                    <input type="submit" class="btn btn-alt-primary" value="Search" formaction="{{ route('dashboard.index') }}"/>
-                                </div>
-                                @role('supadmin|operation|financial|partner operation|partner financial')
-                                <div class="col-md-2 form-control">
-                                    <input type="submit" class=" btn btn-alt-primary" value="Download Report" formaction="{{ route('dashboard.download')}}"/>
-                                </div>
-                                @endrole
-                            </form>
-                            </div> --}}
                     </div>
                     <div class="block-content block-content-full tab-content">
                         @include('dashboard.table')

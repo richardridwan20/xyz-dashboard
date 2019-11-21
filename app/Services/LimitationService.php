@@ -23,6 +23,13 @@ class LimitationService extends ApiService
         return $this;
     }
 
+    public function getLimitDataByPartnerId($id)
+    {
+        $this->endPoint = 'detail-limitation/partner/'.$id;
+
+        return $this;
+    }
+
     public function deleteDetail($id)
     {
         $this->endPoint = 'detail-limitation/destroy/'.$id;

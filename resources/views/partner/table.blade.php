@@ -42,7 +42,7 @@
     <tbody id="tableAjax">
         @forelse ($partners as $partner)
             <tr>
-                <td>{{$partner['id']}}</td>
+                <td><a href="{{ route('partner.detail', $partner['id']) }}">{{$partner['id']}}</a></td>
                 <td>{{$partner['name']}}</td>
                 <td>{{$partner['company_name']}}</td>
                 <td>{{$partner['company_address']}}</td>
@@ -70,55 +70,3 @@
         @endforelse
     </tbody>
 </table>
-
-{{-- <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="uploadModalLabel">Change Partner Product Quota</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                <form action="{{ route('ProductOfPartner.change_quota') }}" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
-                    <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
-                    <div class="form-group row">
-                        <input type="hidden" class="form-control" id="PpId" name="PpId">
-                    </div>
-                    <div class="form-group">
-                        <label for="example-nf-email">Masukkan quota</label>
-                        <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Product of Partner...">
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <input type="submit" value="Submit" class="btn btn-alt-primary">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}

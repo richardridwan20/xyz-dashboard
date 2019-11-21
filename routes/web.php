@@ -33,10 +33,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/statuschange/{id}/{status}', 'DashboardController@changeStatus')->name('dashboard.changeStatus');
     Route::get('/cancel-transaction/{id}/{status}/{reason}', 'DashboardController@cancelTransaction')->name('dashboard.cancelTransaction');
     Route::get('/partner', 'PartnerController@index')->name('partner.index');
+    Route::post('/partner/update', 'PartnerController@update')->name('partner.update');
     Route::get('/form', 'PartnerController@showForm')->name('partner.form')->middleware('role:supadmin|financial|operation');
     Route::get('/form-role', 'PartnerController@showRoleForm')->name('partner.form-role')->middleware('permission:register partner');
     Route::post('/form/input', 'PartnerController@inputPartner')->name('partner.input');
     Route::post('/form-role/input', 'PartnerController@inputPartnerRole')->name('partner.input-role');
+    Route::get('/partner/detail/{id}', 'PartnerController@detail')->name('partner.detail');
     Route::get('/download-report', 'DashboardController@downloadReport')->name('dashboard.download')->middleware('role:supadmin|financial|partner financial');
     Route::get('/download-journal', 'DashboardController@downloadJournal')->name('dashboard.download_journal')->middleware('role:supadmin|financial');
     Route::get('/download-fail-report/{fileName}', 'UploadController@downloadFailReport')->name('upload.download_fail_report')->middleware('role:supadmin|financial|operation|partner financial|partner operation');
@@ -60,11 +62,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/limitation', 'LimitationController@index')->name('limitation.index');
     Route::get('/limitation/form', 'LimitationController@showForm')->name('limitation.form');
     Route::post('/limitation/create', 'LimitationController@create')->name('limitation.create');
+    Route::post('/limitation/create/modal', 'LimitationController@createFromModal')->name('limitation.create-modal');
     Route::get('/limitation/delete/{id}', 'LimitationController@deleteDetailLimitation')->name('detail.limitation.delete');
     Route::get('/claim', 'ClaimController@index')->name('claim.index');
     Route::post('/claim/create', 'ClaimController@create')->name('claim.create');
     Route::get('/claim/form/{id}', 'ClaimController@showForm')->name('claim.form');
-    Route::post('/productofpartner/changequota', 'ProductOfPartnerController@changeQuota')->name('ProductOfPartner.change_quota');
+    Route::post('/productofpartner/changequota', 'ProductOfPartnerController@changeQuota')->name('productofpartner.change-quota');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');
     Route::post('/upload', 'UploadController@upload')->name('upload.post');

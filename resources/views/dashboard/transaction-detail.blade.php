@@ -11,6 +11,8 @@
 @endphp
 <div class="row">
     <div class="block-content bg-body-light">
+        <a class="btn btn-alt-info back-btn" href="{{url()->previous()}}"><i class="fa fa-arrow-circle-left"></i> Back to Dashboard</a>
+
         <div class="block block-bordered">
             <div class="block-header block-header-default bg-white">
                 <h3 class="block-title"><b>Detail</b></h3>

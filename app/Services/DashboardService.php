@@ -109,6 +109,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function countData($id)
+    {
+        $this->endPoint = 'transaction/count/'.$id;
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;
@@ -197,6 +204,13 @@ class DashboardService extends ApiService
     public function updateTransactionById($id, $data, $value)
     {
         $this->endPoint = 'transaction/update/'.$id.'?'.$data.'='.$value;
+
+        return $this;
+    }
+
+    public function updatePartnerData()
+    {
+        $this->endPoint = 'partner/update';
 
         return $this;
     }

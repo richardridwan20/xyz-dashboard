@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
     <!-- Page Content -->
-    <div class="bg-gd-primary">
+    <div class="bg-gd-primary block block-fx-shadow">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
             <!-- Header -->
             <div class="py-30 px-5 text-center">

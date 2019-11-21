@@ -72,15 +72,16 @@
 </table>
 
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Change Partner Product Quota</h5>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block">
+                <div class="block-header block-header-default">
+                    <h5 class="block-title" id="uploadModalLabel"><b>Change Partner Product Quota</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body">
-                    @if ($message = Session::get('success'))
+                <div class="block-content">
+                        @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
@@ -100,21 +101,21 @@
                         </ul>
                     </div>
                     @endif
-                    <form action="{{ route('ProductOfPartner.change_quota') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('productofpartner.change-quota') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
                         <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                         <div class="form-group row">
-                            <input type="hidden" class="form-control" id="PpId" name="PpId">
+                            <input type="hidden" class="form-control" id="ppId" name="ppId">
                         </div>
                         <div class="form-group">
-                            <label for="example-nf-email">Masukkan quota</label>
-                            <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Quota Product of Partner...">
+                            <label for="example-nf-email">Masukkan Kuota</label>
+                            <input type="text" class="form-control" id="quota" name="quota" placeholder="Masukkan Kuota Produk yang dapat dibeli oleh nasabah...">
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row text-right">
                             <div class="col-12">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <input type="submit" value="Submit" class="btn btn-alt-primary">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </form>
@@ -122,3 +123,4 @@
             </div>
         </div>
     </div>
+</div>
