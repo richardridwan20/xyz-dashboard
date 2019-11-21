@@ -507,10 +507,10 @@ class DashboardController extends Controller
             ]);
         }
         if($request->customer_dob != null){
-                $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
-                $request->merge([
-                    "customer_dob" => $PHDob,
-                ]);
+            $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
         }
         if(array_key_exists("errors", $transactionAdded->bodyResponse)){
             if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
@@ -658,7 +658,6 @@ class DashboardController extends Controller
         }
         if($request->customer_dob != null){
             $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
-
             $request->merge([
                 "customer_dob" => $PHDob,
             ]);
