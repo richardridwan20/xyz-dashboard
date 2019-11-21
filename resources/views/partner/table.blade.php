@@ -59,8 +59,8 @@
                 <td>Yes</td>
                 @endIf
                 <td>
-                    {{-- <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$productOfPartner['id']}}" data-name="">Edit</button>
-                    <a onclick="confirmation('productofpartner/delete/{{$productOfPartner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a> --}}
+                    {{-- <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-id="{{$productOfPartner['id']}}" data-name="">Edit</button> --}}
+                    <a onclick="confirmation('partner/delete/{{$partner['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a>
                 </td>
             </tr>
         @empty
