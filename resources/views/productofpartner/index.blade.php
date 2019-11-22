@@ -157,9 +157,9 @@ var session1 = "{{Session::get('notify')}}"
         $(function() {
             $('#uploadModal').on("show.bs.modal", function (e) {
                 var id = $(e.relatedTarget).data('id');
-                // var name = $(e.relatedTarget).data('name');
+                var name = $(e.relatedTarget).data('name');
                 $("#uploadModalLabel").html($(e.relatedTarget).data('title'));
-                $("#PpId").val(id);
+                $("#ppId").val(id);
             });
         });
     });
