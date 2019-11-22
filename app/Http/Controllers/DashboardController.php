@@ -666,13 +666,13 @@ class DashboardController extends Controller
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
         if($request->insured_dob != null){
-            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $insuredDob = Carbon::createFromFormat("Y-m-d", $request->insured_dob)->format("d/m/Y");
             $request->merge([
                 "insured_dob" => $insuredDob,
             ]);
         }
         if($request->customer_dob != null){
-            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
             $request->merge([
                 "customer_dob" => $PHDob,
             ]);
