@@ -439,6 +439,19 @@ class DashboardController extends Controller
             $request->merge(["premium" => $planArray[2]]);
         }
 
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
+        }
+        if($request->customer_dob != null){
+            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
+        }
+
         $name = Auth::user()->name;
         $partner = $this->service->getPartnerDataByName($name)->get();
         $request->merge(['partner_id' => $partner['id']]);
@@ -487,17 +500,30 @@ class DashboardController extends Controller
 
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
 
-        if($request->plan_id != null){
-            $request->merge(['plan_id' => $planContainer]);
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("Y-m-d", $request->insured_dob)->format("d/m/Y");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
         }
-        if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
-            if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
-                return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+        if($request->customer_dob != null){
+            $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
+        }
+        if(array_key_exists("errors", $transactionAdded->bodyResponse)){
+            if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
+                if($transactionAdded->bodyResponse['errors']['plan_id'][0] != "plan id harus diisi"){
+                    return redirect()->back()->with('notify', '5 insurance')->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }else{
+                    return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+                }
             }else{
                 return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
             }
-        }else{
-            return redirect()->back()->withErrors($transactionAdded->bodyResponse['errors'])->withInput();
+        } else {
+            return redirect()->back()->with('notify', 'success');
         }
 
     }
@@ -624,7 +650,33 @@ class DashboardController extends Controller
         //     }
         // }
         // dd($data);
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("d/m/Y", $request->insured_dob)->format("Y-m-d");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
+        }
+        if($request->customer_dob != null){
+            $PHDob = Carbon::createFromFormat("d/m/Y", $request->customer_dob)->format("Y-m-d");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
+        }
+
         $transactionAdded = $this->service->inputTransaction()->post($request->toArray());
+
+        if($request->insured_dob != null){
+            $insuredDob = Carbon::createFromFormat("Y-m-d", $request->insured_dob)->format("d/m/Y");
+            $request->merge([
+                "insured_dob" => $insuredDob,
+            ]);
+        }
+        if($request->customer_dob != null){
+            $PHDob = Carbon::createFromFormat("Y-m-d", $request->customer_dob)->format("d/m/Y");
+            $request->merge([
+                "customer_dob" => $PHDob,
+            ]);
+        }
 
         if(array_key_exists("errors", $transactionAdded->bodyResponse)){
             if(array_key_exists("plan_id", $transactionAdded->bodyResponse['errors'])){
