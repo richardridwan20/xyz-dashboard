@@ -13,9 +13,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="name" class="form-control @error('phname') is-invalid @enderror" id="phname" name="phname" required autocomplete="phname" onchange="myselfRelation()" value="{{ old('phname') }}">
+                                <input type="name" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" required autocomplete="customer_name" onchange="myselfRelation()" value="{{ old('customer_name') }}">
                                 <label for="name">Name</label>
-                                @error('phname')
+                                @error('customer_name')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -27,9 +27,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="date" class="form-control @error('name') is-invalid @enderror" id="phdob" name="phdob" required autocomplete="phdob" onchange="myselfRelation()" value="{{ old('phdob') }}">
+                                <input type="date" class="form-control @error('customer_dob') is-invalid @enderror" id="customer_dob" name="customer_dob" required autocomplete="customer_dob" onchange="myselfRelation()" value="{{ old('customer_dob') }}">
                                 <label for="name">Date of Birth</label>
-                                @error('phdob')
+                                @error('customer_dob')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -42,9 +42,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="name" class="form-control @error('icitizen_id') is-invalid @enderror" id="phcitizen_id" name="phcitizen_id" required autocomplete="phcitizen_id" onchange="myselfRelation()" value="{{ old('phcitizen_id') }}">
+                                <input type="name" class="form-control @error('customer_citizen_id') is-invalid @enderror" id="customer_citizen_id" name="customer_citizen_id" required autocomplete="customer_citizen_id" onchange="myselfRelation()" value="{{ old('customer_citizen_id') }}" maxlength=16>
                                 <label for="name">Citizen Id</label>
-                                @error('phcitizen_id')
+                                @error('customer_citizen_id')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -56,9 +56,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="email" class="form-control @error('name') is-invalid @enderror" id="phemail" name="phemail" required autocomplete="phemail" onchange="myselfRelation()" value="{{ old('phemail') }}">
+                                <input type="email" class="form-control @error('customer_email') is-invalid @enderror" id="customer_email" name="customer_email" required autocomplete="customer_email" onchange="myselfRelation()" value="{{ old('customer_email') }}">
                                 <label for="name">Email</label>
-                                @error('phemail')
+                                @error('customer_email')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>

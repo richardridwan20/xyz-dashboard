@@ -9,16 +9,16 @@
                     <div class="col-12">
                         <div class="form-group row">
                             <div class="col-12">
-                                <select type="dropdown" class="form-control" id="irelation" name="irelation" onchange="myselfRelation()">
+                                <select type="dropdown" class="form-control" id="insured_relation" name="insured_relation" onchange="myselfRelation()">
                                     <option  disabled selected>Select Relation</option>
-                                    <option value="Myself" class="Myself" @if(old('irelation') == "Myself") selected @endif>Myself</option>
-                                    <option value="Father" @if(old('irelation') == "Father") selected @endif>Father</option>
-                                    <option value="Mother" @if(old('irelation') == "Mother") selected @endif>Mother</option>
-                                    <option value="Brother / Sister" @if(old('irelation') == "Brother / Sister") selected @endif>Brother / Sister</option>
-                                    <option value="Child" @if(old('irelation') == "Child") selected @endif>Child</option>
-                                    <option value="Husband / Wife" @if(old('irelation') == "Husband / Wife") selected @endif>Husband / Wife</option>
+                                    <option value="Myself" class="Myself" @if(old('insured_relation') == "Myself") selected @endif>Myself</option>
+                                    <option value="Father" @if(old('insured_relation') == "Father") selected @endif>Father</option>
+                                    <option value="Mother" @if(old('insured_relation') == "Mother") selected @endif>Mother</option>
+                                    <option value="Brother / Sister" @if(old('insured_relation') == "Brother / Sister") selected @endif>Brother / Sister</option>
+                                    <option value="Child" @if(old('insured_relation') == "Child") selected @endif>Child</option>
+                                    <option value="Husband / Wife" @if(old('insured_relation') == "Husband / Wife") selected @endif>Husband / Wife</option>
                                 </select>
-                                @error('irelation')
+                                @error('insured_relation')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -31,9 +31,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div class="form-material ">
-                                <input type="name" class="form-control @error('iname') is-invalid @enderror" id="iname" name="iname" required autocomplete="iname" value="{{ old('iname') }}">
+                                <input type="name" class="form-control @error('insured_name') is-invalid @enderror" id="insured_name" name="insured_name" required autocomplete="insured_name" value="{{ old('insured_name') }}">
                                 <label for="name">Name</label>
-                                @error('iname')
+                                @error('insured_name')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -45,9 +45,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="date" class="form-control @error('idob') is-invalid @enderror" id="idob" name="idob" required autocomplete="idob" value="{{ old('idob') }}" required >
+                                <input type="date" class="form-control @error('insured_dob') is-invalid @enderror" id="insured_dob" name="insured_dob" required autocomplete="insured_dob" value="{{ old('insured_dob') }}" required >
                                 <label for="name">Date of Birth</label>
-                                @error('idob')
+                                @error('insured_dob')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
