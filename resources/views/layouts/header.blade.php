@@ -185,7 +185,7 @@
 
             <!-- User Dropdown -->
             <div class="d-inline-block" role="group">
-                <button type="button" class="btn btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <button type="button" class="btn btn-dual-secondary" id="page-header-user-dropdown">
                     {{ Auth::user()->name }}
                 </button>
             </div>
@@ -204,26 +204,9 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-
-            <!-- Toggle Side Overlay -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <button type="button" class="btn btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                <i class="fa fa-cog"></i>
-            </button>
-            <!-- END Toggle Side Overlay -->
         </div>
         <!-- END Right Section -->
     </div>
     <!-- END Header Content -->
-
-    <!-- Header Loader -->
-    <div id="page-header-loader" class="overlay-header bg-primary">
-        <div class="content-header content-header-fullrow text-center">
-            <div class="content-header-item">
-                <i class="fa fa-sun-o fa-spin text-white"></i>
-            </div>
-        </div>
-    </div>
-    <!-- END Header Loader -->
 </header>
 <!-- END Header -->

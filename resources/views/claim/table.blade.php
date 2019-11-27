@@ -5,7 +5,7 @@
                 <b>Claim ID</b>
                 <i class="claim_id fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="transaction_id" data-sort="transaction_id" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="transaction_id" data-sort="transaction_id" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Transaction ID</b>
                 <i class="transaction_id fa fa-pull-right fa-sort"></i>
             </th>
@@ -17,7 +17,7 @@
                 <b>Claim Date</b>
                 <i class="claim_date fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="claim_decision" data-sort="claim_decision" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
+            <th id="claim_decision" data-sort="claim_decision" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Claim Decision</b>
                 <i class="claim_decision fa fa-pull-right fa-sort"></i>
             </th>

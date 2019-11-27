@@ -10,11 +10,10 @@
     $insuredDOB = \Carbon\Carbon::parse($detailTransaction['transaction']['insured_dob'])->format('d-F-Y');
 @endphp
 <div class="row">
-    <div class="block-content bg-body-light">
+    <div class="block-content">
         <a class="btn btn-alt-info back-btn" href="{{url()->previous()}}"><i class="fa fa-arrow-circle-left"></i> Back to Dashboard</a>
-
         <div class="block block-bordered">
-            <div class="block-header block-header-default bg-white">
+            <div class="block-header block-header-default">
                 <h3 class="block-title"><b>Detail</b></h3>
                 @can('update status cancel')
                     @if ($detailTransaction['transaction']['status'] != 'Canceled')
@@ -106,10 +105,10 @@
 </div>
 
 <div class="row">
-    <div class="block-content bg-body-light col-md-6">
+    <div class="block-content col-md-6">
         <div class="block block-bordered">
             <div class="block-header block-header-default bg-white">
-                <h3 class="block-title"><b>Order Detail</b></h3>
+                <h3 class="block-title"><b>Product Detail</b></h3>
             </div>
             <div class="block-content block-content-full">
                 {{-- Start of Transaction ID Row --}}
