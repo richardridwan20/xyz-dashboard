@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
+use App\Services\LimitationService;
+use App\Services\ProductOfPartnerService;
 use App\Services\RegisterService;
 use Illuminate\Http\Request;
 
@@ -11,6 +13,8 @@ class PartnerController extends Controller
     public function __construct(DashboardService $service)
     {
         $this->service = $service;
+        $this->productOfPartnerService = new ProductOfPartnerService;
+        $this->limitationService = new LimitationService;
         $this->registerService = new RegisterService;
     }
 
@@ -52,6 +56,28 @@ class PartnerController extends Controller
     {
         $partnerName = $this->registerService->partnerName()->get();
         return view('partner.form-role', compact('success', 'partnerName'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detail($id)
+    {
+        $partnerData = $this->service->getPartnerDataById($id)->get();
+        $detailLimitations = $this->limitationService->getLimitDataByPartnerId($id)->get();
+        $productOfPartners = $this->productOfPartnerService->productOfPartnerByPartnerName($partnerData['name'])->get();
+        $limitations = $this->limitationService->getLimitation()->get();
+
+        $partnerName = $this->registerService->partnerName()->get();
+        $plan = $this->productOfPartnerService->plan()->fetch();
+
+        $column = 'created_at';
+        $typeOfSort = 'DESC';
+        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
+
+        return view('partner.detail', compact('productOfPartners', 'limitations','partnerData', 'detailLimitations', 'append', 'plan', 'partnerName'));
     }
 
     /**
@@ -169,9 +195,19 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = [
+            'id' => $request->id,
+            'name' => $request->partner_name,
+            'company_name' => $request->company_name,
+            'company_address' => $request->company_address,
+            'email' => $request->email,
+        ];
+
+        $updatePartner = $this->service->updatePartnerData()->post($data);
+
+        return redirect()->back()->with('notify','updated');
     }
 
     /**
@@ -182,6 +218,12 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = $this->service->PartnerDelete($id)->fetch();
+
+        if($delete->bodyResponse['message'] == "Success"){
+            return redirect()->back()->with('notify', 'deleted');
+        }else{
+            return redirect()->back()->with('notify', 'fail_delete');
+        }
     }
 }

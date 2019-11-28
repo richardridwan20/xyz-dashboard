@@ -53,6 +53,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function PartnerDelete($id)
+    {
+        $this->endPoint = 'partner/delete/'.$id;
+
+        return $this;
+    }
+
     public function checkCustomer($partnerId, $customerCitizenId)
     {
         $this->endPoint = 'transaction/partner/check-customer?partner_id='.$partnerId.'&customer_citizen_id='.$customerCitizenId;
@@ -109,6 +116,13 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function countData($id)
+    {
+        $this->endPoint = 'transaction/count/'.$id;
+
+        return $this;
+    }
+
     public function viewerTransaction($page)
     {
         $this->endPoint = 'transaction/viewer?page='.$page;
@@ -119,6 +133,13 @@ class DashboardService extends ApiService
     public function changeStatus($id)
     {
         $this->endPoint = 'transaction/update/'.$id;
+
+        return $this;
+    }
+
+    public function cancelTransaction($id)
+    {
+        $this->endPoint = 'transaction/cancel/'.$id;
 
         return $this;
     }
@@ -190,6 +211,13 @@ class DashboardService extends ApiService
     public function updateTransactionById($id, $data, $value)
     {
         $this->endPoint = 'transaction/update/'.$id.'?'.$data.'='.$value;
+
+        return $this;
+    }
+
+    public function updatePartnerData()
+    {
+        $this->endPoint = 'partner/update';
 
         return $this;
     }
@@ -274,6 +302,13 @@ class DashboardService extends ApiService
     public function editPlan()
     {
         $this->endPoint = 'plan/edit';
+
+        return $this;
+    }
+
+    public function getPaymentProof($id)
+    {
+        $this->endPoint = 'payment-proof/get_data_by_id?transaction_id='.$id;
 
         return $this;
     }
