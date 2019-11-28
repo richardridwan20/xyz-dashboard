@@ -240,8 +240,9 @@ class DashboardController extends Controller
         $sumTotalPartnerBill = 0;
         $totalTransaction = 0;
 
-        $name = Auth::user()->name;
-        $partner = $this->service->getPartnerDataByName($name)->get();
+        $partnerName = Auth::user()->name;
+
+        $partner = $this->service->getPartnerDataByName($partnerName)->get();
         $partnerId = $partner['id'];
         $countData = $this->service->countData($partnerId)->get();
 
@@ -880,14 +881,14 @@ class DashboardController extends Controller
     public function spaj()
     {
         $name = Auth::user()->name;
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->get();
         return view('spaj.spaj', compact('name', 'productOfPartners'));
     }
 
     public function spajVoucher()
     {
         $name = Auth::user()->name;
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->get();
         return view('spaj.spaj-voucher', compact('name', 'productOfPartners'));
     }
 
