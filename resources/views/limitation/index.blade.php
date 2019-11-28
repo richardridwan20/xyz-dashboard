@@ -8,7 +8,7 @@
             <i class="fa fa-info-circle" data-toggle="popover" title="Area Limitation" data-placement="right" data-content="Area Limitation berisikan kode-kode provinsi di Indonesia yang dibatasi untuk melakukan transaksi. Kode-kode provinsi bisa dilihat dari 2 angka diawal nomor KTP masing-masing nasabah."></i>
         </div>
         <div class="block-content block-content-full">
-            <div class="form-group row">
+            <div class="form-group row pull-right">
                 <div class="col-2">
                     @role('supadmin|financial|operation')
                         <a href="{{ route('limitation.form') }}"><button class="btn btn-alt-primary"><i class="fa fa-plus"></i> Add Detail Limitation</button></a>

@@ -11,10 +11,10 @@
 |
 */
 
-Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
 Route::post('/login', 'Auth/LoginController@login')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/logout', 'Auth/LoginController@logouts')->name('logout');
     Route::get('/product', 'ProductController@index')->name('product.index');
     Route::get('/plan/delete/{id}', 'ProductController@deletePlan')->name('plan.delete');
     Route::get('/plan/edit/{id}', 'ProductController@editPlan')->name('plan.edit');

@@ -1,10 +1,7 @@
 <!-- Hero -->
 <div class="bg-gray-lighter">
     <div class="content text-center" style="padding: 50px;">
-        <div class="mb-20">
-            <img src="{{ asset('assets\media\photos\logo.png') }}" alt="">
-        </div>
-        <h1 class="h3 font-w700 mb-10">
+        <h1 class="h2 font-w700 mb-10">
             {{ $partnerData['name'] }}
         </h1>
         <h2 class="h5">
@@ -54,7 +51,7 @@
     </div>
     <!-- END Cart -->
 
-    <!-- Past Orders -->
+    <!-- Limitation -->
     <div class="content-heading">
             Limitation
             <button class="btn btn-sm btn-rounded btn-alt-primary pull-right" data-toggle="modal" data-target="#addLimitationModal"><i class="fa fa-plus"></i> Add New Limitation</button>
@@ -64,7 +61,7 @@
             @include('partner.table-limitation')
         </div>
     </div>
-    <!-- END Past Orders -->
+    <!-- END Limitation -->
 </div>
 <!-- END Page Content -->
 
