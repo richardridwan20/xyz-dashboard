@@ -875,8 +875,7 @@ class DashboardController extends Controller
     public function spajVoucher()
     {
         $name = Auth::user()->name;
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
-        return view('spaj.spaj-voucher', compact('name', 'productOfPartners'));
+        return view('spaj.spaj-voucher', compact('name'));
     }
 
     public function check(Request $request)
