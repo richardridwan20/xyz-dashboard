@@ -107,6 +107,15 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript">
 
+        var session1 = "{{Session::get('notify')}}"
+            if (session1 == 'created') {
+                Swal.fire(
+                'Success!',
+                'Invoice successfully created!.',
+                'success'
+                )
+            }
+
         function confirmation(routeHref){
             Swal.fire({
                 title: 'Do you want to create Invoice?',
@@ -137,7 +146,7 @@
             if (session == 'success') {
                 Swal.fire(
                 'Uploaded!',
-                'File berhasil diupload.',
+                'Invoice berhasil diupdate.',
                 'success'
                 )
             }

@@ -240,8 +240,8 @@ class DashboardController extends Controller
         $sumTotalPartnerBill = 0;
         $totalTransaction = 0;
 
-        $name = Auth::user()->name;
-        $partner = $this->service->getPartnerDataByName($name)->get();
+        $partnerName = Auth::user()->name;
+        $partner = $this->service->getPartnerDataByName($partnerName)->get();
         $partnerId = $partner['id'];
         $countData = $this->service->countData($partnerId)->get();
 
@@ -816,19 +816,7 @@ class DashboardController extends Controller
     {
         $invoice = $this->service->createInvoice($invoiceNumber)->get();
 
-        $column = 'created_at';
-        $typeOfSort = 'DESC';
-
-        $page = 1;
-        $currentPage = $page;
-
-        $invoices = $this->invoiceService->allInvoice($page)->paginate();
-
-        $invoiceLogs = $this->invoiceService->getInvoiceLogs($page)->paginate();
-
-        $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
-
-        return view('invoice.index', compact('invoices', 'invoiceLogs', 'append'));
+        return redirect()->back()->with('notify', 'created');
     }
 
     public function downloadInvoice($invoiceNumber)
