@@ -142,7 +142,7 @@
                     <div class="form-group row gutters-tiny align-items-center">
                         <div class="col-12 mb-10">
                             <button type="button" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" onclick="confirmation()" id="btnsubmit">
-                                <i class="si si-register mr-10"></i>  Submit SPAJ
+                                <i class="si si-register mr-10"></i>  Submit Klaim
                             </button>
                         </div>
                     </div>
