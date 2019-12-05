@@ -16,8 +16,8 @@ class CreateClaimsTable extends Migration
         Schema::create('claims', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('transaction_id');
-            //AC = Accident, ND = Natural Death, TPD = Total Permanent Disability, HL = Health
-            $table->enum('claim_type', ['AC','ND','TPD','HL']);
+            //AC = Accident, ND = Natural Death, TPD = Total Permanent Disability, SG = Surgery
+            $table->enum('claim_type', ['AC','ND','TPD','SG']);
             $table->dateTime('claim_date');
             $table->dateTime('hospital_in')->nullable();
             $table->dateTime('hospital_out')->nullable();
