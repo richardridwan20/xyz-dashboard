@@ -199,9 +199,21 @@
                     @endrole
                 </tr>
             @empty
+            @hasrole('viewer|partner viewer')
+                @if($data['name'] != null || $data['name'] != "")
                 <tr>
                     <td colspan="22">No data to be shown.</td>
                 </tr>
+                @else
+                <tr>
+                    <td colspan="22">Please search name first.</td>
+                </tr>
+                @endif
+            @else
+                <tr>
+                    <td colspan="22">No data to be shown.</td>
+                </tr>
+            @endrole
             @endforelse
     </tbody>
 </table>
