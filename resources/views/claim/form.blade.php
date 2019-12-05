@@ -236,8 +236,6 @@
 
         $('#claim_date').datepicker({
             format: "dd/mm/yyyy",
-            startDate: '-150y',
-            endDate: '-17y'
         });
 
     }
