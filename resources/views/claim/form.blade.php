@@ -55,7 +55,7 @@
                                     <option value=AC @if(old('claim_type') == 'AC') selected @endif>AC (Accidental)</option>
                                     <option value=TPD @if(old('claim_type') == 'TPD') selected @endif>TPD (Total Permanent Disablity)</option>
                                     <option value=ND @if(old('claim_type') == 'ND') selected @endif>ND (Natural Death)</option>
-                                    <option value=HL @if(old('claim_type') == 'HL') selected @endif>HL (Health)</option>
+                                    <option value=HL @if(old('claim_type') == 'HL') selected @endif>SR (Surgery)</option>
                                 </select>
                                 @error('claim_type')
                                     <p style="color:red">
