@@ -127,7 +127,7 @@ class ProductController extends Controller
             'product_id' => $request->product_id,
             'duration' => $request->duration,
             'name' => $request->plan_name,
-            'sum_assured' => $request->sum_assured,
+            'sum_assured' => $request->natural_death_benefit,
             'accident_benefit' => $request->accident_benefit,
             'natural_death_benefit' => $request->natural_death_benefit,
             'tpd_benefit' => $request->tpd_benefit,

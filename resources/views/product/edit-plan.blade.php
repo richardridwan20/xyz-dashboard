@@ -80,22 +80,6 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('sum_assured') is-invalid @enderror" id="sum_assured" name="sum_assured" required autocomplete="sum_assured" value=@if($plans['sum_assured'] != null && old('sum_assured') == null) {{$plans['sum_assured']}}  @else "{{ old('sum_assured') }}" @endif>
-                                    <label for="sum_assured">Sum Assured</label>
-
-                                    @error('sum_assured')
-                                        <p style="color:red">
-                                            <strong>{{ $message }}</strong>
-                                        </p>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <div class="form-material floating">
-
                                     <input type="text" class="form-control @error('accident_benefit') is-invalid @enderror" id="accident_benefit" name="accident_benefit" required autocomplete="accident_benefit" value=@if($plans['accident_benefit'] != null && old('accident_benefit') == null) {{$plans['accident_benefit']}}  @else "{{ old('accident_benefit') }}" @endif>
                                     <label for="accident_benefit">Accident Benefits</label>
 
