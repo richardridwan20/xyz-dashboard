@@ -54,5 +54,12 @@ class ClaimService extends ApiService
         return $this;
     }
 
+    public function downloadReport($startDate, $endDate)
+    {
+        $this->endPoint = 'claim/export?start_date='.$startDate.'&end_date='.$endDate;
+
+        return $this;
+    }
+
 
 }
