@@ -29,6 +29,6 @@ class CreateTransactionCancelLogs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_cancel_logs');
+        Schema::connection('mysql.log')->dropIfExists('transaction_cancel_logs');
     }
 }
