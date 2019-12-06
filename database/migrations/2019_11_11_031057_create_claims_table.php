@@ -16,17 +16,21 @@ class CreateClaimsTable extends Migration
         Schema::create('claims', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('transaction_id');
+            $table->unsignedInteger('customer_id');
             //AC = Accident, ND = Natural Death, TPD = Total Permanent Disability, SG = Surgery
-            $table->enum('claim_type', ['AC','ND','TPD','SG']);
+            $table->enum('cause_of_claim', ['AC','ND','TPD','SG']);
             $table->dateTime('claim_date');
+            $table->dateTime('event_date');
+            $table->string('diagnose');
+            $table->string('claim_amount');
+            $table->enum('claim_decision', ['Approve','Reject', 'Ex Gratia', 'Cancel']);
+            $table->dateTime('decision_date');
             $table->dateTime('hospital_in')->nullable();
             $table->dateTime('hospital_out')->nullable();
-            $table->string('claim_reason');
-            $table->string('claim_amount');
-            $table->enum('claim_decision', ['Accept','Reject']);
             $table->timestamps();
 
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 
@@ -39,6 +43,7 @@ class CreateClaimsTable extends Migration
     {
         Schema::table('claims', function (Blueprint $table) {
             $table->dropForeign(['transaction_id']);
+            $table->dropForeign(['customer_id']);
         });
 
         Schema::dropIfExists('claims');
