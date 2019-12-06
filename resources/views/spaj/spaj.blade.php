@@ -3,7 +3,7 @@
 @php
 $planValue = [];
     foreach($productOfPartners as $productOfPartner){
-       array_push($planValue, $productOfPartner['plan']['id']."|".$productOfPartner['plan']['duration']."|".$productOfPartner['plan']['premium']);
+       array_push($planValue, $productOfPartner['plan_id']['id']."|".$productOfPartner['plan_id']['duration']."|".$productOfPartner['plan_id']['premium']);
     }
 @endphp
 <div class="content">
@@ -38,9 +38,9 @@ $planValue = [];
                                 <select type="dropdown" class="form-control" id="plan_id" name="plan_id" onchange="durationManager()">
                                     <option disabled selected>Pilih Produk</option>
                                     @for($i=0;$i<count($productOfPartners);$i++)
-                                    <option value="{{$productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']}}"
-                                        @if(old('plan_id') == $productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']) selected @endif>
-                                        {{$productOfPartners[$i]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}
+                                    <option value="{{$productOfPartners[$i]['plan_id']['id']."|".$productOfPartners[$i]['plan_id']['duration']."|".$productOfPartners[$i]['plan_id']['premium']}}"
+                                        @if(old('plan_id') == $productOfPartners[$i]['plan_id']['id']."|".$productOfPartners[$i]['plan_id']['duration']."|".$productOfPartners[$i]['plan_id']['premium']) selected @endif>
+                                        {{$productOfPartners[$i]['plan_id']['product_id']['name']}} {{$productOfPartners[$i]['plan_id']['name']}} {{$productOfPartners[$i]['plan_id']['duration']}}
                                     </option>
                                     @endfor
                                 </select>
