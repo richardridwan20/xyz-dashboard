@@ -236,6 +236,20 @@ class DashboardService extends ApiService
         return $this;
     }
 
+    public function getAgentDataById($agentId)
+    {
+        $this->endPoint = 'agent/'.$agentId;
+
+        return $this;
+    }
+
+    public function getTransactionDataByAgentId($agentId)
+    {
+        $this->endPoint = 'transaction/agent/'.$agentId;
+
+        return $this;
+    }
+
     public function getVoucher($page)
     {
         $this->endPoint = 'voucher?page='.$page;

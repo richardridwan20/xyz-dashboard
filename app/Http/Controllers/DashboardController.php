@@ -649,6 +649,15 @@ class DashboardController extends Controller
         return view('agent.index', compact('agents','append','user','quotaRemain'));
     }
 
+    public function detailAgent($agentId)
+    {
+        $agentTransactions = $this->service->getTransactionDataByAgentId($agentId)->get();
+        $agentData = $this->service->getAgentDataById($agentId)->fetch();
+        // dd($agentTransactions);
+
+        return view('agent.detail', compact('agentData','agentTransactions'));
+    }
+
     public function agentForm()
     {
         $inputAgent = [
