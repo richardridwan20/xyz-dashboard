@@ -34,24 +34,28 @@
                 $month = substr($invoice['invoice_number'], 3, 2);
                 $year = substr($invoice['invoice_number'], 5, 4);
 
+                $dateObj   = DateTime::createFromFormat('!m', $month);
+                $monthName = $dateObj->format('F');
+
+                $date = \Carbon\Carbon::createFromDate($year, $month, 21);
+                $updatedDate = $date->addMonth(1);
+
+                $currentDate = \Carbon\Carbon::now();
+
                 $arrayOfInvoices = array();
                 for ($i=0; $i < count($invoiceLogs); $i++) {
                     array_push($arrayOfInvoices, $invoiceLogs[$i]['invoice_number']);
                 };
             @endphp
 
-                @if (!in_array($invoice['invoice_number'], $arrayOfInvoices))
+                @if (!in_array($invoice['invoice_number'], $arrayOfInvoices) && $currentDate > $updatedDate)
                     <tr>
                         <td>{{$invoice['partner_id']['name']}}</td>
-                        <td>{{$month}}</td>
+                        <td>{{$monthName}}</td>
                         <td>{{$year}}</td>
                         <td>{{$invoice['invoice_number']}}</td>
                         <td>{{$invoice['total']}}</td>
                         <td><a onclick="confirmation('create-invoice/{{$invoice['invoice_number']}}')"><button class="btn btn-alt-danger"><small>Create Invoice</small></button></a></td>
-                    </tr>
-                @else
-                    <tr>
-                        <td colspan="6">No data to be shown.</td>
                     </tr>
                 @endif
 

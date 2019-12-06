@@ -34,19 +34,23 @@
     <tbody id="tableAjax">
 
         @forelse ($invoiceLogs as $invoice)
-        <tr>
-            <td>{{$invoice['partner_id']['name']}}</td>
-            <td>{{$invoice['month']}}</td>
-            <td>{{$invoice['year']}}</td>
-            <td>{{$invoice['invoice_number']}}</td>
-            <td>{{$invoice['status']}}</td>
-            <td>{{$invoice['paid_at']}}</td>
-            <td><a href="{{ route('invoice.download', $invoice['invoice_number']) }}"><button class="btn btn-alt-danger"><small>Download</small></button></a>
-                @if ($invoice['status'] == 'Invoice Created')
-                    <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-invoice="{{$invoice['invoice_number']}}"><small>Update</small></button>
-                @endif
-            </td>
-        </tr>
+        @php
+                $dateObj   = DateTime::createFromFormat('!m', $invoice['month']);
+                $monthName = $dateObj->format('F');
+        @endphp
+            <tr>
+                <td>{{$invoice['partner_id']['name']}}</td>
+                <td>{{$monthName}}</td>
+                <td>{{$invoice['year']}}</td>
+                <td>{{$invoice['invoice_number']}}</td>
+                <td>{{$invoice['status']}}</td>
+                <td>{{$invoice['paid_at']}}</td>
+                <td><a href="{{ route('invoice.download', $invoice['invoice_number']) }}"><button class="btn btn-alt-danger"><small>Download</small></button></a>
+                    @if ($invoice['status'] == 'Invoice Created')
+                        <button class="btn btn-alt-primary" data-toggle="modal" data-target="#uploadModal" data-invoice="{{$invoice['invoice_number']}}"><small>Update</small></button>
+                    @endif
+                </td>
+            </tr>
         @empty
             <tr>
                 <td colspan="7">No data to be shown.</td>

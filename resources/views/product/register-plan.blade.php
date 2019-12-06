@@ -71,8 +71,8 @@
                         <div class="col-lg-7 offset-lg-1">
                             <div class="form-group">
                                 <label for="plan_name">Nama Plan <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('plan_name') is-invalid @enderror" id="plan_name" name="plan_name" required autocomplete="plan_name" value="{{ old('plan_name') }}" placeholder="contoh: Standard">
-                                @error('plan_name')
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="plan_name" name="plan_name" required autocomplete="plan_name" value="{{ old('plan_name') }}" placeholder="contoh: Standard">
+                                @error('name')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>

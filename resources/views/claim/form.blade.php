@@ -157,36 +157,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-    var plan = document.getElementById('plan_id');
-    var duration = document.getElementById('protection_duration');
-    var irelation = document.getElementById('insured_relation');
-    var iname = document.getElementById('insured_name');
-    var icitizen_id = document.getElementById('icitizen_id');
-    var idob = document.getElementById('insured_dob');
-    var phrelation = document.getElementById('phrelation');
-    var phname = document.getElementById('customer_name');
-    var phcitizen_id = document.getElementById('customer_citizen_id');
-    var phdob = document.getElementById('customer_dob');
-    var phemail = document.getElementById('customer_email');
-    var b1relation = document.getElementById('1_bene_relation');
-    var b2relation = document.getElementById('2_bene_relation');
-    var b3relation = document.getElementById('3_bene_relation');
-    var b4relation = document.getElementById('4_bene_relation');
-    var bene2row = document.getElementById('b2');
-    var bene3row = document.getElementById('b3');
-    var bene4row = document.getElementById('b4');
-    var bene2add = document.getElementById('addbene2');
-    var bene3add = document.getElementById('addbene3');
-    var bene4add = document.getElementById('addbene4');
-    var b1name = document.getElementById('1_bene_name');
-    var b2name = document.getElementById('2_bene_name');
-    var b3name = document.getElementById('3_bene_name');
-    var b4name = document.getElementById('4_bene_name');
-    var myself = document.getElementsByClassName('Myself');
-    var c1 = document.getElementById('c1');
-    var c2 = document.getElementById('c2');
-    var c3 = document.getElementById('c3');
-    var c4 = document.getElementById('c4');
     var submit = document.getElementById('btnsubmit');
     var flag = "";
 
