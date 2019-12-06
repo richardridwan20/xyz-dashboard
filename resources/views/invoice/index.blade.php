@@ -110,9 +110,9 @@
         var session1 = "{{Session::get('notify')}}"
             if (session1 == 'created') {
                 Swal.fire(
-                'Success!',
-                'Invoice successfully created!.',
-                'success'
+                    'Success!',
+                    'Invoice successfully created!.',
+                    'success'
                 )
             }
 
@@ -145,9 +145,9 @@
             var session = "{{Session::get('notify')}}"
             if (session == 'success') {
                 Swal.fire(
-                'Uploaded!',
-                'Invoice berhasil diupdate.',
-                'success'
+                    'Uploaded!',
+                    'Invoice berhasil diupdate.',
+                    'success'
                 )
             }
         });
