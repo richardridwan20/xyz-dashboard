@@ -22,7 +22,7 @@ class CreateProductPlansTable extends Migration
             $table->string('accident_benefit');
             $table->string('natural_death_benefit');
             $table->string('tpd_benefit');
-            $table->string('health_benefit');
+            $table->string('surgery_benefit');
             $table->string('description');
             $table->string('premium');
             $table->timestamps();

@@ -131,7 +131,7 @@ class ProductController extends Controller
             'accident_benefit' => $request->accident_benefit,
             'natural_death_benefit' => $request->natural_death_benefit,
             'tpd_benefit' => $request->tpd_benefit,
-            'health_benefit' => $request->health_benefit,
+            'surgery_benefit' => $request->surgery_benefit,
             'description' => $request->description,
             'premium' => $request->premium,
         ];

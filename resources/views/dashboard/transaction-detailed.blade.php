@@ -246,13 +246,13 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="block">
-                                        Health Benefit
+                                        Surgery Benefit
                                     </div>
                                 </div>
 
                                 <div class="col-md-7">
                                     <div class="block">
-                                        : {{number_format($detailTransaction['plan']['health_benefit'])}}
+                                        : {{number_format($detailTransaction['plan']['surgery_benefit'])}}
                                     </div>
                                 </div>
                             </div>

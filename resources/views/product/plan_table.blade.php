@@ -25,9 +25,9 @@
                 <b>TPD Benefit</b>
                 <i class="tpd_benefit fa fa-pull-right fa-sort"></i>
             </th>
-            <th id="health_benefit" data-sort="health_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Health Benefit</b>
-                <i class="health_benefit fa fa-pull-right fa-sort"></i>
+            <th id="surgery_benefit" data-sort="surgery_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Surgery Benefit</b>
+                <i class="surgery_benefit fa fa-pull-right fa-sort"></i>
             </th>
             <th id="duration" data-sort="duration" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Duration</b>
@@ -57,7 +57,7 @@
                     <td>{{$plan['accident_benefit']}}</td>
                     <td>{{$plan['natural_death_benefit']}}</td>
                     <td>{{$plan['tpd_benefit']}}</td>
-                    <td>{{$plan['health_benefit']}}</td>
+                    <td>{{$plan['surgery_benefit']}}</td>
                     <td>{{$plan['duration']}}</td>
                     <td>{{$plan['sum_assured']}}</td>
                     <td>
