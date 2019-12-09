@@ -128,10 +128,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('accident_benefit') is-invalid @enderror" id="health_benefit" name="health_benefit" required autocomplete="health_benefit" value=@if($plans['health_benefit'] != null && old('health_benefit') == null) {{$plans['health_benefit']}}  @else "{{ old('health_benefit') }}" @endif>
-                                    <label for="health_benefit">Health Benefits</label>
+                                    <input type="text" class="form-control @error('surgery_benefit') is-invalid @enderror" id="surgery_benefit" name="surgery_benefit" required autocomplete="surgery_benefit" value=@if($plans['surgery_benefit'] != null && old('surgery_benefit') == null) {{$plans['surgery_benefit']}}  @else "{{ old('surgery_benefit') }}" @endif>
+                                    <label for="surgery_benefit">Surgery Benefits</label>
 
-                                    @error('health_benefit')
+                                    @error('surgery_benefit')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>

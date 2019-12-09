@@ -14,7 +14,7 @@
 Route::post('/login', 'Auth/LoginController@login')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/logout', 'Auth/LoginController@logouts')->name('logout');
+    Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
     Route::get('/product', 'ProductController@index')->name('product.index');
     Route::get('/plan/delete/{id}', 'ProductController@deletePlan')->name('plan.delete');
     Route::get('/plan/edit/{id}', 'ProductController@editPlan')->name('plan.edit');
@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/claim', 'ClaimController@index')->name('claim.index');
     Route::post('/claim/create', 'ClaimController@create')->name('claim.create');
     Route::get('/claim/form/{id}', 'ClaimController@showForm')->name('claim.form');
+    Route::get('/claim/download-report', 'ClaimController@downloadReport')->name('claim.download')->middleware('role:supadmin|financial|partner financial');
     Route::post('/productofpartner/changequota', 'ProductOfPartnerController@changeQuota')->name('productofpartner.change-quota');
     Route::post('/agent/add', 'DashboardController@addAgent')->name('dashboard.add_agent');
     Route::post('/agent/change-quota', 'DashboardController@changeQuota')->name('dashboard.change_quota');

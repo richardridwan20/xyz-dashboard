@@ -4,14 +4,22 @@
     $claimDate = '';
     $hospitalIn = '';
     $hospitalOut = '';
+    $eventDate = '';
+    $decisionDate = '';
     if(old('claim_date')){
         $claimDate = \Carbon\Carbon::parse(old('claim_date'))->format('d/m/Y');
+    }
+    if(old('event_date')){
+        $eventDate = \Carbon\Carbon::parse(old('event_date'))->format('d/m/Y');
     }
     if(old('hospital_in')){
         $hospitalIn = \Carbon\Carbon::parse(old('hospital_in'))->format('d/m/Y');
     }
     if(old('hospital_out')){
         $hospitalOut = \Carbon\Carbon::parse(old('hospital_out'))->format('d/m/Y');
+    }
+    if(old('decision_date')){
+        $decisionDate = \Carbon\Carbon::parse(old('decision_date'))->format('d/m/Y');
     }
 @endphp
 <div class="content">
@@ -49,15 +57,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="claim_type">Tipe Klaim <span class="text-danger">*</span></label>
-                                <select type="dropdown" class="form-control @error('claim_type') is-invalid @enderror" id="claim_type" name="claim_type" >
+                                <label for="cause_of_claim">Jenis Klaim <span class="text-danger">*</span></label>
+                                <select type="dropdown" class="form-control @error('cause_of_claim') is-invalid @enderror" id="cause_of_claim" name="cause_of_claim" >
                                     <option value="select" disabled selected>Pilih Tipe Klaim</option>
-                                    <option value=AC @if(old('claim_type') == 'AC') selected @endif>AC (Accidental)</option>
-                                    <option value=TPD @if(old('claim_type') == 'TPD') selected @endif>TPD (Total Permanent Disablity)</option>
-                                    <option value=ND @if(old('claim_type') == 'ND') selected @endif>ND (Natural Death)</option>
-                                    <option value=HL @if(old('claim_type') == 'HL') selected @endif>HL (Health)</option>
+                                    <option value=AC @if(old('cause_of_claim') == 'AC') selected @endif>AC (Accidental)</option>
+                                    <option value=TPD @if(old('cause_of_claim') == 'TPD') selected @endif>TPD (Total Permanent Disablity)</option>
+                                    <option value=ND @if(old('cause_of_claim') == 'ND') selected @endif>ND (Natural Death)</option>
+                                    <option value=HL @if(old('cause_of_claim') == 'HL') selected @endif>SR (Surgery)</option>
                                 </select>
-                                @error('claim_type')
+                                @error('cause_of_claim')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -73,9 +81,18 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="claim_reason">Alasan Klaim <span class="text-danger">*</span></label>
-                                <input type="claim_reason" class="form-control @error('claim_reason') is-invalid @enderror" id="claim_reason" name="claim_reason" required autocomplete="claim_reason" value="{{ old('claim_reason') }}" placeholder="contoh: Kecelakaan Sepeda Motor">
-                                @error('claim_reason')
+                                <label for="name">Tanggal Kejadian <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('event_date') is-invalid @enderror datepicker" id="event_date" name="event_date" required autocomplete="event_date" value="{{ $eventDate }}" placeholder="dd/mm/yyyy">
+                                @error('event_date')
+                                    <p style="color:red">
+                                        <strong>{{ $message }}</strong>
+                                    </p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="diagnose">Alasan Klaim (Diagnosa)<span class="text-danger">*</span></label>
+                                <input type="diagnose" class="form-control @error('diagnose') is-invalid @enderror" id="diagnose" name="diagnose" required autocomplete="diagnose" value="{{ old('diagnose') }}" placeholder="contoh: Kecelakaan Sepeda Motor">
+                                @error('diagnose')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -94,10 +111,21 @@
                                 <label for="claim_decision">Keputusan Klaim<span class="text-danger">*</span></label>
                                 <select type="dropdown" class="form-control @error('claim_decision') is-invalid @enderror" id="claim_decision" name="claim_decision" >
                                     <option value="select" disabled selected>Pilih Keputusan Klaim</option>
-                                    <option value=Accept @if(old('claim_decision') == 'Accept') selected @endif>Accept</option>
+                                    <option value=Approve @if(old('claim_decision') == 'Accept') selected @endif>Approve</option>
                                     <option value=Reject @if(old('claim_decision') == 'Reject') selected @endif>Reject</option>
+                                    <option value="Ex Gratia" @if(old('claim_decision') == 'Ex Gratia') selected @endif>Ex Gratia</option>
+                                    <option value=Cancel @if(old('claim_decision') == 'Cancel') selected @endif>Cancel</option>
                                 </select>
                                 @error('claim_decision')
+                                    <p style="color:red">
+                                        <strong>{{ $message }}</strong>
+                                    </p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tanggal Keputusan <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('decision_date') is-invalid @enderror datepicker" id="decision_date" name="decision_date" required autocomplete="decision_date" value="{{ $decisionDate }}" placeholder="dd/mm/yyyy">
+                                @error('decision_date')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
@@ -108,7 +136,7 @@
                     <!-- END Vital Info -->
 
                     <!-- Vital Info -->
-                    <h2 class="content-heading text-black">Informasi Rumah Sakit (khusus Health Claim)</h2>
+                    <h2 class="content-heading text-black">Informasi Rumah Sakit (khusus Surgery)</h2>
                     <div class="row items-push">
                         <div class="col-lg-3">
                             <p class="text-muted">
@@ -142,7 +170,7 @@
                     <div class="form-group row gutters-tiny align-items-center">
                         <div class="col-12 mb-10">
                             <button type="button" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary" onclick="confirmation()" id="btnsubmit">
-                                <i class="si si-register mr-10"></i>  Submit SPAJ
+                                <i class="si si-register mr-10"></i>  Submit Klaim
                             </button>
                         </div>
                     </div>
@@ -157,25 +185,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-    var submit = document.getElementById('btnsubmit');
-    var flag = "";
-
-    var relationArray = [irelation, b1relation, b2relation, b3relation, b4relation];
 
     window.onload = start;
 
     var session1 = "{{Session::get('notify')}}"
     if (session1 == 'success') {
         Swal.fire(
-        'Sukses!',
-        'Klaim berhasil dimasukkan!',
-        'success'
+            'Sukses!',
+            'Klaim berhasil dimasukkan!',
+            'success'
         )
     } else if (session1 == 'error') {
         Swal.fire(
-        'Error!',
-        'Maaf, mohon cek kembali data anda.',
-        'error'
+            'Error!',
+            'Maaf, mohon cek kembali data anda.',
+            'error'
         )
     }
 
@@ -206,8 +230,14 @@
 
         $('#claim_date').datepicker({
             format: "dd/mm/yyyy",
-            startDate: '-150y',
-            endDate: '-17y'
+        });
+
+        $('#event_date').datepicker({
+            format: "dd/mm/yyyy",
+        });
+
+        $('#decision_date').datepicker({
+            format: "dd/mm/yyyy",
         });
 
     }

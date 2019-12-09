@@ -115,9 +115,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="health_benefit">Manfaat Pembedahan <span class="text-danger">*</span></label>
-                                <input type="name" class="form-control @error('health_benefit') is-invalid @enderror" id="health_benefit" name="health_benefit" required autocomplete="health_benefit" value="{{ old('health_benefit') }}" placeholder="contoh: 20000000">
-                                @error('health_benefit')
+                                <label for="surgery_benefit">Manfaat Pembedahan <span class="text-danger">*</span></label>
+                                <input type="name" class="form-control @error('surgery_benefit') is-invalid @enderror" id="surgery_benefit" name="surgery_benefit" required autocomplete="surgery_benefit" value="{{ old('surgery_benefit') }}" placeholder="contoh: 20000000">
+                                @error('surgery_benefit')
                                     <p style="color:red">
                                         <strong>{{ $message }}</strong>
                                     </p>
