@@ -875,7 +875,7 @@ class DashboardController extends Controller
     public function spaj()
     {
         $name = Auth::user()->name;
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->get();
         return view('spaj.spaj', compact('name', 'productOfPartners'));
     }
 
