@@ -97,7 +97,7 @@ class DashboardService extends ApiService
 
     public function getPartnerDataByName($name)
     {
-        $this->endPoint = 'partner/getDataByName?name='.$name;
+        $this->endPoint = 'partner/get-name?name='.$name;
 
         return $this;
     }
@@ -231,7 +231,7 @@ class DashboardService extends ApiService
 
     public function downloadJournal($startDate, $endDate)
     {
-        $this->endPoint = 'export_journal?start_date='.$startDate.'&end_date='.$endDate;
+        $this->endPoint = 'export-journal?start_date='.$startDate.'&end_date='.$endDate;
 
         return $this;
     }
@@ -245,7 +245,7 @@ class DashboardService extends ApiService
 
     public function changeName()
     {
-        $this->endPoint = 'product/change_name';
+        $this->endPoint = 'product/change-name';
 
         return $this;
     }
@@ -308,7 +308,7 @@ class DashboardService extends ApiService
 
     public function getPaymentProof($id)
     {
-        $this->endPoint = 'payment-proof/get_data_by_id?transaction_id='.$id;
+        $this->endPoint = 'payment-proof/get-data-by-id?transaction_id='.$id;
 
         return $this;
     }
@@ -322,14 +322,14 @@ class DashboardService extends ApiService
 
     public function storeSms()
     {
-        $this->endPoint = 'transaction/store_sms_excel';
+        $this->endPoint = 'transaction/store-sms-excel';
 
         return $this;
     }
 
     public function getDataByProductId($id)
     {
-        $this->endPoint = 'plan/search/product_id?product_id='.$id;
+        $this->endPoint = 'plan/search/product?product_id='.$id;
 
         return $this;
     }
@@ -343,21 +343,21 @@ class DashboardService extends ApiService
 
     public function createVoucherExcel($voucherCode)
     {
-        $this->endPoint = 'voucher/create_excel?voucher_code='.$voucherCode;
+        $this->endPoint = 'voucher/create-excel?voucher_code='.$voucherCode;
 
         return $this;
     }
 
     public function getAllProduct()
     {
-        $this->endPoint = 'product/get_all';
+        $this->endPoint = 'product/get-all';
 
         return $this;
     }
 
     public function getAllProductPaginated()
     {
-        $this->endPoint = 'product/get_all_paginated';
+        $this->endPoint = 'product/get-all-paginated';
 
         return $this;
     }
