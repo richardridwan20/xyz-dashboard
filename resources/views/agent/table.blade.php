@@ -34,7 +34,7 @@
     <tbody id="tableAjax">
             @forelse ($agents as $agent)
                 <tr>
-                    <td>{{$agent['agent_name']}}</td>
+                    <td><a href="{{ route('dashboard.detail_agent', $agent['id']) }}">{{$agent['agent_name']}}</a></td>
                     <td>{{$agent['branch_name']}}</td>
                     <td>{{$agent['citizen_id']}}</td>
                     <td>{{$agent['phone_number']}}</td>

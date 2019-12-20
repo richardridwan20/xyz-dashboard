@@ -648,6 +648,15 @@ class DashboardController extends Controller
         return view('agent.index', compact('agents','append','user','quotaRemain'));
     }
 
+    public function detailAgent($agentId)
+    {
+        $agentTransactions = $this->service->getTransactionDataByAgentId($agentId)->get();
+        $agentData = $this->service->getAgentDataById($agentId)->fetch();
+
+
+        return view('agent.detail', compact('agentData','agentTransactions'));
+    }
+
     public function agentForm()
     {
         $inputAgent = [
@@ -746,7 +755,7 @@ class DashboardController extends Controller
 
 
         $inputAgent = $this->service->createAgent()->post($data);
-        // dd($inputAgent);
+
         $quotaRemain = $inputAgent->bodyResponse['quota_remaining'];
         if($inputAgent->bodyResponse['code'] == 201){
             $notify = 'add';
@@ -782,8 +791,6 @@ class DashboardController extends Controller
         }
 
         $test = $this->service->downloadReport($id, $name, $startDate, $endDate)->fetch();
-
-        // dd($test);
 
         return response()->download(storage_path('app/public/files/reports/transaction_report_'.$id.$startDate.'_'.$endDate.'.xlsx'));
     }
@@ -868,7 +875,7 @@ class DashboardController extends Controller
     public function spaj()
     {
         $name = Auth::user()->name;
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->get();
         return view('spaj.spaj', compact('name', 'productOfPartners'));
     }
 
