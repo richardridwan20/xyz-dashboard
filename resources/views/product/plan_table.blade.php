@@ -1,4 +1,4 @@
-<table id="example" class="table table-hover table-striped table-vcenter table-bordered">
+<table id="example" class="table table-hover table-responsive table-striped table-vcenter table-bordered">
     <thead>
         <tr>
             <th id="product_name" data-sort="product_name" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -12,6 +12,22 @@
             <th id="premium" data-sort="premium" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Premium</b>
                 <i class="partner_id fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="accident_benefit" data-sort="accident_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Accident Benefit</b>
+                <i class="accident_benefit fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="natural_death_benefit" data-sort="natural_death_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Natural Death Benefit</b>
+                <i class="natural_death_benefit fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="tpd_benefit" data-sort="tpd_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>TPD Benefit</b>
+                <i class="tpd_benefit fa fa-pull-right fa-sort"></i>
+            </th>
+            <th id="surgery_benefit" data-sort="surgery_benefit" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
+                <b>Surgery Benefit</b>
+                <i class="surgery_benefit fa fa-pull-right fa-sort"></i>
             </th>
             <th id="duration" data-sort="duration" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
                 <b>Duration</b>
@@ -38,6 +54,10 @@
                     @endif
                     <td>{{$plan['name']}}</td>
                     <td>{{$plan['premium']}}</td>
+                    <td>{{$plan['accident_benefit']}}</td>
+                    <td>{{$plan['natural_death_benefit']}}</td>
+                    <td>{{$plan['tpd_benefit']}}</td>
+                    <td>{{$plan['surgery_benefit']}}</td>
                     <td>{{$plan['duration']}}</td>
                     <td>{{$plan['sum_assured']}}</td>
                     <td>

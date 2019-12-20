@@ -10,7 +10,7 @@
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
-                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Register new Product</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please add product details</h2>
@@ -80,10 +80,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('sum_assured') is-invalid @enderror" id="sum_assured" name="sum_assured" required autocomplete="sum_assured" value=@if($plans['sum_assured'] != null && old('sum_assured') == null) {{$plans['sum_assured']}}  @else "{{ old('sum_assured') }}" @endif>
-                                    <label for="sum_assured">Sum Assured</label>
+                                    <input type="text" class="form-control @error('accident_benefit') is-invalid @enderror" id="accident_benefit" name="accident_benefit" required autocomplete="accident_benefit" value=@if($plans['accident_benefit'] != null && old('accident_benefit') == null) {{$plans['accident_benefit']}}  @else "{{ old('accident_benefit') }}" @endif>
+                                    <label for="accident_benefit">Accident Benefits</label>
 
-                                    @error('sum_assured')
+                                    @error('accident_benefit')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -96,10 +96,10 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('benefits') is-invalid @enderror" id="benefits" name="benefits" required autocomplete="benefits" value=@if($plans['benefits'] != null && old('benefits') == null) {{$plans['benefits']}}  @else "{{ old('benefits') }}" @endif>
-                                    <label for="benefits">Benefits</label>
+                                    <input type="text" class="form-control @error('natural_death_benefit') is-invalid @enderror" id="natural_death_benefit" name="natural_death_benefit" required autocomplete="natural_death_benefit" value=@if($plans['natural_death_benefit'] != null && old('natural_death_benefit') == null) {{$plans['natural_death_benefit']}}  @else "{{ old('natural_death_benefit') }}" @endif>
+                                    <label for="natural_death_benefit">Natural Death Benefits</label>
 
-                                    @error('benefits')
+                                    @error('natural_death_benefit')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -112,10 +112,26 @@
                             <div class="col-12">
                                 <div class="form-material floating">
 
-                                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required autocomplete="description" value=@if($plans['description'] != null && old('description') == null) {{$plans['description']}}  @else "{{ old('description') }}" @endif>
-                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control @error('tpd_benefit') is-invalid @enderror" id="tpd_benefit" name="tpd_benefit" required autocomplete="tpd_benefit" value=@if($plans['tpd_benefit'] != null && old('tpd_benefit') == null) {{$plans['tpd_benefit']}}  @else "{{ old('tpd_benefit') }}" @endif>
+                                    <label for="tpd_benefit">TPD Benefits</label>
 
-                                    @error('description')
+                                    @error('tpd_benefit')
+                                        <p style="color:red">
+                                            <strong>{{ $message }}</strong>
+                                        </p>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="form-material floating">
+
+                                    <input type="text" class="form-control @error('surgery_benefit') is-invalid @enderror" id="surgery_benefit" name="surgery_benefit" required autocomplete="surgery_benefit" value=@if($plans['surgery_benefit'] != null && old('surgery_benefit') == null) {{$plans['surgery_benefit']}}  @else "{{ old('surgery_benefit') }}" @endif>
+                                    <label for="surgery_benefit">Surgery Benefits</label>
+
+                                    @error('surgery_benefit')
                                         <p style="color:red">
                                             <strong>{{ $message }}</strong>
                                         </p>
@@ -162,7 +178,6 @@
 
 <script>
     var session1 = "{{Session::get('success')}}"
-    console.log(session1)
 
     if (session1 == 'success') {
             Swal.fire(

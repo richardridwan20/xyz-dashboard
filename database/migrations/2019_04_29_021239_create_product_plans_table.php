@@ -17,11 +17,14 @@ class CreateProductPlansTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('name');
+            $table->string('duration');
             $table->string('sum_assured');
-            $table->string('benefits');
+            $table->string('accident_benefit');
+            $table->string('natural_death_benefit');
+            $table->string('tpd_benefit');
+            $table->string('surgery_benefit');
             $table->string('description');
             $table->string('premium');
-            $table->string('duration');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('sovera.products')->onDelete('cascade');

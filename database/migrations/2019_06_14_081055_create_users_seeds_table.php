@@ -90,12 +90,12 @@ class CreateUsersSeedsTable extends Migration
                 'password' => Hash::make("mfsequis"),
             ],
             [
-                'name' => 'Warung Pintar',
+                'name' => 'Macroad',
                 'email' => 'macroadoperation@sequislife.com',
                 'password' => Hash::make("mosequis"),
             ],
             [
-                'name' => 'Warung Pintar',
+                'name' => 'Macroad',
                 'email' => 'macroadviewer@sequislife.com',
                 'password' => Hash::make("mvsequis"),
             ],

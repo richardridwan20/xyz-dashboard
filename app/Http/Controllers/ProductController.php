@@ -20,38 +20,15 @@ class ProductController extends Controller
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
         $plans = $this->service->getAllPlan()->paginate();
         $products = $this->service->getAllProductPaginated()->paginate();
+
         if($notify1 != null){
             $edit = $notify1;
         }else{
             $edit = "";
         }
 
-
-        // dd($products);
-
-        // $plans = $plans->sortBy('product_id.name');
-
-        // dd($plans);
-
         return view('product.index', compact('plans', 'append', 'products', 'edit'));
     }
-
-    // public function indexAfterEdit($notify)
-    // {
-    //     $column = 'created_at';
-    //     $typeOfSort = 'DESC';
-    //     $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
-    //     $plans = $this->service->getAllPlan()->paginate();
-    //     $products = $this->service->getAllProductPaginated()->paginate();
-
-    //     // dd($products);
-
-    //     // $plans = $plans->sortBy('product_id.name');
-
-    //     // dd($plans);
-
-    //     return view('product.index', compact('plans', 'append', 'products', 'notify'));
-    // }
 
     public function changeName(Request $request)
     {
@@ -68,23 +45,19 @@ class ProductController extends Controller
         ];
         $request->validate($rules, $customMessages, $customAttributes);
 
-        // dd($request);
         $data = $request->toArray();
 
         unset($data['_token']);
 
-        // dd($data);
 
         $change = $this->service->changeName()->post($data);
 
-        // dd($change);
 
         return redirect()->back()->with('notify', 'change_product_name_success');
     }
 
     public function addProduct()
     {
-        // dd($products);
         return view('product.register-product', compact('products'));
     }
 
@@ -135,64 +108,42 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $rules = [
-            'product_name' => 'required|unique:products,name',
-        ];
-        $customMessages = [
-            'unique' => ':attribute already exist'
-        ];
-        $customAttributes = [
-            'product_name' => 'Product Name'
-        ];
-        $request->validate($rules, $customMessages, $customAttributes);
-
         $data = [
             'name' => $request->product_name
         ];
 
         $create = $this->service->createProduct()->post($data);
 
-        return redirect()->route('product.index')->with('notify', 'add_product');
+        if(array_key_exists("errors", $create->bodyResponse)){
+            return redirect()->back()->withErrors($create->bodyResponse['errors'])->withInput()->with('notify', 'error');
+        }else{
+            return redirect()->route('product.index')->with('notify', 'add_product');
+        }
     }
 
     public function createPlan(Request $request)
     {
-        // dd($this->service->checkPlan($request->plan_name, $request->product_id, $request->duration)->fetch());
-
-        $rules = [
-            'product_id' => 'required|exists:products,id',
-            'duration' => 'required|in:Monthly,Yearly',
-            'plan_name' => ['required', new PlanChecker($request->product_id, $request->duration)],
-            'sum_assured' => 'required|numeric',
-            'benefits' => 'required',
-            'description' => 'required',
-            'premium' => 'required|numeric',
-        ];
-        $customMessages = [
-
-        ];
-        $customAttributes = [
-            'product_id' => 'Product Name',
-            'plan_name' => 'Plan Name',
-            'sum_assured' => 'Sum Assured',
-        ];
-        $request->validate($rules, $customMessages, $customAttributes);
-
         $data = [
             'product_id' => $request->product_id,
             'duration' => $request->duration,
             'name' => $request->plan_name,
-            'sum_assured' => $request->sum_assured,
-            'benefits' => $request->benefits,
+            'sum_assured' => $request->natural_death_benefit,
+            'accident_benefit' => $request->accident_benefit,
+            'natural_death_benefit' => $request->natural_death_benefit,
+            'tpd_benefit' => $request->tpd_benefit,
+            'surgery_benefit' => $request->surgery_benefit,
             'description' => $request->description,
             'premium' => $request->premium,
         ];
 
         $create = $this->service->createPlan()->post($data);
 
-        // dd($create);
+        if(array_key_exists("errors", $create->bodyResponse)){
+            return redirect()->back()->withErrors($create->bodyResponse['errors'])->withInput()->with('notify', 'error');
+        }else{
+            return redirect()->route('product.index')->with('notify', 'add_plan');
+        }
 
-        return redirect()->route('product.index')->with('notify', 'add_plan');
     }
 
     public function addPlan()

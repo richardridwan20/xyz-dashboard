@@ -66,6 +66,29 @@ class LimitationController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createFromModal(Request $request)
+    {
+        $data = [
+            'product_of_partner_id' => $request->select_product,
+            'limitation_id' => $request->select_limitation,
+        ];
+
+        $createDetail = $this->service->createDetail()->post($data);
+
+        if($createDetail->bodyResponse['code'] == 201){
+            $notify = 'add';
+        } else if ($createDetail->bodyResponse['code'] == 401) {
+            $notify = 'exist';
+        }
+
+        return redirect()->back()->with('notify', 'limitationCreated');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

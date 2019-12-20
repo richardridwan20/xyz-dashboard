@@ -125,32 +125,30 @@
 <script>
     var session1 = "{{Session::get('notify')}}"
 
-
-    console.log(session1)
     if (session1 == 'delete_plan') {
             Swal.fire(
             'Deleted!',
-            'Plan Successfully Deleted',
+            'Plan berhasil dihapus!',
             'success'
             )
     }
     else if (session1 == 'delete_product') {
             Swal.fire(
             'Deleted!',
-            'Product Successfully Deleted',
+            'Product berhasil dihapus!',
             'success'
             )
     }
     else if (session1 == 'add_plan') {
             Swal.fire(
             'Success!',
-            'Plan successfully added',
+            'Plan berhasil dibuat!',
             'success'
             )
     }else if(session1 == 'add_product') {
             Swal.fire(
             'Success!',
-            'Product successfully added',
+            'Produk berhasil dibuat!',
             'success'
             )
     }else if(session1 == 'change_product_name_success') {

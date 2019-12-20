@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ClaimService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ClaimController extends Controller
@@ -47,23 +48,78 @@ class ClaimController extends Controller
      */
     public function create(Request $request)
     {
-        $data = [
-            'product_of_partner_id' => $request->select_product,
-            'limitation_id' => $request->select_limitation,
-        ];
+        if($request->claim_date != null){
+            $claimDate = Carbon::createFromFormat("d/m/Y", $request->claim_date)->format("Y-m-d");
+            $request->merge([
+                "claim_date" => $claimDate,
+            ]);
+        }
+        if($request->event_date != null){
+            $eventDate = Carbon::createFromFormat("d/m/Y", $request->event_date)->format("Y-m-d");
+            $request->merge([
+                "event_date" => $eventDate,
+            ]);
+        }
+        if($request->hospital_in != null){
+            $hospitalIn = Carbon::createFromFormat("d/m/Y", $request->hospital_in)->format("Y-m-d");
 
-        $createDetail = $this->service->createDetail()->post($data);
+            $request->merge([
+                "hospital_in" => $hospitalIn,
+            ]);
+        }
+        if($request->hospital_out != null){
+            $hospitalOut = Carbon::createFromFormat("d/m/Y", $request->hospital_out)->format("Y-m-d");
 
-        if($createDetail->bodyResponse['code'] == 201){
-            $notify = 'add';
-        } else if ($createDetail->bodyResponse['code'] == 401) {
-            $notify = 'exist';
+            $request->merge([
+                "hospital_out" => $hospitalOut,
+            ]);
+        }
+        if($request->decision_date != null){
+            $decisionDate = Carbon::createFromFormat("d/m/Y", $request->decision_date)->format("Y-m-d");
+            $request->merge([
+                "decision_date" => $decisionDate,
+            ]);
         }
 
-        $productOfPartners = $this->service->getProductOfPartner()->get();
-        $limitations = $this->service->getLimitation()->get();
+        $data = [
+            'transaction_id' => $request->transaction_id,
+            'cause_of_claim' => $request->cause_of_claim,
+            'claim_date' => $request->claim_date,
+            'event_date' => $request->event_date,
+            'decision_date' => $request->decision_date,
+            'claim_decision' => $request->claim_decision,
+            'hospital_in' => $request->hospital_in,
+            'hospital_out' => $request->hospital_out,
+            'diagnose' => $request->diagnose,
+            'claim_amount' => $request->claim_amount,
+        ];
 
-        return view('claim.form', compact('notify', 'productOfPartners', 'limitations'));
+        $claimAdded = $this->service->createClaim()->post($data);
+
+        if(array_key_exists("errors", $claimAdded->bodyResponse)){
+            return redirect()->back()->withErrors($claimAdded->bodyResponse['errors'])->withInput()
+            ->with('notify', 'error');
+        } else {
+            return redirect()->route('claim.index')->with('notify', 'created');
+        }
+    }
+
+    public function downloadReport(Request $request)
+    {
+        $date = $request->input('daterange');
+        $formatedDate = explode('-', $date);
+
+        if ($date != null){
+            $startDate = Carbon::parse($formatedDate[0])->format('Y-m-d');
+            $endDate = Carbon::parse($formatedDate[1])->endOfDay()->format('Y-m-d');
+        } else {
+            $startDate = Carbon::now()->subDays(29)->format('Y-m-d');
+            $endDate = Carbon::now()->endOfDay()->format('Y-m-d');
+        }
+
+        $claimReport = $this->service->downloadReport($startDate, $endDate)->fetch();
+
+        return response()->download(storage_path('app/public/files/reports/claim/claim_report_'.$startDate.'_'.$endDate.'.xlsx'));
     }
 
     /**

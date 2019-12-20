@@ -20,11 +20,11 @@ class CreatePartnersTable extends Migration
             $table->string('company_address');
             $table->string('commission');
             $table->boolean('allow_send_data');
+            $table->boolean('allow_phone_data');
             $table->string('sender');
             $table->string('email');
             $table->string('subject');
             $table->string('body');
-            $table->string('no_polis_induk');
             $table->integer('agent_quota')->default(50);
             $table->timestamps();
         });

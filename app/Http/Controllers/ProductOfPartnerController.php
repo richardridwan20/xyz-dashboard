@@ -31,8 +31,6 @@ class ProductOfPartnerController extends Controller
         $typeOfSort = 'DESC';
         $append = ['sort_by' => $column, 'order_by' => $typeOfSort];
 
-        // dd($plan->bodyResponse['data']);
-
         return view('productofpartner.index', compact('productOfPartners', 'append', 'partnerName','plan'));
     }
 
@@ -65,13 +63,13 @@ class ProductOfPartnerController extends Controller
     public function changeQuota(Request $request)
     {
         $rules = [
-            'PpId' => 'required',
+            'ppId' => 'required',
             'quota' => 'required|numeric'
         ];
 
         $request->validate($rules);
 
-        $changeQuota = $this->service->changeQuota($request->PpId, $request->quota)->fetch();
+        $changeQuota = $this->service->changeQuota($request->ppId, $request->quota)->fetch();
 
         return redirect()->back()->with('notify', 'quotaChanged');
     }

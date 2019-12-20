@@ -179,7 +179,7 @@
                         <td><span class="badge badge-danger">{{$transaction['status']}}</span></td>
                     @endif
                     @role('supadmin|treasury|financial|partner financial')
-                    @if($transaction['status'] == "Canceled")
+                    @if($transaction['status'] == "Canceled" || $transaction['status'] == "Waiting For Payment")
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
@@ -199,11 +199,22 @@
                     @endrole
                 </tr>
             @empty
+            @hasrole('viewer|partner viewer')
+                @if($data['name'] != null || $data['name'] != "")
                 <tr>
-                    <td colspan="21">No data to be shown.</td>
+                    <td colspan="22">No data to be shown.</td>
                 </tr>
+                @else
+                <tr>
+                    <td colspan="22">Please search name first.</td>
+                </tr>
+                @endif
+            @else
+                <tr>
+                    <td colspan="22">No data to be shown.</td>
+                </tr>
+            @endrole
             @endforelse
-
     </tbody>
 </table>
 <div class="row">

@@ -57,7 +57,7 @@ class ProductOfPartnerService extends ApiService
         return $this;
     }
 
-    public function ProductOfPartnerByPartnerName($name)
+    public function productOfPartnerByPartnerName($name)
     {
         $this->endPoint = 'productofpartner/partner/name?pname='.$name;
 

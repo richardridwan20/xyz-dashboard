@@ -22,7 +22,7 @@
                 <i class="status fa fa-pull-right fa-sort"></i>
             </th>
             <th id="username" data-sort="username" data-order="DESC" class="medium-th session-head text-capitalize" style='padding: 2px valign: middle'>
-                <b>Username</b>
+                <b>Email</b>
                 <i class="customer_id fa fa-pull-right fa-sort"></i>
             </th>
             <th id="action" data-sort="action" data-order="DESC" class="small-th session-head text-capitalize" style='padding: 2px valign: middle'>
@@ -34,12 +34,12 @@
     <tbody id="tableAjax">
             @forelse ($agents as $agent)
                 <tr>
-                    <td>{{$agent['agent_name']}}</td>
+                    <td><a href="{{ route('dashboard.detail_agent', $agent['id']) }}">{{$agent['agent_name']}}</a></td>
                     <td>{{$agent['branch_name']}}</td>
                     <td>{{$agent['citizen_id']}}</td>
                     <td>{{$agent['phone_number']}}</td>
                     <td>{{$agent['dob']}}</td>
-                    <td>{{$agent['username']}}</td>
+                    <td>{{$agent['email']}}</td>
                     <td><a onclick="confirmation('delete/{{$agent['id']}}')"><button class='btn btn-alt-danger'>Delete</button></a></td>
                 </tr>
             @empty

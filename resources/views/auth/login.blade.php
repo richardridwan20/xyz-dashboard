@@ -6,8 +6,8 @@
         <div class="hero-static content content-full bg-white" data-toggle="appear">
             <!-- Header -->
             <div class="py-30 px-5 text-center">
-                <a class="link-effect font-w700" href="">
-                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
+                <a class="font-w700">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Welcome to Your Dashboard</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Please sign in</h2>
@@ -51,13 +51,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="custom-control-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
-                                </div>
-                            </div>
+                        <div>
+                            <br>
                         </div>
                         <div class="form-group row gutters-tiny">
                             <div class="col-12 mb-10">

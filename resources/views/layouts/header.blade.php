@@ -58,7 +58,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <img style="margin: -5px;" class="content-header-logo" src="assets\media\photos\sovera-s.png" alt="">
+                        <img style="margin: -5px;" class="content-header-logo" src="{{asset('assets\media\photos\sovera-s.png')}}" alt="">
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -76,7 +76,7 @@
                     <!-- Logo -->
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="{{ route('dashboard.index') }}">
-                            <img class="content-header-logo" src="assets\media\photos\sovera-logo-white.png" alt="">
+                            <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo-white.png')}}" alt="">
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -107,7 +107,7 @@
                         <a class="{{ Route::is('claim.index') ? 'active' : '' }}" href="{{ route('claim.index') }}"><i class="si si-people"></i><span class="sidebar-mini-hide">Claim</span></a>
                     </li>
                     @endrole
-                    @role('supadmin|claim')
+                    @role('claim')
                     <li>
                         <a class="{{ Route::is('claim.index') ? 'active' : '' }}" href="{{ route('claim.index') }}"><i class="si si-people"></i><span class="sidebar-mini-hide">Claim</span></a>
                     </li>
@@ -135,23 +135,17 @@
                         <a class="{{ Route::is('voucher.index') ? 'active' : '' }}" href="{{ route('voucher.index') }}"><i class="fa fa-wpforms"></i><span class="sidebar-mini-hide">Vouchers</span></a>
                     </li>
                     @endrole
-
-                    @can('register partner')
-                    {{-- Partner Sub-menu --}}
+                    @role('supadmin|financial|operation')
+                    {{-- Partner Sub-Menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PA</span><span class="sidebar-mini-hidden">Partner</span></li>
                     <li>
-                        <a class="{{ Route::is('dashboard.registerrole') ? 'active' : '' }}" href="{{ route('dashboard.registerrole') }}"><i class="fa fa-user-plus"></i><span class="sidebar-mini-hide">Register Partner Role</span></a>
-                    </li>
-                    @endcan
-                    @role('supadmin|financial|operation')
                     <li>
                         <a class="{{ Route::is('productofpartner.index') ? 'active' : '' }}" href="{{ route('productofpartner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Partner Product</span></a>
                     </li>
                     <li>
-                        <a class="{{ Route::is('dashboard.registerpartner') ? 'active' : '' }}" href="{{ route('dashboard.registerpartner') }}"><i class="fa fa-address-book-o"></i><span class="sidebar-mini-hide">Add Partner</span></a>
+                        <a class="{{ Route::is('partner.index') ? 'active' : '' }}" href="{{ route('partner.index') }}"><i class="fa fa-address-card-o"></i><span class="sidebar-mini-hide">Manage Partner</span></a>
                     </li>
                     @endrole
-
                     @role('supadmin|financial|operation')
                     {{-- Product Sub-Menu --}}
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">PO</span><span class="sidebar-mini-hidden">Product</span></li>
@@ -191,7 +185,7 @@
 
             <!-- User Dropdown -->
             <div class="d-inline-block" role="group">
-                <button type="button" class="btn btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <button type="button" class="btn btn-dual-secondary" id="page-header-user-dropdown">
                     {{ Auth::user()->name }}
                 </button>
             </div>
@@ -210,26 +204,9 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-
-            <!-- Toggle Side Overlay -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <button type="button" class="btn btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                <i class="fa fa-cog"></i>
-            </button>
-            <!-- END Toggle Side Overlay -->
         </div>
         <!-- END Right Section -->
     </div>
     <!-- END Header Content -->
-
-    <!-- Header Loader -->
-    <div id="page-header-loader" class="overlay-header bg-primary">
-        <div class="content-header content-header-fullrow text-center">
-            <div class="content-header-item">
-                <i class="fa fa-sun-o fa-spin text-white"></i>
-            </div>
-        </div>
-    </div>
-    <!-- END Header Loader -->
 </header>
 <!-- END Header -->

@@ -5,7 +5,7 @@
 @php
 $planValue = [];
     foreach($productOfPartners as $productOfPartner){
-       array_push($planValue, $productOfPartner['plan']['id']."|".$productOfPartner['plan']['duration']."|".$productOfPartner['plan']['premium']);
+        array_push($planValue, $productOfPartner['plan_id']['id']."|".$productOfPartner['plan_id']['duration']."|".$productOfPartner['plan_id']['premium']);
     }
 @endphp
 
@@ -13,11 +13,11 @@ $planValue = [];
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
-                <a class="btn btn-alt-info back-btn" href="{{ Route('voucher.index') }}">Back to Manage Voucher</a>
+                <a class="btn btn-alt-info back-btn" href="{{ Route('voucher.index') }}"> <i class="fa fa-arrow-circle-left"></i> Back to Manage Voucher</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700" href="index.html">
-                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Voucher Form</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Add Voucher, please fill the voucher detail</h2>
@@ -120,9 +120,9 @@ $planValue = [];
                                             <select type="dropdown" class="form-control" id="plan_id" name="plan_id" onchange="durationManager()">
                                                 <option disabled selected>Select Plan</option>
                                                 @for($i=0;$i<count($productOfPartners);$i++)
-                                                <option value="{{$productOfPartners[$i]['plan']['id']}}"
-                                                    @if(old('plan_id') == $productOfPartners[$i]['plan']['id']."|".$productOfPartners[$i]['plan']['duration']."|".$productOfPartners[$i]['plan']['premium']) selected @endif>
-                                                    {{$productOfPartners[$i]['plan']['product_id']['name']}} {{$productOfPartners[$i]['plan']['name']}} {{$productOfPartners[$i]['plan']['duration']}}
+                                                <option value="{{$productOfPartners[$i]['plan_id']['id']}}"
+                                                    @if(old('plan_id') == $productOfPartners[$i]['plan_id']['id']."|".$productOfPartners[$i]['plan_id']['duration']."|".$productOfPartners[$i]['plan_id']['premium']) selected @endif>
+                                                    {{$productOfPartners[$i]['plan_id']['product_id']['name']}} {{$productOfPartners[$i]['plan_id']['name']}} {{$productOfPartners[$i]['plan_id']['duration']}}
                                                 </option>
                                                 @endfor
                                             </select>

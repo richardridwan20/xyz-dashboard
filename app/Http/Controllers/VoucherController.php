@@ -34,7 +34,7 @@ class VoucherController extends Controller
     {
         $name = Auth::user()->name;
         $partnerName = $this->registerService->partnerName()->get();
-        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->fetch()->bodyResponse;
+        $productOfPartners = $this->PpService->ProductOfPartnerByPartnerName($name)->get();
         return view('voucher.form', compact('notify', 'partnerName', 'productOfPartners'));
     }
 

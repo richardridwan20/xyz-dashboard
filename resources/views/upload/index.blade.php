@@ -111,7 +111,7 @@ if($error != null){
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
 var session1 = "{{Session::get('notify')}}"
-    console.log(session1)
+
     if (session1 == 'uploaded') {
             Swal.fire(
             'Success!',
@@ -126,6 +126,13 @@ var session1 = "{{Session::get('notify')}}"
             'error'
             )
     }
+var session2 = "{{Session::get('filepath')}}"
+    if (session2 != "" ) {
+        let url = "{{ route('upload.download_sms_report', 'filepath') }}";
+        url = url.replace('filepath', session2);
+        document.location.href=url;
+    }
+
 </script>
 @endsection
 

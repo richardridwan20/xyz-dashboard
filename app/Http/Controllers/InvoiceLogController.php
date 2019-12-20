@@ -16,7 +16,6 @@ class InvoiceLogController extends Controller
 
     public function index(Request $request)
     {
-        //try commit
         $column = 'created_at';
         $typeOfSort = 'DESC';
 

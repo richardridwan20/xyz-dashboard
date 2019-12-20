@@ -8,7 +8,6 @@ use App\User;
 
 class RegisterController extends Controller
 {
-
     public function __construct(RegisterService $service)
     {
         $this->service = $service;
@@ -24,73 +23,15 @@ class RegisterController extends Controller
         //
     }
 
-    public function register()
-    {
-        $partnerName = $this->service->partnerName()->get();
-        return view('register.register_partner', compact('partnerName'));
-    }
-
-    public function registerPartner()
-    {
-        $success = "failed";
-        return view('register.register_new_partner', compact('success'));
-    }
-
     public function inputNewPartner(Request $request)
     {
-        $rules = [
-            'pname' => 'required|unique:partners,name',
-            'cname' => 'required',
-            'address' => 'required',
-            'commission' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required',
-            'body' => 'required',
-            'asdata' => 'required',
-            'sender' => 'required',
-            'npinduk' => 'required',
-            'quota' => 'required|numeric'
-        ];
-        $customMessages = [
-            'asdata.required' => 'please choose :attribute',
-            'sender.required' => 'please choose :attribute',
-            'required' => 'please fill the :attribute',
-        ];
-        $customAttributes = [
-            'pname' => 'Partner Name',
-            'cname' => 'Company Name',
-            'address' => 'Partner Address',
-            'commission' => 'commission',
-            'email' => 'Partner Email',
-            'subject' => 'Email Subject',
-            'body' => 'Email Body',
-            'asdata' => 'Allow Send Data',
-            'sender' => 'Email Sender',
-            'npinduk' => 'Nomor Polis Induk',
-            'quota' => 'Agent Quota'
-        ];
-        $request->validate($rules, $customMessages, $customAttributes);
-        if($request->ptype == "Monthly"){
-            $duration = 1;
-        }else{
-            $duration = 12;
-        }
-        $data = [
-            'name' => $request->pname,
-            'company_name' => $request->cname,
-            'company_address' => $request->address,
-            'commission' => $request->commission,
-            'allow_send_data' => $request->asdata,
-            'sender' => $request->sender,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'body' => $request->body,
-            'no_polis_induk' => $request->npinduk,
-            'agent_quota' => $request->quota,
-        ];
-        $inputPartner = $this->service->inputNewPartner()->post($data);
+        $inputPartner = $this->service->inputNewPartner()->post($request->toArray());
 
-        return redirect()->back()->with('success', 'success');
+        if(array_key_exists("errors", $inputPartner->bodyResponse)){
+            return redirect()->back()->withErrors($inputPartner->bodyResponse['errors'])->withInput();
+        }else{
+            return redirect()->back()->with('success', 'success');
+        }
     }
 
     public function inputPartner(Request $request)

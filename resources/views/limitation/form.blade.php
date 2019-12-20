@@ -6,11 +6,11 @@
     <!-- Page Content -->
     <div class="bg-gd-primary">
         <div class="hero-static content content-full bg-white" data-toggle="appear">
-                <a class="btn btn-alt-info back-btn" href="{{ Route('limitation.index') }}"><i class="fa fa-arrow-left"></i> Back to Manage Detail Limitation</a>
+                <a class="btn btn-alt-info back-btn" href="{{ Route('limitation.index') }}"><i class="fa fa-arrow-circle-left"></i> Back to Manage Detail Limitation</a>
             <!-- Header -->
             <div class="py-30 px-5 text-center">
                 <a class="link-effect font-w700">
-                    <img class="content-header-logo" src="assets\media\photos\sovera-logo.png" alt="">
+                    <img class="main-logo" src="{{asset('assets\media\photos\sovera-logo.png')}}" alt="">
                 </a>
                 <h1 class="h2 font-w700 mt-50 mb-10">Detail Limitation Form</h1>
                 <h2 class="h4 font-w400 text-muted mb-0">Add Detail Limitation, please fill the limitation detail</h2>
